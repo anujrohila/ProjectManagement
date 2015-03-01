@@ -4,8 +4,14 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="1580912bde5b483e90280c35bf2e4db6" Name="Diagram1">
-        <EntityTypeShape EntityType="ProjectManagementSQLDatabaseModel.tblMember" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+      <Diagram DiagramId="1580912bde5b483e90280c35bf2e4db6" Name="Diagram1" ZoomLevel="65">
+        <EntityTypeShape EntityType="ProjectManagementSQLDatabaseModel.tblMember" Width="1.5" PointX="3.625" PointY="0.625" />
+        <EntityTypeShape EntityType="ProjectManagementSQLDatabaseModel.tblMemberPermission" Width="1.5" PointX="6.75" PointY="2.75" />
+        <EntityTypeShape EntityType="ProjectManagementSQLDatabaseModel.tblMemberType" Width="1.5" PointX="0.625" PointY="3" />
+        <EntityTypeShape EntityType="ProjectManagementSQLDatabaseModel.tblPermissionMaster" Width="1.5" PointX="3.125" PointY="4.5" />
+        <AssociationConnector Association="ProjectManagementSQLDatabaseModel.FK_tblMember_tblMemberType" />
+        <AssociationConnector Association="ProjectManagementSQLDatabaseModel.FK_tblMemberPermission_tblMember" />
+        <AssociationConnector Association="ProjectManagementSQLDatabaseModel.FK_tblMemberPermission_tblPermissionMaster" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

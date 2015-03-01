@@ -26,5 +26,8 @@ namespace ProjectManagement.DLL.ORM
         }
     
         public DbSet<tblMember> tblMembers { get; set; }
+        public DbSet<tblMemberPermission> tblMemberPermissions { get; set; }
+        public DbSet<tblMemberType> tblMemberTypes { get; set; }
+        public DbSet<tblPermissionMaster> tblPermissionMasters { get; set; }
     }
 }

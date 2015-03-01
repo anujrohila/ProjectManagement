@@ -12,23 +12,17 @@ namespace ProjectManagement.DLL.ORM
     using System;
     using System.Collections.Generic;
     
-    public partial class tblMember
+    public partial class tblPermissionMaster
     {
-        public tblMember()
+        public tblPermissionMaster()
         {
             this.tblMemberPermissions = new HashSet<tblMemberPermission>();
         }
     
-        public int MemberId { get; set; }
-        public Nullable<int> MemberTypeId { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string EmailAddress { get; set; }
-        public string MobileNo { get; set; }
-        public string Password { get; set; }
-        public Nullable<bool> IsActive { get; set; }
+        public int PermissionId { get; set; }
+        public string PermissionName { get; set; }
+        public string Description { get; set; }
     
-        public virtual tblMemberType tblMemberType { get; set; }
         public virtual ICollection<tblMemberPermission> tblMemberPermissions { get; set; }
     }
 }

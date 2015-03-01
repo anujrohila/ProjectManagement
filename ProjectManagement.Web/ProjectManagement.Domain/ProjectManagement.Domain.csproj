@@ -45,6 +45,9 @@
     <Compile Include="Common\ProjectManagementApplication.cs" />
     <Compile Include="Common\PageHeaderModel.cs" />
     <Compile Include="DTO\tblMemberDTO.cs" />
+    <Compile Include="DTO\tblMemberPermissionDTO.cs" />
+    <Compile Include="DTO\tblMemberTypeDTO.cs" />
+    <Compile Include="DTO\tblPermissionMasterDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\ProjectManagementResource.Designer.cs">
       <AutoGen>True</AutoGen>
