@@ -44,6 +44,10 @@
     <Compile Include="Common\Enums.cs" />
     <Compile Include="Common\ProjectManagementApplication.cs" />
     <Compile Include="Common\PageHeaderModel.cs" />
+    <Compile Include="DTO\tblAccountTypeDTO.cs" />
+    <Compile Include="DTO\tblCompanyDTO.cs" />
+    <Compile Include="DTO\tblMaterialDTO.cs" />
+    <Compile Include="DTO\tblMaterialGroupDTO.cs" />
     <Compile Include="DTO\tblMemberDTO.cs" />
     <Compile Include="DTO\tblMemberPermissionDTO.cs" />
     <Compile Include="DTO\tblMemberTypeDTO.cs" />

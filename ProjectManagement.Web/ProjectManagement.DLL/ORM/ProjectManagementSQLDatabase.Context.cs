@@ -25,6 +25,10 @@ namespace ProjectManagement.DLL.ORM
             throw new UnintentionalCodeFirstException();
         }
     
+        public DbSet<tblAccountType> tblAccountTypes { get; set; }
+        public DbSet<tblCompany> tblCompanies { get; set; }
+        public DbSet<tblMaterial> tblMaterials { get; set; }
+        public DbSet<tblMaterialGroup> tblMaterialGroups { get; set; }
         public DbSet<tblMember> tblMembers { get; set; }
         public DbSet<tblMemberPermission> tblMemberPermissions { get; set; }
         public DbSet<tblMemberType> tblMemberTypes { get; set; }

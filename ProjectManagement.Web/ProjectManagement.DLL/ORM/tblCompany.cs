@@ -12,25 +12,21 @@ namespace ProjectManagement.DLL.ORM
     using System;
     using System.Collections.Generic;
     
-    public partial class tblMember
+    public partial class tblCompany
     {
-        public tblMember()
+        public tblCompany()
         {
             this.tblMaterials = new HashSet<tblMaterial>();
-            this.tblMemberPermissions = new HashSet<tblMemberPermission>();
         }
     
-        public int MemberId { get; set; }
-        public Nullable<int> MemberTypeId { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string EmailAddress { get; set; }
-        public string MobileNo { get; set; }
-        public string Password { get; set; }
+        public int CompanyId { get; set; }
+        public string CompanyName { get; set; }
+        public string Address { get; set; }
+        public string ContactDetails { get; set; }
+        public string AboutUs { get; set; }
+        public Nullable<System.DateTime> CreationDateTime { get; set; }
         public Nullable<bool> IsActive { get; set; }
     
         public virtual ICollection<tblMaterial> tblMaterials { get; set; }
-        public virtual tblMemberType tblMemberType { get; set; }
-        public virtual ICollection<tblMemberPermission> tblMemberPermissions { get; set; }
     }
 }

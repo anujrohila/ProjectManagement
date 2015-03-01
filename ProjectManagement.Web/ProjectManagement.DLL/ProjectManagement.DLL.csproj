@@ -46,6 +46,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assemblers\tblAccountTypeAssembler.cs" />
+    <Compile Include="Assemblers\tblCompanyAssembler.cs" />
+    <Compile Include="Assemblers\tblMaterialAssembler.cs" />
+    <Compile Include="Assemblers\tblMaterialGroupAssembler.cs" />
     <Compile Include="Assemblers\tblMemberAssembler.cs" />
     <Compile Include="Assemblers\tblMemberPermissionAssembler.cs" />
     <Compile Include="Assemblers\tblMemberTypeAssembler.cs" />
@@ -64,6 +68,18 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ProjectManagementSQLDatabase.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\tblAccountType.cs">
+      <DependentUpon>ProjectManagementSQLDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\tblCompany.cs">
+      <DependentUpon>ProjectManagementSQLDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\tblMaterial.cs">
+      <DependentUpon>ProjectManagementSQLDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\tblMaterialGroup.cs">
+      <DependentUpon>ProjectManagementSQLDatabase.tt</DependentUpon>
     </Compile>
     <Compile Include="ORM\tblMember.cs">
       <DependentUpon>ProjectManagementSQLDatabase.tt</DependentUpon>
