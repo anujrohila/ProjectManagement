@@ -1,50 +1,105 @@
-﻿@model ProjectManagement.Web.Models.LoginModel
-
-@{
-    ViewBag.Title = "Log in";
+﻿@{
+    ViewBag.Title = "Login";
+    Layout = null;
 }
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Login Page</title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />
 
-<hgroup class="title">
-    <h1>@ViewBag.Title.</h1>
-</hgroup>
+    <!-- ================== BEGIN BASE CSS STYLE ================== -->
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+    <link href="~/Content/plugins/jquery-ui/themes/base/minified/jquery-ui.min.css" rel="stylesheet" />
+    <link href="~/Content/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/css/animate.min.css" rel="stylesheet" />
+    <link href="~/Content/css/style.min.css" rel="stylesheet" />
+    <link href="~/Content/css/style-responsive.min.css" rel="stylesheet" />
+    <link href="~/Content/css/theme/default.css" rel="stylesheet" id="theme" />
+    <!-- ================== END BASE CSS STYLE ================== -->
+</head>
+<body>
+    <!-- begin #page-loader -->
+    <div id="page-loader" class="fade in"><span class="spinner"></span></div>
+    <!-- end #page-loader -->
 
-<section id="loginForm">
-<h2>Use a local account to log in.</h2>
-@using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl })) {
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
+    <div class="login-cover">
+        <div class="login-cover-image"><img src="~/Content/img/login-bg/bg-1.jpg" data-id="login-cover-image" alt="" /></div>
+        <div class="login-cover-bg"></div>
+    </div>
+    <!-- begin #page-container -->
+    <div id="page-container" class="fade">
+        <!-- begin login -->
+        <div class="login login-v2" data-pageload-addclass="animated flipInX">
+            <!-- begin brand -->
+            <div class="login-header">
+                <div class="brand">
+                    <span class="logo"></span> Color Admin
+                    <small>responsive bootstrap 3 admin template</small>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-sign-in"></i>
+                </div>
+            </div>
+            <!-- end brand -->
+            <div class="login-content">
+                <form action="http://seantheme.com/color-admin-v1.5/admin/html/index.html" method="POST" class="margin-bottom-0">
+                    <div class="form-group m-b-20">
+                        <input type="text" class="form-control input-lg" placeholder="Email Address" />
+                    </div>
+                    <div class="form-group m-b-20">
+                        <input type="text" class="form-control input-lg" placeholder="Password" />
+                    </div>
+                    <div class="checkbox m-b-20">
+                        <label>
+                            <input type="checkbox" /> Remember Me
+                        </label>
+                    </div>
+                    <div class="login-buttons">
+                        <button type="submit" class="btn btn-success btn-block btn-lg">Sign me in</button>
+                    </div>
+                    <div class="m-t-20">
+                        Not a member yet? Click <a href="#">here</a> to register.
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- end login -->
 
-    <fieldset>
-        <legend>Log in Form</legend>
-        <ol>
-            <li>
-                @Html.LabelFor(m => m.UserName)
-                @Html.TextBoxFor(m => m.UserName)
-                @Html.ValidationMessageFor(m => m.UserName)
-            </li>
-            <li>
-                @Html.LabelFor(m => m.Password)
-                @Html.PasswordFor(m => m.Password)
-                @Html.ValidationMessageFor(m => m.Password)
-            </li>
-            <li>
-                @Html.CheckBoxFor(m => m.RememberMe)
-                @Html.LabelFor(m => m.RememberMe, new { @class = "checkbox" })
-            </li>
-        </ol>
-        <input type="submit" value="Log in" />
-    </fieldset>
-    <p>
-        @Html.ActionLink("Register", "Register") if you don't have an account.
-    </p>
-}
-</section>
+      
+     
+    </div>
+    <!-- end page container -->
+    <!-- ================== BEGIN BASE JS ================== -->
+    <script src="~/Content/plugins/jquery/jquery-1.9.1.min.js"></script>
+    <script src="~/Content/plugins/jquery/jquery-migrate-1.1.0.min.js"></script>
+    <script src="~/Content/plugins/jquery-ui/ui/minified/jquery-ui.min.js"></script>
+    <script src="~/Content/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <!--[if lt IE 9]>
+        <script src="~/Content/crossbrowserjs/html5shiv.js"></script>
+        <script src="~/Content/crossbrowserjs/respond.min.js"></script>
+        <script src="~/Content/crossbrowserjs/excanvas.min.js"></script>
+    <![endif]-->
+    <script src="~/Content/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="~/Content/plugins/jquery-cookie/jquery.cookie.js"></script>
+    <!-- ================== END BASE JS ================== -->
+    <!-- ================== BEGIN PAGE LEVEL JS ================== -->
+    <script src="~/Content/js/login-v2.demo.min.js"></script>
+    <script src="~/Content/js/apps.min.js"></script>
+    <!-- ================== END PAGE LEVEL JS ================== -->
+    <script>
+        $(document).ready(function () {
+            App.init();
+            LoginV2.init();
+        });
+    </script>
+</body>
+<!-- Mirrored from seantheme.com/color-admin-v1.5/admin/html/login_v2.html by HTTrack Website Copier/3.x [XR&CO'2010], Tue, 03 Feb 2015 10:12:19 GMT -->
+</html>
 
-<section class="social" id="socialLoginForm">
-    <h2>Use another service to log in.</h2>
-    @Html.Action("ExternalLoginsList", new { ReturnUrl = ViewBag.ReturnUrl })
-</section>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
