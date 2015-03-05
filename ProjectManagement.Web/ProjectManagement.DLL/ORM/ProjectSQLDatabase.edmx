@@ -1,0 +1,631 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ProjectManagementModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="ProjectManagementModelStoreContainer">
+          <EntitySet Name="AccountGroup" EntityType="ProjectManagementModel.Store.AccountGroup" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CreditLimit" EntityType="ProjectManagementModel.Store.CreditLimit" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="del_Mat_AccountTwo" EntityType="ProjectManagementModel.Store.del_Mat_AccountTwo" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="GroupByItem" EntityType="ProjectManagementModel.Store.GroupByItem" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="GroupBySupplier" EntityType="ProjectManagementModel.Store.GroupBySupplier" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="history_store" EntityType="ProjectManagementModel.Store.history_store" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Mat_AccountTwo" EntityType="ProjectManagementModel.Store.Mat_AccountTwo" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Material" EntityType="ProjectManagementModel.Store.Material" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="QtyMaterial" EntityType="ProjectManagementModel.Store.QtyMaterial" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Supplier" EntityType="ProjectManagementModel.Store.Supplier" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="users" EntityType="ProjectManagementModel.Store.users" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="AccountGroup">
+          <Key>
+            <PropertyRef Name="AcId" />
+          </Key>
+          <Property Name="AcId" Type="int" Nullable="false" />
+          <Property Name="AcGroup" Type="nvarchar" MaxLength="255" />
+          <Property Name="CloBalance" Type="float" />
+        </EntityType>
+        <EntityType Name="CreditLimit">
+          <Key>
+            <PropertyRef Name="Sup_id" />
+          </Key>
+          <Property Name="Sup_id" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="Balance" Type="float" />
+          <Property Name="CreditDays" Type="int" />
+          <Property Name="CreditAmmount" Type="float" />
+        </EntityType>
+        <EntityType Name="del_Mat_AccountTwo">
+          <Key>
+            <PropertyRef Name="Ent_No" />
+          </Key>
+          <Property Name="Ent_No" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="VrNo" Type="int" Nullable="false" />
+          <Property Name="Mode_Pay_Rec" Type="nvarchar" MaxLength="255" />
+          <Property Name="Rec_Pay" Type="nvarchar" MaxLength="255" />
+          <Property Name="Ammount" Type="float" />
+          <Property Name="Ddate" Type="datetime" />
+          <Property Name="Disp" Type="nvarchar(max)" />
+          <Property Name="From_Account" Type="nvarchar" MaxLength="255" />
+          <Property Name="To_Account" Type="nvarchar" MaxLength="255" />
+          <Property Name="Hand_Group" Type="nvarchar" MaxLength="255" />
+          <Property Name="Kwat" Type="float" />
+          <Property Name="Discount" Type="float" />
+          <Property Name="Hand" Type="float" />
+          <Property Name="SetViewOne" Type="nvarchar" MaxLength="255" />
+          <Property Name="Freezed" Type="bit" />
+          <Property Name="IsEntryOnly" Type="bit" />
+          <Property Name="GuidAC" Type="nvarchar(max)" />
+          <Property Name="CurDate" Type="datetime" />
+          <Property Name="Hide" Type="bit" />
+          <Property Name="ChqNo" Type="nvarchar" MaxLength="255" />
+          <Property Name="ChqDrawn" Type="nvarchar" MaxLength="255" />
+          <Property Name="Userss" Type="nvarchar" MaxLength="255" />
+          <Property Name="fy" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="GroupByItem">
+          <Key>
+            <PropertyRef Name="GrpIdItem" />
+          </Key>
+          <Property Name="GrpIdItem" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="GroupItemName" Type="nvarchar" MaxLength="255" />
+          <Property Name="GuIdGroup" Type="nvarchar" MaxLength="255" />
+          <Property Name="ChildOF" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="GroupBySupplier">
+          <Key>
+            <PropertyRef Name="GrpIdSupplier" />
+          </Key>
+          <Property Name="GrpIdSupplier" Type="int" Nullable="false" />
+          <Property Name="GroupSupplierName" Type="nvarchar" MaxLength="50" />
+          <Property Name="childOf" Type="int" />
+          <Property Name="Display" Type="bit" />
+          <Property Name="ClosingBalance" Type="float" />
+        </EntityType>
+        <EntityType Name="history_store">
+          <Key>
+            <PropertyRef Name="table_name" />
+            <PropertyRef Name="pk_date_dest" />
+          </Key>
+          <Property Name="timemark" Type="datetime" Nullable="false" />
+          <Property Name="table_name" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="pk_date_src" Type="nvarchar" Nullable="false" MaxLength="400" />
+          <Property Name="pk_date_dest" Type="nvarchar" Nullable="false" MaxLength="400" />
+          <Property Name="record_state" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Mat_AccountTwo">
+          <Key>
+            <PropertyRef Name="Ent_No" />
+          </Key>
+          <Property Name="Ent_No" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="VrNo" Type="int" Nullable="false" />
+          <Property Name="Mode_Pay_Rec" Type="nvarchar" MaxLength="255" />
+          <Property Name="Rec_Pay" Type="nvarchar" MaxLength="255" />
+          <Property Name="Ammount" Type="float" />
+          <Property Name="Ddate" Type="datetime" />
+          <Property Name="Disp" Type="nvarchar(max)" />
+          <Property Name="From_Account" Type="nvarchar" MaxLength="255" />
+          <Property Name="To_Account" Type="nvarchar" MaxLength="255" />
+          <Property Name="Hand_Group" Type="nvarchar" MaxLength="255" />
+          <Property Name="Kwat" Type="float" />
+          <Property Name="Discount" Type="float" />
+          <Property Name="Hand" Type="float" />
+          <Property Name="SetViewOne" Type="nvarchar" MaxLength="255" />
+          <Property Name="Freezed" Type="bit" />
+          <Property Name="IsEntryOnly" Type="bit" />
+          <Property Name="GuidAC" Type="nvarchar(max)" />
+          <Property Name="CurDate" Type="datetime" />
+          <Property Name="Hide" Type="bit" />
+          <Property Name="ChqNo" Type="nvarchar" MaxLength="255" />
+          <Property Name="ChqDrawn" Type="nvarchar" MaxLength="255" />
+          <Property Name="Userss" Type="nvarchar" MaxLength="255" />
+          <Property Name="fy" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Material">
+          <Key>
+            <PropertyRef Name="Mat_id" />
+          </Key>
+          <Property Name="Mat_id" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="Mat_Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="Mat_Unit" Type="nvarchar" MaxLength="255" />
+          <Property Name="Basic_Rate" Type="float" />
+          <Property Name="GroupId" Type="nvarchar" MaxLength="255" />
+          <Property Name="GuIdMaterial" Type="nvarchar" MaxLength="255" />
+          <Property Name="userss" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="QtyMaterial">
+          <Key>
+            <PropertyRef Name="Reg_id" />
+          </Key>
+          <Property Name="Reg_id" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="Mat_id" Type="nvarchar" MaxLength="255" />
+          <Property Name="Sup_id" Type="nvarchar" MaxLength="255" />
+          <Property Name="Ddate" Type="datetime" />
+          <Property Name="Challan_No" Type="int" />
+          <Property Name="Disp" Type="nvarchar" MaxLength="255" />
+          <Property Name="Qty" Type="float" />
+          <Property Name="Rate" Type="float" />
+          <Property Name="Ammount" Type="float" />
+          <Property Name="Unit" Type="nvarchar" MaxLength="255" />
+          <Property Name="Proj_Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="Bill_No" Type="smallint" />
+          <Property Name="Bill_Rate" Type="float" />
+          <Property Name="Bil_Ent" Type="bit" />
+          <Property Name="Valid" Type="bit" />
+          <Property Name="Bill_Date" Type="datetime" />
+          <Property Name="Bill_Ent_No" Type="nvarchar" MaxLength="255" />
+          <Property Name="GuidQty" Type="nvarchar" MaxLength="255" />
+          <Property Name="userss" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Supplier">
+          <Key>
+            <PropertyRef Name="Sup_id" />
+          </Key>
+          <Property Name="Sup_id" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="NameiS" Type="nvarchar" MaxLength="255" />
+          <Property Name="AddiS" Type="nvarchar" MaxLength="255" />
+          <Property Name="City" Type="nvarchar" MaxLength="255" />
+          <Property Name="OpBalance" Type="float" />
+          <Property Name="Sup_Ph" Type="varchar" MaxLength="10" />
+          <Property Name="creditday" Type="int" />
+          <Property Name="creditammount" Type="float" />
+          <Property Name="GroupId" Type="int" />
+          <Property Name="GuIdSup" Type="nvarchar" MaxLength="255" />
+          <Property Name="share" Type="smallint" />
+          <Property Name="CutDate" Type="datetime" />
+          <Property Name="Adding" Type="nvarchar" MaxLength="255" />
+          <Property Name="IntRates" Type="float" />
+          <Property Name="AutoUpdate" Type="bit" />
+          <Property Name="alias" Type="nvarchar" MaxLength="255" />
+          <Property Name="userss" Type="nvarchar" MaxLength="255" />
+          <Property Name="childof" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Balance" Type="float" Nullable="false" />
+          <Property Name="CashBankBalance" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="Uids" />
+          </Key>
+          <Property Name="Uids" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="Passwords" Type="nvarchar" MaxLength="255" />
+          <Property Name="Permit" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <Function Name="Add_Data" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Add_Field" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Add_Field_supplier" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="CashBankUpdateSupplier" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetVrNo" ReturnType="int" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="UpdateSupplier" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <!--Errors Found During Generation:
+      warning 6013: The table/view 'Co_BHESTAN.dbo.CompanyDetail' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+      
+      <EntityType Name="CompanyDetail">
+        <Property Name="CompanyName" Type="nvarchar" MaxLength="255" />
+        <Property Name="DataBaseName" Type="nvarchar" MaxLength="255" />
+        <Property Name="SiteName" Type="nvarchar" MaxLength="255" />
+        <Property Name="DateCreated" Type="nvarchar" MaxLength="255" />
+        <Property Name="User" Type="nvarchar" MaxLength="255" />
+        <Property Name="Password" Type="nvarchar" MaxLength="255" />
+        <Property Name="GuIdSite" Type="nvarchar" MaxLength="255" />
+        <Property Name="Alias" Type="nvarchar" MaxLength="255" />
+      </EntityType>
+      Errors Found During Generation:
+      warning 6013: The table/view 'Co_BHESTAN.dbo.GroupBySupplier1' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+      
+      <EntityType Name="GroupBySupplier1">
+        <Property Name="GrpIdSupplier" Type="int" />
+        <Property Name="GroupSupplierName" Type="nvarchar" MaxLength="255" />
+        <Property Name="GuIdSupplier" Type="nvarchar" MaxLength="255" />
+        <Property Name="ChildOf" Type="int" />
+      </EntityType>-->
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ProjectManagementModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="ProjectManagementEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="AccountGroups" EntityType="ProjectManagementModel.AccountGroup" />
+          <EntitySet Name="CreditLimits" EntityType="ProjectManagementModel.CreditLimit" />
+          <EntitySet Name="del_Mat_AccountTwo" EntityType="ProjectManagementModel.del_Mat_AccountTwo" />
+          <EntitySet Name="GroupByItems" EntityType="ProjectManagementModel.GroupByItem" />
+          <EntitySet Name="GroupBySuppliers" EntityType="ProjectManagementModel.GroupBySupplier" />
+          <EntitySet Name="history_store" EntityType="ProjectManagementModel.history_store" />
+          <EntitySet Name="Mat_AccountTwo" EntityType="ProjectManagementModel.Mat_AccountTwo" />
+          <EntitySet Name="Materials" EntityType="ProjectManagementModel.Material" />
+          <EntitySet Name="QtyMaterials" EntityType="ProjectManagementModel.QtyMaterial" />
+          <EntitySet Name="Suppliers" EntityType="ProjectManagementModel.Supplier" />
+          <EntitySet Name="users" EntityType="ProjectManagementModel.user" />
+          <FunctionImport Name="Add_Data" />
+          <FunctionImport Name="Add_Field" />
+          <FunctionImport Name="Add_Field_supplier" />
+          <FunctionImport Name="CashBankUpdateSupplier" />
+          <FunctionImport Name="UpdateSupplier" />
+        </EntityContainer>
+        <EntityType Name="AccountGroup">
+          <Key>
+            <PropertyRef Name="AcId" />
+          </Key>
+          <Property Name="AcId" Type="Int32" Nullable="false" />
+          <Property Name="AcGroup" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="CloBalance" Type="Double" />
+        </EntityType>
+        <EntityType Name="CreditLimit">
+          <Key>
+            <PropertyRef Name="Sup_id" />
+          </Key>
+          <Property Name="Sup_id" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Balance" Type="Double" />
+          <Property Name="CreditDays" Type="Int32" />
+          <Property Name="CreditAmmount" Type="Double" />
+        </EntityType>
+        <EntityType Name="del_Mat_AccountTwo">
+          <Key>
+            <PropertyRef Name="Ent_No" />
+          </Key>
+          <Property Name="Ent_No" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="VrNo" Type="Int32" Nullable="false" />
+          <Property Name="Mode_Pay_Rec" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Rec_Pay" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Ammount" Type="Double" />
+          <Property Name="Ddate" Type="DateTime" Precision="3" />
+          <Property Name="Disp" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="From_Account" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="To_Account" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Hand_Group" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Kwat" Type="Double" />
+          <Property Name="Discount" Type="Double" />
+          <Property Name="Hand" Type="Double" />
+          <Property Name="SetViewOne" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Freezed" Type="Boolean" />
+          <Property Name="IsEntryOnly" Type="Boolean" />
+          <Property Name="GuidAC" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="CurDate" Type="DateTime" Precision="3" />
+          <Property Name="Hide" Type="Boolean" />
+          <Property Name="ChqNo" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="ChqDrawn" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Userss" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="fy" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="GroupByItem">
+          <Key>
+            <PropertyRef Name="GrpIdItem" />
+          </Key>
+          <Property Name="GrpIdItem" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="GroupItemName" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="GuIdGroup" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="ChildOF" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="GroupBySupplier">
+          <Key>
+            <PropertyRef Name="GrpIdSupplier" />
+          </Key>
+          <Property Name="GrpIdSupplier" Type="Int32" Nullable="false" />
+          <Property Name="GroupSupplierName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="childOf" Type="Int32" />
+          <Property Name="Display" Type="Boolean" />
+          <Property Name="ClosingBalance" Type="Double" />
+        </EntityType>
+        <EntityType Name="history_store">
+          <Key>
+            <PropertyRef Name="table_name" />
+            <PropertyRef Name="pk_date_dest" />
+          </Key>
+          <Property Name="timemark" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="table_name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="pk_date_src" Type="String" Nullable="false" MaxLength="400" Unicode="true" FixedLength="false" />
+          <Property Name="pk_date_dest" Type="String" Nullable="false" MaxLength="400" Unicode="true" FixedLength="false" />
+          <Property Name="record_state" Type="Int16" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Mat_AccountTwo">
+          <Key>
+            <PropertyRef Name="Ent_No" />
+          </Key>
+          <Property Name="Ent_No" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="VrNo" Type="Int32" Nullable="false" />
+          <Property Name="Mode_Pay_Rec" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Rec_Pay" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Ammount" Type="Double" />
+          <Property Name="Ddate" Type="DateTime" Precision="3" />
+          <Property Name="Disp" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="From_Account" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="To_Account" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Hand_Group" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Kwat" Type="Double" />
+          <Property Name="Discount" Type="Double" />
+          <Property Name="Hand" Type="Double" />
+          <Property Name="SetViewOne" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Freezed" Type="Boolean" />
+          <Property Name="IsEntryOnly" Type="Boolean" />
+          <Property Name="GuidAC" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="CurDate" Type="DateTime" Precision="3" />
+          <Property Name="Hide" Type="Boolean" />
+          <Property Name="ChqNo" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="ChqDrawn" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Userss" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="fy" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Material">
+          <Key>
+            <PropertyRef Name="Mat_id" />
+          </Key>
+          <Property Name="Mat_id" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Mat_Name" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Mat_Unit" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Basic_Rate" Type="Double" />
+          <Property Name="GroupId" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="GuIdMaterial" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="userss" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="QtyMaterial">
+          <Key>
+            <PropertyRef Name="Reg_id" />
+          </Key>
+          <Property Name="Reg_id" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Mat_id" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Sup_id" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Ddate" Type="DateTime" Precision="3" />
+          <Property Name="Challan_No" Type="Int32" />
+          <Property Name="Disp" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Qty" Type="Double" />
+          <Property Name="Rate" Type="Double" />
+          <Property Name="Ammount" Type="Double" />
+          <Property Name="Unit" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Proj_Name" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Bill_No" Type="Int16" />
+          <Property Name="Bill_Rate" Type="Double" />
+          <Property Name="Bil_Ent" Type="Boolean" />
+          <Property Name="Valid" Type="Boolean" />
+          <Property Name="Bill_Date" Type="DateTime" Precision="3" />
+          <Property Name="Bill_Ent_No" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="GuidQty" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="userss" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Supplier">
+          <Key>
+            <PropertyRef Name="Sup_id" />
+          </Key>
+          <Property Name="Sup_id" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="NameiS" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="AddiS" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="City" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="OpBalance" Type="Double" />
+          <Property Name="Sup_Ph" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="creditday" Type="Int32" />
+          <Property Name="creditammount" Type="Double" />
+          <Property Name="GroupId" Type="Int32" />
+          <Property Name="GuIdSup" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="share" Type="Int16" />
+          <Property Name="CutDate" Type="DateTime" Precision="3" />
+          <Property Name="Adding" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="IntRates" Type="Double" />
+          <Property Name="AutoUpdate" Type="Boolean" />
+          <Property Name="alias" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="userss" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="childof" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Balance" Type="Double" Nullable="false" />
+          <Property Name="CashBankBalance" Type="Double" Nullable="false" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="Uids" />
+          </Key>
+          <Property Name="Uids" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Passwords" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Permit" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ProjectManagementModelStoreContainer" CdmEntityContainer="ProjectManagementEntities">
+          <EntitySetMapping Name="AccountGroups">
+            <EntityTypeMapping TypeName="ProjectManagementModel.AccountGroup">
+              <MappingFragment StoreEntitySet="AccountGroup">
+                <ScalarProperty Name="AcId" ColumnName="AcId" />
+                <ScalarProperty Name="AcGroup" ColumnName="AcGroup" />
+                <ScalarProperty Name="CloBalance" ColumnName="CloBalance" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CreditLimits">
+            <EntityTypeMapping TypeName="ProjectManagementModel.CreditLimit">
+              <MappingFragment StoreEntitySet="CreditLimit">
+                <ScalarProperty Name="Sup_id" ColumnName="Sup_id" />
+                <ScalarProperty Name="Balance" ColumnName="Balance" />
+                <ScalarProperty Name="CreditDays" ColumnName="CreditDays" />
+                <ScalarProperty Name="CreditAmmount" ColumnName="CreditAmmount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="del_Mat_AccountTwo">
+            <EntityTypeMapping TypeName="ProjectManagementModel.del_Mat_AccountTwo">
+              <MappingFragment StoreEntitySet="del_Mat_AccountTwo">
+                <ScalarProperty Name="Ent_No" ColumnName="Ent_No" />
+                <ScalarProperty Name="VrNo" ColumnName="VrNo" />
+                <ScalarProperty Name="Mode_Pay_Rec" ColumnName="Mode_Pay_Rec" />
+                <ScalarProperty Name="Rec_Pay" ColumnName="Rec_Pay" />
+                <ScalarProperty Name="Ammount" ColumnName="Ammount" />
+                <ScalarProperty Name="Ddate" ColumnName="Ddate" />
+                <ScalarProperty Name="Disp" ColumnName="Disp" />
+                <ScalarProperty Name="From_Account" ColumnName="From_Account" />
+                <ScalarProperty Name="To_Account" ColumnName="To_Account" />
+                <ScalarProperty Name="Hand_Group" ColumnName="Hand_Group" />
+                <ScalarProperty Name="Kwat" ColumnName="Kwat" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="Hand" ColumnName="Hand" />
+                <ScalarProperty Name="SetViewOne" ColumnName="SetViewOne" />
+                <ScalarProperty Name="Freezed" ColumnName="Freezed" />
+                <ScalarProperty Name="IsEntryOnly" ColumnName="IsEntryOnly" />
+                <ScalarProperty Name="GuidAC" ColumnName="GuidAC" />
+                <ScalarProperty Name="CurDate" ColumnName="CurDate" />
+                <ScalarProperty Name="Hide" ColumnName="Hide" />
+                <ScalarProperty Name="ChqNo" ColumnName="ChqNo" />
+                <ScalarProperty Name="ChqDrawn" ColumnName="ChqDrawn" />
+                <ScalarProperty Name="Userss" ColumnName="Userss" />
+                <ScalarProperty Name="fy" ColumnName="fy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GroupByItems">
+            <EntityTypeMapping TypeName="ProjectManagementModel.GroupByItem">
+              <MappingFragment StoreEntitySet="GroupByItem">
+                <ScalarProperty Name="GrpIdItem" ColumnName="GrpIdItem" />
+                <ScalarProperty Name="GroupItemName" ColumnName="GroupItemName" />
+                <ScalarProperty Name="GuIdGroup" ColumnName="GuIdGroup" />
+                <ScalarProperty Name="ChildOF" ColumnName="ChildOF" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GroupBySuppliers">
+            <EntityTypeMapping TypeName="ProjectManagementModel.GroupBySupplier">
+              <MappingFragment StoreEntitySet="GroupBySupplier">
+                <ScalarProperty Name="GrpIdSupplier" ColumnName="GrpIdSupplier" />
+                <ScalarProperty Name="GroupSupplierName" ColumnName="GroupSupplierName" />
+                <ScalarProperty Name="childOf" ColumnName="childOf" />
+                <ScalarProperty Name="Display" ColumnName="Display" />
+                <ScalarProperty Name="ClosingBalance" ColumnName="ClosingBalance" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="history_store">
+            <EntityTypeMapping TypeName="ProjectManagementModel.history_store">
+              <MappingFragment StoreEntitySet="history_store">
+                <ScalarProperty Name="timemark" ColumnName="timemark" />
+                <ScalarProperty Name="table_name" ColumnName="table_name" />
+                <ScalarProperty Name="pk_date_src" ColumnName="pk_date_src" />
+                <ScalarProperty Name="pk_date_dest" ColumnName="pk_date_dest" />
+                <ScalarProperty Name="record_state" ColumnName="record_state" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mat_AccountTwo">
+            <EntityTypeMapping TypeName="ProjectManagementModel.Mat_AccountTwo">
+              <MappingFragment StoreEntitySet="Mat_AccountTwo">
+                <ScalarProperty Name="Ent_No" ColumnName="Ent_No" />
+                <ScalarProperty Name="VrNo" ColumnName="VrNo" />
+                <ScalarProperty Name="Mode_Pay_Rec" ColumnName="Mode_Pay_Rec" />
+                <ScalarProperty Name="Rec_Pay" ColumnName="Rec_Pay" />
+                <ScalarProperty Name="Ammount" ColumnName="Ammount" />
+                <ScalarProperty Name="Ddate" ColumnName="Ddate" />
+                <ScalarProperty Name="Disp" ColumnName="Disp" />
+                <ScalarProperty Name="From_Account" ColumnName="From_Account" />
+                <ScalarProperty Name="To_Account" ColumnName="To_Account" />
+                <ScalarProperty Name="Hand_Group" ColumnName="Hand_Group" />
+                <ScalarProperty Name="Kwat" ColumnName="Kwat" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="Hand" ColumnName="Hand" />
+                <ScalarProperty Name="SetViewOne" ColumnName="SetViewOne" />
+                <ScalarProperty Name="Freezed" ColumnName="Freezed" />
+                <ScalarProperty Name="IsEntryOnly" ColumnName="IsEntryOnly" />
+                <ScalarProperty Name="GuidAC" ColumnName="GuidAC" />
+                <ScalarProperty Name="CurDate" ColumnName="CurDate" />
+                <ScalarProperty Name="Hide" ColumnName="Hide" />
+                <ScalarProperty Name="ChqNo" ColumnName="ChqNo" />
+                <ScalarProperty Name="ChqDrawn" ColumnName="ChqDrawn" />
+                <ScalarProperty Name="Userss" ColumnName="Userss" />
+                <ScalarProperty Name="fy" ColumnName="fy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Materials">
+            <EntityTypeMapping TypeName="ProjectManagementModel.Material">
+              <MappingFragment StoreEntitySet="Material">
+                <ScalarProperty Name="Mat_id" ColumnName="Mat_id" />
+                <ScalarProperty Name="Mat_Name" ColumnName="Mat_Name" />
+                <ScalarProperty Name="Mat_Unit" ColumnName="Mat_Unit" />
+                <ScalarProperty Name="Basic_Rate" ColumnName="Basic_Rate" />
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+                <ScalarProperty Name="GuIdMaterial" ColumnName="GuIdMaterial" />
+                <ScalarProperty Name="userss" ColumnName="userss" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QtyMaterials">
+            <EntityTypeMapping TypeName="ProjectManagementModel.QtyMaterial">
+              <MappingFragment StoreEntitySet="QtyMaterial">
+                <ScalarProperty Name="Reg_id" ColumnName="Reg_id" />
+                <ScalarProperty Name="Mat_id" ColumnName="Mat_id" />
+                <ScalarProperty Name="Sup_id" ColumnName="Sup_id" />
+                <ScalarProperty Name="Ddate" ColumnName="Ddate" />
+                <ScalarProperty Name="Challan_No" ColumnName="Challan_No" />
+                <ScalarProperty Name="Disp" ColumnName="Disp" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="Ammount" ColumnName="Ammount" />
+                <ScalarProperty Name="Unit" ColumnName="Unit" />
+                <ScalarProperty Name="Proj_Name" ColumnName="Proj_Name" />
+                <ScalarProperty Name="Bill_No" ColumnName="Bill_No" />
+                <ScalarProperty Name="Bill_Rate" ColumnName="Bill_Rate" />
+                <ScalarProperty Name="Bil_Ent" ColumnName="Bil_Ent" />
+                <ScalarProperty Name="Valid" ColumnName="Valid" />
+                <ScalarProperty Name="Bill_Date" ColumnName="Bill_Date" />
+                <ScalarProperty Name="Bill_Ent_No" ColumnName="Bill_Ent_No" />
+                <ScalarProperty Name="GuidQty" ColumnName="GuidQty" />
+                <ScalarProperty Name="userss" ColumnName="userss" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Suppliers">
+            <EntityTypeMapping TypeName="ProjectManagementModel.Supplier">
+              <MappingFragment StoreEntitySet="Supplier">
+                <ScalarProperty Name="Sup_id" ColumnName="Sup_id" />
+                <ScalarProperty Name="NameiS" ColumnName="NameiS" />
+                <ScalarProperty Name="AddiS" ColumnName="AddiS" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="OpBalance" ColumnName="OpBalance" />
+                <ScalarProperty Name="Sup_Ph" ColumnName="Sup_Ph" />
+                <ScalarProperty Name="creditday" ColumnName="creditday" />
+                <ScalarProperty Name="creditammount" ColumnName="creditammount" />
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+                <ScalarProperty Name="GuIdSup" ColumnName="GuIdSup" />
+                <ScalarProperty Name="share" ColumnName="share" />
+                <ScalarProperty Name="CutDate" ColumnName="CutDate" />
+                <ScalarProperty Name="Adding" ColumnName="Adding" />
+                <ScalarProperty Name="IntRates" ColumnName="IntRates" />
+                <ScalarProperty Name="AutoUpdate" ColumnName="AutoUpdate" />
+                <ScalarProperty Name="alias" ColumnName="alias" />
+                <ScalarProperty Name="userss" ColumnName="userss" />
+                <ScalarProperty Name="childof" ColumnName="childof" />
+                <ScalarProperty Name="Balance" ColumnName="Balance" />
+                <ScalarProperty Name="CashBankBalance" ColumnName="CashBankBalance" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="ProjectManagementModel.user">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="Uids" ColumnName="Uids" />
+                <ScalarProperty Name="Passwords" ColumnName="Passwords" />
+                <ScalarProperty Name="Permit" ColumnName="Permit" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Add_Data" FunctionName="ProjectManagementModel.Store.Add_Data" />
+          <FunctionImportMapping FunctionImportName="Add_Field" FunctionName="ProjectManagementModel.Store.Add_Field" />
+          <FunctionImportMapping FunctionImportName="Add_Field_supplier" FunctionName="ProjectManagementModel.Store.Add_Field_supplier" />
+          <FunctionImportMapping FunctionImportName="CashBankUpdateSupplier" FunctionName="ProjectManagementModel.Store.CashBankUpdateSupplier" />
+          <FunctionImportMapping FunctionImportName="UpdateSupplier" FunctionName="ProjectManagementModel.Store.UpdateSupplier" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
