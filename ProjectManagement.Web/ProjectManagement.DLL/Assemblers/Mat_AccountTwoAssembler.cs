@@ -14,7 +14,7 @@ using System.Linq;
 using ProjectManagement.Domain;
 using ProjectManagement.DLL.ORM;
 
-namespace ProjectManagement.DLL
+namespace ProjectManagement.DLL.ORM
 {
 
     /// <summary>
