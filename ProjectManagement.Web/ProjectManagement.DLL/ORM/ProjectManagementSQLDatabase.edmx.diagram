@@ -5,14 +5,14 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="1580912bde5b483e90280c35bf2e4db6" Name="Diagram1" ZoomLevel="25">
-        <EntityTypeShape EntityType="ProjectManagementSQLDatabaseModel.tblAccountType" Width="1.5" PointX="2.750454270630355" PointY="15.881635270957665" />
-        <EntityTypeShape EntityType="ProjectManagementSQLDatabaseModel.tblCompany" Width="1.5" PointX="11.887704357452552" PointY="29.300657077366793" />
-        <EntityTypeShape EntityType="ProjectManagementSQLDatabaseModel.tblMaterial" Width="1.5" PointX="11.252351196134626" PointY="5.38442056131755" />
-        <EntityTypeShape EntityType="ProjectManagementSQLDatabaseModel.tblMaterialGroup" Width="1.5" PointX="6.1114527667460283" PointY="13.616266644381112" />
-        <EntityTypeShape EntityType="ProjectManagementSQLDatabaseModel.tblMember" Width="1.5" PointX="4.0145677905597577" PointY="20.438137958030282" />
-        <EntityTypeShape EntityType="ProjectManagementSQLDatabaseModel.tblMemberPermission" Width="1.5" PointX="10.26342253119844" PointY="13.948168120322828" />
-        <EntityTypeShape EntityType="ProjectManagementSQLDatabaseModel.tblMemberType" Width="1.5" PointX="4.6388458314532626" PointY="18.604331710657259" />
-        <EntityTypeShape EntityType="ProjectManagementSQLDatabaseModel.tblPermissionMaster" Width="1.5" PointX="11.190169874201608" PointY="5.863585325825766" />
+        <EntityTypeShape EntityType="ProjectManagementSQLDatabaseModel.tblAccountType" Width="1.5" PointX="0.75" PointY="8.375" />
+        <EntityTypeShape EntityType="ProjectManagementSQLDatabaseModel.tblCompany" Width="1.5" PointX="6" PointY="7.625" />
+        <EntityTypeShape EntityType="ProjectManagementSQLDatabaseModel.tblMaterial" Width="1.5" PointX="8.25" PointY="4.125" />
+        <EntityTypeShape EntityType="ProjectManagementSQLDatabaseModel.tblMaterialGroup" Width="1.5" PointX="6" PointY="2.125" />
+        <EntityTypeShape EntityType="ProjectManagementSQLDatabaseModel.tblMember" Width="1.5" PointX="3" PointY="4.125" />
+        <EntityTypeShape EntityType="ProjectManagementSQLDatabaseModel.tblMemberPermission" Width="1.5" PointX="5.25" PointY="4.625" />
+        <EntityTypeShape EntityType="ProjectManagementSQLDatabaseModel.tblMemberType" Width="1.5" PointX="0.75" PointY="4.875" />
+        <EntityTypeShape EntityType="ProjectManagementSQLDatabaseModel.tblPermissionMaster" Width="1.5" PointX="3" PointY="0.75" />
         <AssociationConnector Association="ProjectManagementSQLDatabaseModel.FK_tblMaterial_tblCompany" />
         <AssociationConnector Association="ProjectManagementSQLDatabaseModel.FK_tblMaterial_tblMaterialGroup" />
         <AssociationConnector Association="ProjectManagementSQLDatabaseModel.FK_tblMaterial_tblMember" />

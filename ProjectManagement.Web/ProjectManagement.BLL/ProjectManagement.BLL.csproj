@@ -42,6 +42,16 @@
     <Compile Include="BusinessLogic\AdministratorBusinessLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ProjectManagement.DLL\ProjectManagement.DLL.csproj">
+      <Project>{2a61376f-f10f-40d6-bc78-7ed08f792262}</Project>
+      <Name>ProjectManagement.DLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ProjectManagement.Domain\ProjectManagement.Domain.csproj">
+      <Project>{514b11fc-f737-4945-b488-1d686bf7c569}</Project>
+      <Name>ProjectManagement.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

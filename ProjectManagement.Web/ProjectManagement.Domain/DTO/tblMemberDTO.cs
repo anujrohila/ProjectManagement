@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Text;
 
+
 namespace ProjectManagement.Domain
 {
     [DataContract()]
@@ -48,6 +49,12 @@ namespace ProjectManagement.Domain
 
         [DataMember()]
         public List<Int32> tblMemberPermissions_MemberPermissionId { get; set; }
+
+                public Boolean RememberMe { get; set; }
+
+        public int StatuID { get; set; }
+
+        public string ErrorMessage { get; set; }
 
         public tblMemberDTO()
         {

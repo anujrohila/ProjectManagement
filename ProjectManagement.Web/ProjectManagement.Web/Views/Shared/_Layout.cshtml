@@ -151,7 +151,7 @@
                             <li><a href="javascript:;">Calendar</a></li>
                             <li><a href="javascript:;">Setting</a></li>
                             <li class="divider"></li>
-                            <li><a href="javascript:;">Log Out</a></li>
+                            <li>@Html.ActionLink("Log Out", "Logout", "Account")</li>
                         </ul>
                     </li>
                 </ul>
@@ -183,14 +183,10 @@
                     <li class="nav-header">Navigation</li>
                     <li class="has-sub active">
                         <a href="javascript:;">
-                            <b class="caret pull-right"></b>
+                       
                             <i class="fa fa-laptop"></i>
                             <span>Dashboard</span>
                         </a>
-                        <ul class="sub-menu">
-                            <li class="active"><a href="index.html">Dashboard v1</a></li>
-                            <li><a href="index_v2.html">Dashboard v2</a></li>
-                        </ul>
                     </li>
                     <li class="has-sub">
                         <a href="javascript:;">
@@ -200,7 +196,6 @@
                         </a>
                         <ul class="sub-menu">
                             <li><a href="email_inbox.html">Inbox v1</a></li>
-                            <li><a href="email_inbox_v2.html">Inbox v2</a></li>
                             <li><a href="email_compose.html">Compose</a></li>
                             <li><a href="email_detail.html">Detail</a></li>
                         </ul>
