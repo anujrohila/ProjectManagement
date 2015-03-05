@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using ProjectManagement.Domain;
 using ProjectManagement.DLL.ORM;
 
-namespace Itsyazilim.Web.DLL
+namespace ProjectManagement.DLL
 {
     public class SupplierRepository
     {
@@ -29,11 +29,13 @@ namespace Itsyazilim.Web.DLL
         /// Get Supplier
         /// </summary>
         /// <returns></returns>
-        public List<SupplierDTO> GetAllSupplier()
+        public static List<SupplierDTO> GetAllSupplier()
         {
             using (var projectManagementEntities = new ProjectManagementEntities())
             {
                 return (from supplierObject in projectManagementEntities.Suppliers
+                        join supplierGroup in projectManagementEntities.GroupBySuppliers
+                              on supplierObject.GroupId equals supplierGroup.GrpIdSupplier
                         select new SupplierDTO
                         {
                             Sup_id = supplierObject.Sup_id,
@@ -56,6 +58,7 @@ namespace Itsyazilim.Web.DLL
                             childof = supplierObject.childof,
                             Balance = supplierObject.Balance,
                             CashBankBalance = supplierObject.CashBankBalance,
+                            SupplierGroupName = supplierGroup.GroupSupplierName
                         }).ToList();
             }
         }
@@ -64,11 +67,13 @@ namespace Itsyazilim.Web.DLL
         /// Get Supplier
         /// </summary>
         /// <returns></returns>
-        public SupplierDTO GetSupplier(string supplierId)
+        public static SupplierDTO GetSupplier(string supplierId)
         {
             using (var projectManagementEntities = new ProjectManagementEntities())
             {
                 return (from supplierObject in projectManagementEntities.Suppliers
+                        join supplierGroup in projectManagementEntities.GroupBySuppliers
+                              on supplierObject.GroupId equals supplierGroup.GrpIdSupplier
                         where string.Compare(supplierObject.Sup_id, supplierId, StringComparison.CurrentCultureIgnoreCase) == 0
                         select new SupplierDTO
                         {
@@ -92,6 +97,7 @@ namespace Itsyazilim.Web.DLL
                             childof = supplierObject.childof,
                             Balance = supplierObject.Balance,
                             CashBankBalance = supplierObject.CashBankBalance,
+                            SupplierGroupName = supplierGroup.GroupSupplierName
                         }).FirstOrDefault();
             }
         }
@@ -100,7 +106,7 @@ namespace Itsyazilim.Web.DLL
         /// Insert Supplier
         /// </summary>
         /// <returns></returns>
-        public string InsertSupplier(SupplierDTO supplierDTO)
+        public static string InsertSupplier(SupplierDTO supplierDTO)
         {
             using (var projectManagementEntities = new ProjectManagementEntities())
             {
@@ -118,7 +124,7 @@ namespace Itsyazilim.Web.DLL
         /// Update Supplier
         /// </summary>
         /// <returns></returns>
-        public string UpdateSupplier(SupplierDTO supplierDTO)
+        public static string UpdateSupplier(SupplierDTO supplierDTO)
         {
             using (var projectManagementEntities = new ProjectManagementEntities())
             {
@@ -153,7 +159,7 @@ namespace Itsyazilim.Web.DLL
         /// Is Duplicate Supplier
         /// </summary>
         /// <returns></returns>
-        public bool IsDuplicateSupplier(string supplieName, string supplierId)
+        public static bool IsDuplicateSupplier(string supplieName, string supplierId)
         {
             using (var projectManagementEntities = new ProjectManagementEntities())
             {
@@ -168,7 +174,7 @@ namespace Itsyazilim.Web.DLL
         /// Delete Supplier
         /// </summary>
         /// <returns></returns>
-        public bool DeleteSupplier(string supplierId)
+        public static bool DeleteSupplier(string supplierId)
         {
             using (var projectManagementEntities = new ProjectManagementEntities())
             {

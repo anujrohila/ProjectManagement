@@ -1,0 +1,63 @@
+﻿@using Telerik.Web.Mvc.UI;
+@{
+    ViewBag.Title = "Supplier List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <!-- begin col-6 -->
+    <div class="col-md-12 ui-sortable">
+        <!-- begin panel -->
+        <div data-sortable-id="form-stuff-1" class="panel panel-inverse">
+            <div class="panel-heading">
+                <h4 class="panel-title">Supplier Listing</h4>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                     @(Html.Telerik().Grid<ProjectManagement.Domain.SupplierDTO>().Name("ListSupplierGrid")
+                                        .DataKeys(datakKey => datakKey.Add(key => key.Sup_id))
+                                        .DataBinding(dataBinding => dataBinding.Ajax().Select("ListSupplierAjax", "Supplier"))
+                        .Columns(columns =>
+                        {
+                            columns.Bound(column => column.NameiS).Title("Supplier Name");
+                            columns.Bound(column => column.SupplierGroupName).Title("Group Name");
+                            columns.Bound(column => column.AddiS).Title("Address");
+                            columns.Bound(column => column.City).Title("City");
+                            columns.Bound(column => column.OpBalance).Title("Opening Balance");
+                            columns.Bound(column => column.Sup_Ph).Title("Phone Number");
+                            columns.Bound(column => column.Sup_id)
+                                                            .Filterable(false)
+                                                            .Sortable(false)
+                                                            .Groupable(false)
+                                                            .Width(50)
+                                                            .Title(String.Empty)
+                                                           .ClientTemplate("<center><a title='Edit' href=" + Url.Action("SaveProductProperty", "Definitions", new { id = "<#= Sup_id #>" }) + "><i class='fa fa-pencil'></i></a></center>");
+                            columns.Bound(column => column.Sup_id)
+                                                           .Filterable(false)
+                                                           .Sortable(false)
+                                                           .Groupable(false)
+                                                           .Width(50)
+                                                           .ClientTemplate("<center><a title='Delete'  onclick='DeleteProductProperty(<#= Sup_id #>);'><i class='fa fa-trash-o'></i></a></center>")
+                                                           .Title(string.Empty);
+                        })
+                                                .ToolBar(commands => commands.Custom().Action("SaveProductProperty", "Supplier", new { id = "0" })
+                            .ButtonType(GridButtonType.Text)
+                                                    .Text("Add Supplier"))
+                        .Sortable()
+                        .Selectable()
+                        .Filterable()
+                        .Scrollable(t => t.Height("auto"))
+                        .HtmlAttributes(new { style = "width:100%;" })
+                        .Resizable(resizing => resizing.Columns(true))
+                        .Pageable(paging => paging.PageSize(50).Enabled(true).Style(GridPagerStyles.NextPreviousAndNumeric).Position(GridPagerPosition.Bottom))
+                )
+                </div>
+            </div>
+        </div>
+        <!-- end panel -->
+    </div>
+</div>
+@*<script src="~/Scripts/Administrator/ProductProperty.js"></script>*@
+<script type="text/javascript">
+    //ActivateSelectedMenu('menuAdminDefinition');
+</script>

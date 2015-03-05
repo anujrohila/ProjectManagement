@@ -62,32 +62,36 @@
 
 #vehcileList :hover {
     background-color: #56AAE4;
-    color:#FFF !important;
+    color: #FFF !important;
 }
 
 .vehcileListActive {
     background-color: #ed9c28 !important;
-    color:#FFF !important;
+    color: #FFF !important;
 }
 
-.OrderNumber{
-    width :30px !important;
-    color:#000;
-    text-align:center;
-     border-radius: 4px;
+.OrderNumber {
+    width: 30px !important;
+    color: #000;
+    text-align: center;
+    border-radius: 4px;
     direction: ltr;
 }
 
-.OrderDate{
+.OrderDate {
     width: 100px !important;
-     color:#000;
-     padding-left:5px;
+    color: #000;
+    padding-left: 5px;
 }
 
-.OrderTime{
+.OrderTime {
     width: 70px !important;
-     color:#000;
-     padding-left:5px;
-     border-radius: 4px;
+    color: #000;
+    padding-left: 5px;
+    border-radius: 4px;
     direction: ltr;
+}
+
+.t-grid .t-filter-options {
+    width: 155px !important;
 }

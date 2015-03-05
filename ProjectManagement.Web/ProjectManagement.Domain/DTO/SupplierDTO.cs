@@ -76,32 +76,6 @@ namespace ProjectManagement.Domain
         [DataMember()]
         public Double CashBankBalance { get; set; }
 
-        public SupplierDTO()
-        {
-        }
-
-        public SupplierDTO(String sup_id, String nameiS, String addiS, String city, Nullable<Double> opBalance, String sup_Ph, Nullable<Int32> creditday, Nullable<Double> creditammount, Nullable<Int32> groupId, String guIdSup, Nullable<Int16> share, Nullable<DateTime> cutDate, String adding, Nullable<Double> intRates, Nullable<Boolean> autoUpdate, String alias, String userss, String childof, Double balance, Double cashBankBalance)
-        {
-			this.Sup_id = sup_id;
-			this.NameiS = nameiS;
-			this.AddiS = addiS;
-			this.City = city;
-			this.OpBalance = opBalance;
-			this.Sup_Ph = sup_Ph;
-			this.creditday = creditday;
-			this.creditammount = creditammount;
-			this.GroupId = groupId;
-			this.GuIdSup = guIdSup;
-			this.share = share;
-			this.CutDate = cutDate;
-			this.Adding = adding;
-			this.IntRates = intRates;
-			this.AutoUpdate = autoUpdate;
-			this.alias = alias;
-			this.userss = userss;
-			this.childof = childof;
-			this.Balance = balance;
-			this.CashBankBalance = cashBankBalance;
-        }
+        public string SupplierGroupName { get; set; }
     }
 }
