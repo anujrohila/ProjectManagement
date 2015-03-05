@@ -990,6 +990,7 @@
     <Content Include="Views\Shared\Copy of _Layout.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Supplier\ListAll.cshtml" />
+    <Content Include="Views\Supplier\Save.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
