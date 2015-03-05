@@ -1,0 +1,93 @@
+.t-grouping-header {
+    border-bottom: medium none;
+    color: #8e8e8e;
+    font-size: 0.75em;
+    height: 3em !important;
+}
+
+.t-grouping-header {
+    height: auto;
+    line-height: 1;
+    padding: 1em 0.25em;
+}
+
+.t-grid-header .t-header .t-link, .t-grid-filter {
+    height: 2.25em;
+    line-height: 1.75;
+}
+
+.t-grouping-header .t-group-indicator {
+    margin-top: -4px;
+}
+
+.t-grouping-header .t-group-indicator {
+    background-color: #fff !important;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    display: inline-block;
+    margin-left: 0;
+    margin-right: 3px;
+    min-width: 10px;
+    padding: 3px 13px;
+    text-align: center;
+}
+
+.t-grid-toolbar .t-button {
+    -moz-user-select: none;
+    background: none repeat scroll 0 0 #00b6cc !important;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 1em;
+    font-weight: normal;
+    line-height: 1.42857;
+    margin-bottom: 0;
+    padding: 6px 12px;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.field-validation-error {
+    color: #b94a48;
+    margin-top: 2px;
+}
+
+.validation-summary-errors {
+    color: #b94a48;
+    margin-top: 2px;
+}
+
+#vehcileList :hover {
+    background-color: #56AAE4;
+    color:#FFF !important;
+}
+
+.vehcileListActive {
+    background-color: #ed9c28 !important;
+    color:#FFF !important;
+}
+
+.OrderNumber{
+    width :30px !important;
+    color:#000;
+    text-align:center;
+     border-radius: 4px;
+    direction: ltr;
+}
+
+.OrderDate{
+    width: 100px !important;
+     color:#000;
+     padding-left:5px;
+}
+
+.OrderTime{
+    width: 70px !important;
+     color:#000;
+     padding-left:5px;
+     border-radius: 4px;
+    direction: ltr;
+}
