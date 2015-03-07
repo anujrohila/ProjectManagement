@@ -13,7 +13,7 @@ namespace ProjectManagement.Web
     {
 
         #region [Variable]
-        
+
         /// <summary>
         /// Get ContentUrlPrefix
         /// </summary>
@@ -38,6 +38,15 @@ namespace ProjectManagement.Web
         {
             var sha256 = new SHA384Managed();
             return Convert.ToBase64String(sha256.ComputeHash(UTF8Encoding.UTF8.GetBytes(String.Concat(password, System.Web.HttpContext.Current.Application["PasswordSalt"]))));
+        }
+
+        public static string GetNewGUID()
+        {
+            string newId = string.Empty;
+            string kkString = Guid.NewGuid().ToString();
+            kkString = kkString.Substring(0, 8);
+            newId = string.Concat(kkString.Substring(0, 4), "-", kkString.Substring(4, 4));
+            return newId.ToUpper();
         }
 
         #endregion

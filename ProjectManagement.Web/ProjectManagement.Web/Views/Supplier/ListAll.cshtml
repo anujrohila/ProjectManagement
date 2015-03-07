@@ -31,18 +31,18 @@
                                                             .Groupable(false)
                                                             .Width(50)
                                                             .Title(String.Empty)
-                                                           .ClientTemplate("<center><a title='Edit' href=" + Url.Action("SaveProductProperty", "Definitions", new { id = "<#= Sup_id #>" }) + "><i class='fa fa-pencil'></i></a></center>");
+                                                           .ClientTemplate("<center><a title='Edit' href=" + Url.Action("Save", "Supplier", new { id = "<#= Sup_id #>" }) + "><i class='fa fa-pencil'></i></a></center>");
                             columns.Bound(column => column.Sup_id)
                                                            .Filterable(false)
                                                            .Sortable(false)
                                                            .Groupable(false)
                                                            .Width(50)
-                                                           .ClientTemplate("<center><a title='Delete'  onclick='DeleteProductProperty(<#= Sup_id #>);'><i class='fa fa-trash-o'></i></a></center>")
+                                                           .ClientTemplate("<center><a title='Delete'  onclick='DeleteSupplier(\"<#= Sup_id #>\");'><i class='fa fa-trash-o'></i></a></center>")
                                                            .Title(string.Empty);
                         })
-                                                .ToolBar(commands => commands.Custom().Action("SaveProductProperty", "Supplier", new { id = "0" })
+                        .ToolBar(commands => commands.Custom().Action("Save", "Supplier", new { id = "" })
                             .ButtonType(GridButtonType.Text)
-                                                    .Text("Add Supplier"))
+                            .Text("Add Supplier"))
                         .Sortable()
                         .Selectable()
                         .Filterable()
@@ -57,7 +57,7 @@
         <!-- end panel -->
     </div>
 </div>
-@*<script src="~/Scripts/Administrator/ProductProperty.js"></script>*@
+<script src="~/Content/Script/Supplier.js"></script>
 <script type="text/javascript">
     //ActivateSelectedMenu('menuAdminDefinition');
 </script>
