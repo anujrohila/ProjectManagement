@@ -8,6 +8,7 @@
 //-------------------------------------------------------------------------------------------------------
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 using System.Text;
 
@@ -20,12 +21,15 @@ namespace ProjectManagement.Domain
         public String Sup_id { get; set; }
 
         [DataMember()]
+        [Required(ErrorMessage = "Please enter supplier name.")]
         public String NameiS { get; set; }
 
         [DataMember()]
+        [Required(ErrorMessage = "Please enter supplier addres.")]
         public String AddiS { get; set; }
 
         [DataMember()]
+        [Required(ErrorMessage = "Please enter supplier city.")]
         public String City { get; set; }
 
         [DataMember()]
