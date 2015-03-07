@@ -111,10 +111,8 @@ namespace ProjectManagement.DLL
             using (var projectManagementEntities = new ProjectManagementEntities())
             {
                 var supplier = new Supplier();
-                {
-                    supplier = supplierDTO.ToEntity();
-                    projectManagementEntities.Suppliers.Add(supplier);
-                }
+                supplier = supplierDTO.ToEntity();
+                projectManagementEntities.Suppliers.Add(supplier);
                 projectManagementEntities.SaveChanges();
                 return supplier.Sup_id;
             }
@@ -164,7 +162,7 @@ namespace ProjectManagement.DLL
             using (var projectManagementEntities = new ProjectManagementEntities())
             {
                 var supplierCount = projectManagementEntities.Suppliers.Where(sup => string.Compare(sup.NameiS, supplieName, StringComparison.CurrentCultureIgnoreCase) == 0
-                                                                            && string.Compare(sup.Sup_id, supplierId, StringComparison.CurrentCultureIgnoreCase) == 0).Count();
+                                                                            && string.Compare(sup.Sup_id, supplierId, StringComparison.CurrentCultureIgnoreCase) != 0).Count();
 
                 return supplierCount == 0 ? false : true;
             }
