@@ -77,5 +77,7 @@ namespace ProjectManagement.Domain
         public Double CashBankBalance { get; set; }
 
         public string SupplierGroupName { get; set; }
+
+        public List<GroupBySupplierDTO> SupplierGroupList { get; set; }
     }
 }
