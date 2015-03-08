@@ -99,7 +99,7 @@ namespace ProjectManagement.DLL
             using (var projectManagementEntities = new ProjectManagementEntities())
             {
                 var material = new Material();
-                material = projectManagementEntities.Suppliers.Where(sup => string.Compare(sup.Sup_id, materialDTO.Sup_id, StringComparison.CurrentCultureIgnoreCase) == 0).FirstOrDefault();
+                material = projectManagementEntities.Materials.Where(materialObject => string.Compare(materialObject.Mat_id, materialDTO.Mat_id, StringComparison.CurrentCultureIgnoreCase) == 0).FirstOrDefault();
                 material.Mat_id = materialDTO.Mat_id;
                 material.Mat_Name = materialDTO.Mat_Name;
                 material.Mat_Unit = materialDTO.Mat_Unit;
@@ -112,36 +112,37 @@ namespace ProjectManagement.DLL
             }
         }
 
-        ///// <summary>
-        ///// Is Duplicate Supplier
-        ///// </summary>
-        ///// <returns></returns>
-        //public static bool IsDuplicateMaterialSubGroup(string subGroupName, string subGroupId)
-        //{
-        //    if (subGroupId == null)
-        //        subGroupId = string.Empty;
-        //    using (var projectManagementEntities = new ProjectManagementEntities())
-        //    {
-        //        var supplierCount = projectManagementEntities.Suppliers.Where(sup => string.Compare(sup.NameiS, supplieName, StringComparison.CurrentCultureIgnoreCase) == 0
-        //                                                                    && string.Compare(sup.Sup_id, subGroupId, StringComparison.CurrentCultureIgnoreCase) != 0).Count();
+        /// <summary>
+        /// Is Duplicate Material Sub Group
+        /// </summary>
+        /// <returns></returns>
+        public static bool IsDuplicateMaterialSubGroup(string subGroupName, string subGroupId, string groupId)
+        {
+            if (subGroupId == null)
+                subGroupId = string.Empty;
+            using (var projectManagementEntities = new ProjectManagementEntities())
+            {
+                var materialsCount = projectManagementEntities.Materials.Where(materialObject => string.Compare(materialObject.Mat_Name, subGroupName, StringComparison.CurrentCultureIgnoreCase) == 0
+                                                                            && string.Compare(materialObject.Mat_id, subGroupId, StringComparison.CurrentCultureIgnoreCase) != 0
+                                                                            && string.Compare(materialObject.GroupId, groupId, StringComparison.CurrentCultureIgnoreCase) == 0).Count();
 
-        //        return supplierCount == 0 ? false : true;
-        //    }
-        //}
+                return materialsCount == 0 ? false : true;
+            }
+        }
 
-        ///// <summary>
-        ///// Delete Supplier
-        ///// </summary>
-        ///// <returns></returns>
-        //public static bool DeleteSupplier(string supplierId)
-        //{
-        //    using (var projectManagementEntities = new ProjectManagementEntities())
-        //    {
-        //        var supplier = projectManagementEntities.Suppliers.Where(sup => string.Compare(sup.Sup_id, supplierId, StringComparison.CurrentCultureIgnoreCase) == 0).FirstOrDefault();
-        //        projectManagementEntities.Suppliers.Remove(supplier);
-        //        return projectManagementEntities.SaveChanges() > 0;
-        //    }
-        //}
+        /// <summary>
+        /// Delete Material Sub Group
+        /// </summary>
+        /// <returns></returns>
+        public static bool DeleteMaterialSubGroup(string subGroupId)
+        {
+            using (var projectManagementEntities = new ProjectManagementEntities())
+            {
+                var materialsDetail = projectManagementEntities.Materials.Where(sup => string.Compare(sup.Mat_id, subGroupId, StringComparison.CurrentCultureIgnoreCase) == 0).FirstOrDefault();
+                projectManagementEntities.Materials.Remove(materialsDetail);
+                return projectManagementEntities.SaveChanges() > 0;
+            }
+        }
 
         #endregion
     }
