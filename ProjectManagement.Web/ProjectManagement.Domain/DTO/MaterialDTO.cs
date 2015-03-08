@@ -37,19 +37,5 @@ namespace ProjectManagement.Domain
         [DataMember()]
         public String userss { get; set; }
 
-        public MaterialDTO()
-        {
-        }
-
-        public MaterialDTO(String mat_id, String mat_Name, String mat_Unit, Nullable<Double> basic_Rate, String groupId, String guIdMaterial, String userss)
-        {
-			this.Mat_id = mat_id;
-			this.Mat_Name = mat_Name;
-			this.Mat_Unit = mat_Unit;
-			this.Basic_Rate = basic_Rate;
-			this.GroupId = groupId;
-			this.GuIdMaterial = guIdMaterial;
-			this.userss = userss;
-        }
     }
 }
