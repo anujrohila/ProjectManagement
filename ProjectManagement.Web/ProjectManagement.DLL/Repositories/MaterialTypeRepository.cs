@@ -105,6 +105,8 @@ namespace ProjectManagement.DLL
         /// <returns></returns>
         public static bool IsDuplicateMaterialType(string typeName, string typedId)
         {
+            if (typedId == null)
+                typedId = string.Empty;
             using (var projectManagementEntities = new ProjectManagementEntities())
             {
                 var GroupByItemCount = projectManagementEntities.GroupByItems.Where(type => string.Compare(type.GroupItemName, typeName, StringComparison.CurrentCultureIgnoreCase) == 0
@@ -125,6 +127,19 @@ namespace ProjectManagement.DLL
                 var groupByItemsResult = projectManagementEntities.GroupByItems.Where(sup => string.Compare(sup.GrpIdItem, typeId, StringComparison.CurrentCultureIgnoreCase) == 0).FirstOrDefault();
                 projectManagementEntities.GroupByItems.Remove(groupByItemsResult);
                 return projectManagementEntities.SaveChanges() > 0;
+            }
+        }
+
+        /// <summary>
+        /// Update Material Type
+        /// </summary>
+        /// <returns></returns>
+        public static string GetGrpIdItem()
+        {
+            using (var projectManagementEntities = new ProjectManagementEntities())
+            {
+                var groupItemCount = projectManagementEntities.GroupByItems.Count();
+                return (groupItemCount + 1).ToString("D4");
             }
         }
 

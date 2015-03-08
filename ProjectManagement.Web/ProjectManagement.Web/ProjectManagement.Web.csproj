@@ -370,6 +370,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\MaterialGroupController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SupplierController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
@@ -824,6 +825,7 @@
     <Content Include="Content\plugins\switchery\switchery.min.css" />
     <Content Include="Content\plugins\switchery\switchery.min.js" />
     <Content Include="Content\Script\CommonFunction.js" />
+    <Content Include="Content\Script\MaterialType.js" />
     <Content Include="Content\Script\Supplier.js" />
     <Content Include="Content\Style\CommonStyle.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -993,6 +995,8 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Supplier\ListAll.cshtml" />
     <Content Include="Views\Supplier\Save.cshtml" />
+    <Content Include="Views\MaterialGroup\ListAll.cshtml" />
+    <Content Include="Views\MaterialGroup\Save.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

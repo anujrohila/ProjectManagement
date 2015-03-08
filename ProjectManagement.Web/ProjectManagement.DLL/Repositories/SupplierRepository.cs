@@ -159,6 +159,8 @@ namespace ProjectManagement.DLL
         /// <returns></returns>
         public static bool IsDuplicateSupplier(string supplieName, string supplierId)
         {
+            if (supplierId == null)
+                supplierId = string.Empty;
             using (var projectManagementEntities = new ProjectManagementEntities())
             {
                 var supplierCount = projectManagementEntities.Suppliers.Where(sup => string.Compare(sup.NameiS, supplieName, StringComparison.CurrentCultureIgnoreCase) == 0
