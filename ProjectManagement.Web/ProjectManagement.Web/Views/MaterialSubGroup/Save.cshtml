@@ -1,0 +1,89 @@
+﻿@using Telerik.Web.Mvc.UI;
+@model ProjectManagement.Domain.MaterialDTO
+@{
+    ViewBag.Title = "Save Material Sub Group";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <!-- begin col-6 -->
+    <div class="col-md-12 ui-sortable">
+        <!-- begin panel -->
+        <div data-sortable-id="form-stuff-1" class="panel panel-inverse">
+            <div class="panel-heading">
+                <h4 class="panel-title">Save Material Sub Group</h4>
+            </div>
+            <div class="panel-body">
+                @using (Html.BeginForm("Save", "MaterialSubGroup", FormMethod.Post, new { id = "frmMaterialSubGroup", @class = "form-horizontal" }))
+                {
+                    @Html.HiddenFor(model => model.Mat_id)
+                    <div class="form-group">
+                        <label class="col-md-3 control-label"></label>
+                        <div class="col-md-5">
+                            @Html.ValidationSummary(false)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Sub Group Name<span class="spanError">*</span></label>
+                        <div class="col-md-5">
+                            @Html.TextBoxFor(model => model.Mat_Name, new { @placeholder = "Supplier name", @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Account Group</label>
+                        <div class="col-md-5">
+                            <select id="GroupId" name="GroupId" class="form-control">
+                                @foreach (var groupType in Model.MaterialGroupList)
+                                {
+                                    if (string.Compare(groupType.GroupItemName, Model.GroupId, StringComparison.CurrentCultureIgnoreCase) == 0)
+                                    {
+                                    <option selected value="@groupType.GroupItemName">@groupType.GroupItemName</option>
+                                    }
+                                    else
+                                    {
+                                    <option value="@groupType.GroupItemName">@groupType.GroupItemName</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Unit<span class="spanError">*</span></label>
+                        <div class="col-md-5">
+                            <select id="Mat_Unit" name="Mat_Unit" class="form-control">
+                                @foreach (var unitType in Model.UnitTypeList)
+                                {
+                                    if (string.Compare(unitType, Model.Mat_Unit, StringComparison.CurrentCultureIgnoreCase) == 0)
+                                    {
+                                    <option selected value="@unitType">@unitType</option>
+                                    }
+                                    else
+                                    {
+                                    <option value="@unitType">@unitType</option>
+                                    }
+                                }
+                            </select>
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Basic Rate<span class="spanError">*</span></label>
+                        <div class="col-md-5">
+                            @Html.TextBoxFor(model => model.Basic_Rate, new { @placeholder = "Basic Rate", @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label"></label>
+                        <div class="col-md-5">
+                            <button class="btn btn-sm btn-success" type="submit">Submit</button>
+                            <button class="btn btn-sm btn-success" type="submit" onclick="document.location.href = '@Url.Action("ListAll", "MaterialSubGroup")'">Cancel</button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        <!-- end panel -->
+    </div>
+</div>
+<script type="text/javascript">
+    //ActivateSelectedMenu('menuAdminDefinition');
+</script>

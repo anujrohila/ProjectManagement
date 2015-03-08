@@ -11,7 +11,17 @@ namespace ProjectManagement.Web
         {
             get
             {
-                return Convert.ToInt32(System.Web.HttpContext.Current.Session["LoggedUserId"]);
+                //return Convert.ToInt32(System.Web.HttpContext.Current.Session["LoggedUserId"]);
+                return Convert.ToInt32("1");
+            }
+        }
+
+        public static string LoggedUserName
+        {
+            get
+            {
+                //return Convert.ToString(System.Web.HttpContext.Current.Session["LoggedUserName"]);
+                return Convert.ToString("anuj");
             }
         }
 

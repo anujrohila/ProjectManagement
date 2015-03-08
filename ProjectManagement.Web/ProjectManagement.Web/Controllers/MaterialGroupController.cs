@@ -59,11 +59,11 @@ namespace ProjectManagement.Web.Controllers
                 }
                 if (ModelState.IsValid)
                 {
+                    groupByItemDTO.GuIdGroup = string.Empty;
+                    groupByItemDTO.ChildOF = string.Empty;
                     if (string.IsNullOrWhiteSpace(groupByItemDTO.GrpIdItem))
                     {
                         groupByItemDTO.GrpIdItem = MaterialTypeRepository.GetGrpIdItem();
-                        groupByItemDTO.GuIdGroup = string.Empty;
-                        groupByItemDTO.ChildOF = string.Empty;
                         MaterialTypeRepository.InsertMaterialType(groupByItemDTO);
                     }
                     else

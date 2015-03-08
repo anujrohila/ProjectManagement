@@ -1,0 +1,61 @@
+﻿@using Telerik.Web.Mvc.UI;
+@{
+    ViewBag.Title = "Material Sub Group List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <!-- begin col-6 -->
+    <div class="col-md-12 ui-sortable">
+        <!-- begin panel -->
+        <div data-sortable-id="form-stuff-1" class="panel panel-inverse">
+            <div class="panel-heading">
+                <h4 class="panel-title">Material Sub Group Listing</h4>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                     @(Html.Telerik().Grid<ProjectManagement.Domain.MaterialDTO>().Name("ListMaterialSubGroupGrid")
+                                        .DataKeys(datakKey => datakKey.Add(key => key.Mat_id))
+                                        .DataBinding(dataBinding => dataBinding.Ajax().Select("ListMaterialSubTypeAjax", "MaterialSubGroup"))
+                        .Columns(columns =>
+                        {
+                            columns.Bound(column => column.Mat_Name).Title("Group Name");
+                            columns.Bound(column => column.Mat_Unit).Title("Unit");
+                            columns.Bound(column => column.Basic_Rate).Title("Basic Rate");
+                            columns.Bound(column => column.GroupId).Title("Material Group");
+                            columns.Bound(column => column.Mat_id)
+                                                            .Filterable(false)
+                                                            .Sortable(false)
+                                                            .Groupable(false)
+                                                            .Width(50)
+                                                            .Title(String.Empty)
+                                                           .ClientTemplate("<center><a title='Edit' href=" + Url.Action("Save", "MaterialSubGroup", new { id = "<#= Mat_id #>" }) + "><i class='fa fa-pencil'></i></a></center>");
+                            columns.Bound(column => column.Mat_id)
+                                                           .Filterable(false)
+                                                           .Sortable(false)
+                                                           .Groupable(false)
+                                                           .Width(50)
+                                                           .ClientTemplate("<center><a title='Delete'  onclick='DeleteMaterialSubType(\"<#= Mat_id #>\");'><i class='fa fa-trash-o'></i></a></center>")
+                                                           .Title(string.Empty);
+                        })
+                        .ToolBar(commands => commands.Custom().Action("Save", "MaterialSubGroup", new { id = "" })
+                            .ButtonType(GridButtonType.Text)
+                            .Text("Add Materil Sub Group"))
+                        .Sortable()
+                        .Selectable()
+                        .Filterable()
+                        .Scrollable(t => t.Height("auto"))
+                        .HtmlAttributes(new { style = "width:100%;" })
+                        .Resizable(resizing => resizing.Columns(true))
+                        .Pageable(paging => paging.PageSize(50).Enabled(true).Style(GridPagerStyles.NextPreviousAndNumeric).Position(GridPagerPosition.Bottom))
+                )
+                </div>
+            </div>
+        </div>
+        <!-- end panel -->
+    </div>
+</div>
+<script src="~/Content/Script/MaterialSubType.js"></script>
+<script type="text/javascript">
+    //ActivateSelectedMenu('menuAdminDefinition');
+</script>

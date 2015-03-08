@@ -8,6 +8,7 @@
 //-------------------------------------------------------------------------------------------------------
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 using System.Text;
 
@@ -20,12 +21,14 @@ namespace ProjectManagement.Domain
         public String Mat_id { get; set; }
 
         [DataMember()]
+        [Required(ErrorMessage="Please enter material name.")]
         public String Mat_Name { get; set; }
 
         [DataMember()]
         public String Mat_Unit { get; set; }
 
         [DataMember()]
+        [Required(ErrorMessage = "Please enter basic rate.")]
         public Nullable<Double> Basic_Rate { get; set; }
 
         [DataMember()]
@@ -36,6 +39,10 @@ namespace ProjectManagement.Domain
 
         [DataMember()]
         public String userss { get; set; }
+
+        public List<GroupByItemDTO> MaterialGroupList { get; set; }
+
+        public List<string> UnitTypeList { get; set; }
 
     }
 }

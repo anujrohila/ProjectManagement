@@ -34,8 +34,6 @@ namespace ProjectManagement.DLL
             using (var projectManagementEntities = new ProjectManagementEntities())
             {
                 return (from materials in projectManagementEntities.Materials
-                        join groupByItems in projectManagementEntities.GroupByItems
-                              on materials.GroupId equals groupByItems.GrpIdItem
                         select new MaterialDTO
                         {
                             Mat_id = materials.Mat_id,
@@ -58,8 +56,6 @@ namespace ProjectManagement.DLL
             using (var projectManagementEntities = new ProjectManagementEntities())
             {
                 return (from materials in projectManagementEntities.Materials
-                        join groupByItems in projectManagementEntities.GroupByItems
-                              on materials.GroupId equals groupByItems.GrpIdItem
                         where string.Compare(materials.Mat_id, subTypeId, StringComparison.CurrentCultureIgnoreCase) == 0
                         select new MaterialDTO
                         {
