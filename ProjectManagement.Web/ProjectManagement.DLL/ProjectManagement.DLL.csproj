@@ -154,6 +154,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AdministratorRepository.cs" />
+    <Compile Include="Repositories\MaterialTypeRepository.cs" />
     <Compile Include="Repositories\MasterRepository.cs" />
     <Compile Include="Repositories\SupplierRepository.cs" />
   </ItemGroup>

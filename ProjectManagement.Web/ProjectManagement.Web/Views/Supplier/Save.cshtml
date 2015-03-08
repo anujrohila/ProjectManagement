@@ -26,21 +26,18 @@
                         <label class="col-md-3 control-label">Name<span class="spanError">*</span></label>
                         <div class="col-md-5">
                             @Html.TextBoxFor(model => model.NameiS, new { @placeholder = "Supplier name", @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.NameiS)
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Address<span class="spanError">*</span></label>
                         <div class="col-md-5">
                             @Html.TextBoxFor(model => model.AddiS, new { @placeholder = "Supplier Address", @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.AddiS)
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">City<span class="spanError">*</span></label>
                         <div class="col-md-5">
                             @Html.TextBoxFor(model => model.City, new { @placeholder = "Supplier City", @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.City)
                         </div>
                     </div>
                     <div class="form-group">

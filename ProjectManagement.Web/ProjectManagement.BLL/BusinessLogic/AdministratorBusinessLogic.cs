@@ -9,7 +9,7 @@ using ProjectManagement.Web.DLL;
 
 namespace ProjectManagement.BLL
 {
-    public static class AdministratorBusinessLogic
+    public class AdministratorBusinessLogic
     {
         #region [Declaration]
 
@@ -22,12 +22,12 @@ namespace ProjectManagement.BLL
         /// Get Member Login 
         /// </summary>
         /// <returns></returns>
-        public static tblMemberDTO GetMembershipDetails(string emailId,string Password)
+        public static tblMemberDTO GetMembershipDetails(string emailId, string Password)
         {
             var AdministratorRepository = new AdministratorRepository();
             return AdministratorRepository.GetMembershipDetails(emailId, Password);
         }
-        
+
 
         #endregion
     }
