@@ -8,6 +8,7 @@
 //-------------------------------------------------------------------------------------------------------
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 using System.Text;
 
@@ -28,16 +29,22 @@ namespace ProjectManagement.Domain
         [DataMember()]
         public Nullable<DateTime> Ddate { get; set; }
 
+        [Required(ErrorMessage="Please select date.")]
+        public string DdateString { get; set; }
+
         [DataMember()]
+        [Required(ErrorMessage = "Please enter challan no.")]
         public Nullable<Int32> Challan_No { get; set; }
 
         [DataMember()]
         public String Disp { get; set; }
 
         [DataMember()]
+        [Required(ErrorMessage = "Please enter quantity.")]
         public Nullable<Double> Qty { get; set; }
 
         [DataMember()]
+        [Required(ErrorMessage = "Please enter rate.")]
         public Nullable<Double> Rate { get; set; }
 
         [DataMember()]
@@ -80,5 +87,7 @@ namespace ProjectManagement.Domain
         public List<MaterialDTO> MaterialList { get; set; }
 
         public List<SupplierDTO> SupplierList { get; set; }
+
+        public List<string> UnitTypeList { get; set; }
     }
 }

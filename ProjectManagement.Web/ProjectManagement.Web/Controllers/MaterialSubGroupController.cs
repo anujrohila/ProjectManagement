@@ -90,29 +90,8 @@ namespace ProjectManagement.Web.Controllers
         {
             materialDTO.MaterialGroupList = MaterialTypeRepository.GetAllMaterialType();
             materialDTO.MaterialGroupList.Insert(0, new GroupByItemDTO { GroupItemName = "Select", GrpIdItem = "0" });
-            materialDTO.UnitTypeList = new List<string> 
-            { 
-                "CFT",
-                "SFT",
-                "RFT",
-                "BRASS",
-                "BOX",
-                "NOS",
-                "LIT",
-                "MT",
-                "KG",
-                "GM",
-                "BUNDLE",
-                "BAG",
-                "CUM",
-                "SQM",
-                "RMT",
-                "TONNE",
-                "FT",
-            };
+            materialDTO.UnitTypeList = CommonFunctions.GetAllUnitList();
             materialDTO.UnitTypeList.Insert(0, "Select");
-
-
 
             return materialDTO;
         }

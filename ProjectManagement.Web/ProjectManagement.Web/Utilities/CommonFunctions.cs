@@ -49,6 +49,32 @@ namespace ProjectManagement.Web
             return newId.ToUpper();
         }
 
+        public static List<string> GetAllUnitList()
+        {
+            var unitList = new List<string>();
+            unitList = new List<string> 
+            { 
+                "CFT",
+                "SFT",
+                "RFT",
+                "BRASS",
+                "BOX",
+                "NOS",
+                "LIT",
+                "MT",
+                "KG",
+                "GM",
+                "BUNDLE",
+                "BAG",
+                "CUM",
+                "SQM",
+                "RMT",
+                "TONNE",
+                "FT",
+            };
+            return unitList;
+        }
+
         #endregion
 
     }
