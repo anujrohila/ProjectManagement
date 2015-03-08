@@ -994,9 +994,7 @@
     <Content Include="Views\Supplier\ListAll.cshtml" />
     <Content Include="Views\Supplier\Save.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
