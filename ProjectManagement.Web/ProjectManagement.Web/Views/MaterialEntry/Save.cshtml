@@ -4,6 +4,8 @@
     ViewBag.Title = "Save Material Entry";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<link href="~/Content/plugins/bootstrap-datepicker/css/datepicker.css" rel="stylesheet" />
+<link href="~/Content/plugins/bootstrap-datepicker/css/datepicker3.css" rel="stylesheet" />
 <div class="row">
     <!-- begin col-6 -->
     <div class="col-md-12 ui-sortable">
@@ -26,6 +28,7 @@
                         <label class="col-md-3 control-label">Date<span class="spanError">*</span></label>
                         <div class="col-md-5">
                             @Html.TextBoxFor(model => model.DdateString, new { @placeholder = "Date", @class = "form-control" })
+                            <input type="text" class="form-control" id="datepicker-autoClose" placeholder="Auto Close Datepicker" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -113,6 +116,7 @@
         <!-- end panel -->
     </div>
 </div>
+<script src="~/Content/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
 <script type="text/javascript">
     //ActivateSelectedMenu('menuAdminDefinition');
 </script>
