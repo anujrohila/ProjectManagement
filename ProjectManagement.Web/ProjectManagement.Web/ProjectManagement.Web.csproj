@@ -1223,6 +1223,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ProjectManagement.BLL\ProjectManagement.BLL.csproj">
+      <Project>{4601dc55-e036-4db1-bed4-35bc139b723f}</Project>
+      <Name>ProjectManagement.BLL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ProjectManagement.DLL\ProjectManagement.DLL.csproj">
       <Project>{2a61376f-f10f-40d6-bc78-7ed08f792262}</Project>
       <Name>ProjectManagement.DLL</Name>
