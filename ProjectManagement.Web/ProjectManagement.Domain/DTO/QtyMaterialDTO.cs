@@ -73,31 +73,12 @@ namespace ProjectManagement.Domain
         [DataMember()]
         public String userss { get; set; }
 
-        public QtyMaterialDTO()
-        {
-        }
+        public string MaterialName { get; set; }
 
-        public QtyMaterialDTO(String reg_id, String mat_id, String sup_id, Nullable<DateTime> ddate, Nullable<Int32> challan_No, String disp, Nullable<Double> qty, Nullable<Double> rate, Nullable<Double> ammount, String unit, String proj_Name, Nullable<Int16> bill_No, Nullable<Double> bill_Rate, Nullable<Boolean> bil_Ent, Nullable<Boolean> valid, Nullable<DateTime> bill_Date, String bill_Ent_No, String guidQty, String userss)
-        {
-			this.Reg_id = reg_id;
-			this.Mat_id = mat_id;
-			this.Sup_id = sup_id;
-			this.Ddate = ddate;
-			this.Challan_No = challan_No;
-			this.Disp = disp;
-			this.Qty = qty;
-			this.Rate = rate;
-			this.Ammount = ammount;
-			this.Unit = unit;
-			this.Proj_Name = proj_Name;
-			this.Bill_No = bill_No;
-			this.Bill_Rate = bill_Rate;
-			this.Bil_Ent = bil_Ent;
-			this.Valid = valid;
-			this.Bill_Date = bill_Date;
-			this.Bill_Ent_No = bill_Ent_No;
-			this.GuidQty = guidQty;
-			this.userss = userss;
-        }
+        public string SupplierName { get; set; }
+
+        public List<MaterialDTO> MaterialList { get; set; }
+
+        public List<SupplierDTO> SupplierList { get; set; }
     }
 }
