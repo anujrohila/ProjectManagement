@@ -21,7 +21,7 @@
                         {
                             columns.Bound(column => column.SupplierName).Title("Supplier");
                             columns.Bound(column => column.MaterialName).Title("Material");
-                            columns.Bound(column => column.Ddate).Title("Date");
+                            columns.Bound(column => column.Ddate).Title("Date").Format("{0:" + System.Threading.Thread.CurrentThread.CurrentCulture.DateTimeFormat.ShortDatePattern + "}");
                             columns.Bound(column => column.Qty).Title("Quantity");
                             columns.Bound(column => column.Rate).Title("Rate");
                             columns.Bound(column => column.Ammount).Title("Amount");
@@ -42,7 +42,7 @@
                         })
                         .ToolBar(commands => commands.Custom().Action("Save", "MaterialEntry", new { id = "" })
                             .ButtonType(GridButtonType.Text)
-                            .Text("Add Material"))
+                            .Text("Add Material Entry"))
                         .Sortable()
                         .Selectable()
                         .Filterable()

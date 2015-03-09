@@ -73,7 +73,7 @@ namespace ProjectManagement.Web.Controllers
                     qtyMaterialDTO.Bill_Ent_No = string.Empty;
                     qtyMaterialDTO.Disp = string.Empty;
                     qtyMaterialDTO.GuidQty = string.Empty;
-                    if (string.IsNullOrWhiteSpace(qtyMaterialDTO.Sup_id))
+                    if (string.IsNullOrWhiteSpace(qtyMaterialDTO.Reg_id))
                     {
                         qtyMaterialDTO.Reg_id = CommonFunctions.GetNewGUID();
                         MaterialEntryRepository.InsertMaterialEntry(qtyMaterialDTO);

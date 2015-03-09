@@ -20,3 +20,31 @@ function DeleteMaterialEntry(id) {
         });
     }
 }
+
+function CalculateAmount() {
+    var quantity = $("#Qty").val();
+    var rate = $("#Rate").val();
+    if (quantity == '') {
+        quantity = "0";
+    }
+    if (rate == '') {
+        rate = "0";
+    }
+    if (quantity != "0" && rate != "0") {
+        $("#Ammount").val(parseFloat(quantity) * parseFloat(rate));
+    }
+    else {
+        $("#Ammount").val("0");
+    }
+}
+
+function OnKeyPress(evt, t) {
+    evt = (evt) ? evt : window.event;
+    var charCode = (evt.which) ? evt.which : evt.keyCode;
+
+    if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57)) {
+        return false;
+    }
+    return CalculateAmount();
+}
+
