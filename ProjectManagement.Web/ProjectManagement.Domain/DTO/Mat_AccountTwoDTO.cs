@@ -85,6 +85,10 @@ namespace ProjectManagement.Domain
         [DataMember()]
         public String fy { get; set; }
 
+        public string FromSupplierName { get; set; }
+
+        public string ToSupplierName { get; set; }
+
         public Mat_AccountTwoDTO()
         {
         }
