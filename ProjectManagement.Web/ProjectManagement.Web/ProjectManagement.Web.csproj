@@ -370,6 +370,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\MasterAccountController.cs" />
     <Compile Include="Controllers\MaterialEntryController.cs" />
     <Compile Include="Controllers\MaterialSubGroupController.cs" />
     <Compile Include="Controllers\MaterialGroupController.cs" />
@@ -827,6 +828,7 @@
     <Content Include="Content\plugins\switchery\switchery.min.css" />
     <Content Include="Content\plugins\switchery\switchery.min.js" />
     <Content Include="Content\Script\CommonFunction.js" />
+    <Content Include="Content\Script\MasterAccount.js" />
     <Content Include="Content\Script\MaterialEntry.js" />
     <Content Include="Content\Script\MaterialSubType.js" />
     <Content Include="Content\Script\MaterialType.js" />
@@ -1005,6 +1007,8 @@
     <Content Include="Views\MaterialSubGroup\Save.cshtml" />
     <Content Include="Views\MaterialEntry\ListAll.cshtml" />
     <Content Include="Views\MaterialEntry\Save.cshtml" />
+    <Content Include="Views\MasterAccount\ListAll.cshtml" />
+    <Content Include="Views\MasterAccount\Save.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

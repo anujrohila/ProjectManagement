@@ -89,35 +89,8 @@ namespace ProjectManagement.Domain
 
         public string ToSupplierName { get; set; }
 
-        public Mat_AccountTwoDTO()
-        {
-        }
+        public List<SupplierDTO> FromSupplierList { get; set; }
 
-        public Mat_AccountTwoDTO(String ent_No, Int32 vrNo, String mode_Pay_Rec, String rec_Pay, Nullable<Double> ammount, Nullable<DateTime> ddate, String disp, String from_Account, String to_Account, String hand_Group, Nullable<Double> kwat, Nullable<Double> discount, Nullable<Double> hand, String setViewOne, Nullable<Boolean> freezed, Nullable<Boolean> isEntryOnly, String guidAC, Nullable<DateTime> curDate, Nullable<Boolean> hide, String chqNo, String chqDrawn, String userss, String fy)
-        {
-			this.Ent_No = ent_No;
-			this.VrNo = vrNo;
-			this.Mode_Pay_Rec = mode_Pay_Rec;
-			this.Rec_Pay = rec_Pay;
-			this.Ammount = ammount;
-			this.Ddate = ddate;
-			this.Disp = disp;
-			this.From_Account = from_Account;
-			this.To_Account = to_Account;
-			this.Hand_Group = hand_Group;
-			this.Kwat = kwat;
-			this.Discount = discount;
-			this.Hand = hand;
-			this.SetViewOne = setViewOne;
-			this.Freezed = freezed;
-			this.IsEntryOnly = isEntryOnly;
-			this.GuidAC = guidAC;
-			this.CurDate = curDate;
-			this.Hide = hide;
-			this.ChqNo = chqNo;
-			this.ChqDrawn = chqDrawn;
-			this.Userss = userss;
-			this.fy = fy;
-        }
+        public List<SupplierDTO> ToSupplierList { get; set; }
     }
 }
