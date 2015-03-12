@@ -56,14 +56,8 @@
     <Compile Include="Assemblers\Mat_AccountTwoAssembler.cs" />
     <Compile Include="Assemblers\QtyMaterialAssembler.cs" />
     <Compile Include="Assemblers\SupplierAssembler.cs" />
-    <Compile Include="Assemblers\tblAccountTypeAssembler.cs" />
-    <Compile Include="Assemblers\tblCompanyAssembler.cs" />
-    <Compile Include="Assemblers\tblMaterialAssembler.cs" />
-    <Compile Include="Assemblers\tblMaterialGroupAssembler.cs" />
     <Compile Include="Assemblers\tblMemberAssembler.cs" />
-    <Compile Include="Assemblers\tblMemberPermissionAssembler.cs" />
     <Compile Include="Assemblers\tblMemberTypeAssembler.cs" />
-    <Compile Include="Assemblers\tblPermissionMasterAssembler.cs" />
     <Compile Include="Assemblers\userAssembler.cs" />
     <Compile Include="ORM\AccountGroup.cs">
       <DependentUpon>ProjectSQLDatabase.tt</DependentUpon>

@@ -55,14 +55,8 @@
     <Compile Include="DTO\Mat_AccountTwoDTO.cs" />
     <Compile Include="DTO\QtyMaterialDTO.cs" />
     <Compile Include="DTO\SupplierDTO.cs" />
-    <Compile Include="DTO\tblAccountTypeDTO.cs" />
-    <Compile Include="DTO\tblCompanyDTO.cs" />
-    <Compile Include="DTO\tblMaterialDTO.cs" />
-    <Compile Include="DTO\tblMaterialGroupDTO.cs" />
     <Compile Include="DTO\tblMemberDTO.cs" />
-    <Compile Include="DTO\tblMemberPermissionDTO.cs" />
     <Compile Include="DTO\tblMemberTypeDTO.cs" />
-    <Compile Include="DTO\tblPermissionMasterDTO.cs" />
     <Compile Include="DTO\userDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\ProjectManagementResource.Designer.cs">
