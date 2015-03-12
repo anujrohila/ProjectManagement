@@ -1,0 +1,63 @@
+﻿@using Telerik.Web.Mvc.UI;
+@{
+    ViewBag.Title = "Member List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <!-- begin col-6 -->
+    <div class="col-md-12 ui-sortable">
+        <!-- begin panel -->
+        <div data-sortable-id="form-stuff-1" class="panel panel-inverse">
+            <div class="panel-heading">
+                <h4 class="panel-title">Member Listing</h4>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    @(Html.Telerik().Grid<ProjectManagement.Domain.tblMemberDTO>().Name("ListMemberGrid")
+                                        .DataKeys(datakKey => datakKey.Add(key => key.MemberId))
+                                        .DataBinding(dataBinding => dataBinding.Ajax().Select("ListMemberAjax", "Member"))
+                        .Columns(columns =>
+                        {
+                            columns.Bound(column => column.FirstName).Title("First Name");
+                            columns.Bound(column => column.LastName).Title("Last Name");
+                            columns.Bound(column => column.MemberTypeString).Title("Member Type");
+                            columns.Bound(column => column.EmailAddress).Title("Email Address");
+                            columns.Bound(column => column.MobileNo).Title("Mobile No");
+                            columns.Bound(column => column.IsActive).Title("Is Active");
+                            columns.Bound(column => column.MemberId)
+                                                            .Filterable(false)
+                                                            .Sortable(false)
+                                                            .Groupable(false)
+                                                            .Width(50)
+                                                            .Title(String.Empty)
+                                                           .ClientTemplate("<center><a title='Edit' href=" + Url.Action("Save", "Member", new { id = "<#= MemberId #>" }) + "><i class='fa fa-pencil'></i></a></center>");
+                            columns.Bound(column => column.MemberId)
+                                                           .Filterable(false)
+                                                           .Sortable(false)
+                                                           .Groupable(false)
+                                                           .Width(50)
+                                                           .ClientTemplate("<center><a title='Delete'  onclick='DeleteMember(<#= MemberId #>);'><i class='fa fa-trash-o'></i></a></center>")
+                                                           .Title(string.Empty);
+                        })
+                        .ToolBar(commands => commands.Custom().Action("Save", "Member", new { id = 0 })
+                            .ButtonType(GridButtonType.Text)
+                            .Text("Add Member"))
+                        .Sortable()
+                        .Selectable()
+                        .Filterable()
+                        .Scrollable(t => t.Height("auto"))
+                        .HtmlAttributes(new { style = "width:100%;" })
+                        .Resizable(resizing => resizing.Columns(true))
+                        .Pageable(paging => paging.PageSize(50).Enabled(true).Style(GridPagerStyles.NextPreviousAndNumeric).Position(GridPagerPosition.Bottom))
+                )
+                </div>
+            </div>
+        </div>
+        <!-- end panel -->
+    </div>
+</div>
+<script src="~/Content/Script/Member.js"></script>
+<script type="text/javascript">
+    //ActivateSelectedMenu('menuAdminDefinition');
+</script>

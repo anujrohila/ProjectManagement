@@ -21,13 +21,14 @@ namespace ProjectManagement.DLL.ORM
         }
     
         public int MemberId { get; set; }
-        public Nullable<int> MemberTypeId { get; set; }
+        public int MemberTypeId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string Address { get; set; }
         public string EmailAddress { get; set; }
         public string MobileNo { get; set; }
         public string Password { get; set; }
-        public Nullable<bool> IsActive { get; set; }
+        public bool IsActive { get; set; }
     
         public virtual ICollection<tblMaterial> tblMaterials { get; set; }
         public virtual tblMemberType tblMemberType { get; set; }

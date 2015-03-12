@@ -1,0 +1,76 @@
+﻿@using Telerik.Web.Mvc.UI;
+@model ProjectManagement.Domain.tblMemberDTO
+@{
+    ViewBag.Title = "Save Member";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <!-- begin col-6 -->
+    <div class="col-md-12 ui-sortable">
+        <!-- begin panel -->
+        <div data-sortable-id="form-stuff-1" class="panel panel-inverse">
+            <div class="panel-heading">
+                <h4 class="panel-title">Save Member</h4>
+            </div>
+            <div class="panel-body">
+                @using (Html.BeginForm("Save", "Member", FormMethod.Post, new { id = "frmMember", @class = "form-horizontal" }))
+                {
+                    @Html.HiddenFor(model => model.MemberId)
+                    <div class="form-group">
+                        <label class="col-md-3 control-label"></label>
+                        <div class="col-md-5">
+                            @Html.ValidationSummary(false)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">First Name<span class="spanError">*</span></label>
+                        <div class="col-md-5">
+                            @Html.TextBoxFor(model => model.FirstName, new { @placeholder = "First name", @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Last Name<span class="spanError">*</span></label>
+                        <div class="col-md-5">
+                            @Html.TextBoxFor(model => model.LastName, new { @placeholder = "Last Name", @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Address<span class="spanError">*</span></label>
+                        <div class="col-md-5">
+                            @Html.TextBoxFor(model => model.Address, new { @placeholder = "Address", @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Mobile No</label>
+                        <div class="col-md-5">
+                            @Html.TextBoxFor(model => model.MobileNo, new { @placeholder = "Mobile No", @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Email Address</label>
+                        <div class="col-md-5">
+                            @Html.TextBoxFor(model => model.EmailAddress, new { @placeholder = "Email Address", @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Password</label>
+                        <div class="col-md-5">
+                            @Html.PasswordFor(model => model.Password, new { @placeholder = "Password", @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label"></label>
+                        <div class="col-md-5">
+                            <button class="btn btn-sm btn-success" type="submit">Submit</button>
+                            <button class="btn btn-sm btn-success" type="submit" onclick="document.location.href = '@Url.Action("ListAll", "Member")'">Cancel</button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        <!-- end panel -->
+    </div>
+</div>
+<script type="text/javascript">
+    //ActivateSelectedMenu('menuAdminDefinition');
+</script>

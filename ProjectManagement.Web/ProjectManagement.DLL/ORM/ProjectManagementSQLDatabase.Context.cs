@@ -29,9 +29,9 @@ namespace ProjectManagement.DLL.ORM
         public DbSet<tblCompany> tblCompanies { get; set; }
         public DbSet<tblMaterial> tblMaterials { get; set; }
         public DbSet<tblMaterialGroup> tblMaterialGroups { get; set; }
-        public DbSet<tblMember> tblMembers { get; set; }
         public DbSet<tblMemberPermission> tblMemberPermissions { get; set; }
         public DbSet<tblMemberType> tblMemberTypes { get; set; }
         public DbSet<tblPermissionMaster> tblPermissionMasters { get; set; }
+        public DbSet<tblMember> tblMembers { get; set; }
     }
 }

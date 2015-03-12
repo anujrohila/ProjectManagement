@@ -4,7 +4,41 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="ProjectManagementSQLDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ProjectManagementSQLDatabaseModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="ProjectManagementSQLDatabaseModelStoreContainer">
+          <EntitySet Name="tblAccountType" EntityType="ProjectManagementSQLDatabaseModel.Store.tblAccountType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblCompany" EntityType="ProjectManagementSQLDatabaseModel.Store.tblCompany" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblMaterial" EntityType="ProjectManagementSQLDatabaseModel.Store.tblMaterial" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblMaterialGroup" EntityType="ProjectManagementSQLDatabaseModel.Store.tblMaterialGroup" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblMember" EntityType="ProjectManagementSQLDatabaseModel.Store.tblMember" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblMemberPermission" EntityType="ProjectManagementSQLDatabaseModel.Store.tblMemberPermission" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblMemberType" EntityType="ProjectManagementSQLDatabaseModel.Store.tblMemberType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblPermissionMaster" EntityType="ProjectManagementSQLDatabaseModel.Store.tblPermissionMaster" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_tblMaterial_tblCompany" Association="ProjectManagementSQLDatabaseModel.Store.FK_tblMaterial_tblCompany">
+            <End Role="tblCompany" EntitySet="tblCompany" />
+            <End Role="tblMaterial" EntitySet="tblMaterial" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMaterial_tblMaterialGroup" Association="ProjectManagementSQLDatabaseModel.Store.FK_tblMaterial_tblMaterialGroup">
+            <End Role="tblMaterialGroup" EntitySet="tblMaterialGroup" />
+            <End Role="tblMaterial" EntitySet="tblMaterial" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMaterial_tblMember" Association="ProjectManagementSQLDatabaseModel.Store.FK_tblMaterial_tblMember">
+            <End Role="tblMember" EntitySet="tblMember" />
+            <End Role="tblMaterial" EntitySet="tblMaterial" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMember_tblMemberType" Association="ProjectManagementSQLDatabaseModel.Store.FK_tblMember_tblMemberType">
+            <End Role="tblMemberType" EntitySet="tblMemberType" />
+            <End Role="tblMember" EntitySet="tblMember" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMemberPermission_tblMember" Association="ProjectManagementSQLDatabaseModel.Store.FK_tblMemberPermission_tblMember">
+            <End Role="tblMember" EntitySet="tblMember" />
+            <End Role="tblMemberPermission" EntitySet="tblMemberPermission" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMemberPermission_tblPermissionMaster" Association="ProjectManagementSQLDatabaseModel.Store.FK_tblMemberPermission_tblPermissionMaster">
+            <End Role="tblPermissionMaster" EntitySet="tblPermissionMaster" />
+            <End Role="tblMemberPermission" EntitySet="tblMemberPermission" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="tblAccountType">
           <Key>
             <PropertyRef Name="AccountTypeId" />
@@ -19,7 +53,7 @@
           <Key>
             <PropertyRef Name="CompanyId" />
           </Key>
-          <Property Name="CompanyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="CompanyName" Type="varchar" MaxLength="50" />
           <Property Name="Address" Type="varchar" MaxLength="500" />
           <Property Name="ContactDetails" Type="varchar" MaxLength="50" />
@@ -31,9 +65,9 @@
           <Key>
             <PropertyRef Name="MaterialId" />
           </Key>
-          <Property Name="MaterialId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaterialId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="MaterialGroupId" Type="int" Nullable="false" />
-          <Property Name="Name" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="200" />
           <Property Name="BasicRate" Type="float" Nullable="false" />
           <Property Name="OpeningStock" Type="float" Nullable="false" />
           <Property Name="MemberId" Type="int" Nullable="false" />
@@ -44,7 +78,7 @@
           <Key>
             <PropertyRef Name="MaterialGroupId" />
           </Key>
-          <Property Name="MaterialGroupId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaterialGroupId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="GroupName" Type="varchar" MaxLength="50" />
           <Property Name="Description" Type="varchar" MaxLength="500" />
         </EntityType>
@@ -52,20 +86,21 @@
           <Key>
             <PropertyRef Name="MemberId" />
           </Key>
-          <Property Name="MemberId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="MemberTypeId" Type="int" />
-          <Property Name="FirstName" Type="varchar" MaxLength="50" />
-          <Property Name="LastName" Type="varchar" MaxLength="50" />
-          <Property Name="EmailAddress" Type="varchar" MaxLength="50" />
-          <Property Name="MobileNo" Type="varchar" MaxLength="50" />
-          <Property Name="Password" Type="nvarchar" MaxLength="64" />
-          <Property Name="IsActive" Type="bit" />
+          <Property Name="MemberId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="MemberTypeId" Type="int" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="LastName" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Address" Type="varchar" Nullable="false" MaxLength="500" />
+          <Property Name="EmailAddress" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="MobileNo" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Password" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="tblMemberPermission">
           <Key>
             <PropertyRef Name="MemberPermissionId" />
           </Key>
-          <Property Name="MemberPermissionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MemberPermissionId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="PermisisonId" Type="int" Nullable="false" />
           <Property Name="MemberId" Type="int" Nullable="false" />
         </EntityType>
@@ -73,20 +108,20 @@
           <Key>
             <PropertyRef Name="MemberTypeId" />
           </Key>
-          <Property Name="MemberTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MemberTypeId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="TypeName" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="tblPermissionMaster">
           <Key>
             <PropertyRef Name="PermissionId" />
           </Key>
-          <Property Name="PermissionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PermissionId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="PermissionName" Type="varchar" MaxLength="50" />
           <Property Name="Description" Type="varchar" MaxLength="500" />
         </EntityType>
         <Association Name="FK_tblMaterial_tblCompany">
-          <End Role="tblCompany" Type="Self.tblCompany" Multiplicity="1" />
-          <End Role="tblMaterial" Type="Self.tblMaterial" Multiplicity="*" />
+          <End Role="tblCompany" Type="ProjectManagementSQLDatabaseModel.Store.tblCompany" Multiplicity="1" />
+          <End Role="tblMaterial" Type="ProjectManagementSQLDatabaseModel.Store.tblMaterial" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tblCompany">
               <PropertyRef Name="CompanyId" />
@@ -97,8 +132,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tblMaterial_tblMaterialGroup">
-          <End Role="tblMaterialGroup" Type="Self.tblMaterialGroup" Multiplicity="1" />
-          <End Role="tblMaterial" Type="Self.tblMaterial" Multiplicity="*" />
+          <End Role="tblMaterialGroup" Type="ProjectManagementSQLDatabaseModel.Store.tblMaterialGroup" Multiplicity="1" />
+          <End Role="tblMaterial" Type="ProjectManagementSQLDatabaseModel.Store.tblMaterial" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tblMaterialGroup">
               <PropertyRef Name="MaterialGroupId" />
@@ -109,8 +144,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tblMaterial_tblMember">
-          <End Role="tblMember" Type="Self.tblMember" Multiplicity="1" />
-          <End Role="tblMaterial" Type="Self.tblMaterial" Multiplicity="*" />
+          <End Role="tblMember" Type="ProjectManagementSQLDatabaseModel.Store.tblMember" Multiplicity="1" />
+          <End Role="tblMaterial" Type="ProjectManagementSQLDatabaseModel.Store.tblMaterial" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tblMember">
               <PropertyRef Name="MemberId" />
@@ -121,8 +156,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tblMember_tblMemberType">
-          <End Role="tblMemberType" Type="Self.tblMemberType" Multiplicity="0..1" />
-          <End Role="tblMember" Type="Self.tblMember" Multiplicity="*" />
+          <End Role="tblMemberType" Type="ProjectManagementSQLDatabaseModel.Store.tblMemberType" Multiplicity="1" />
+          <End Role="tblMember" Type="ProjectManagementSQLDatabaseModel.Store.tblMember" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tblMemberType">
               <PropertyRef Name="MemberTypeId" />
@@ -133,8 +168,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tblMemberPermission_tblMember">
-          <End Role="tblMember" Type="Self.tblMember" Multiplicity="1" />
-          <End Role="tblMemberPermission" Type="Self.tblMemberPermission" Multiplicity="*" />
+          <End Role="tblMember" Type="ProjectManagementSQLDatabaseModel.Store.tblMember" Multiplicity="1" />
+          <End Role="tblMemberPermission" Type="ProjectManagementSQLDatabaseModel.Store.tblMemberPermission" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tblMember">
               <PropertyRef Name="MemberId" />
@@ -145,8 +180,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tblMemberPermission_tblPermissionMaster">
-          <End Role="tblPermissionMaster" Type="Self.tblPermissionMaster" Multiplicity="1" />
-          <End Role="tblMemberPermission" Type="Self.tblMemberPermission" Multiplicity="*" />
+          <End Role="tblPermissionMaster" Type="ProjectManagementSQLDatabaseModel.Store.tblPermissionMaster" Multiplicity="1" />
+          <End Role="tblMemberPermission" Type="ProjectManagementSQLDatabaseModel.Store.tblMemberPermission" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tblPermissionMaster">
               <PropertyRef Name="PermissionId" />
@@ -156,40 +191,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="ProjectManagementSQLDatabaseModelStoreContainer">
-          <EntitySet Name="tblAccountType" EntityType="Self.tblAccountType" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="tblCompany" EntityType="Self.tblCompany" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="tblMaterial" EntityType="Self.tblMaterial" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="tblMaterialGroup" EntityType="Self.tblMaterialGroup" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="tblMember" EntityType="Self.tblMember" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="tblMemberPermission" EntityType="Self.tblMemberPermission" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="tblMemberType" EntityType="Self.tblMemberType" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="tblPermissionMaster" EntityType="Self.tblPermissionMaster" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_tblMaterial_tblCompany" Association="Self.FK_tblMaterial_tblCompany">
-            <End Role="tblCompany" EntitySet="tblCompany" />
-            <End Role="tblMaterial" EntitySet="tblMaterial" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblMaterial_tblMaterialGroup" Association="Self.FK_tblMaterial_tblMaterialGroup">
-            <End Role="tblMaterialGroup" EntitySet="tblMaterialGroup" />
-            <End Role="tblMaterial" EntitySet="tblMaterial" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblMaterial_tblMember" Association="Self.FK_tblMaterial_tblMember">
-            <End Role="tblMember" EntitySet="tblMember" />
-            <End Role="tblMaterial" EntitySet="tblMaterial" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblMember_tblMemberType" Association="Self.FK_tblMember_tblMemberType">
-            <End Role="tblMemberType" EntitySet="tblMemberType" />
-            <End Role="tblMember" EntitySet="tblMember" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblMemberPermission_tblMember" Association="Self.FK_tblMemberPermission_tblMember">
-            <End Role="tblMember" EntitySet="tblMember" />
-            <End Role="tblMemberPermission" EntitySet="tblMemberPermission" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblMemberPermission_tblPermissionMaster" Association="Self.FK_tblMemberPermission_tblPermissionMaster">
-            <End Role="tblPermissionMaster" EntitySet="tblPermissionMaster" />
-            <End Role="tblMemberPermission" EntitySet="tblMemberPermission" />
-          </AssociationSet>
-        </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -199,7 +200,6 @@
           <EntitySet Name="tblCompanies" EntityType="ProjectManagementSQLDatabaseModel.tblCompany" />
           <EntitySet Name="tblMaterials" EntityType="ProjectManagementSQLDatabaseModel.tblMaterial" />
           <EntitySet Name="tblMaterialGroups" EntityType="ProjectManagementSQLDatabaseModel.tblMaterialGroup" />
-          <EntitySet Name="tblMembers" EntityType="ProjectManagementSQLDatabaseModel.tblMember" />
           <EntitySet Name="tblMemberPermissions" EntityType="ProjectManagementSQLDatabaseModel.tblMemberPermission" />
           <EntitySet Name="tblMemberTypes" EntityType="ProjectManagementSQLDatabaseModel.tblMemberType" />
           <EntitySet Name="tblPermissionMasters" EntityType="ProjectManagementSQLDatabaseModel.tblPermissionMaster" />
@@ -211,6 +211,11 @@
             <End Role="tblMaterialGroup" EntitySet="tblMaterialGroups" />
             <End Role="tblMaterial" EntitySet="tblMaterials" />
           </AssociationSet>
+          <AssociationSet Name="FK_tblMemberPermission_tblPermissionMaster" Association="ProjectManagementSQLDatabaseModel.FK_tblMemberPermission_tblPermissionMaster">
+            <End Role="tblPermissionMaster" EntitySet="tblPermissionMasters" />
+            <End Role="tblMemberPermission" EntitySet="tblMemberPermissions" />
+          </AssociationSet>
+          <EntitySet Name="tblMembers" EntityType="ProjectManagementSQLDatabaseModel.tblMember" />
           <AssociationSet Name="FK_tblMaterial_tblMember" Association="ProjectManagementSQLDatabaseModel.FK_tblMaterial_tblMember">
             <End Role="tblMember" EntitySet="tblMembers" />
             <End Role="tblMaterial" EntitySet="tblMaterials" />
@@ -221,10 +226,6 @@
           </AssociationSet>
           <AssociationSet Name="FK_tblMemberPermission_tblMember" Association="ProjectManagementSQLDatabaseModel.FK_tblMemberPermission_tblMember">
             <End Role="tblMember" EntitySet="tblMembers" />
-            <End Role="tblMemberPermission" EntitySet="tblMemberPermissions" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblMemberPermission_tblPermissionMaster" Association="ProjectManagementSQLDatabaseModel.FK_tblMemberPermission_tblPermissionMaster">
-            <End Role="tblPermissionMaster" EntitySet="tblPermissionMasters" />
             <End Role="tblMemberPermission" EntitySet="tblMemberPermissions" />
           </AssociationSet>
         </EntityContainer>
@@ -276,22 +277,6 @@
           <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="tblMaterials" Relationship="ProjectManagementSQLDatabaseModel.FK_tblMaterial_tblMaterialGroup" FromRole="tblMaterialGroup" ToRole="tblMaterial" />
         </EntityType>
-        <EntityType Name="tblMember">
-          <Key>
-            <PropertyRef Name="MemberId" />
-          </Key>
-          <Property Name="MemberId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MemberTypeId" Type="Int32" />
-          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="EmailAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="MobileNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Password" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
-          <Property Name="IsActive" Type="Boolean" />
-          <NavigationProperty Name="tblMaterials" Relationship="ProjectManagementSQLDatabaseModel.FK_tblMaterial_tblMember" FromRole="tblMember" ToRole="tblMaterial" />
-          <NavigationProperty Name="tblMemberType" Relationship="ProjectManagementSQLDatabaseModel.FK_tblMember_tblMemberType" FromRole="tblMember" ToRole="tblMemberType" />
-          <NavigationProperty Name="tblMemberPermissions" Relationship="ProjectManagementSQLDatabaseModel.FK_tblMemberPermission_tblMember" FromRole="tblMember" ToRole="tblMemberPermission" />
-        </EntityType>
         <EntityType Name="tblMemberPermission">
           <Key>
             <PropertyRef Name="MemberPermissionId" />
@@ -299,8 +284,8 @@
           <Property Name="MemberPermissionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="PermisisonId" Type="Int32" Nullable="false" />
           <Property Name="MemberId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="tblMember" Relationship="ProjectManagementSQLDatabaseModel.FK_tblMemberPermission_tblMember" FromRole="tblMemberPermission" ToRole="tblMember" />
           <NavigationProperty Name="tblPermissionMaster" Relationship="ProjectManagementSQLDatabaseModel.FK_tblMemberPermission_tblPermissionMaster" FromRole="tblMemberPermission" ToRole="tblPermissionMaster" />
+          <NavigationProperty Name="tblMember" Relationship="ProjectManagementSQLDatabaseModel.FK_tblMemberPermission_tblMember" FromRole="tblMemberPermission" ToRole="tblMember" />
         </EntityType>
         <EntityType Name="tblMemberType">
           <Key>
@@ -343,6 +328,35 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_tblMemberPermission_tblPermissionMaster">
+          <End Type="ProjectManagementSQLDatabaseModel.tblPermissionMaster" Role="tblPermissionMaster" Multiplicity="1" />
+          <End Type="ProjectManagementSQLDatabaseModel.tblMemberPermission" Role="tblMemberPermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPermissionMaster">
+              <PropertyRef Name="PermissionId" />
+            </Principal>
+            <Dependent Role="tblMemberPermission">
+              <PropertyRef Name="PermisisonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tblMember">
+          <Key>
+            <PropertyRef Name="MemberId" />
+          </Key>
+          <Property Type="Int32" Name="MemberId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="MemberTypeId" Nullable="false" />
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LastName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Address" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="EmailAddress" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="MobileNo" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Password" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="IsActive" Nullable="false" />
+          <NavigationProperty Name="tblMaterials" Relationship="ProjectManagementSQLDatabaseModel.FK_tblMaterial_tblMember" FromRole="tblMember" ToRole="tblMaterial" />
+          <NavigationProperty Name="tblMemberType" Relationship="ProjectManagementSQLDatabaseModel.FK_tblMember_tblMemberType" FromRole="tblMember" ToRole="tblMemberType" />
+          <NavigationProperty Name="tblMemberPermissions" Relationship="ProjectManagementSQLDatabaseModel.FK_tblMemberPermission_tblMember" FromRole="tblMember" ToRole="tblMemberPermission" />
+        </EntityType>
         <Association Name="FK_tblMaterial_tblMember">
           <End Type="ProjectManagementSQLDatabaseModel.tblMember" Role="tblMember" Multiplicity="1" />
           <End Type="ProjectManagementSQLDatabaseModel.tblMaterial" Role="tblMaterial" Multiplicity="*" />
@@ -356,7 +370,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tblMember_tblMemberType">
-          <End Type="ProjectManagementSQLDatabaseModel.tblMemberType" Role="tblMemberType" Multiplicity="0..1" />
+          <End Type="ProjectManagementSQLDatabaseModel.tblMemberType" Role="tblMemberType" Multiplicity="1" />
           <End Type="ProjectManagementSQLDatabaseModel.tblMember" Role="tblMember" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tblMemberType">
@@ -376,18 +390,6 @@
             </Principal>
             <Dependent Role="tblMemberPermission">
               <PropertyRef Name="MemberId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblMemberPermission_tblPermissionMaster">
-          <End Type="ProjectManagementSQLDatabaseModel.tblPermissionMaster" Role="tblPermissionMaster" Multiplicity="1" />
-          <End Type="ProjectManagementSQLDatabaseModel.tblMemberPermission" Role="tblMemberPermission" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblPermissionMaster">
-              <PropertyRef Name="PermissionId" />
-            </Principal>
-            <Dependent Role="tblMemberPermission">
-              <PropertyRef Name="PermisisonId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -444,20 +446,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tblMembers">
-            <EntityTypeMapping TypeName="ProjectManagementSQLDatabaseModel.tblMember">
-              <MappingFragment StoreEntitySet="tblMember">
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
-                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="MemberTypeId" ColumnName="MemberTypeId" />
-                <ScalarProperty Name="MemberId" ColumnName="MemberId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="tblMemberPermissions">
             <EntityTypeMapping TypeName="ProjectManagementSQLDatabaseModel.tblMemberPermission">
               <MappingFragment StoreEntitySet="tblMemberPermission">
@@ -481,6 +469,21 @@
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="PermissionName" ColumnName="PermissionName" />
                 <ScalarProperty Name="PermissionId" ColumnName="PermissionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblMembers">
+            <EntityTypeMapping TypeName="ProjectManagementSQLDatabaseModel.tblMember">
+              <MappingFragment StoreEntitySet="tblMember">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="MemberTypeId" ColumnName="MemberTypeId" />
+                <ScalarProperty Name="MemberId" ColumnName="MemberId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

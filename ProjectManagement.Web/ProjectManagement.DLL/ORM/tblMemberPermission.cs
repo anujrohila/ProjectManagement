@@ -18,7 +18,7 @@ namespace ProjectManagement.DLL.ORM
         public int PermisisonId { get; set; }
         public int MemberId { get; set; }
     
-        public virtual tblMember tblMember { get; set; }
         public virtual tblPermissionMaster tblPermissionMaster { get; set; }
+        public virtual tblMember tblMember { get; set; }
     }
 }
