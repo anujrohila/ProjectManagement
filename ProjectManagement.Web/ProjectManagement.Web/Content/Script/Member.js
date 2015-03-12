@@ -36,7 +36,6 @@ function OnMemberFormSubmit() {
     }
     $("#ProjectSelectionString").val(strSelectedProject);
 
-
     var entityObjects = $("#divEntityListPermission").find("div[id=EntityObject]");
     for (var i = 0; i < entityObjects.length; i++) {
         var entityPermissions = $($("#divEntityListPermission").find("div[id=EntityObject]")[i]).find("input");
