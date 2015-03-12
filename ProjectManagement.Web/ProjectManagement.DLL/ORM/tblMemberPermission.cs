@@ -15,10 +15,14 @@ namespace ProjectManagement.DLL.ORM
     public partial class tblMemberPermission
     {
         public int MemberPermissionId { get; set; }
-        public int PermisisonId { get; set; }
+        public int ProjectId { get; set; }
         public int MemberId { get; set; }
+        public int EnitytId { get; set; }
+        public bool CanListAll { get; set; }
+        public bool CanInsert { get; set; }
+        public bool CanEdit { get; set; }
+        public bool CanDelete { get; set; }
     
-        public virtual tblPermissionMaster tblPermissionMaster { get; set; }
         public virtual tblMember tblMember { get; set; }
     }
 }

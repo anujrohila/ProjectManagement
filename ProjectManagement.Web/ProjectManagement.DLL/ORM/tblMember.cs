@@ -16,7 +16,6 @@ namespace ProjectManagement.DLL.ORM
     {
         public tblMember()
         {
-            this.tblMaterials = new HashSet<tblMaterial>();
             this.tblMemberPermissions = new HashSet<tblMemberPermission>();
         }
     
@@ -30,7 +29,6 @@ namespace ProjectManagement.DLL.ORM
         public string Password { get; set; }
         public bool IsActive { get; set; }
     
-        public virtual ICollection<tblMaterial> tblMaterials { get; set; }
         public virtual tblMemberType tblMemberType { get; set; }
         public virtual ICollection<tblMemberPermission> tblMemberPermissions { get; set; }
     }

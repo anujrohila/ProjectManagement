@@ -12,21 +12,16 @@ namespace ProjectManagement.DLL.ORM
     using System;
     using System.Collections.Generic;
     
-    public partial class tblCompany
+    public partial class tblProject
     {
-        public tblCompany()
-        {
-            this.tblMaterials = new HashSet<tblMaterial>();
-        }
-    
-        public int CompanyId { get; set; }
-        public string CompanyName { get; set; }
+        public int ProjectId { get; set; }
+        public string Title { get; set; }
         public string Address { get; set; }
-        public string ContactDetails { get; set; }
-        public string AboutUs { get; set; }
-        public Nullable<System.DateTime> CreationDateTime { get; set; }
-        public Nullable<bool> IsActive { get; set; }
-    
-        public virtual ICollection<tblMaterial> tblMaterials { get; set; }
+        public string Description { get; set; }
+        public System.DateTime StratDateTime { get; set; }
+        public string Catalog { get; set; }
+        public string UserName { get; set; }
+        public string Password { get; set; }
+        public bool IsActive { get; set; }
     }
 }

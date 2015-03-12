@@ -56,8 +56,11 @@
     <Compile Include="Assemblers\Mat_AccountTwoAssembler.cs" />
     <Compile Include="Assemblers\QtyMaterialAssembler.cs" />
     <Compile Include="Assemblers\SupplierAssembler.cs" />
+    <Compile Include="Assemblers\tblEntityMasterAssembler.cs" />
     <Compile Include="Assemblers\tblMemberAssembler.cs" />
+    <Compile Include="Assemblers\tblMemberPermissionAssembler.cs" />
     <Compile Include="Assemblers\tblMemberTypeAssembler.cs" />
+    <Compile Include="Assemblers\tblProjectAssembler.cs" />
     <Compile Include="Assemblers\userAssembler.cs" />
     <Compile Include="ORM\AccountGroup.cs">
       <DependentUpon>ProjectSQLDatabase.tt</DependentUpon>
@@ -119,16 +122,7 @@
     <Compile Include="ORM\Supplier.cs">
       <DependentUpon>ProjectSQLDatabase.tt</DependentUpon>
     </Compile>
-    <Compile Include="ORM\tblAccountType.cs">
-      <DependentUpon>ProjectManagementSQLDatabase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ORM\tblCompany.cs">
-      <DependentUpon>ProjectManagementSQLDatabase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ORM\tblMaterial.cs">
-      <DependentUpon>ProjectManagementSQLDatabase.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ORM\tblMaterialGroup.cs">
+    <Compile Include="ORM\tblEntityMaster.cs">
       <DependentUpon>ProjectManagementSQLDatabase.tt</DependentUpon>
     </Compile>
     <Compile Include="ORM\tblMember.cs">
@@ -140,7 +134,7 @@
     <Compile Include="ORM\tblMemberType.cs">
       <DependentUpon>ProjectManagementSQLDatabase.tt</DependentUpon>
     </Compile>
-    <Compile Include="ORM\tblPermissionMaster.cs">
+    <Compile Include="ORM\tblProject.cs">
       <DependentUpon>ProjectManagementSQLDatabase.tt</DependentUpon>
     </Compile>
     <Compile Include="ORM\user.cs">

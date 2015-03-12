@@ -12,17 +12,10 @@ namespace ProjectManagement.DLL.ORM
     using System;
     using System.Collections.Generic;
     
-    public partial class tblMaterialGroup
+    public partial class tblEntityMaster
     {
-        public tblMaterialGroup()
-        {
-            this.tblMaterials = new HashSet<tblMaterial>();
-        }
-    
-        public int MaterialGroupId { get; set; }
-        public string GroupName { get; set; }
+        public int EntityId { get; set; }
+        public string EntityName { get; set; }
         public string Description { get; set; }
-    
-        public virtual ICollection<tblMaterial> tblMaterials { get; set; }
     }
 }
