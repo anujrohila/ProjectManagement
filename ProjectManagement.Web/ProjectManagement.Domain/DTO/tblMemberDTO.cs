@@ -57,5 +57,15 @@ namespace ProjectManagement.Domain
         public string MemberTypeString { get; set; }
 
         public bool RememberMe { get; set; }
+
+        public List<tblProjectDTO> ProjectList { get; set; }
+
+        public List<tblEntityMasterDTO> EntityList { get; set; }
+
+        public List<tblMemberPermissionDTO> MemberPermissionList { get; set; }
+
+        public string ProjectSelectionString { get; set; }
+
+        public string EntityPermissionSelectionString { get; set; }
     }
 }

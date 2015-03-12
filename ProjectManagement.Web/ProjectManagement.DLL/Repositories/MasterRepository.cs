@@ -45,6 +45,48 @@ namespace ProjectManagement.DLL
             }
         }
 
+        /// <summary>
+        /// Get All Project
+        /// </summary>
+        /// <returns></returns>
+        public static List<tblProjectDTO> GetAllProject()
+        {
+            using (var projectManagementSQLDatabaseEntities = new ProjectManagementSQLDatabaseEntities())
+            {
+                return (from project in projectManagementSQLDatabaseEntities.tblProjects
+                        select new tblProjectDTO
+                        {
+                            ProjectId = project.ProjectId,
+                            Title = project.Title,
+                            Address = project.Address,
+                            Description = project.Description,
+                            StratDateTime = project.StratDateTime,
+                            Catalog = project.Catalog,
+                            UserName = project.UserName,
+                            Password = project.Password,
+                            IsActive = project.IsActive,
+                        }).ToList();
+            }
+        }
+
+        /// <summary>
+        /// Get All Entity
+        /// </summary>
+        /// <returns></returns>
+        public static List<tblEntityMasterDTO> GetAllEntity()
+        {
+            using (var projectManagementSQLDatabaseEntities = new ProjectManagementSQLDatabaseEntities())
+            {
+                return (from entityMaster in projectManagementSQLDatabaseEntities.tblEntityMasters
+                        select new tblEntityMasterDTO
+                        {
+                            EntityId = entityMaster.EntityId,
+                            EntityName = entityMaster.EntityName,
+                            Description = entityMaster.Description
+                        }).ToList();
+            }
+        }
+
         #endregion
     }
 }

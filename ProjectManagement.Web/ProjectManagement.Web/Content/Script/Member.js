@@ -20,3 +20,32 @@ function DeleteMember(id) {
         });
     }
 }
+
+function OnMemberFormSubmit() {
+    var projectObjects = $("#divProjects").find("input");
+    var strSelectedProject = '';
+    for (var i = 0; i < projectObjects.length; i++) {
+        if (projectObjects[i].checked) {
+            if (strSelectedProject == '') {
+                strSelectedProject = projectObjects[i].value;
+            }
+            else {
+                strSelectedProject = "," + projectObjects[i].value;
+            }
+        }
+    }
+    $("#ProjectSelectionString").val(strSelectedProject);
+
+
+    var entityObjects = $("#divEntityListPermission").find("div[id=EntityObject]");
+    for (var i = 0; i < entityObjects.length; i++) {
+        var entityPermissions = $($("#divEntityListPermission").find("div[id=EntityObject]")[i]).find("input");
+        for (var per = 0; per < entityPermissions.length; per++) {
+
+        }
+
+    }
+
+    //EntityPermissionSelectionString
+    return true;
+}

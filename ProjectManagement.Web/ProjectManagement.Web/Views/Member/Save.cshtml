@@ -5,17 +5,18 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="row">
-    <!-- begin col-6 -->
-    <div class="col-md-12 ui-sortable">
-        <!-- begin panel -->
-        <div data-sortable-id="form-stuff-1" class="panel panel-inverse">
-            <div class="panel-heading">
-                <h4 class="panel-title">Save Member</h4>
-            </div>
-            <div class="panel-body">
-                @using (Html.BeginForm("Save", "Member", FormMethod.Post, new { id = "frmMember", @class = "form-horizontal" }))
-                {
+    @using (Html.BeginForm("Save", "Member", FormMethod.Post, new { id = "frmMember", @class = "form-horizontal" }))
+    {
+        <div class="col-md-12 ui-sortable">
+            <!-- begin panel -->
+            <div data-sortable-id="form-stuff-1" class="panel panel-inverse">
+                <div class="panel-heading">
+                    <h4 class="panel-title">Member Details</h4>
+                </div>
+                <div class="panel-body">
                     @Html.HiddenFor(model => model.MemberId)
+                    @Html.HiddenFor(model => model.ProjectSelectionString)
+                    @Html.HiddenFor(model => model.EntityPermissionSelectionString)
                     <div class="form-group">
                         <label class="col-md-3 control-label"></label>
                         <div class="col-md-5">
@@ -59,18 +60,92 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label class="col-md-3 control-label">Project</label>
+                        <div class="col-md-5">
+                            @Html.PasswordFor(model => model.Password, new { @placeholder = "Password", @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end panel -->
+        </div>
+        <div class="col-md-12 ui-sortable">
+            <div data-sortable-id="form-stuff-1" class="panel panel-inverse">
+                <div class="panel-heading">
+                    <h4 class="panel-title">Project Selection</h4>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Projects<span class="spanError">*</span></label>
+                        <div id="divProjects" class="col-md-5">
+                            @foreach (var projectItem in Model.ProjectList)
+                            {
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" value="@projectItem.ProjectId">
+                                        @projectItem.Title
+                                    </label>
+                                </div>}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 ui-sortable">
+            <div data-sortable-id="form-stuff-1" class="panel panel-inverse">
+                <div class="panel-heading">
+                    <h4 class="panel-title">Permission Selection</h4>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Projects<span class="spanError">*</span></label>
+                        <div id="divEntityListPermission" class="col-md-5">
+                            @foreach (var entityItem in Model.EntityList)
+                            {
+                                <h5 class="m--20" style="font-weight: bold">@entityItem.EntityName</h5>
+                                <div id="EntityObject" style="padding-left: 20px">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input id="Listing" type="checkbox" value="@entityItem.EntityId">
+                                            Listing
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input id="Insert" type="checkbox" value="@entityItem.EntityId">
+                                            Insert
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input id="Edit" type="checkbox"  value="@entityItem.EntityId">
+                                            Edit
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input id="Delete" type="checkbox"  value="@entityItem.EntityId">
+                                            Delete
+                                        </label>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label class="col-md-3 control-label"></label>
                         <div class="col-md-5">
-                            <button class="btn btn-sm btn-success" type="submit">Submit</button>
+                            <button class="btn btn-sm btn-success" type="submit" onclick="return OnMemberFormSubmit()">Submit</button>
                             <button class="btn btn-sm btn-success" type="submit" onclick="document.location.href = '@Url.Action("ListAll", "Member")'">Cancel</button>
                         </div>
                     </div>
-                }
+
+                </div>
             </div>
         </div>
-        <!-- end panel -->
-    </div>
+    }
 </div>
+<script src="~/Content/Script/Member.js"></script>
 <script type="text/javascript">
     //ActivateSelectedMenu('menuAdminDefinition');
 </script>

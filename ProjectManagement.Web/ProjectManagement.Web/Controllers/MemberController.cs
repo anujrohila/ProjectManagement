@@ -45,11 +45,20 @@ namespace ProjectManagement.Web.Controllers
         public ActionResult Save(int id)
         {
             var tblMemberDTO = new tblMemberDTO();
-            if (id == 0)
+            if (id > 0)
             {
                 tblMemberDTO = MemberRepository.GetMember(id);
             }
+            tblMemberDTO = FillMemberComboBox(tblMemberDTO);
             return View(tblMemberDTO);
+        }
+
+
+        private tblMemberDTO FillMemberComboBox(tblMemberDTO tblMemberDTO)
+        {
+            tblMemberDTO.ProjectList = MasterRepository.GetAllProject();
+            tblMemberDTO.EntityList = MasterRepository.GetAllEntity();
+            return tblMemberDTO;
         }
 
         /// <summary>

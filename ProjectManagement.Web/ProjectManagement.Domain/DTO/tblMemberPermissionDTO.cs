@@ -40,20 +40,6 @@ namespace ProjectManagement.Domain
         [DataMember()]
         public Boolean CanDelete { get; set; }
 
-        public tblMemberPermissionDTO()
-        {
-        }
-
-        public tblMemberPermissionDTO(Int32 memberPermissionId, Int32 projectId, Int32 memberId, Int32 enitytId, Boolean canListAll, Boolean canInsert, Boolean canEdit, Boolean canDelete)
-        {
-			this.MemberPermissionId = memberPermissionId;
-			this.ProjectId = projectId;
-			this.MemberId = memberId;
-			this.EnitytId = enitytId;
-			this.CanListAll = canListAll;
-			this.CanInsert = canInsert;
-			this.CanEdit = canEdit;
-			this.CanDelete = canDelete;
-        }
+        
     }
 }
