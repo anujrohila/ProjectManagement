@@ -21,6 +21,7 @@ namespace ProjectManagement.Domain
         {
             ProjectList = new List<tblProjectDTO>();
             EntityList = new List<tblEntityMasterDTO>();
+            MemberPermissionList = new List<tblMemberPermissionDTO>();
             SelectedProject = new List<int>();
         }
 
