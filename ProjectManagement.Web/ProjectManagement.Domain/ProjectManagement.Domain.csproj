@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Additional DTO\tblLoginDTO.cs" />
     <Compile Include="Common\Enums.cs" />
     <Compile Include="Common\ProjectManagementApplication.cs" />
     <Compile Include="Common\PageHeaderModel.cs" />

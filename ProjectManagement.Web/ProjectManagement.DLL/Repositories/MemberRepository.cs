@@ -93,6 +93,49 @@ namespace ProjectManagement.DLL
         }
 
         /// <summary>
+        /// Get Member
+        /// </summary>
+        /// <returns></returns>
+        public static tblMemberDTO GetMember(string email, string password)
+        {
+            using (var projectManagementSQLDatabaseEntities = new ProjectManagementSQLDatabaseEntities())
+            {
+                var result = (from member in projectManagementSQLDatabaseEntities.tblMembers
+                              where string.Compare(email, member.EmailAddress, StringComparison.CurrentCultureIgnoreCase) == 0
+                                    && string.Compare(password, member.Password, StringComparison.CurrentCultureIgnoreCase) == 0
+                              select new tblMemberDTO
+                              {
+                                  MemberId = member.MemberId,
+                                  MemberTypeId = member.MemberTypeId,
+                                  FirstName = member.FirstName,
+                                  LastName = member.LastName,
+                                  Address = member.Address,
+                                  EmailAddress = member.EmailAddress,
+                                  MobileNo = member.MobileNo,
+                                  Password = member.Password,
+                                  IsActive = member.IsActive,
+                                  MemberTypeString = member.tblMemberType.TypeName,
+                              }).FirstOrDefault();
+
+                result.MemberPermissionList = (from permission in projectManagementSQLDatabaseEntities.tblMemberPermissions
+                                               where permission.MemberId == result.MemberId
+                                               select new tblMemberPermissionDTO
+                                               {
+                                                   MemberPermissionId = permission.MemberPermissionId,
+                                                   MemberId = permission.MemberId,
+                                                   ProjectId = permission.ProjectId,
+                                                   EnitytId = permission.EnitytId,
+                                                   CanListAll = permission.CanListAll,
+                                                   CanInsert = permission.CanInsert,
+                                                   CanEdit = permission.CanEdit,
+                                                   CanDelete = permission.CanDelete
+                                               }).ToList();
+
+                return result;
+            }
+        }
+
+        /// <summary>
         /// Insert Member
         /// </summary>
         /// <returns></returns>

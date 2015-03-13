@@ -12,54 +12,48 @@ using ProjectManagement.Web.Filters;
 using System.Security.Cryptography;
 using System.Text;
 using ProjectManagement.Domain;
-using ProjectManagement.BLL;
+using ProjectManagement.DLL;
 
 
 namespace ProjectManagement.Web.Controllers
 {
-  
+
     [InitializeSimpleMembership]
     public class AccountController : Controller
     {
-        //
-        // GET: /Account/Login
-
-        public static string HashPassword(String Password)
-        {
-            var sha256 = new SHA384Managed();
-            return Convert.ToBase64String(sha256.ComputeHash(UTF8Encoding.UTF8.GetBytes(String.Concat(Password, System.Web.HttpContext.Current.Application["PasswordSalt"]))));
-        }
-
         [HttpGet]
         public ActionResult Login()
         {
-            if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
+            var tblLoginDTO = new tblLoginDTO();
+            if (ApplicationMember.LoggedUserId == 0)
             {
-                return RedirectToAction("Login", "Account");
+                return View(tblLoginDTO);
             }
-            return View();
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
-
         [HttpPost]
-        public ActionResult Login(tblMemberDTO tblMemberDTO)
+        public ActionResult Login(tblLoginDTO tblLoginDTO)
         {
             if (ModelState.IsValid)
             {
-                var user = AdministratorBusinessLogic.GetMembershipDetails(tblMemberDTO.EmailAddress,HashPassword(tblMemberDTO.Password));
-                if( user == null)
+                var user = MemberRepository.GetMember(tblLoginDTO.EmailAddress, CommonFunctions.HashPassword(tblLoginDTO.Password));
+                if (user == null)
                 {
-                    tblMemberDTO.ErrorMessage = "Invalid Username & Password !!!";
-                    tblMemberDTO.StatuID = 1;
+                    tblLoginDTO.ErrorMessage = "Invalid username & password.";
+                    tblLoginDTO.StatuID = 1;
                 }
-                else if(user.IsActive == false)
+                else if (user.IsActive == false)
                 {
-                    tblMemberDTO.ErrorMessage = "Account Templary Block !!!";
-                    tblMemberDTO.StatuID = 1;
+                    tblLoginDTO.ErrorMessage = "Your account is temporarily blocked.";
+                    tblLoginDTO.StatuID = 1;
                 }
                 else
                 {
-                    System.Web.HttpContext.Current.Session["LoggedUserId"] = tblMemberDTO.MemberId.ToString();
+                    System.Web.HttpContext.Current.Session["LoggedUserId"] = user.MemberId.ToString();
                     var returnURL = Convert.ToString(Request.QueryString["ReturnUrl"]);
                     if (string.IsNullOrWhiteSpace(returnURL))
                     {
@@ -71,19 +65,16 @@ namespace ProjectManagement.Web.Controllers
                     }
                 }
             }
-            return View(tblMemberDTO);
+            return View(tblLoginDTO);
         }
 
+        [HttpGet]
         public ActionResult Logout()
         {
+            System.Web.HttpContext.Current.Session["LoggedUserId"] = null;
             System.Web.HttpContext.Current.Session.Abandon();
             return RedirectToAction("Login", "Account");
         }
 
-
-        public ActionResult Register()
-        {
-            return View();
-        }
     }
 }

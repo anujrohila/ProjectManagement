@@ -58,13 +58,7 @@ namespace ProjectManagement.Domain
         [DataMember()]
         public Boolean IsActive { get; set; }
 
-        public static string ErrorMessage { get; set; }
-
-        public static int StatuID { get; set; }
-
         public string MemberTypeString { get; set; }
-
-        public bool RememberMe { get; set; }
 
         public List<tblProjectDTO> ProjectList { get; set; }
 
