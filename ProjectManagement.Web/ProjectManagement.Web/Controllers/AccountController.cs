@@ -17,8 +17,6 @@ using ProjectManagement.DLL;
 
 namespace ProjectManagement.Web.Controllers
 {
-
-    [InitializeSimpleMembership]
     public class AccountController : Controller
     {
         [HttpGet]
@@ -54,6 +52,8 @@ namespace ProjectManagement.Web.Controllers
                 else
                 {
                     System.Web.HttpContext.Current.Session["LoggedUserId"] = user.MemberId.ToString();
+                    System.Web.HttpContext.Current.Session["UserPermission"] = user.MemberPermissionList;
+                    System.Web.HttpContext.Current.Session["LoggedUserName"] = string.Concat(user.FirstName, " ", user.LastName);
                     var returnURL = Convert.ToString(Request.QueryString["ReturnUrl"]);
                     if (string.IsNullOrWhiteSpace(returnURL))
                     {

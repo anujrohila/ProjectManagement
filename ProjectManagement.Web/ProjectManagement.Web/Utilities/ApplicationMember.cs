@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using ProjectManagement.Domain;
 
 namespace ProjectManagement.Web
 {
@@ -11,8 +12,7 @@ namespace ProjectManagement.Web
         {
             get
             {
-                //return Convert.ToInt32(System.Web.HttpContext.Current.Session["LoggedUserId"]);
-                return Convert.ToInt32("1");
+                return Convert.ToInt32(System.Web.HttpContext.Current.Session["LoggedUserId"]);
             }
         }
 
@@ -20,8 +20,15 @@ namespace ProjectManagement.Web
         {
             get
             {
-                //return Convert.ToString(System.Web.HttpContext.Current.Session["LoggedUserName"]);
-                return Convert.ToString("anuj");
+                return Convert.ToString(System.Web.HttpContext.Current.Session["LoggedUserName"]);
+            }
+        }
+
+        public static List<tblMemberPermissionDTO> LoggedUserPermission
+        {
+            get
+            {
+                return (System.Web.HttpContext.Current.Session["UserPermission"]) as List<tblMemberPermissionDTO>;
             }
         }
 
