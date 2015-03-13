@@ -17,6 +17,13 @@ namespace ProjectManagement.Domain
     [DataContract()]
     public partial class tblMemberDTO
     {
+        public tblMemberDTO()
+        {
+            ProjectList = new List<tblProjectDTO>();
+            EntityList = new List<tblEntityMasterDTO>();
+            SelectedProject = new List<int>();
+        }
+
         [DataMember()]
         public Int32 MemberId { get; set; }
 
@@ -67,5 +74,8 @@ namespace ProjectManagement.Domain
         public string ProjectSelectionString { get; set; }
 
         public string EntityPermissionSelectionString { get; set; }
+
+        public List<int> SelectedProject { get; set; }
+
     }
 }

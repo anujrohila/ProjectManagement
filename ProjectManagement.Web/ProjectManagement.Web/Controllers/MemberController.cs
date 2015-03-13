@@ -44,13 +44,14 @@ namespace ProjectManagement.Web.Controllers
         [HttpGet]
         public ActionResult Save(int id)
         {
-            var tblMemberDTO = new tblMemberDTO();
+            var tblMemberDTOObect = new tblMemberDTO();
             if (id > 0)
             {
-                tblMemberDTO = MemberRepository.GetMember(id);
+                tblMemberDTOObect = MemberRepository.GetMember(id);
+                tblMemberDTOObect.SelectedProject = tblMemberDTOObect.MemberPermissionList.Select(pro => pro.ProjectId).Distinct().ToList();
             }
-            tblMemberDTO = FillMemberComboBox(tblMemberDTO);
-            return View(tblMemberDTO);
+            tblMemberDTOObect = FillMemberComboBox(tblMemberDTOObect);
+            return View(tblMemberDTOObect);
         }
 
 
@@ -82,11 +83,58 @@ namespace ProjectManagement.Web.Controllers
                         tblMemberDTO.IsActive = true;
                     }
                     tblMemberDTO.MemberTypeId = 1;
+                    tblMemberDTO.MemberPermissionList = GetMemberPermissionList(tblMemberDTO.ProjectSelectionString, tblMemberDTO.EntityPermissionSelectionString);
                     var memberId = MemberRepository.SaveMember(tblMemberDTO);
                     return RedirectToAction("ListAll");
                 }
             }
             return View(tblMemberDTO);
+        }
+
+        /// <summary>
+        /// Get Member Permission List
+        /// </summary>
+        /// <param name="selectedProject"></param>
+        /// <param name="selectedEntity"></param>
+        /// <returns></returns>
+        private List<tblMemberPermissionDTO> GetMemberPermissionList(string selectedProject, string selectedEntity)
+        {
+            var permissionList = new List<tblMemberPermissionDTO>();
+            var projectArray = selectedProject.Split(',');
+            for (int i = 0; i < projectArray.Length; i++)
+            {
+                var entity = selectedEntity.Split('#');
+                for (int j = 0; j < entity.Length; j++)
+                {
+                    var permission = new tblMemberPermissionDTO();
+                    permission.MemberId = ApplicationMember.LoggedUserId;
+                    permission.ProjectId = Convert.ToInt32(projectArray[i]);
+                    var entityString = entity[j].Substring(entity[j].IndexOf('-') + 2, entity[j].Length - entity[j].IndexOf('-') - 2);
+                    var entityArray = entityString.Split(',');
+                    for (int k = 0; k < entityArray.Length; k++)
+                    {
+                        permission.EnitytId = Convert.ToInt32(entity[j].Substring(0, entity[j].IndexOf('-')));
+                        if (entityArray[k] == "L")
+                        {
+                            permission.CanListAll = true;
+                        }
+                        if (entityArray[k] == "I")
+                        {
+                            permission.CanInsert = true;
+                        }
+                        if (entityArray[k] == "E")
+                        {
+                            permission.CanEdit = true;
+                        }
+                        if (entityArray[k] == "D")
+                        {
+                            permission.CanDelete = true;
+                        }
+                    }
+                    permissionList.Add(permission);
+                }
+            }
+            return permissionList;
         }
 
         /// <summary>
@@ -103,5 +151,6 @@ namespace ProjectManagement.Web.Controllers
             }
             return Json(new { Success = false, Message = "Error in transaction please try again later." });
         }
+
     }
 }

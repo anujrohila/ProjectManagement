@@ -58,21 +58,37 @@ namespace ProjectManagement.DLL
         {
             using (var projectManagementSQLDatabaseEntities = new ProjectManagementSQLDatabaseEntities())
             {
-                return (from member in projectManagementSQLDatabaseEntities.tblMembers
-                        where member.MemberId == memberId
-                        select new tblMemberDTO
-                        {
-                            MemberId = member.MemberId,
-                            MemberTypeId = member.MemberTypeId,
-                            FirstName = member.FirstName,
-                            LastName = member.LastName,
-                            Address = member.Address,
-                            EmailAddress = member.EmailAddress,
-                            MobileNo = member.MobileNo,
-                            Password = member.Password,
-                            IsActive = member.IsActive,
-                            MemberTypeString = member.tblMemberType.TypeName
-                        }).FirstOrDefault();
+                var result = (from member in projectManagementSQLDatabaseEntities.tblMembers
+                              where member.MemberId == memberId
+                              select new tblMemberDTO
+                              {
+                                  MemberId = member.MemberId,
+                                  MemberTypeId = member.MemberTypeId,
+                                  FirstName = member.FirstName,
+                                  LastName = member.LastName,
+                                  Address = member.Address,
+                                  EmailAddress = member.EmailAddress,
+                                  MobileNo = member.MobileNo,
+                                  Password = member.Password,
+                                  IsActive = member.IsActive,
+                                  MemberTypeString = member.tblMemberType.TypeName,
+                              }).FirstOrDefault();
+
+                result.MemberPermissionList = (from permission in projectManagementSQLDatabaseEntities.tblMemberPermissions
+                                               where permission.MemberId == memberId
+                                               select new tblMemberPermissionDTO
+                                               {
+                                                   MemberPermissionId = permission.MemberPermissionId,
+                                                   MemberId = permission.MemberId,
+                                                   ProjectId = permission.ProjectId,
+                                                   EnitytId = permission.EnitytId,
+                                                   CanListAll = permission.CanListAll,
+                                                   CanInsert = permission.CanInsert,
+                                                   CanEdit = permission.CanEdit,
+                                                   CanDelete = permission.CanDelete
+                                               }).ToList();
+
+                return result;
             }
         }
 
@@ -89,6 +105,8 @@ namespace ProjectManagement.DLL
                 {
                     tblMember = tblMemberDTO.ToEntity();
                     projectManagementSQLDatabaseEntities.tblMembers.Add(tblMember);
+                    projectManagementSQLDatabaseEntities.SaveChanges();
+
                 }
                 else
                 {
@@ -103,6 +121,22 @@ namespace ProjectManagement.DLL
                     tblMember.Password = tblMemberDTO.Password;
                     tblMember.IsActive = tblMemberDTO.IsActive;
                 }
+
+                var oldPermissionList = projectManagementSQLDatabaseEntities.tblMemberPermissions.Where(p => p.MemberId == tblMember.MemberId).ToList();
+                if (oldPermissionList != null)
+                {
+                    foreach (var oldPer in oldPermissionList)
+                    {
+                        projectManagementSQLDatabaseEntities.tblMemberPermissions.Remove(oldPer);
+                    }
+                }
+
+                foreach (var permission in tblMemberDTO.MemberPermissionList)
+                {
+                    permission.MemberId = tblMember.MemberId;
+                    projectManagementSQLDatabaseEntities.tblMemberPermissions.Add(permission.ToEntity());
+                }
+
                 projectManagementSQLDatabaseEntities.SaveChanges();
                 return tblMember.MemberId;
             }

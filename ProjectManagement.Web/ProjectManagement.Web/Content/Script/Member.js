@@ -34,17 +34,40 @@ function OnMemberFormSubmit() {
             }
         }
     }
+
     $("#ProjectSelectionString").val(strSelectedProject);
-
-    var entityObjects = $("#divEntityListPermission").find("div[id=EntityObject]");
-    for (var i = 0; i < entityObjects.length; i++) {
-        var entityPermissions = $($("#divEntityListPermission").find("div[id=EntityObject]")[i]).find("input");
-        for (var per = 0; per < entityPermissions.length; per++) {
-
-        }
-
+    if (strSelectedProject == '') {
+        alert("Please select at least one project.");
+        return false;
     }
 
-    //EntityPermissionSelectionString
+    var entityObjects = $("#divEntityListPermission").find("div[id=EntityObject]");
+    var selectedEntityString = '';
+    for (var i = 0; i < entityObjects.length; i++) {
+        var entityPermissions = $($("#divEntityListPermission").find("div[id=EntityObject]")[i]).find("input");
+        var oneEntityPermisison = '';
+
+        oneEntityPermisison = entityPermissions[0].value + "-";
+        if (entityPermissions[0].checked) {
+            oneEntityPermisison = oneEntityPermisison + ",L";
+        }
+        if (entityPermissions[1].checked) {
+            oneEntityPermisison = oneEntityPermisison + ",I";
+        }
+        if (entityPermissions[2].checked) {
+            oneEntityPermisison = oneEntityPermisison + ",E";
+        }
+        if (entityPermissions[3].checked) {
+            oneEntityPermisison = oneEntityPermisison + ",D";
+        }
+
+        if (selectedEntityString == '') {
+            selectedEntityString = oneEntityPermisison;
+        }
+        else {
+            selectedEntityString = selectedEntityString + "#" + oneEntityPermisison;
+        }
+    }
+    $("#EntityPermissionSelectionString").val(selectedEntityString);
     return true;
 }
