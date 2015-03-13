@@ -5,8 +5,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectManagement.Web", "Pr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectManagement.Domain", "ProjectManagement.Domain\ProjectManagement.Domain.csproj", "{514B11FC-F737-4945-B488-1D686BF7C569}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectManagement.BLL", "ProjectManagement.BLL\ProjectManagement.BLL.csproj", "{4601DC55-E036-4DB1-BED4-35BC139B723F}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectManagement.DLL", "ProjectManagement.DLL\ProjectManagement.DLL.csproj", "{2A61376F-F10F-40D6-BC78-7ED08F792262}"
 EndProject
 Global
@@ -23,10 +21,6 @@ Global
 		{514B11FC-F737-4945-B488-1D686BF7C569}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{514B11FC-F737-4945-B488-1D686BF7C569}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{514B11FC-F737-4945-B488-1D686BF7C569}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4601DC55-E036-4DB1-BED4-35BC139B723F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4601DC55-E036-4DB1-BED4-35BC139B723F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4601DC55-E036-4DB1-BED4-35BC139B723F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4601DC55-E036-4DB1-BED4-35BC139B723F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2A61376F-F10F-40D6-BC78-7ED08F792262}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2A61376F-F10F-40D6-BC78-7ED08F792262}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A61376F-F10F-40D6-BC78-7ED08F792262}.Release|Any CPU.ActiveCfg = Release|Any CPU
