@@ -54,6 +54,7 @@ namespace ProjectManagement.Web.Controllers
                     System.Web.HttpContext.Current.Session["LoggedUserId"] = user.MemberId.ToString();
                     System.Web.HttpContext.Current.Session["UserPermission"] = user.MemberPermissionList;
                     System.Web.HttpContext.Current.Session["LoggedUserName"] = string.Concat(user.FirstName, " ", user.LastName);
+                    System.Web.HttpContext.Current.Session["LoggedMemberType"] = user.MemberTypeString;
                     var returnURL = Convert.ToString(Request.QueryString["ReturnUrl"]);
                     if (string.IsNullOrWhiteSpace(returnURL))
                     {

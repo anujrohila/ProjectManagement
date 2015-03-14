@@ -32,5 +32,13 @@ namespace ProjectManagement.Web
             }
         }
 
+        public static string LoggedMemberType
+        {
+            get
+            {
+                return Convert.ToString(System.Web.HttpContext.Current.Session["LoggedMemberType"]);
+            }
+        }
+
     }
 }

@@ -85,17 +85,17 @@
                     <li class="nav-profile">
                         <div class="image">
                             <a href="javascript:;">
-                                <img src="~/Content/img/user-13.jpg" alt="" /></a>
+                                <img src="~/Content/img/member.png" alt="" /></a>
                         </div>
                         <div class="info">
-                            Sean Ngu
-                            <small>Front end developer</small>
+                            @ApplicationMember.LoggedUserName
+                            <small>@ApplicationMember.LoggedMemberType</small>
                         </div>
                     </li>
                 </ul>
                 <ul id="menu" class="nav">
                     <li class="nav-header">Navigation</li>
-                    <li id="menuMember" class="has-sub active">
+                    <li id="menuMember" class="has-sub">
                         <a href="javascript:;">
                             <b class="caret pull-right"></b>
                             <i class="fa fa-user"></i>
