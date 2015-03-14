@@ -29,7 +29,7 @@ namespace ProjectManagement.Web.Controllers
             }
             else
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Detail", "Profile");
             }
         }
 
@@ -57,7 +57,7 @@ namespace ProjectManagement.Web.Controllers
                     var returnURL = Convert.ToString(Request.QueryString["ReturnUrl"]);
                     if (string.IsNullOrWhiteSpace(returnURL))
                     {
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("Detail", "Profile");
                     }
                     else
                     {

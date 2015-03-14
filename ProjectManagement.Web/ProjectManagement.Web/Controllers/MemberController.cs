@@ -12,7 +12,6 @@ using ProjectManagement.Web.Filters;
 using System.Security.Cryptography;
 using System.Text;
 using ProjectManagement.Domain;
-using ProjectManagement.BLL;
 using Telerik.Web.Mvc;
 using ProjectManagement.DLL;
 

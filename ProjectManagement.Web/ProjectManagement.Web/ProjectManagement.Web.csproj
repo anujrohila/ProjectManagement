@@ -370,6 +370,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Controllers\MasterAccountController.cs" />
     <Compile Include="Controllers\MaterialEntryController.cs" />
@@ -610,6 +611,7 @@
     <Content Include="Content\img\login-bg\bg-5.jpg" />
     <Content Include="Content\img\login-bg\bg-6.jpg" />
     <Content Include="Content\img\logo.png" />
+    <Content Include="Content\img\member.png" />
     <Content Include="Content\img\product\product-1.png" />
     <Content Include="Content\img\product\product-2.png" />
     <Content Include="Content\img\product\product-3.png" />
@@ -998,7 +1000,6 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
-    <Content Include="Views\Shared\Copy of _Layout.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Supplier\ListAll.cshtml" />
     <Content Include="Views\Supplier\Save.cshtml" />
@@ -1012,6 +1013,9 @@
     <Content Include="Views\MasterAccount\Save.cshtml" />
     <Content Include="Views\Member\ListAll.cshtml" />
     <Content Include="Views\Member\Save.cshtml" />
+    <Content Include="Views\Profile\Detail.cshtml" />
+    <Content Include="Views\Profile\Update.cshtml" />
+    <Content Include="Views\Profile\ChangePassword.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

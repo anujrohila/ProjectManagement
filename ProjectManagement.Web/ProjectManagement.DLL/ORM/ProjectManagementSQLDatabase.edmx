@@ -138,7 +138,7 @@
           <Property Type="String" Name="Address" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="EmailAddress" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="MobileNo" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Password" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Password" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Type="Boolean" Name="IsActive" Nullable="false" />
           <NavigationProperty Name="tblMemberType" Relationship="ProjectManagementSQLDatabaseModel.FK_tblMember_tblMemberType" FromRole="tblMember" ToRole="tblMemberType" />
           <NavigationProperty Name="tblMemberPermissions" Relationship="ProjectManagementSQLDatabaseModel.FK_tblMemberPermission_tblMember" FromRole="tblMember" ToRole="tblMemberPermission" />
