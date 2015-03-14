@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjectManagement.Domain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -75,6 +76,30 @@ namespace ProjectManagement.Web
             return unitList;
         }
 
+        public static bool IsMemberHavePermission(string controllerName, ApplicationEnum.PageType pageType)
+        {
+            var permission = ApplicationMember.LoggedUserPermission.Where(p => string.Compare(p.ControllerName, controllerName, StringComparison.CurrentCultureIgnoreCase) == 0).FirstOrDefault();
+            if (permission == null)
+            {
+                return false;
+            }
+            if (pageType == ApplicationEnum.PageType.ListAll)
+            {
+                if (permission.CanListAll == false)
+                {
+                    return false;
+                }
+            }
+            else if (pageType == ApplicationEnum.PageType.Insert)
+            {
+                if (permission.CanListAll == false)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+        
         #endregion
 
     }

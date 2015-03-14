@@ -17,6 +17,7 @@ using ProjectManagement.DLL;
 
 namespace ProjectManagement.Web.Controllers
 {
+    [CustomActionAutentication]
     public class MemberController : Controller
     {
         [HttpGet]

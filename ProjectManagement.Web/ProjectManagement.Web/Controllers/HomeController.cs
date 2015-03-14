@@ -15,7 +15,8 @@ namespace ProjectManagement.Web.Controllers
             return View();
         }
 
-        public ActionResult About()
+        
+        public ActionResult About(int id)
         {
             ViewBag.Message = "Your app description page.";
             return View();

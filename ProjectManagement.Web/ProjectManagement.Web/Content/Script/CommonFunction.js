@@ -35,8 +35,8 @@ function CollapseGroups(e) {
 }
 
 function ActivateSelectedMenu(taskName) {
-    ($("#menu").find("ul").find("li")).removeClass("nav-active");
-    $("#" + taskName).addClass("nav-active");
+    ($("#menu").find("li")).removeClass("active");
+    $("#" + taskName).addClass("active");
 }
 
 function RefreshGrid(gridId) {
@@ -74,4 +74,3 @@ function ChangeLanguage(culture) {
         }
     });
 }
-

@@ -9,9 +9,9 @@ using ProjectManagement.Domain;
 
 namespace ProjectManagement.Web.Controllers
 {
+    [CustomActionAutentication]
     public class MaterialGroupController : Controller
     {
-
         public ActionResult ListAll()
         {
             return View();

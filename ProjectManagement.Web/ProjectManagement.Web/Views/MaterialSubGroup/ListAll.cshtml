@@ -14,7 +14,7 @@
             </div>
             <div class="panel-body">
                 <div class="form-group">
-                     @(Html.Telerik().Grid<ProjectManagement.Domain.MaterialDTO>().Name("ListMaterialSubGroupGrid")
+                    @(Html.Telerik().Grid<ProjectManagement.Domain.MaterialDTO>().Name("ListMaterialSubGroupGrid")
                                         .DataKeys(datakKey => datakKey.Add(key => key.Mat_id))
                                         .DataBinding(dataBinding => dataBinding.Ajax().Select("ListMaterialSubTypeAjax", "MaterialSubGroup"))
                         .Columns(columns =>
@@ -57,5 +57,5 @@
 </div>
 <script src="~/Content/Script/MaterialSubType.js"></script>
 <script type="text/javascript">
-    //ActivateSelectedMenu('menuAdminDefinition');
+    ActivateSelectedMenu('menuMaterialSubGroup');
 </script>
