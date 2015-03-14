@@ -40,6 +40,6 @@ namespace ProjectManagement.Domain
         [DataMember()]
         public Boolean CanDelete { get; set; }
 
-        
+        public string ControllerName { get; set; }
     }
 }

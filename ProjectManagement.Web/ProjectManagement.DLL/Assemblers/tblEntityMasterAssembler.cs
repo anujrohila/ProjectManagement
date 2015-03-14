@@ -46,7 +46,7 @@ namespace ProjectManagement.DLL.ORM
             entity.EntityId = dto.EntityId;
             entity.EntityName = dto.EntityName;
             entity.Description = dto.Description;
-
+            entity.ControllerName = dto.ControllerName;
             dto.OnEntity(entity);
 
             return entity;
@@ -65,7 +65,7 @@ namespace ProjectManagement.DLL.ORM
             dto.EntityId = entity.EntityId;
             dto.EntityName = entity.EntityName;
             dto.Description = entity.Description;
-
+            dto.ControllerName = entity.ControllerName;
             entity.OnDTO(dto);
 
             return dto;

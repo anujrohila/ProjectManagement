@@ -25,15 +25,18 @@ namespace ProjectManagement.Domain
         [DataMember()]
         public String Description { get; set; }
 
+        [DataMember()]
+        public string ControllerName { get; set; }
+
         public tblEntityMasterDTO()
         {
         }
 
         public tblEntityMasterDTO(Int32 entityId, String entityName, String description)
         {
-			this.EntityId = entityId;
-			this.EntityName = entityName;
-			this.Description = description;
+            this.EntityId = entityId;
+            this.EntityName = entityName;
+            this.Description = description;
         }
     }
 }

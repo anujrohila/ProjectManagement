@@ -17,14 +17,12 @@ namespace ProjectManagement.Domain
             Completed = 4
         }
 
-        public enum LoginPageStatus
+        public enum PageType
         {
-            OK = 0,
-            UnconfirmedAccount = 1,
-            AccountLocked= 2,
-            NoUsers = 3,
-            PasswordIncorrect = 4,
-            NumberofAttempts = 5,
+            ListAll,
+            Insert,
+            Edit,
+            Delete
         }
     }
 

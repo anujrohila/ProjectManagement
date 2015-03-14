@@ -75,6 +75,8 @@ namespace ProjectManagement.DLL
                               }).FirstOrDefault();
 
                 result.MemberPermissionList = (from permission in projectManagementSQLDatabaseEntities.tblMemberPermissions
+                                               join entity in projectManagementSQLDatabaseEntities.tblEntityMasters
+                                                           on permission.EnitytId equals entity.EntityId
                                                where permission.MemberId == memberId
                                                select new tblMemberPermissionDTO
                                                {
@@ -85,7 +87,8 @@ namespace ProjectManagement.DLL
                                                    CanListAll = permission.CanListAll,
                                                    CanInsert = permission.CanInsert,
                                                    CanEdit = permission.CanEdit,
-                                                   CanDelete = permission.CanDelete
+                                                   CanDelete = permission.CanDelete,
+                                                   ControllerName = entity.ControllerName
                                                }).ToList();
 
                 return result;
@@ -120,6 +123,8 @@ namespace ProjectManagement.DLL
                 if (result != null)
                 {
                     result.MemberPermissionList = (from permission in projectManagementSQLDatabaseEntities.tblMemberPermissions
+                                                   join entity in projectManagementSQLDatabaseEntities.tblEntityMasters
+                                                           on permission.EnitytId equals entity.EntityId
                                                    where permission.MemberId == result.MemberId
                                                    select new tblMemberPermissionDTO
                                                    {
@@ -130,7 +135,8 @@ namespace ProjectManagement.DLL
                                                        CanListAll = permission.CanListAll,
                                                        CanInsert = permission.CanInsert,
                                                        CanEdit = permission.CanEdit,
-                                                       CanDelete = permission.CanDelete
+                                                       CanDelete = permission.CanDelete,
+                                                       ControllerName = entity.ControllerName
                                                    }).ToList();
                 }
                 return result;
