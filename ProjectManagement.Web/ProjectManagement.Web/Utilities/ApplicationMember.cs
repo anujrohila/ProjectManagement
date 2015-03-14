@@ -40,5 +40,21 @@ namespace ProjectManagement.Web
             }
         }
 
+        public static tblProjectDTO LoggedSelectedProject
+        {
+            get
+            {
+                return (System.Web.HttpContext.Current.Session["LoggedSelectedProject"]) as tblProjectDTO;
+            }
+        }
+
+        public static string LoggedProjectConnectionString
+        {
+            get
+            {
+                return Convert.ToString(System.Web.HttpContext.Current.Session["LoggedProjectConnectionString"]);
+            }
+        }
+
     }
 }

@@ -1,0 +1,24 @@
+﻿@model ProjectManagement.Domain.tblProjectSelectionDTO
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+<div class="login-content">
+    @using (Html.BeginForm("ProjectSelection", "Account", FormMethod.Post))
+    {
+        <div class="form-group m-b-20">
+            Project Selection
+        </div>
+        <div class="form-group m-b-20">
+            <select id="ProjectId" name="ProjectId" class="form-control" multiple="" style="height: 120px;">
+                @foreach (var project in Model.ProjectList)
+                {
+                    <option value="@project.ProjectId">@project.Title</option>
+                }
+            </select>
+        </div>
+        <div class="login-buttons">
+            <button type="submit" class="btn btn-success btn-block btn-lg">Next</button>
+        </div>
+    }
+</div>

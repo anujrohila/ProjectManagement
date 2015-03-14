@@ -55,15 +55,7 @@ namespace ProjectManagement.Web.Controllers
                     System.Web.HttpContext.Current.Session["UserPermission"] = user.MemberPermissionList;
                     System.Web.HttpContext.Current.Session["LoggedUserName"] = string.Concat(user.FirstName, " ", user.LastName);
                     System.Web.HttpContext.Current.Session["LoggedMemberType"] = user.MemberTypeString;
-                    var returnURL = Convert.ToString(Request.QueryString["ReturnUrl"]);
-                    if (string.IsNullOrWhiteSpace(returnURL))
-                    {
-                        return RedirectToAction("Detail", "Profile");
-                    }
-                    else
-                    {
-                        return RedirectPermanent(returnURL);
-                    }
+                    return RedirectToAction("ProjectSelection", "Account");
                 }
             }
             return View(tblLoginDTO);
@@ -75,6 +67,48 @@ namespace ProjectManagement.Web.Controllers
             System.Web.HttpContext.Current.Session["LoggedUserId"] = null;
             System.Web.HttpContext.Current.Session.Abandon();
             return RedirectToAction("Login", "Account");
+        }
+
+        [HttpGet]
+        public ActionResult ProjectSelection()
+        {
+            var tblProjectSelection = new tblProjectSelectionDTO();
+            if (ApplicationMember.LoggedUserId != 0)
+            {
+                var projectIds = ApplicationMember.LoggedUserPermission.Select(p => p.ProjectId).Distinct();
+                tblProjectSelection.ProjectList = MasterRepository.GetAllProject().Where(p => projectIds.Contains(p.ProjectId)).ToList();
+                return View(tblProjectSelection);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult ProjectSelection(tblProjectSelectionDTO tblProjectSelection)
+        {
+            if (ModelState.IsValid)
+            {
+                if (tblProjectSelection.ProjectId == 0)
+                {
+                    tblProjectSelection.ErrorMessage = "Please select at least one project.";
+                }
+                else
+                {
+                    var selectedProject = MasterRepository.GetAllProject().Where(p => p.ProjectId == tblProjectSelection.ProjectId).FirstOrDefault();
+                    System.Web.HttpContext.Current.Session["LoggedSelectedProject"] = selectedProject;
+                    var strConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ProjectManagementEntities1"].ConnectionString;
+                    strConnectionString = strConnectionString.Replace("##CatalogName##", selectedProject.Catalog);
+                    strConnectionString = strConnectionString.Replace("##UserName##", selectedProject.UserName);
+                    strConnectionString = strConnectionString.Replace("##Password##", selectedProject.Password);
+                    System.Web.HttpContext.Current.Session["LoggedProjectConnectionString"] = strConnectionString;
+                    return RedirectToAction("Detail", "Profile");
+                }
+            }
+            var projectIds = ApplicationMember.LoggedUserPermission.Select(p => p.ProjectId).Distinct();
+            tblProjectSelection.ProjectList = MasterRepository.GetAllProject().Where(p => projectIds.Contains(p.ProjectId)).ToList();
+            return View(tblProjectSelection);
         }
 
     }

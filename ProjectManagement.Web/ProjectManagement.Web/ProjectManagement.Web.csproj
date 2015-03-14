@@ -1016,6 +1016,8 @@
     <Content Include="Views\Profile\Detail.cshtml" />
     <Content Include="Views\Profile\Update.cshtml" />
     <Content Include="Views\Profile\ChangePassword.cshtml" />
+    <Content Include="Views\Account\ProjectSelection.cshtml" />
+    <Content Include="Views\Shared\_LoginLayout.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -10,12 +10,17 @@ namespace ProjectManagement.Web.Controllers
     {
         public ActionResult Index()
         {
+            var str = System.Configuration.ConfigurationManager.ConnectionStrings["ProjectManagementEntities1"].ConnectionString;
+            str = str.Replace("##CatalogName##", "");
+            str = str.Replace("##UserName##", "");
+            str = str.Replace("##Password##", "");
+            //
             ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
 
             return View();
         }
 
-        
+
         public ActionResult About(int id)
         {
             ViewBag.Message = "Your app description page.";

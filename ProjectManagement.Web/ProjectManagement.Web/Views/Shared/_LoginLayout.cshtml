@@ -1,0 +1,51 @@
+﻿@{
+    ViewBag.Title = "Login";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Login Page</title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+    <link href="~/Content/plugins/jquery-ui/themes/base/minified/jquery-ui.min.css" rel="stylesheet" />
+    <link href="~/Content/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/css/animate.min.css" rel="stylesheet" />
+    <link href="~/Content/css/style.min.css" rel="stylesheet" />
+    <link href="~/Content/css/style-responsive.min.css" rel="stylesheet" />
+    <link href="~/Content/css/theme/default.css" rel="stylesheet" id="theme" />
+    <link href="~/Content/Style/CommonStyle.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="page-loader" class="fade in"><span class="spinner"></span></div>
+    <div class="login-cover">
+        <div class="login-cover-image">
+            <img src="~/Content/img/login-bg/bg-1.jpg" data-id="login-cover-image" alt="" />
+        </div>
+        <div class="login-cover-bg"></div>
+    </div>
+    <div id="page-container" class="fade">
+        <div class="login login-v2" data-pageload-addclass="animated flipInX">
+            @RenderBody()
+        </div>
+    </div>
+    <script src="~/Content/plugins/jquery/jquery-1.9.1.min.js"></script>
+    <script src="~/Content/plugins/jquery/jquery-migrate-1.1.0.min.js"></script>
+    <script src="~/Content/plugins/jquery-ui/ui/minified/jquery-ui.min.js"></script>
+    <script src="~/Content/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/Content/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="~/Content/plugins/jquery-cookie/jquery.cookie.js"></script>
+    <script src="~/Content/js/login-v2.demo.min.js"></script>
+    <script src="~/Content/js/apps.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            App.init();
+            LoginV2.init();
+        });
+    </script>
+</body>
+</html>
