@@ -12,7 +12,6 @@ namespace ProjectManagement.DLL
     {
         #region [Declaration]
 
-
         #endregion
 
         #region [Constructor]

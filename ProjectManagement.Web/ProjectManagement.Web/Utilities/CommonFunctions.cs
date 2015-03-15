@@ -26,6 +26,17 @@ namespace ProjectManagement.Web
             }
         }
 
+        /// <summary>
+        /// Database Server Path
+        /// </summary>
+        public static string DatabaseServerPath
+        {
+            get
+            {
+                return Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["DatabaseServerPath"]);
+            }
+        }
+
         #endregion
 
         #region [Methods]
@@ -78,6 +89,10 @@ namespace ProjectManagement.Web
 
         public static bool IsMemberHavePermission(string controllerName, ApplicationEnum.PageType pageType)
         {
+            if (ApplicationMember.LoggedUserPermission == null)
+            {
+                return false;
+            }
             var permission = ApplicationMember.LoggedUserPermission.Where(p => string.Compare(p.ControllerName, controllerName, StringComparison.CurrentCultureIgnoreCase) == 0).FirstOrDefault();
             if (permission == null)
             {
@@ -97,9 +112,10 @@ namespace ProjectManagement.Web
                     return false;
                 }
             }
+
             return true;
         }
-        
+
         #endregion
 
     }

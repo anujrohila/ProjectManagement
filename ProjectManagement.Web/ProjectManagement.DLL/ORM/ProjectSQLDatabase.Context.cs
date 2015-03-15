@@ -19,10 +19,10 @@ namespace ProjectManagement.DLL.ORM
     public partial class ProjectManagementEntities : DbContext
     {
         public ProjectManagementEntities()
-            : base("name=ProjectManagementEntities1")
+            : base("name=ProjectManagementEntities")
         {
         }
-    
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();

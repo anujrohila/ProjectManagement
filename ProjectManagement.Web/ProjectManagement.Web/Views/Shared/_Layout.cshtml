@@ -126,7 +126,7 @@
                             @if (CommonFunctions.IsMemberHavePermission("Supplier", ApplicationEnum.PageType.Insert))
                             {
                                 <li>
-                                    <a href="@Url.Action("Save", "Supplier", new { id = 0 })">Add New</a>
+                                    <a href="@Url.Action("Save", "Supplier", new { id = "" })">Add New</a>
                                 </li>
                             }
                             @if (CommonFunctions.IsMemberHavePermission("Supplier", ApplicationEnum.PageType.ListAll))
@@ -147,7 +147,7 @@
                             @if (CommonFunctions.IsMemberHavePermission("MaterialGroup", ApplicationEnum.PageType.Insert))
                             {
                                 <li>
-                                    <a href="@Url.Action("Save", "MaterialGroup", new { id = 0 })">Add New</a>
+                                    <a href="@Url.Action("Save", "MaterialGroup", new { id = "" })">Add New</a>
                                 </li>
                             }
                             @if (CommonFunctions.IsMemberHavePermission("MaterialGroup", ApplicationEnum.PageType.ListAll))
@@ -168,7 +168,7 @@
                             @if (CommonFunctions.IsMemberHavePermission("MaterialSubGroup", ApplicationEnum.PageType.Insert))
                             {
                                 <li>
-                                    <a href="@Url.Action("Save", "MaterialSubGroup", new { id = 0 })">Add New</a>
+                                    <a href="@Url.Action("Save", "MaterialSubGroup", new { id = "" })">Add New</a>
                                 </li>
                             }
                             @if (CommonFunctions.IsMemberHavePermission("MaterialSubGroup", ApplicationEnum.PageType.ListAll))
@@ -189,7 +189,7 @@
                             @if (CommonFunctions.IsMemberHavePermission("MaterialEntry", ApplicationEnum.PageType.Insert))
                             {
                                 <li>
-                                    <a href="@Url.Action("Save", "MaterialEntry", new { id = 0 })">Add New</a>
+                                    <a href="@Url.Action("Save", "MaterialEntry", new { id = "" })">Add New</a>
                                 </li>
                             }
                             @if (CommonFunctions.IsMemberHavePermission("MaterialEntry", ApplicationEnum.PageType.ListAll))

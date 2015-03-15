@@ -55,8 +55,6 @@ namespace ProjectManagement.Web.Controllers
                 {
                     System.Web.HttpContext.Current.Session["LoggedUserId"] = user.MemberId.ToString();
                     System.Web.HttpContext.Current.Session["UserPermission"] = user.MemberPermissionList;
-                    System.Web.HttpContext.Current.Session["LoggedUserName"] = string.Concat(user.FirstName, " ", user.LastName);
-                    System.Web.HttpContext.Current.Session["LoggedMemberType"] = user.MemberTypeString;
                     return RedirectToAction("ProjectSelection", "Account");
                 }
             }
@@ -98,19 +96,19 @@ namespace ProjectManagement.Web.Controllers
                 }
                 else
                 {
+                    int memberId = ApplicationMember.LoggedUserId;
                     var selectedProject = MasterRepository.GetAllProject().Where(p => p.ProjectId == tblProjectSelection.ProjectId).FirstOrDefault();
-                    System.Web.HttpContext.Current.Session["LoggedSelectedProject"] = selectedProject;
-                    var strConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ProjectManagementEntities1"].ConnectionString;
-                    strConnectionString = strConnectionString.Insert(strConnectionString.IndexOf("catalog=") + 8, selectedProject.Catalog);
-                    strConnectionString = strConnectionString.Insert(strConnectionString.IndexOf("user id=") + 8, selectedProject.UserName);
-                    strConnectionString = strConnectionString.Insert(strConnectionString.IndexOf("password=") + 9, selectedProject.Password);
-
+                    //string s = @"metadata=res://*/ORM.ProjectSQLDatabase.csdl|res://*/ORM.ProjectSQLDatabase.ssdl|res://*/ORM.ProjectSQLDatabase.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source={0};initial catalog={1};persist security info=True;user id={2};password={3};MultipleActiveResultSets=True;App=EntityFramework&quot;""providerName=""System.Data.EntityClient";
+                    string connectionString = string.Format(@"metadata=res://*/ORM.ProjectSQLDatabase.csdl|res://*/ORM.ProjectSQLDatabase.ssdl|res://*/ORM.ProjectSQLDatabase.msl;provider=System.Data.SqlClient;provider connection string=""data source={0};initial catalog={1};persist security info=True;user id={2};password={3};MultipleActiveResultSets=True;App=EntityFramework""", CommonFunctions.DatabaseServerPath, selectedProject.Catalog, selectedProject.UserName, selectedProject.Password);
                     var configuration = WebConfigurationManager.OpenWebConfiguration("~");
                     var section = (ConnectionStringsSection)configuration.GetSection("connectionStrings");
-                    section.ConnectionStrings["ProjectManagementEntities1"].ConnectionString = strConnectionString;
+                    section.ConnectionStrings["ProjectManagementEntities"].ConnectionString = connectionString;
                     configuration.Save();
 
-                    return RedirectToAction("Detail", "Profile");
+
+                    
+
+                    return RedirectToAction("ReactivateMember", "Account", new { id = memberId });
                 }
             }
             var projectIds = ApplicationMember.LoggedUserPermission.Select(p => p.ProjectId).Distinct();
@@ -118,5 +116,15 @@ namespace ProjectManagement.Web.Controllers
             return View(tblProjectSelection);
         }
 
+        [HttpGet]
+        public ActionResult ReactivateMember(int id)
+        {
+            var memberDetails = MemberRepository.GetMember(id);
+            System.Web.HttpContext.Current.Session["LoggedUserId"] = memberDetails.MemberId.ToString();
+            System.Web.HttpContext.Current.Session["UserPermission"] = memberDetails.MemberPermissionList;
+            System.Web.HttpContext.Current.Session["LoggedUserName"] = string.Concat(memberDetails.FirstName, " ", memberDetails.LastName);
+            System.Web.HttpContext.Current.Session["LoggedMemberType"] = memberDetails.MemberTypeString;
+            return RedirectToAction("Detail", "Profile");
+        }
     }
 }
