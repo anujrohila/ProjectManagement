@@ -13,6 +13,8 @@ using System.Security.Cryptography;
 using System.Text;
 using ProjectManagement.Domain;
 using ProjectManagement.DLL;
+using System.Web.Configuration;
+using System.Configuration;
 
 
 namespace ProjectManagement.Web.Controllers
@@ -99,10 +101,15 @@ namespace ProjectManagement.Web.Controllers
                     var selectedProject = MasterRepository.GetAllProject().Where(p => p.ProjectId == tblProjectSelection.ProjectId).FirstOrDefault();
                     System.Web.HttpContext.Current.Session["LoggedSelectedProject"] = selectedProject;
                     var strConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ProjectManagementEntities1"].ConnectionString;
-                    strConnectionString = strConnectionString.Replace("##CatalogName##", selectedProject.Catalog);
-                    strConnectionString = strConnectionString.Replace("##UserName##", selectedProject.UserName);
-                    strConnectionString = strConnectionString.Replace("##Password##", selectedProject.Password);
-                    System.Web.HttpContext.Current.Session["LoggedProjectConnectionString"] = strConnectionString;
+                    strConnectionString = strConnectionString.Insert(strConnectionString.IndexOf("catalog=") + 8, selectedProject.Catalog);
+                    strConnectionString = strConnectionString.Insert(strConnectionString.IndexOf("user id=") + 8, selectedProject.UserName);
+                    strConnectionString = strConnectionString.Insert(strConnectionString.IndexOf("password=") + 9, selectedProject.Password);
+
+                    var configuration = WebConfigurationManager.OpenWebConfiguration("~");
+                    var section = (ConnectionStringsSection)configuration.GetSection("connectionStrings");
+                    section.ConnectionStrings["ProjectManagementEntities1"].ConnectionString = strConnectionString;
+                    configuration.Save();
+
                     return RedirectToAction("Detail", "Profile");
                 }
             }

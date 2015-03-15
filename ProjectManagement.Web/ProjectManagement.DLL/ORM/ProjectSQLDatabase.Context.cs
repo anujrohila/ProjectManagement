@@ -19,7 +19,7 @@ namespace ProjectManagement.DLL.ORM
     public partial class ProjectManagementEntities : DbContext
     {
         public ProjectManagementEntities()
-            : base("name=ProjectManagementEntities")
+            : base("name=ProjectManagementEntities1")
         {
         }
     

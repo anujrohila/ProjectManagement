@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using ProjectManagement.Domain;
 
-namespace ProjectManagement.Web
+namespace ProjectManagement.Domain
 {
     public static class ApplicationMember
     {

@@ -12,6 +12,11 @@ namespace ProjectManagement.Web.Controllers
     [CustomActionAutentication]
     public class MaterialGroupController : Controller
     {
+
+        public MaterialGroupController()
+        {
+        }
+
         public ActionResult ListAll()
         {
             return View();

@@ -12,13 +12,13 @@ namespace ProjectManagement.DLL
     {
         #region [Declaration]
 
+
         #endregion
 
         #region [Constructor]
 
         public MaterialTypeRepository()
         {
-
         }
 
         #endregion
