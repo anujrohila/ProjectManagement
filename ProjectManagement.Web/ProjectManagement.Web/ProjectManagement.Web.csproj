@@ -604,6 +604,7 @@
     <Content Include="Content\img\gallery\gallery-7.jpg" />
     <Content Include="Content\img\gallery\gallery-8.jpg" />
     <Content Include="Content\img\gallery\gallery-9.jpg" />
+    <Content Include="Content\img\home.png" />
     <Content Include="Content\img\login-bg\bg-1.jpg" />
     <Content Include="Content\img\login-bg\bg-2.jpg" />
     <Content Include="Content\img\login-bg\bg-3.jpg" />
@@ -703,7 +704,9 @@
     <Content Include="Content\plugins\bootstrap3-editable\inputs-ext\typeaheadjs\typeaheadjs.js" />
     <Content Include="Content\plugins\bootstrap3-editable\inputs-ext\wysihtml5\wysihtml5.js" />
     <Content Include="Content\plugins\bootstrap3-editable\js\bootstrap-editable.min.js" />
+    <Content Include="Content\plugins\bootstrap\css\bootstrap.css" />
     <Content Include="Content\plugins\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Content\plugins\bootstrap\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\plugins\bootstrap\js\bootstrap.min.js" />
     <Content Include="Content\plugins\ckeditor\ckeditor.js" />
     <Content Include="Content\plugins\DataTables\css\data-table.css" />
