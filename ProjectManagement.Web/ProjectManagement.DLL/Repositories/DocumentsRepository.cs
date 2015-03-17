@@ -62,21 +62,22 @@ namespace ProjectManagement.DLL.Repositories
         /// Delete Docuement Entry
         /// </summary>
         /// <returns></returns>
-        public static bool DeleteDocuement(int id)
+        public static string DeleteDocuement(int id)
         {
             using (var projectManagementSQLDatabaseEntities = new ProjectManagementSQLDatabaseEntities())
             {
                 var tbldocuemnt = projectManagementSQLDatabaseEntities.tblImageMasters.Where(d => d.ImageID == id).FirstOrDefault();
+                string returnname = tbldocuemnt.ImagesPath;
                 if(tbldocuemnt != null)
                 {
                     projectManagementSQLDatabaseEntities.tblImageMasters.Remove(tbldocuemnt);
                     if (projectManagementSQLDatabaseEntities.SaveChanges() > 0)
                     {
-                        return true;
+                        return returnname;
                     }
                 }
             }
-            return false;
+            return "";
         }
 
         #endregion

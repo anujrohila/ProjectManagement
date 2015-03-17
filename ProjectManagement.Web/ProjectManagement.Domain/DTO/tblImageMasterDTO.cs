@@ -8,6 +8,7 @@
 //-------------------------------------------------------------------------------------------------------
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 using System.Text;
 
@@ -23,6 +24,7 @@ namespace ProjectManagement.Domain
         public String ImagesPath { get; set; }
 
         [DataMember()]
+        [Required(ErrorMessage = "Comment is required")]
         public String Comment { get; set; }
 
         [DataMember()]
