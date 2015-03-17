@@ -32,7 +32,7 @@ namespace ProjectManagement.Web
                 }
                 else if (string.Compare("Save", actionName, StringComparison.CurrentCultureIgnoreCase) == 0)
                 {
-                    if (string.IsNullOrWhiteSpace(id) || Convert.ToInt32(id) == 0)
+                    if (string.IsNullOrWhiteSpace(id) || Convert.ToString(id).Trim() == "0")
                     {
                         if (permission.CanInsert == false)
                         {

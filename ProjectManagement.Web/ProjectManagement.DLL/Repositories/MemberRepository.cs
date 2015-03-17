@@ -74,23 +74,25 @@ namespace ProjectManagement.DLL
                                   MemberTypeString = member.tblMemberType.TypeName,
                               }).FirstOrDefault();
 
-                result.MemberPermissionList = (from permission in projectManagementSQLDatabaseEntities.tblMemberPermissions
-                                               join entity in projectManagementSQLDatabaseEntities.tblEntityMasters
-                                                           on permission.EnitytId equals entity.EntityId
-                                               where permission.MemberId == memberId
-                                               select new tblMemberPermissionDTO
-                                               {
-                                                   MemberPermissionId = permission.MemberPermissionId,
-                                                   MemberId = permission.MemberId,
-                                                   ProjectId = permission.ProjectId,
-                                                   EnitytId = permission.EnitytId,
-                                                   CanListAll = permission.CanListAll,
-                                                   CanInsert = permission.CanInsert,
-                                                   CanEdit = permission.CanEdit,
-                                                   CanDelete = permission.CanDelete,
-                                                   ControllerName = entity.ControllerName
-                                               }).ToList();
-
+                if (result != null)
+                {
+                    result.MemberPermissionList = (from permission in projectManagementSQLDatabaseEntities.tblMemberPermissions
+                                                   join entity in projectManagementSQLDatabaseEntities.tblEntityMasters
+                                                               on permission.EnitytId equals entity.EntityId
+                                                   where permission.MemberId == memberId
+                                                   select new tblMemberPermissionDTO
+                                                   {
+                                                       MemberPermissionId = permission.MemberPermissionId,
+                                                       MemberId = permission.MemberId,
+                                                       ProjectId = permission.ProjectId,
+                                                       EnitytId = permission.EnitytId,
+                                                       CanListAll = permission.CanListAll,
+                                                       CanInsert = permission.CanInsert,
+                                                       CanEdit = permission.CanEdit,
+                                                       CanDelete = permission.CanDelete,
+                                                       ControllerName = entity.ControllerName
+                                                   }).ToList();
+                }
                 return result;
             }
         }
