@@ -59,6 +59,13 @@
                     <a href="~/Account/Login" class="navbar-brand">
                         <img src="~/Content/img/home.png" width="40" style="float: left; padding-right: 10px;" />@*<span class="navbar-logo"></span>*@Management
                     </a>
+
+                    <button type="button" class="navbar-toggle" data-click="sidebar-toggled">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
                 </div>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown navbar-user">
@@ -87,8 +94,8 @@
                             </a>
                         </div>
                         <div class="info">
-                            @ApplicationMember.LoggedSelectedProject.Title
-                            <small>@ApplicationMember.LoggedSelectedProject.SiteName</small>
+                            @ApplicationMember.LoggedUserName
+                            <small>@ApplicationMember.LoggedMemberType</small>
                         </div>
                     </li>
                 </ul>
@@ -97,7 +104,7 @@
                     <li id="menuProject" class="has-sub">
                         <a href="javascript:;">
                             <b class="caret pull-right"></b>
-                            <i class="fa fa-university"></i>
+                            <i class="fa fa-user"></i>
                             <span>Project</span>
                         </a>
                         <ul class="sub-menu">
@@ -223,7 +230,7 @@
                     <li id="menuDocuments" class="has-sub">
                         <a href="javascript:;">
                             <b class="caret pull-right"></b>
-                            <i class="fa fa-file-image-o"></i>
+                            <i class="fa fa-plus"></i>
                             <span>Document</span>
                         </a>
                         <ul class="sub-menu">
@@ -241,10 +248,10 @@
                             }
                         </ul>
                     </li>
-                    <li id="" class="has-sub">
+                    <li id="menuTrancation" class="has-sub">
                         <a href="javascript:;">
                             <b class="caret pull-right"></b>
-                            <i class="fa fa-arrows"></i>
+                            <i class="fa fa-plus"></i>
                             <span>Trancation</span>
                         </a>
                         <ul class="sub-menu">
@@ -256,10 +263,10 @@
                             </li>
                         </ul>
                     </li>
-                    <li id="" class="has-sub">
+                    <li id="menuReport" class="has-sub">
                         <a href="javascript:;">
                             <b class="caret pull-right"></b>
-                            <i class="fa fa-file-text-o"></i>
+                            <i class="fa fa-plus"></i>
                             <span>Report</span>
                         </a>
                         <ul class="sub-menu">
@@ -297,6 +304,10 @@
     HandleMenuHeader('menuMaterialMaster');
     HandleMenuHeader('menuMaterialSubGroup');
     HandleMenuHeader('menuMaterialEntry');
+    HandleMenuHeader('menuTrancation');
+    HandleMenuHeader('menuReport');
+    HandleMenuHeader('menuProject');
+    HandleMenuHeader('menuDocuments');
     function HandleMenuHeader(menuId) {
         var subMenuCount = $($("#" + menuId).find("ul").find('li')).length;
         if (subMenuCount == 0) {
