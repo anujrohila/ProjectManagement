@@ -109,29 +109,32 @@ namespace ProjectManagement.Web.Controllers
                     var permission = new tblMemberPermissionDTO();
                     permission.MemberId = ApplicationMember.LoggedUserId;
                     permission.ProjectId = Convert.ToInt32(projectArray[i]);
-                    var entityString = entity[j].Substring(entity[j].IndexOf('-') + 2, entity[j].Length - entity[j].IndexOf('-') - 2);
-                    var entityArray = entityString.Split(',');
-                    for (int k = 0; k < entityArray.Length; k++)
+                    if ((entity[j].IndexOf('-') + 1) < entity[j].Length)
                     {
-                        permission.EnitytId = Convert.ToInt32(entity[j].Substring(0, entity[j].IndexOf('-')));
-                        if (entityArray[k] == "L")
+                        var entityString = entity[j].Substring(entity[j].IndexOf('-') + 2, entity[j].Length - entity[j].IndexOf('-') - 2);
+                        var entityArray = entityString.Split(',');
+                        for (int k = 0; k < entityArray.Length; k++)
                         {
-                            permission.CanListAll = true;
+                            permission.EnitytId = Convert.ToInt32(entity[j].Substring(0, entity[j].IndexOf('-')));
+                            if (entityArray[k] == "L")
+                            {
+                                permission.CanListAll = true;
+                            }
+                            if (entityArray[k] == "I")
+                            {
+                                permission.CanInsert = true;
+                            }
+                            if (entityArray[k] == "E")
+                            {
+                                permission.CanEdit = true;
+                            }
+                            if (entityArray[k] == "D")
+                            {
+                                permission.CanDelete = true;
+                            }
                         }
-                        if (entityArray[k] == "I")
-                        {
-                            permission.CanInsert = true;
-                        }
-                        if (entityArray[k] == "E")
-                        {
-                            permission.CanEdit = true;
-                        }
-                        if (entityArray[k] == "D")
-                        {
-                            permission.CanDelete = true;
-                        }
+                        permissionList.Add(permission);
                     }
-                    permissionList.Add(permission);
                 }
             }
             return permissionList;
