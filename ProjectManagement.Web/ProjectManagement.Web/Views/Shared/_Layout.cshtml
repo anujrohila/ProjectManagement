@@ -220,19 +220,25 @@
                             }
                         </ul>
                     </li>
-                    <li id="" class="has-sub">
+                    <li id="menuDocuments" class="has-sub">
                         <a href="javascript:;">
                             <b class="caret pull-right"></b>
                             <i class="fa fa-plus"></i>
                             <span>Document</span>
                         </a>
                         <ul class="sub-menu">
-                            <li>
-                                <a href="">Add</a>
-                                <a href="">Lisr</a>
-                                <a href="">Contra Book</a>
-                                <a href="">Journal</a>
-                            </li>
+                            @if (CommonFunctions.IsMemberHavePermission("Documents", ApplicationEnum.PageType.Insert))
+                            {
+                                <li>
+                                    <a href="@Url.Action("Save", "Documents")">Add New </a>
+                                </li>
+                            }
+                            @if (CommonFunctions.IsMemberHavePermission("Documents", ApplicationEnum.PageType.ListAll))
+                            {
+                                <li>
+                                    <a href="@Url.Action("ListAll", "Documents")">List All</a>
+                                </li>
+                            }
                         </ul>
                     </li>
                     <li id="" class="has-sub">

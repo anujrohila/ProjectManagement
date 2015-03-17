@@ -1,0 +1,51 @@
+﻿@using Telerik.Web.Mvc.UI;
+@model ProjectManagement.Domain.tblImageMasterDTO
+@{
+    ViewBag.Title = "Documents";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <!-- begin col-6 -->
+    <div class="col-md-12 ui-sortable">
+        <!-- begin panel -->
+        <div data-sortable-id="form-stuff-1" class="panel panel-inverse">
+            <div class="panel-heading">
+                <h4 class="panel-title">Upload Document</h4>
+            </div>
+            <div class="panel-body">
+                @using (Html.BeginForm("Save", "Documents", FormMethod.Post, new { id = "frmVehicleType", @class = "form-horizontal", enctype = "multipart/form-data" }))
+                {
+                    <div class="form-group">
+                        <label class="col-md-3 control-label"></label>
+                        <div class="col-md-5">
+                            @Html.ValidationSummary(false)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Document<span class="spanError">*</span></label>
+                        <div class="col-md-5">
+                            <input type="file" name="FileName" id="FileName" class="form-control" /></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Comments<span class="spanError">*</span></label>
+                        <div class="col-md-5">
+                            @Html.TextAreaFor(model => model.Comment, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label"></label>
+                        <div class="col-md-5">
+                            <button class="btn btn-sm btn-success" type="submit">Submit</button>
+                            <button class="btn btn-sm btn-success" type="submit" onclick="document.location.href = '@Url.Action("ListAll", "Documents")'">Cancel</button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        <!-- end panel -->
+    </div>
+</div>
+<script type="text/javascript">
+    ActivateSelectedMenu('menuDocuments');
+</script>
+

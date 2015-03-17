@@ -371,6 +371,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
+    <Compile Include="Controllers\DocumentsController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Controllers\MasterAccountController.cs" />
@@ -840,6 +841,7 @@
     <Content Include="Content\Script\MaterialEntry.js" />
     <Content Include="Content\Script\MaterialSubType.js" />
     <Content Include="Content\Script\MaterialType.js" />
+    <Content Include="Content\Script\Document.js" />
     <Content Include="Content\Script\Supplier.js" />
     <Content Include="Content\Style\CommonStyle.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -1026,8 +1028,12 @@
     <Content Include="Views\Shared\_LoginLayout.cshtml" />
     <Content Include="Views\Project\ListAll.cshtml" />
     <Content Include="Views\Project\Save.cshtml" />
+    <Content Include="Views\Documents\Save.cshtml" />
+    <Content Include="Views\Documents\ListAll.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Documents\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>

@@ -11,7 +11,7 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Text;
 
-namespace LoomsManagement.Domain
+namespace ProjectManagement.Domain
 {
     [DataContract()]
     public partial class tblImageMasterDTO
