@@ -97,15 +97,15 @@ namespace ProjectManagement.Web.Controllers
                 else
                 {
                     int memberId = ApplicationMember.LoggedUserId;
-                    var selectedProject = MasterRepository.GetAllProject().Where(p => p.ProjectId == tblProjectSelection.ProjectId).FirstOrDefault();
+                    var selectedProject = MasterRepository.GetProject(tblProjectSelection.ProjectId);
 
-                    string connectionString = string.Format(@"metadata=res://*/ORM.ProjectSQLDatabase.csdl|res://*/ORM.ProjectSQLDatabase.ssdl|res://*/ORM.ProjectSQLDatabase.msl;provider=System.Data.SqlClient;provider connection string=""data source={0};initial catalog={1};persist security info=True;user id={2};password={3};MultipleActiveResultSets=True;App=EntityFramework""", CommonFunctions.DatabaseServerPath, selectedProject.Catalog, selectedProject.UserName, selectedProject.Password);
+                    string connectionString = string.Format(@"metadata=res://*/ORM.ProjectSQLDatabase.csdl|res://*/ORM.ProjectSQLDatabase.ssdl|res://*/ORM.ProjectSQLDatabase.msl;provider=System.Data.SqlClient;provider connection string=""data source={0};initial catalog={1};persist security info=True;user id=sa;password=p&krohila;MultipleActiveResultSets=True;App=EntityFramework""", CommonFunctions.DatabaseServerPath, selectedProject.Catalog);
                     var configuration = WebConfigurationManager.OpenWebConfiguration("~");
                     var section = (ConnectionStringsSection)configuration.GetSection("connectionStrings");
                     section.ConnectionStrings["ProjectManagementEntities"].ConnectionString = connectionString;
                     configuration.Save();
 
-                    return RedirectToAction("ReactivateMember", "Account", new { id = memberId });
+                    return RedirectToAction("ReactivateMember", "Account", new { id = memberId, projectId = tblProjectSelection.ProjectId });
                 }
             }
             var projectIds = ApplicationMember.LoggedUserPermission.Select(p => p.ProjectId).Distinct();
@@ -114,9 +114,11 @@ namespace ProjectManagement.Web.Controllers
         }
 
         [HttpGet]
-        public ActionResult ReactivateMember(int id)
+        public ActionResult ReactivateMember(int id, int projectId)
         {
+            var selectedProject = MasterRepository.GetProject(projectId);
             var memberDetails = MemberRepository.GetMember(id);
+            System.Web.HttpContext.Current.Session["LoggedSelectedProject"] = selectedProject;
             System.Web.HttpContext.Current.Session["LoggedUserId"] = memberDetails.MemberId.ToString();
             System.Web.HttpContext.Current.Session["UserPermission"] = memberDetails.MemberPermissionList;
             System.Web.HttpContext.Current.Session["LoggedUserName"] = string.Concat(memberDetails.FirstName, " ", memberDetails.LastName);

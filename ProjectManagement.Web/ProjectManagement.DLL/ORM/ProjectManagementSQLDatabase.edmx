@@ -4,12 +4,28 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="ProjectManagementSQLDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ProjectManagementSQLDatabaseModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="ProjectManagementSQLDatabaseModelStoreContainer">
+          <EntitySet Name="tblEntityMaster" EntityType="ProjectManagementSQLDatabaseModel.Store.tblEntityMaster" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblImageMaster" EntityType="ProjectManagementSQLDatabaseModel.Store.tblImageMaster" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblMember" EntityType="ProjectManagementSQLDatabaseModel.Store.tblMember" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblMemberPermission" EntityType="ProjectManagementSQLDatabaseModel.Store.tblMemberPermission" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblMemberType" EntityType="ProjectManagementSQLDatabaseModel.Store.tblMemberType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblProject" EntityType="ProjectManagementSQLDatabaseModel.Store.tblProject" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_tblMember_tblMemberType" Association="ProjectManagementSQLDatabaseModel.Store.FK_tblMember_tblMemberType">
+            <End Role="tblMemberType" EntitySet="tblMemberType" />
+            <End Role="tblMember" EntitySet="tblMember" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMemberPermission_tblMember" Association="ProjectManagementSQLDatabaseModel.Store.FK_tblMemberPermission_tblMember">
+            <End Role="tblMember" EntitySet="tblMember" />
+            <End Role="tblMemberPermission" EntitySet="tblMemberPermission" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="tblEntityMaster">
           <Key>
             <PropertyRef Name="EntityId" />
           </Key>
-          <Property Name="EntityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EntityId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="EntityName" Type="varchar" MaxLength="50" />
           <Property Name="Description" Type="varchar" MaxLength="500" />
           <Property Name="ControllerName" Type="varchar" MaxLength="50" />
@@ -18,7 +34,7 @@
           <Key>
             <PropertyRef Name="ImageID" />
           </Key>
-          <Property Name="ImageID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ImageID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="ImagesPath" Type="varchar" MaxLength="100" />
           <Property Name="Comment" Type="text" />
           <Property Name="CreateBy" Type="int" />
@@ -30,21 +46,21 @@
           <Key>
             <PropertyRef Name="MemberId" />
           </Key>
-          <Property Name="MemberId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MemberId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="MemberTypeId" Type="int" Nullable="false" />
-          <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Address" Type="varchar" MaxLength="500" Nullable="false" />
-          <Property Name="EmailAddress" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="MobileNo" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Password" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="LastName" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Address" Type="varchar" Nullable="false" MaxLength="500" />
+          <Property Name="EmailAddress" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="MobileNo" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Password" Type="varchar" Nullable="false" MaxLength="500" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="tblMemberPermission">
           <Key>
             <PropertyRef Name="MemberPermissionId" />
           </Key>
-          <Property Name="MemberPermissionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MemberPermissionId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="ProjectId" Type="int" Nullable="false" />
           <Property Name="MemberId" Type="int" Nullable="false" />
           <Property Name="EnitytId" Type="int" Nullable="false" />
@@ -57,26 +73,25 @@
           <Key>
             <PropertyRef Name="MemberTypeId" />
           </Key>
-          <Property Name="MemberTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MemberTypeId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="TypeName" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="tblProject">
           <Key>
             <PropertyRef Name="ProjectId" />
           </Key>
-          <Property Name="ProjectId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Title" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ProjectId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="SiteName" Type="varchar" Nullable="false" MaxLength="100" />
           <Property Name="Address" Type="varchar" MaxLength="500" />
           <Property Name="Description" Type="varchar" MaxLength="500" />
           <Property Name="StratDateTime" Type="date" Nullable="false" />
-          <Property Name="Catalog" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Catalog" Type="varchar" Nullable="false" MaxLength="100" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
         </EntityType>
         <Association Name="FK_tblMember_tblMemberType">
-          <End Role="tblMemberType" Type="Self.tblMemberType" Multiplicity="1" />
-          <End Role="tblMember" Type="Self.tblMember" Multiplicity="*" />
+          <End Role="tblMemberType" Type="ProjectManagementSQLDatabaseModel.Store.tblMemberType" Multiplicity="1" />
+          <End Role="tblMember" Type="ProjectManagementSQLDatabaseModel.Store.tblMember" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tblMemberType">
               <PropertyRef Name="MemberTypeId" />
@@ -87,8 +102,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tblMemberPermission_tblMember">
-          <End Role="tblMember" Type="Self.tblMember" Multiplicity="1" />
-          <End Role="tblMemberPermission" Type="Self.tblMemberPermission" Multiplicity="*" />
+          <End Role="tblMember" Type="ProjectManagementSQLDatabaseModel.Store.tblMember" Multiplicity="1" />
+          <End Role="tblMemberPermission" Type="ProjectManagementSQLDatabaseModel.Store.tblMemberPermission" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tblMember">
               <PropertyRef Name="MemberId" />
@@ -98,22 +113,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="ProjectManagementSQLDatabaseModelStoreContainer">
-          <EntitySet Name="tblEntityMaster" EntityType="Self.tblEntityMaster" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="tblImageMaster" EntityType="Self.tblImageMaster" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="tblMember" EntityType="Self.tblMember" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="tblMemberPermission" EntityType="Self.tblMemberPermission" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="tblMemberType" EntityType="Self.tblMemberType" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="tblProject" EntityType="Self.tblProject" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_tblMember_tblMemberType" Association="Self.FK_tblMember_tblMemberType">
-            <End Role="tblMemberType" EntitySet="tblMemberType" />
-            <End Role="tblMember" EntitySet="tblMember" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblMemberPermission_tblMember" Association="Self.FK_tblMemberPermission_tblMember">
-            <End Role="tblMember" EntitySet="tblMember" />
-            <End Role="tblMemberPermission" EntitySet="tblMemberPermission" />
-          </AssociationSet>
-        </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -122,7 +121,6 @@
           <EntitySet Name="tblMembers" EntityType="ProjectManagementSQLDatabaseModel.tblMember" />
           <EntitySet Name="tblMemberPermissions" EntityType="ProjectManagementSQLDatabaseModel.tblMemberPermission" />
           <EntitySet Name="tblMemberTypes" EntityType="ProjectManagementSQLDatabaseModel.tblMemberType" />
-          <EntitySet Name="tblProjects" EntityType="ProjectManagementSQLDatabaseModel.tblProject" />
           <AssociationSet Name="FK_tblMember_tblMemberType" Association="ProjectManagementSQLDatabaseModel.FK_tblMember_tblMemberType">
             <End Role="tblMemberType" EntitySet="tblMemberTypes" />
             <End Role="tblMember" EntitySet="tblMembers" />
@@ -133,6 +131,7 @@
           </AssociationSet>
           <EntitySet Name="tblEntityMasters" EntityType="ProjectManagementSQLDatabaseModel.tblEntityMaster" />
           <EntitySet Name="tblImageMasters" EntityType="ProjectManagementSQLDatabaseModel.tblImageMaster" />
+          <EntitySet Name="tblProjects" EntityType="ProjectManagementSQLDatabaseModel.tblProject" />
         </EntityContainer>
         <EntityType Name="tblMember">
           <Key>
@@ -171,20 +170,6 @@
           <Property Type="Int32" Name="MemberTypeId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="TypeName" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="tblMembers" Relationship="ProjectManagementSQLDatabaseModel.FK_tblMember_tblMemberType" FromRole="tblMemberType" ToRole="tblMember" />
-        </EntityType>
-        <EntityType Name="tblProject">
-          <Key>
-            <PropertyRef Name="ProjectId" />
-          </Key>
-          <Property Type="Int32" Name="ProjectId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="Title" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Address" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Description" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Type="DateTime" Name="StratDateTime" Nullable="false" Precision="0" />
-          <Property Type="String" Name="Catalog" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="UserName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Password" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="Boolean" Name="IsActive" Nullable="false" />
         </EntityType>
         <Association Name="FK_tblMember_tblMemberType">
           <End Type="ProjectManagementSQLDatabaseModel.tblMemberType" Role="tblMemberType" Multiplicity="1" />
@@ -231,6 +216,19 @@
           <Property Name="UpdateBy" Type="Int32" />
           <Property Name="UpdationDateTime" Type="DateTime" Precision="3" />
         </EntityType>
+        <EntityType Name="tblProject">
+          <Key>
+            <PropertyRef Name="ProjectId" />
+          </Key>
+          <Property Type="Int32" Name="ProjectId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Title" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="SiteName" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Address" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Description" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="StratDateTime" Nullable="false" Precision="0" />
+          <Property Type="String" Name="Catalog" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="IsActive" Nullable="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -274,21 +272,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tblProjects">
-            <EntityTypeMapping TypeName="ProjectManagementSQLDatabaseModel.tblProject">
-              <MappingFragment StoreEntitySet="tblProject">
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="Catalog" ColumnName="Catalog" />
-                <ScalarProperty Name="StratDateTime" ColumnName="StratDateTime" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="tblEntityMasters">
             <EntityTypeMapping TypeName="ProjectManagementSQLDatabaseModel.tblEntityMaster">
               <MappingFragment StoreEntitySet="tblEntityMaster">
@@ -309,6 +292,20 @@
                 <ScalarProperty Name="Comment" ColumnName="Comment" />
                 <ScalarProperty Name="ImagesPath" ColumnName="ImagesPath" />
                 <ScalarProperty Name="ImageID" ColumnName="ImageID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblProjects">
+            <EntityTypeMapping TypeName="ProjectManagementSQLDatabaseModel.tblProject">
+              <MappingFragment StoreEntitySet="tblProject">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Catalog" ColumnName="Catalog" />
+                <ScalarProperty Name="StratDateTime" ColumnName="StratDateTime" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="SiteName" ColumnName="SiteName" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

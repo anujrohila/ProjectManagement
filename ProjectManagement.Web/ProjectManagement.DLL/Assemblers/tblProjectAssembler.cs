@@ -49,8 +49,7 @@ namespace ProjectManagement.DLL.ORM
             entity.Description = dto.Description;
             entity.StratDateTime = dto.StratDateTime;
             entity.Catalog = dto.Catalog;
-            entity.UserName = dto.UserName;
-            entity.Password = dto.Password;
+            entity.SiteName = dto.SiteName;
             entity.IsActive = dto.IsActive;
 
             dto.OnEntity(entity);
@@ -74,8 +73,7 @@ namespace ProjectManagement.DLL.ORM
             dto.Description = entity.Description;
             dto.StratDateTime = entity.StratDateTime;
             dto.Catalog = entity.Catalog;
-            dto.UserName = entity.UserName;
-            dto.Password = entity.Password;
+            dto.SiteName = entity.SiteName;
             dto.IsActive = entity.IsActive;
 
             entity.OnDTO(dto);

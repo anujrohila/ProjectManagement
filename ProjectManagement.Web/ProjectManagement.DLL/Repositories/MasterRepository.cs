@@ -62,10 +62,33 @@ namespace ProjectManagement.DLL
                             Description = project.Description,
                             StratDateTime = project.StratDateTime,
                             Catalog = project.Catalog,
-                            UserName = project.UserName,
-                            Password = project.Password,
+                            SiteName = project.SiteName,
                             IsActive = project.IsActive,
                         }).ToList();
+            }
+        }
+
+        /// <summary>
+        /// Get Project
+        /// </summary>
+        /// <returns></returns>
+        public static tblProjectDTO GetProject(int projectId)
+        {
+            using (var projectManagementSQLDatabaseEntities = new ProjectManagementSQLDatabaseEntities())
+            {
+                return (from project in projectManagementSQLDatabaseEntities.tblProjects
+                        where project.ProjectId == projectId
+                        select new tblProjectDTO
+                        {
+                            ProjectId = project.ProjectId,
+                            Title = project.Title,
+                            Address = project.Address,
+                            Description = project.Description,
+                            StratDateTime = project.StratDateTime,
+                            Catalog = project.Catalog,
+                            SiteName = project.SiteName,
+                            IsActive = project.IsActive,
+                        }).FirstOrDefault();
             }
         }
 

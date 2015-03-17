@@ -42,8 +42,7 @@ namespace ProjectManagement.DLL
                             Catalog = projectObject.Catalog,
                             Description = projectObject.Description,
                             IsActive = projectObject.IsActive,
-                            Password = projectObject.Password,
-                            UserName = projectObject.UserName,
+                            SiteName = projectObject.SiteName,
                             StratDateTime = projectObject.StratDateTime
                         }).ToList();
             }
@@ -67,8 +66,7 @@ namespace ProjectManagement.DLL
                             Catalog = projectObject.Catalog,
                             Description = projectObject.Description,
                             IsActive = projectObject.IsActive,
-                            Password = projectObject.Password,
-                            UserName = projectObject.UserName,
+                            SiteName = projectObject.SiteName,
                             StratDateTime = projectObject.StratDateTime
                         }).FirstOrDefault();
             }
@@ -97,8 +95,7 @@ namespace ProjectManagement.DLL
                     tblProject.Catalog = tblProjectDTO.Catalog;
                     tblProject.Description = tblProjectDTO.Description;
                     tblProject.IsActive = tblProjectDTO.IsActive;
-                    tblProject.Password = tblProjectDTO.Password;
-                    tblProject.UserName = tblProjectDTO.UserName;
+                    tblProject.SiteName = tblProjectDTO.SiteName;
                     tblProject.StratDateTime = tblProjectDTO.StratDateTime;
                 }
                 projectManagementSQLDatabaseEntities.SaveChanges();

@@ -16,12 +16,11 @@ namespace ProjectManagement.DLL.ORM
     {
         public int ProjectId { get; set; }
         public string Title { get; set; }
+        public string SiteName { get; set; }
         public string Address { get; set; }
         public string Description { get; set; }
         public System.DateTime StratDateTime { get; set; }
         public string Catalog { get; set; }
-        public string UserName { get; set; }
-        public string Password { get; set; }
         public bool IsActive { get; set; }
     }
 }
