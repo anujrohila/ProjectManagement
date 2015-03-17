@@ -94,6 +94,27 @@
                 </ul>
                 <ul id="menu" class="nav">
                     <li class="nav-header">Navigation</li>
+                    <li id="menuProject" class="has-sub">
+                        <a href="javascript:;">
+                            <b class="caret pull-right"></b>
+                            <i class="fa fa-user"></i>
+                            <span>Project</span>
+                        </a>
+                        <ul class="sub-menu">
+                            @if (CommonFunctions.IsMemberHavePermission("Project", ApplicationEnum.PageType.Insert))
+                            {
+                                <li>
+                                    <a href="@Url.Action("Save", "Project", new { id = 0 })">Add New</a>
+                                </li>
+                            }
+                            @if (CommonFunctions.IsMemberHavePermission("Project", ApplicationEnum.PageType.ListAll))
+                            {
+                                <li>
+                                    <a href="@Url.Action("ListAll", "Project")">List All</a>
+                                </li>
+                            }
+                        </ul>
+                    </li>
                     <li id="menuMember" class="has-sub">
                         <a href="javascript:;">
                             <b class="caret pull-right"></b>
