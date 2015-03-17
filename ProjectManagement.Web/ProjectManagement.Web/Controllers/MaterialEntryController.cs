@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Telerik.Web.Mvc;
 using ProjectManagement.DLL;
 using ProjectManagement.Domain;
+using System.Globalization;
 
 namespace ProjectManagement.Web.Controllers
 {
@@ -40,7 +41,7 @@ namespace ProjectManagement.Web.Controllers
             if (!string.IsNullOrWhiteSpace(id))
             {
                 qtyMaterialDTO = MaterialEntryRepository.GetMaterialEntry(id);
-                qtyMaterialDTO.DdateString = qtyMaterialDTO.Ddate.Value.ToShortDateString();
+                qtyMaterialDTO.DdateString = qtyMaterialDTO.Ddate.Value.ToString("dd-MM-yyyy");
             }
             qtyMaterialDTO = FillSupplierDTO(qtyMaterialDTO);
             return View(qtyMaterialDTO);
@@ -65,7 +66,7 @@ namespace ProjectManagement.Web.Controllers
                 }
                 if (ModelState.IsValid)
                 {
-                    qtyMaterialDTO.Ddate = Convert.ToDateTime(qtyMaterialDTO.DdateString);
+                    qtyMaterialDTO.Ddate = DateTime.ParseExact(qtyMaterialDTO.DdateString, "dd-MM-yyyy", CultureInfo.InvariantCulture);
                     qtyMaterialDTO.Ammount = qtyMaterialDTO.Rate * qtyMaterialDTO.Qty;
                     qtyMaterialDTO.Bill_Rate = qtyMaterialDTO.Rate;
                     qtyMaterialDTO.Bil_Ent = false;

@@ -30,5 +30,6 @@ namespace ProjectManagement.DLL.ORM
         public DbSet<tblMemberType> tblMemberTypes { get; set; }
         public DbSet<tblProject> tblProjects { get; set; }
         public DbSet<tblEntityMaster> tblEntityMasters { get; set; }
+        public DbSet<tblImageMaster> tblImageMasters { get; set; }
     }
 }

@@ -59,6 +59,7 @@
     <Compile Include="DTO\QtyMaterialDTO.cs" />
     <Compile Include="DTO\SupplierDTO.cs" />
     <Compile Include="DTO\tblEntityMasterDTO.cs" />
+    <Compile Include="DTO\tblImageMasterDTO.cs" />
     <Compile Include="DTO\tblMemberDTO.cs" />
     <Compile Include="DTO\tblMemberPermissionDTO.cs" />
     <Compile Include="DTO\tblMemberTypeDTO.cs" />

@@ -57,6 +57,7 @@
     <Compile Include="Assemblers\QtyMaterialAssembler.cs" />
     <Compile Include="Assemblers\SupplierAssembler.cs" />
     <Compile Include="Assemblers\tblEntityMasterAssembler.cs" />
+    <Compile Include="Assemblers\tblImageMasterAssembler.cs" />
     <Compile Include="Assemblers\tblMemberAssembler.cs" />
     <Compile Include="Assemblers\tblMemberPermissionAssembler.cs" />
     <Compile Include="Assemblers\tblMemberTypeAssembler.cs" />
@@ -125,6 +126,9 @@
     <Compile Include="ORM\tblEntityMaster.cs">
       <DependentUpon>ProjectManagementSQLDatabase.tt</DependentUpon>
     </Compile>
+    <Compile Include="ORM\tblImageMaster.cs">
+      <DependentUpon>ProjectManagementSQLDatabase.tt</DependentUpon>
+    </Compile>
     <Compile Include="ORM\tblMember.cs">
       <DependentUpon>ProjectManagementSQLDatabase.tt</DependentUpon>
     </Compile>
@@ -156,17 +160,21 @@
     <Content Include="SoutionReferences\EntityFramework.dll" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
+    <EntityDeploy Include="ORM\ProjectSQLDatabase.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ProjectSQLDatabase.Designer.cs</LastGenOutput>
+    </EntityDeploy>
     <EntityDeploy Include="ORM\ProjectManagementSQLDatabase.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ProjectManagementSQLDatabase.Designer.cs</LastGenOutput>
     </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.Config" />
     <None Include="ORM\ProjectManagementSQLDatabase.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ProjectManagementSQLDatabase.Context.cs</LastGenOutput>
       <DependentUpon>ProjectManagementSQLDatabase.edmx</DependentUpon>
+      <LastGenOutput>ProjectManagementSQLDatabase.Context.cs</LastGenOutput>
     </None>
     <None Include="ORM\ProjectManagementSQLDatabase.edmx.diagram">
       <DependentUpon>ProjectManagementSQLDatabase.edmx</DependentUpon>
@@ -176,10 +184,6 @@
       <DependentUpon>ProjectManagementSQLDatabase.edmx</DependentUpon>
       <LastGenOutput>ProjectManagementSQLDatabase.cs</LastGenOutput>
     </None>
-    <EntityDeploy Include="ORM\ProjectSQLDatabase.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ProjectSQLDatabase.Designer.cs</LastGenOutput>
-    </EntityDeploy>
     <None Include="ORM\ProjectSQLDatabase.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ProjectSQLDatabase.edmx</DependentUpon>

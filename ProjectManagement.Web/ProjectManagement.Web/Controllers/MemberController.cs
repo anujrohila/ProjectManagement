@@ -83,6 +83,7 @@ namespace ProjectManagement.Web.Controllers
                         tblMemberDTO.IsActive = true;
                     }
                     tblMemberDTO.MemberTypeId = 1;
+                    tblMemberDTO.Password = CommonFunctions.HashPassword(tblMemberDTO.Password);
                     tblMemberDTO.MemberPermissionList = GetMemberPermissionList(tblMemberDTO.ProjectSelectionString, tblMemberDTO.EntityPermissionSelectionString);
                     var memberId = MemberRepository.SaveMember(tblMemberDTO);
                     return RedirectToAction("ListAll");

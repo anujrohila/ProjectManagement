@@ -12,6 +12,7 @@
         <AssociationConnector Association="ProjectManagementSQLDatabaseModel.FK_tblMember_tblMemberType" />
         <AssociationConnector Association="ProjectManagementSQLDatabaseModel.FK_tblMemberPermission_tblMember" />
         <EntityTypeShape EntityType="ProjectManagementSQLDatabaseModel.tblEntityMaster" Width="1.5" PointX="4.125" PointY="5.625" />
+        <EntityTypeShape EntityType="ProjectManagementSQLDatabaseModel.tblImageMaster" Width="1.5" PointX="0.75" PointY="4.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

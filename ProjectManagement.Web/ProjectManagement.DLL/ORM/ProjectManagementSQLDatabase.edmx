@@ -4,50 +4,47 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="ProjectManagementSQLDatabaseModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityContainer Name="ProjectManagementSQLDatabaseModelStoreContainer">
-          <EntitySet Name="tblEntityMaster" EntityType="ProjectManagementSQLDatabaseModel.Store.tblEntityMaster" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="tblMember" EntityType="ProjectManagementSQLDatabaseModel.Store.tblMember" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="tblMemberPermission" EntityType="ProjectManagementSQLDatabaseModel.Store.tblMemberPermission" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="tblMemberType" EntityType="ProjectManagementSQLDatabaseModel.Store.tblMemberType" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="tblProject" EntityType="ProjectManagementSQLDatabaseModel.Store.tblProject" store:Type="Tables" Schema="dbo" />
-          <AssociationSet Name="FK_tblMember_tblMemberType" Association="ProjectManagementSQLDatabaseModel.Store.FK_tblMember_tblMemberType">
-            <End Role="tblMemberType" EntitySet="tblMemberType" />
-            <End Role="tblMember" EntitySet="tblMember" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblMemberPermission_tblMember" Association="ProjectManagementSQLDatabaseModel.Store.FK_tblMemberPermission_tblMember">
-            <End Role="tblMember" EntitySet="tblMember" />
-            <End Role="tblMemberPermission" EntitySet="tblMemberPermission" />
-          </AssociationSet>
-        </EntityContainer>
+    <Schema Namespace="ProjectManagementSQLDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="tblEntityMaster">
           <Key>
             <PropertyRef Name="EntityId" />
           </Key>
-          <Property Name="EntityId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="EntityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="EntityName" Type="varchar" MaxLength="50" />
           <Property Name="Description" Type="varchar" MaxLength="500" />
           <Property Name="ControllerName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblImageMaster">
+          <Key>
+            <PropertyRef Name="ImageID" />
+          </Key>
+          <Property Name="ImageID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ImagesPath" Type="varchar" MaxLength="100" />
+          <Property Name="Comment" Type="text" />
+          <Property Name="CreateBy" Type="int" />
+          <Property Name="CreationDateTime" Type="datetime" />
+          <Property Name="UpdateBy" Type="int" />
+          <Property Name="UpdationDateTime" Type="datetime" />
         </EntityType>
         <EntityType Name="tblMember">
           <Key>
             <PropertyRef Name="MemberId" />
           </Key>
-          <Property Name="MemberId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="MemberId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="MemberTypeId" Type="int" Nullable="false" />
-          <Property Name="FirstName" Type="varchar" Nullable="false" MaxLength="50" />
-          <Property Name="LastName" Type="varchar" Nullable="false" MaxLength="50" />
-          <Property Name="Address" Type="varchar" Nullable="false" MaxLength="500" />
-          <Property Name="EmailAddress" Type="varchar" Nullable="false" MaxLength="50" />
-          <Property Name="MobileNo" Type="varchar" Nullable="false" MaxLength="50" />
-          <Property Name="Password" Type="varchar" Nullable="false" MaxLength="500" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Address" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="EmailAddress" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="MobileNo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="500" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="tblMemberPermission">
           <Key>
             <PropertyRef Name="MemberPermissionId" />
           </Key>
-          <Property Name="MemberPermissionId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="MemberPermissionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ProjectId" Type="int" Nullable="false" />
           <Property Name="MemberId" Type="int" Nullable="false" />
           <Property Name="EnitytId" Type="int" Nullable="false" />
@@ -60,26 +57,26 @@
           <Key>
             <PropertyRef Name="MemberTypeId" />
           </Key>
-          <Property Name="MemberTypeId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="MemberTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TypeName" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="tblProject">
           <Key>
             <PropertyRef Name="ProjectId" />
           </Key>
-          <Property Name="ProjectId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Title" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="ProjectId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Address" Type="varchar" MaxLength="500" />
           <Property Name="Description" Type="varchar" MaxLength="500" />
           <Property Name="StratDateTime" Type="date" Nullable="false" />
-          <Property Name="Catalog" Type="varchar" Nullable="false" MaxLength="100" />
-          <Property Name="UserName" Type="varchar" Nullable="false" MaxLength="50" />
-          <Property Name="Password" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Catalog" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
         </EntityType>
         <Association Name="FK_tblMember_tblMemberType">
-          <End Role="tblMemberType" Type="ProjectManagementSQLDatabaseModel.Store.tblMemberType" Multiplicity="1" />
-          <End Role="tblMember" Type="ProjectManagementSQLDatabaseModel.Store.tblMember" Multiplicity="*" />
+          <End Role="tblMemberType" Type="Self.tblMemberType" Multiplicity="1" />
+          <End Role="tblMember" Type="Self.tblMember" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tblMemberType">
               <PropertyRef Name="MemberTypeId" />
@@ -90,8 +87,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tblMemberPermission_tblMember">
-          <End Role="tblMember" Type="ProjectManagementSQLDatabaseModel.Store.tblMember" Multiplicity="1" />
-          <End Role="tblMemberPermission" Type="ProjectManagementSQLDatabaseModel.Store.tblMemberPermission" Multiplicity="*" />
+          <End Role="tblMember" Type="Self.tblMember" Multiplicity="1" />
+          <End Role="tblMemberPermission" Type="Self.tblMemberPermission" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tblMember">
               <PropertyRef Name="MemberId" />
@@ -101,6 +98,22 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityContainer Name="ProjectManagementSQLDatabaseModelStoreContainer">
+          <EntitySet Name="tblEntityMaster" EntityType="Self.tblEntityMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblImageMaster" EntityType="Self.tblImageMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblMember" EntityType="Self.tblMember" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblMemberPermission" EntityType="Self.tblMemberPermission" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblMemberType" EntityType="Self.tblMemberType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblProject" EntityType="Self.tblProject" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_tblMember_tblMemberType" Association="Self.FK_tblMember_tblMemberType">
+            <End Role="tblMemberType" EntitySet="tblMemberType" />
+            <End Role="tblMember" EntitySet="tblMember" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMemberPermission_tblMember" Association="Self.FK_tblMemberPermission_tblMember">
+            <End Role="tblMember" EntitySet="tblMember" />
+            <End Role="tblMemberPermission" EntitySet="tblMemberPermission" />
+          </AssociationSet>
+        </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -119,6 +132,7 @@
             <End Role="tblMemberPermission" EntitySet="tblMemberPermissions" />
           </AssociationSet>
           <EntitySet Name="tblEntityMasters" EntityType="ProjectManagementSQLDatabaseModel.tblEntityMaster" />
+          <EntitySet Name="tblImageMasters" EntityType="ProjectManagementSQLDatabaseModel.tblImageMaster" />
         </EntityContainer>
         <EntityType Name="tblMember">
           <Key>
@@ -205,6 +219,18 @@
           <Property Type="String" Name="Description" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="ControllerName" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="tblImageMaster">
+          <Key>
+            <PropertyRef Name="ImageID" />
+          </Key>
+          <Property Name="ImageID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ImagesPath" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreateBy" Type="Int32" />
+          <Property Name="CreationDateTime" Type="DateTime" Precision="3" />
+          <Property Name="UpdateBy" Type="Int32" />
+          <Property Name="UpdationDateTime" Type="DateTime" Precision="3" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -270,6 +296,19 @@
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="EntityName" ColumnName="EntityName" />
                 <ScalarProperty Name="EntityId" ColumnName="EntityId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblImageMasters">
+            <EntityTypeMapping TypeName="ProjectManagementSQLDatabaseModel.tblImageMaster">
+              <MappingFragment StoreEntitySet="tblImageMaster">
+                <ScalarProperty Name="UpdationDateTime" ColumnName="UpdationDateTime" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="CreationDateTime" ColumnName="CreationDateTime" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="ImagesPath" ColumnName="ImagesPath" />
+                <ScalarProperty Name="ImageID" ColumnName="ImageID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
