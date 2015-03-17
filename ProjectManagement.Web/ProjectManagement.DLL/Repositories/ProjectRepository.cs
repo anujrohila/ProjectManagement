@@ -53,11 +53,12 @@ namespace ProjectManagement.DLL
         /// Get Project
         /// </summary>
         /// <returns></returns>
-        public static tblProjectDTO GetProject(string projectId)
+        public static tblProjectDTO GetProject(int projectId)
         {
             using (var projectManagementSQLDatabaseEntities = new ProjectManagementSQLDatabaseEntities())
             {
                 return (from projectObject in projectManagementSQLDatabaseEntities.tblProjects
+                        where projectObject.ProjectId == projectId
                         select new tblProjectDTO
                         {
                             ProjectId = projectObject.ProjectId,
