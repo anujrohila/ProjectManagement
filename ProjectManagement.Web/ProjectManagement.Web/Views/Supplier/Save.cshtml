@@ -68,25 +68,34 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">Account Group</label>
                         <div class="col-md-5">
-                            <select id="GroupId" name="GroupId" class="form-control">
+                            <select id="GroupId" name="GroupId" class="form-control" onchange="ChangeGroupID();">
                                 @foreach (var groupType in Model.SupplierGroupList)
                                 {
                                     if (groupType.GrpIdSupplier == Model.GroupId)
                                     {
-                                    <option selected value="@groupType.GrpIdSupplier">@groupType.GroupSupplierName</option>
+                                        <option selected value="@groupType.GrpIdSupplier">@groupType.GroupSupplierName</option>
                                     }
                                     else
                                     {
-                                    <option value="@groupType.GrpIdSupplier">@groupType.GroupSupplierName</option>
+                                        <option value="@groupType.GrpIdSupplier">@groupType.GroupSupplierName</option>
                                     }
                                 }
                             </select>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" id="divshare">
                         <label class="col-md-3 control-label">Share</label>
                         <div class="col-md-5">
                             @Html.TextBoxFor(model => model.share, new { @placeholder = "Share", @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group" id="divinterest">
+                        <label class="col-md-3 control-label">Interest</label>
+                        <div class="col-md-5">
+                            @Html.TextBoxFor(model => model.IntRates, new { @placeholder = "Interest", @class = "form-control" }) <label style="color:red"> * Interest In Per Year</label>
+                        </div>
+                        <div class="col-md-2">
+                           
                         </div>
                     </div>
                     <div class="form-group">
@@ -104,4 +113,26 @@
 </div>
 <script type="text/javascript">
     ActivateSelectedMenu('menuSupplier');
+    function ChangeGroupID() {
+        var id = $('#GroupId').val();
+        if (id == 29 || id == 24 || id == 17 ) {
+            $('#divinterest').show();
+            $('#divshare').val('');
+            $('#divshare').hide();
+        }
+        else if(id == 40)
+        {
+            $('#divinterest').hide();
+            $('#divshare').show();
+            $('#divinterest').val('');
+        }
+        else
+        {
+            $('#divinterest').val('');
+            $('#divshare').val('');
+            $('#divinterest').hide();
+            $('#divshare').hide();
+        }
+    }
+    ChangeGroupID();
 </script>

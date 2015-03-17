@@ -25,6 +25,15 @@ namespace ProjectManagement.DLL
 
         #region [Methods]
 
+        public static int GetShareTotal(string supplierId)
+        {
+            using (var projectManagementEntities = new ProjectManagementEntities())
+            {
+                int total = projectManagementEntities.Suppliers.Where(sup => sup.GroupId == 40 && string.Compare(sup.Sup_id, supplierId, StringComparison.CurrentCultureIgnoreCase) != 0).Sum(s => s.share.Value);
+                return total;
+            } 
+        }
+
         /// <summary>
         /// Get Supplier
         /// </summary>

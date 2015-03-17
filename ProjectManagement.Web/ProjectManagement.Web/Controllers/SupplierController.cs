@@ -56,6 +56,17 @@ namespace ProjectManagement.Web.Controllers
         {
             if (ModelState.IsValid)
             {
+                int total = 0;
+                if(supplierDTO.GroupId == 40)
+                {
+                    total = SupplierRepository.GetShareTotal(supplierDTO.Sup_id);
+                    if( (supplierDTO.share + total ) > 100)
+                    {
+                        ModelState.AddModelError("share", "Total share must br greater than or equal to 100");
+                    }
+                }
+               
+
                 var isSupplierDuplicate = SupplierRepository.IsDuplicateSupplier(supplierDTO.NameiS, supplierDTO.Sup_id);
                 if (isSupplierDuplicate)
                 {
