@@ -20,6 +20,26 @@ namespace ProjectManagement.Web.Controllers
     public class ProfileController : Controller
     {
         /// <summary>
+        /// Dashboard
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult Dashboard()
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// Unauthorized
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult Unauthorized()
+        {
+            return View();
+        }
+
+        /// <summary>
         /// Update Member
         /// </summary>
         /// <returns></returns>

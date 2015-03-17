@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 
 namespace ProjectManagement.Web
 {
@@ -56,8 +57,11 @@ namespace ProjectManagement.Web
                 }
                 if (isPermitted == false)
                 {
-                    System.Web.HttpContext.Current.Session.Abandon();
-                    filterContext.Result = new HttpUnauthorizedResult();
+                    //RedirectResult
+                    //Unauthorized
+                    filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary { { "controller", "Profile" }, { "action", "Unauthorized" } });
+                    //System.Web.HttpContext.Current.Session.Abandon();
+                    //filterContext.Result = new HttpUnauthorizedResult();
                 }
             }
             else

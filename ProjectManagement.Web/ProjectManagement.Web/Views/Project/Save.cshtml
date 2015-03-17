@@ -29,9 +29,9 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-3 control-label">Address<span class="spanError">*</span></label>
+                        <label class="col-md-3 control-label">Site Name<span class="spanError">*</span></label>
                         <div class="col-md-5">
-                            @Html.TextBoxFor(model => model.Address, new { @placeholder = "Address", @class = "form-control" })
+                            @Html.TextBoxFor(model => model.SiteName, new { @placeholder = "Site Name", @class = "form-control" })
                         </div>
                     </div>
                     <div class="form-group">
@@ -41,14 +41,20 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-3 control-label">Description<span class="spanError">*</span></label>
+                        <label class="col-md-3 control-label">Address</label>
+                        <div class="col-md-5">
+                            @Html.TextBoxFor(model => model.Address, new { @placeholder = "Address", @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Description</label>
                         <div class="col-md-5">
                             @Html.TextBoxFor(model => model.Description, new { @placeholder = "Description", @class = "form-control" })
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-3 control-label">IsActive<span class="spanError">*</span></label>
-                        <div class="col-md-5">
+                        <label class="col-md-3 control-label">IsActive</label>
+                        <div class="col-md-1" style="margin-left: -25px">
                             @Html.CheckBoxFor(model => model.IsActive, new { @class = "form-control" })
                         </div>
                     </div>
@@ -65,7 +71,7 @@
         </div>
     }
 </div>
-<script src="~/Content/Script/Member.js"></script>
+<script src="~/Content/Script/Project.js"></script>
 <script type="text/javascript">
-    ActivateSelectedMenu('menuMember');
+    ActivateSelectedMenu('menuProject');
 </script>

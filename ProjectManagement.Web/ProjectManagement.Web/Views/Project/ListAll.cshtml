@@ -20,10 +20,11 @@
                         .Columns(columns =>
                         {
                             columns.Bound(column => column.Title).Title("Title");
+                            columns.Bound(column => column.SiteName).Title("Site Name");
                             columns.Bound(column => column.Address).Title("Address");
                             columns.Bound(column => column.Catalog).Title("Catalog");
                             columns.Bound(column => column.Description).Title("Description");
-                            columns.Bound(column => column.StratDateTime).Title("Creation Date");
+                            columns.Bound(column => column.StratDateTime).Title("Creation Date").Format("{0:" + System.Threading.Thread.CurrentThread.CurrentCulture.DateTimeFormat.ShortDatePattern + "}");
                             columns.Bound(column => column.IsActive).Title("Is Active");
                             columns.Bound(column => column.ProjectId)
                                                             .Filterable(false)

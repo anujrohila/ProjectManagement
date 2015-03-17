@@ -123,7 +123,7 @@ namespace ProjectManagement.Web.Controllers
             System.Web.HttpContext.Current.Session["UserPermission"] = memberDetails.MemberPermissionList;
             System.Web.HttpContext.Current.Session["LoggedUserName"] = string.Concat(memberDetails.FirstName, " ", memberDetails.LastName);
             System.Web.HttpContext.Current.Session["LoggedMemberType"] = memberDetails.MemberTypeString;
-            return RedirectToAction("Detail", "Profile");
+            return RedirectToAction("Dashboard", "Profile");
         }
     }
 }

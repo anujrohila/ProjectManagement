@@ -154,7 +154,7 @@ namespace ProjectManagement.DLL
             using (var projectManagementSQLDatabaseEntities = new ProjectManagementSQLDatabaseEntities())
             {
                 var tblMember = new tblMember();
-                if (tblMember.MemberId == 0)
+                if (tblMemberDTO.MemberId == 0)
                 {
                     tblMember = tblMemberDTO.ToEntity();
                     projectManagementSQLDatabaseEntities.tblMembers.Add(tblMember);

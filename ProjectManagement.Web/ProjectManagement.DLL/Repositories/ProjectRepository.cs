@@ -81,7 +81,7 @@ namespace ProjectManagement.DLL
             using (var projectManagementSQLDatabaseEntities = new ProjectManagementSQLDatabaseEntities())
             {
                 var tblProject = new tblProject();
-                if (tblProject.ProjectId == 0)
+                if (tblProjectDTO.ProjectId == 0)
                 {
                     tblProject = tblProjectDTO.ToEntity();
                     projectManagementSQLDatabaseEntities.tblProjects.Add(tblProject);

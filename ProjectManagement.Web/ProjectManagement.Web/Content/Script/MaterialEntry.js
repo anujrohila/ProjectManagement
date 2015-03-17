@@ -14,7 +14,12 @@ function DeleteMaterialEntry(id) {
                     RefreshGrid("ListMaterialEntryGrid");
                 }
                 else {
-                    alert(result.Message);
+                    if (result.Message == undefined) {
+                        window.location = $("#webUrl").val() + "/Profile/Unauthorized"
+                    }
+                    else {
+                        alert(result.Message);
+                    }
                 }
             }
         });

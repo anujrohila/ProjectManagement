@@ -1,7 +1,7 @@
-function DeleteMaterialType(id) {
+function DeleteProject(id) {
     var confirmResult = confirm("Are you sure you want to delete this record?");
-    var callUrl = $("#webUrl").val() + "/MaterialGroup/Delete";
-    var dataToSend = { typeId: id };
+    var callUrl = $("#webUrl").val() + "/Project/Delete";
+    var dataToSend = { projectId: id };
     if (confirmResult) {
         $.ajax({
             url: callUrl,
@@ -11,7 +11,7 @@ function DeleteMaterialType(id) {
             success: function (result) {
                 if (result.Success == true) {
                     alert(result.Message);
-                    RefreshGrid("ListMaterialGroupGrid");
+                    RefreshGrid("ListProjectGrid");
                 }
                 else {
                     if (result.Message == undefined) {

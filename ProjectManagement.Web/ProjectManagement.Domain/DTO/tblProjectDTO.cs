@@ -8,6 +8,7 @@
 //-------------------------------------------------------------------------------------------------------
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 using System.Text;
 
@@ -17,12 +18,20 @@ namespace ProjectManagement.Domain
     public partial class tblProjectDTO
     {
         public int ProjectId { get; set; }
+
+        [Required(ErrorMessage = "Please enter title name.")]
         public string Title { get; set; }
+
+        [Required(ErrorMessage = "Please enter site name.")]
         public string SiteName { get; set; }
+
+        [Required(ErrorMessage = "Please enter catlog.")]
+        public string Catalog { get; set; }
+
         public string Address { get; set; }
         public string Description { get; set; }
         public System.DateTime StratDateTime { get; set; }
-        public string Catalog { get; set; }
+
         public bool IsActive { get; set; }
     }
 }

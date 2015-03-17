@@ -57,7 +57,7 @@ namespace ProjectManagement.Web.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult Save([Bind(Exclude = "ProjectId")]tblProjectDTO tblProjectDTO)
+        public ActionResult Save(tblProjectDTO tblProjectDTO)
         {
             if (ModelState.IsValid)
             {
