@@ -8,6 +8,9 @@ namespace ProjectManagement.Domain
 {
     public static class ApplicationMember
     {
+
+        public static tblProjectDTO SelectedProjectDetails { get; set; }
+
         public static Int32 LoggedUserId
         {
             get
