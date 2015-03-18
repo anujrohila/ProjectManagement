@@ -15,6 +15,9 @@ namespace ProjectManagement.Web
 
         #region [Variable]
 
+
+        public static tblProjectDTO SelectedProjectDetails { get; set; }
+       
         /// <summary>
         /// Get ContentUrlPrefix
         /// </summary>

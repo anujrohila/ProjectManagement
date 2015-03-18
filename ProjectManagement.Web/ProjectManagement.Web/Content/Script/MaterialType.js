@@ -3,6 +3,7 @@ function DeleteMaterialType(id) {
     var callUrl = $("#webUrl").val() + "/MaterialGroup/Delete";
     var dataToSend = { typeId: id };
     if (confirmResult) {
+        ShowProcess();
         $.ajax({
             url: callUrl,
             type: "POST",
@@ -21,6 +22,7 @@ function DeleteMaterialType(id) {
                         alert(result.Message);
                     }
                 }
+                HideProcess();
             }
         });
     }

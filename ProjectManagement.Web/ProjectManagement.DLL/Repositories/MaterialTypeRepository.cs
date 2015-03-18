@@ -137,8 +137,16 @@ namespace ProjectManagement.DLL
         {
             using (var projectManagementEntities = new ProjectManagementEntities())
             {
-                var groupItemCount = projectManagementEntities.GroupByItems.Count();
-                return (groupItemCount + 1).ToString("D4");
+                var groupItemCount =projectManagementEntities.GroupByItems.ToList().LastOrDefault();
+                if (groupItemCount != null)
+                {
+                    return (Convert.ToInt32(groupItemCount.GrpIdItem) + 1).ToString("D4");
+                }
+                else
+                {
+                    return ( 1).ToString("D4");
+                }
+               
             }
         }
 

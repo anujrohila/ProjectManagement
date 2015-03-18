@@ -31,6 +31,62 @@ namespace ProjectManagement.Web.Controllers
             return View(new GridModel(supplierListGrid));
         }
 
+
+        /// <summary>
+        /// Save Partial Supplier
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public PartialViewResult _PartialSave()
+        {
+            var supplierDTO = new SupplierDTO();
+
+            supplierDTO = FillSupplierDTO(supplierDTO);
+            return PartialView(supplierDTO);
+        }
+
+        /// <summary>
+        /// Save Partial Supplier
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public JsonResult _PartialSave(SupplierDTO supplierDTO)
+        {
+            if (ModelState.IsValid)
+            {
+                int total = 0;
+                if (supplierDTO.GroupId == 40)
+                {
+                    total = SupplierRepository.GetShareTotal(supplierDTO.Sup_id);
+                    if ((supplierDTO.share + total) > 100)
+                    {
+                        return Json(new { Success = false, Message = "Total share must br greater than or equal to 100" });
+                       // ModelState.AddModelError("share", "Total share must br greater than or equal to 100");
+                    }
+                }
+
+
+                var isSupplierDuplicate = SupplierRepository.IsDuplicateSupplier(supplierDTO.NameiS, supplierDTO.Sup_id);
+                if (isSupplierDuplicate)
+                {
+                    return Json(new { Success = false, Message = "Supplier Name Already Exist" });
+                }
+                if (ModelState.IsValid)
+                {
+                    if (string.IsNullOrWhiteSpace(supplierDTO.Sup_id))
+                    {
+                        supplierDTO.Sup_id = CommonFunctions.GetNewGUID();
+                        supplierDTO.childof = supplierDTO.Sup_id;
+                        supplierDTO.Balance = 0;
+                        supplierDTO.CashBankBalance = 0;
+                        SupplierRepository.InsertSupplier(supplierDTO);
+                        return Json(new { Success = true, Sup_id = supplierDTO.Sup_id, NameiS = supplierDTO.NameiS });
+                    }
+                }
+            }
+            return Json(new { Success = false, Message = "Fill Up Required Field" });
+        }
+
         /// <summary>
         /// Save Supplier
         /// </summary>
@@ -57,15 +113,15 @@ namespace ProjectManagement.Web.Controllers
             if (ModelState.IsValid)
             {
                 int total = 0;
-                if(supplierDTO.GroupId == 40)
+                if (supplierDTO.GroupId == 40)
                 {
                     total = SupplierRepository.GetShareTotal(supplierDTO.Sup_id);
-                    if( (supplierDTO.share + total ) > 100)
+                    if ((supplierDTO.share + total) > 100)
                     {
                         ModelState.AddModelError("share", "Total share must br greater than or equal to 100");
                     }
                 }
-               
+
 
                 var isSupplierDuplicate = SupplierRepository.IsDuplicateSupplier(supplierDTO.NameiS, supplierDTO.Sup_id);
                 if (isSupplierDuplicate)

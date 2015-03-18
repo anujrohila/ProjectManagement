@@ -3,6 +3,7 @@ function DeleteProject(id) {
     var callUrl = $("#webUrl").val() + "/Project/Delete";
     var dataToSend = { projectId: id };
     if (confirmResult) {
+        ShowProcess();
         $.ajax({
             url: callUrl,
             type: "POST",
@@ -21,6 +22,7 @@ function DeleteProject(id) {
                         alert(result.Message);
                     }
                 }
+                HideProcess();
             }
         });
     }

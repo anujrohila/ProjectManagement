@@ -3,6 +3,7 @@ function DeleteMasterAccountEntry(id) {
     var callUrl = $("#webUrl").val() + "/MasterAccount/Delete";
     var dataToSend = { entryId: id };
     if (confirmResult) {
+        ShowProcess();
         $.ajax({
             url: callUrl,
             type: "POST",
@@ -21,6 +22,7 @@ function DeleteMasterAccountEntry(id) {
                         alert(result.Message);
                     }
                 }
+                HideProcess();
             }
         });
     }

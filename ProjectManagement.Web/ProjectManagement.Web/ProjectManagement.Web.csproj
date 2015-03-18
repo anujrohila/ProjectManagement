@@ -1033,6 +1033,9 @@
     <Content Include="Views\Documents\ListAll.cshtml" />
     <Content Include="Views\Profile\Dashboard.cshtml" />
     <Content Include="Views\Profile\Unauthorized.cshtml" />
+    <Content Include="Views\MaterialGroup\_PartialSave.cshtml" />
+    <Content Include="Views\Supplier\_PartialSave.cshtml" />
+    <Content Include="Views\MaterialSubGroup\_PartialSave.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Documents\" />

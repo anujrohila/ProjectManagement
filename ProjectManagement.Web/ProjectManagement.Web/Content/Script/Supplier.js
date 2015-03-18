@@ -3,6 +3,7 @@ function DeleteSupplier(id) {
     var callUrl = $("#webUrl").val() + "/Supplier/Delete";
     var dataToSend = { supplierId: id };
     if (confirmResult) {
+        ShowProcess();
         $.ajax({
             url: callUrl,
             type: "POST",
@@ -21,6 +22,7 @@ function DeleteSupplier(id) {
                         alert(result.Message);
                     }
                 }
+                HideProcess();
             }
         });
     }

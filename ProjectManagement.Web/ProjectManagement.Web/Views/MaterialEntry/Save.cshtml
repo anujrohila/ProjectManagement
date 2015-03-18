@@ -1,4 +1,6 @@
 ﻿@using Telerik.Web.Mvc.UI;
+@using ProjectManagement.Web;
+@using ProjectManagement.Domain;
 @model ProjectManagement.Domain.QtyMaterialDTO
 @{
     ViewBag.Title = "Save Material Entry";
@@ -27,8 +29,8 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">Date<span class="spanError">*</span></label>
                         <div class="col-md-5">
-                           
-                            @Html.TextBoxFor(model => model.DdateString, new { @placeholder = "Date", @class = "form-control datepicker" ,@readonly="" })
+
+                            @Html.TextBoxFor(model => model.DdateString, new { @placeholder = "Date", @class = "form-control datepicker", @autofocus = "autofocus" })
                         </div>
                     </div>
                     <div class="form-group">
@@ -36,6 +38,12 @@
                         <div class="col-md-5">
                             @Html.DropDownListFor(m => m.Sup_id, new MultiSelectList(Model.SupplierList, "Sup_id", "NameiS"), new { @class = "form-control" })
                         </div>
+                        @if (CommonFunctions.IsMemberHavePermission("Supplier", ApplicationEnum.PageType.Insert))
+                        {
+                            <div class="col-md-3">
+                                <button id="BtnAddSupplier" class="mb-xs mt-xs mr-xs btn btn-warning" type="button" onclick="AddSupplier()">...</button>
+                            </div>
+                        }
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Challan No<span class="spanError">*</span></label>
@@ -48,6 +56,12 @@
                         <div class="col-md-5">
                             @Html.DropDownListFor(m => m.Mat_id, new MultiSelectList(Model.MaterialList, "Mat_id", "Mat_Name"), new { @class = "form-control" })
                         </div>
+                        @if (CommonFunctions.IsMemberHavePermission("MaterialSubGroup", ApplicationEnum.PageType.Insert))
+                        {
+                            <div class="col-md-3">
+                                <button class="mb-xs mt-xs mr-xs btn btn-warning" type="button" onclick="AddMaterialSubGroup()">...</button>
+                            </div>
+                        }
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Unit<span class="spanError">*</span></label>
@@ -107,3 +121,39 @@
 <script type="text/javascript">
     ActivateSelectedMenu('menuMaterialEntry');
 </script>
+
+
+<div id="divWindow">
+    @{  
+        Html.Telerik().Window()
+                    .Name("AddSupplierModelPopupWindow")
+                    .Title("Supplier Add")
+                    .Content(@<text>
+        <div id="divAddSupplierModelPopupbody">
+        </div>
+        </text>)
+                    .Width(500)
+                    .Draggable(true)
+                    .Effects(fx => fx.Zoom().Opacity().OpenDuration(200).CloseDuration(300))
+                    .Modal(true)
+                    .Visible(false)
+                    .Render();
+    }
+    @{  
+        Html.Telerik().Window()
+                    .Name("AddMaterialSubGroupModelPopupWindow")
+                    .Title("Material Sub Group Add")
+                    .Content(@<text>
+        <div id="divMaterialSubGroupModelPopupbody">
+        </div>
+        </text>)
+                    .Width(500)
+                    .Draggable(true)
+                    .Effects(fx => fx.Zoom().Opacity().OpenDuration(200).CloseDuration(300))
+                    .Modal(true)
+                    .Visible(false)
+                    .Render();
+    }
+</div>
+
+

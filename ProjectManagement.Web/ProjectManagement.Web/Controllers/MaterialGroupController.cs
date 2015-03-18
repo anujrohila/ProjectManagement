@@ -34,6 +34,45 @@ namespace ProjectManagement.Web.Controllers
         }
 
         /// <summary>
+        /// _Partial Save Product Type
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public PartialViewResult _PartialSave()
+        {
+            return PartialView(new GroupByItemDTO());
+        }
+
+        /// <summary>
+        /// Save module role mapping
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public JsonResult _PartialSave(GroupByItemDTO groupByItemDTO)
+        {
+            if (ModelState.IsValid)
+            {
+                var isDuplicateMaterialType = MaterialTypeRepository.IsDuplicateMaterialType(groupByItemDTO.GroupItemName, groupByItemDTO.GrpIdItem);
+                if (isDuplicateMaterialType)
+                {
+                    return Json(new { Success = false, Message = "Material type is duplicate." });
+                }
+                if (ModelState.IsValid)
+                {
+                    groupByItemDTO.GuIdGroup = string.Empty;
+                    groupByItemDTO.ChildOF = string.Empty;
+                    if (string.IsNullOrWhiteSpace(groupByItemDTO.GrpIdItem))
+                    {
+                        groupByItemDTO.GrpIdItem = MaterialTypeRepository.GetGrpIdItem();
+                       var groupId  =  MaterialTypeRepository.InsertMaterialType(groupByItemDTO);
+                       return Json(new { Success = true, GroupId = groupId, GroupItemName = groupByItemDTO.GroupItemName });
+                    }
+                }
+            }
+            return Json(new { Success = false, Message = "Enter Group Name" });
+        }
+
+        /// <summary>
         /// Save Material Type
         /// </summary>
         /// <returns></returns>

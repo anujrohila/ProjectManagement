@@ -29,6 +29,63 @@ namespace ProjectManagement.Web.Controllers
             return View(new GridModel(ggetAllMaterialSubGroup));
         }
 
+
+
+        /// <summary>
+        /// Save Partial Material Sub Type
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public PartialViewResult _PartialSave()
+        {
+            var materialDTO = new MaterialDTO();
+            materialDTO = FillMaterialCombox(materialDTO);
+            return PartialView(materialDTO);
+        }
+
+        /// <summary>
+        /// Save Partial MaterialType
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public JsonResult _PartialSave(MaterialDTO materialDTO)
+        {
+            if (ModelState.IsValid)
+            {
+                var isDuplicateMaterialSubGroup = MaterialSubGroupRepository.IsDuplicateMaterialSubGroup(materialDTO.Mat_Name, materialDTO.Mat_id, materialDTO.GroupId);
+                if (isDuplicateMaterialSubGroup)
+                {
+                  //  ModelState.AddModelError("GrpIdItem", "Material sub type is duplicate.");
+                    return Json(new { Success = false, Message = "Material sub type is duplicate." });
+                }
+                if (materialDTO.GroupId == "0")
+                {
+                    //ModelState.AddModelError("GroupId", "Please select material type.");
+                    return Json(new { Success = false, Message = "Please select material type" });
+                }
+                if (materialDTO.Mat_Unit == "0")
+                {
+                    //ModelState.AddModelError("Mat_Unit", "Please select material unit.");
+                    return Json(new { Success = false, Message = "Please select material unit" });
+                }
+                if (ModelState.IsValid)
+                {
+                    materialDTO.userss = ApplicationMember.LoggedUserName;
+                    materialDTO.GuIdMaterial = string.Empty;
+                    if (string.IsNullOrWhiteSpace(materialDTO.Mat_id))
+                    {
+                        materialDTO.Mat_id = CommonFunctions.GetNewGUID();
+                        MaterialSubGroupRepository.InsertMaterialSubGroup(materialDTO);
+                        return Json(new { Success = true, Mat_id = materialDTO.Mat_id, Mat_Name = materialDTO.Mat_Name });
+                    }
+                }
+            }
+            return Json(new { Success = false, Message = "Fill Up Required Field" });
+
+        }
+
+
+
         /// <summary>
         /// Save Material Sub Type
         /// </summary>

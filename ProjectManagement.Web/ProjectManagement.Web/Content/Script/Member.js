@@ -3,6 +3,7 @@ function DeleteMember(id) {
     var callUrl = $("#webUrl").val() + "/Member/Delete";
     var dataToSend = { memberId: id };
     if (confirmResult) {
+        ShowProcess();
         $.ajax({
             url: callUrl,
             type: "POST",
@@ -10,7 +11,6 @@ function DeleteMember(id) {
             cache: false,
             success: function (result) {
                 if (result.Success == true) {
-                    alert(result.Message);
                     RefreshGrid("ListMemberGrid");
                 }
                 else {
@@ -21,12 +21,14 @@ function DeleteMember(id) {
                         alert(result.Message);
                     }
                 }
+                HideProcess();
             }
         });
     }
 }
 
 function OnMemberFormSubmit() {
+    ShowProcess();
     var projectObjects = $("#divProjects").find("input");
     var strSelectedProject = '';
     for (var i = 0; i < projectObjects.length; i++) {
@@ -74,5 +76,6 @@ function OnMemberFormSubmit() {
         }
     }
     $("#EntityPermissionSelectionString").val(selectedEntityString);
+    HideProcess();
     return true;
 }

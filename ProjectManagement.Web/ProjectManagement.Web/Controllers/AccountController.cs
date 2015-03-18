@@ -24,6 +24,7 @@ namespace ProjectManagement.Web.Controllers
         [HttpGet]
         public ActionResult Login()
         {
+
             var tblLoginDTO = new tblLoginDTO();
             if (ApplicationMember.LoggedUserId == 0)
             {
@@ -64,8 +65,20 @@ namespace ProjectManagement.Web.Controllers
         [HttpGet]
         public ActionResult Logout()
         {
+            FormsAuthentication.SignOut();
+
             System.Web.HttpContext.Current.Session["LoggedUserId"] = null;
             System.Web.HttpContext.Current.Session.Abandon();
+            Response.Cookies.Remove(FormsAuthentication.FormsCookieName);
+            Session.Clear();
+           
+            var cookiesList = System.Web.HttpContext.Current.Request.Cookies.AllKeys;
+            foreach (var item in cookiesList)
+            {
+                var cookie = System.Web.HttpContext.Current.Request.Cookies[item];
+                cookie.Expires = DateTime.Now.AddHours(-1);
+            }
+
             return RedirectToAction("Login", "Account");
         }
 
@@ -97,9 +110,8 @@ namespace ProjectManagement.Web.Controllers
                 else
                 {
                     int memberId = ApplicationMember.LoggedUserId;
-                    var selectedProject = MasterRepository.GetProject(tblProjectSelection.ProjectId);
-
-                    string connectionString = string.Format(@"metadata=res://*/ORM.ProjectSQLDatabase.csdl|res://*/ORM.ProjectSQLDatabase.ssdl|res://*/ORM.ProjectSQLDatabase.msl;provider=System.Data.SqlClient;provider connection string=""data source={0};initial catalog={1};persist security info=True;user id={2};password={3};MultipleActiveResultSets=True;App=EntityFramework""", CommonFunctions.DatabaseServerPath, selectedProject.Catalog,CommonFunctions.DatabaseUserName,CommonFunctions.DatabasePassword);
+                    CommonFunctions.SelectedProjectDetails = MasterRepository.GetProject(tblProjectSelection.ProjectId);
+                    string connectionString = string.Format(@"metadata=res://*/ORM.ProjectSQLDatabase.csdl|res://*/ORM.ProjectSQLDatabase.ssdl|res://*/ORM.ProjectSQLDatabase.msl;provider=System.Data.SqlClient;provider connection string=""data source={0};initial catalog={1};persist security info=True;user id={2};password={3};MultipleActiveResultSets=True;App=EntityFramework""", CommonFunctions.DatabaseServerPath, CommonFunctions.SelectedProjectDetails.Catalog,CommonFunctions.DatabaseUserName,CommonFunctions.DatabasePassword);
                     var configuration = WebConfigurationManager.OpenWebConfiguration("~");
                     var section = (ConnectionStringsSection)configuration.GetSection("connectionStrings");
                     section.ConnectionStrings["ProjectManagementEntities"].ConnectionString = connectionString;
@@ -116,9 +128,9 @@ namespace ProjectManagement.Web.Controllers
         [HttpGet]
         public ActionResult ReactivateMember(int id, int projectId)
         {
-            var selectedProject = MasterRepository.GetProject(projectId);
+            CommonFunctions.SelectedProjectDetails = MasterRepository.GetProject(projectId);
             var memberDetails = MemberRepository.GetMember(id);
-            System.Web.HttpContext.Current.Session["LoggedSelectedProject"] = selectedProject;
+            System.Web.HttpContext.Current.Session["LoggedSelectedProject"] = CommonFunctions.SelectedProjectDetails;
             System.Web.HttpContext.Current.Session["LoggedUserId"] = memberDetails.MemberId.ToString();
             System.Web.HttpContext.Current.Session["UserPermission"] = memberDetails.MemberPermissionList;
             System.Web.HttpContext.Current.Session["LoggedUserName"] = string.Concat(memberDetails.FirstName, " ", memberDetails.LastName);

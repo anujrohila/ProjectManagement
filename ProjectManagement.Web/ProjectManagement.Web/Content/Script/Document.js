@@ -3,6 +3,7 @@ function DeleteDocument(id) {
     var callUrl = $("#webUrl").val() + "/Documents/Delete";
     var dataToSend = { Docuementid: id };
     if (confirmResult) {
+        ShowProcess();
         $.ajax({
             url: callUrl,
             type: "POST",
@@ -21,6 +22,7 @@ function DeleteDocument(id) {
                         alert(result.Message);
                     }
                 }
+                HideProcess();
             }
         });
     }

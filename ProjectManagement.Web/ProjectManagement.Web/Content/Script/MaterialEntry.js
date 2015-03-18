@@ -1,8 +1,10 @@
 function DeleteMaterialEntry(id) {
+   
     var confirmResult = confirm("Are you sure you want to delete this record?");
     var callUrl = $("#webUrl").val() + "/MaterialEntry/Delete";
     var dataToSend = { entryId: id };
     if (confirmResult) {
+        ShowProcess();
         $.ajax({
             url: callUrl,
             type: "POST",
@@ -21,6 +23,7 @@ function DeleteMaterialEntry(id) {
                         alert(result.Message);
                     }
                 }
+                HideProcess();
             }
         });
     }
@@ -53,3 +56,97 @@ function OnKeyPress(evt, t) {
     return CalculateAmount();
 }
 
+
+function AddSupplier() {
+    ShowProcess();
+    var callUrl = $("#webUrl").val() + "/Supplier/_PartialSave";
+    var dataToSend = {};
+    $.ajax({
+        url: callUrl,
+        type: "GET",
+        data: dataToSend,
+        cache: false,
+        success: function (html) {
+            $("#divAddSupplierModelPopupbody").html(html);
+            OpenTelerikWindow('AddSupplierModelPopupWindow');
+            HideProcess();
+        }
+    });
+}
+
+function SubmitSuplierDetails() {
+    var form = $('#frmSupplier');
+    $.validator.unobtrusive.parse(form);
+    var isFormValid = form.valid();
+    if (isFormValid) {
+        ShowProcess();
+        var formData = form.serialize();
+        var callUrl = $("#webUrl").val() + "/Supplier/_PartialSave";
+        $.ajax({
+            url: callUrl,
+            type: "POST",
+            data: formData,
+            cache: false,
+            success: function (result) {
+                if (result.Success) {
+                    $("#Sup_id").append("<option value=" + result.Sup_id + ">" + result.NameiS + "</option>");
+                    CloseTelerikWindow('AddSupplierModelPopupWindow');
+                }
+                else {
+                    alert(result.Message);
+                }
+                HideProcess();
+            }
+        });
+    }
+    else {
+        return false;
+    }
+}
+
+function AddMaterialSubGroup() {
+    ShowProcess();
+    var callUrl = $("#webUrl").val() + "/MaterialSubGroup/_PartialSave";
+    var dataToSend = {};
+    $.ajax({
+        url: callUrl,
+        type: "GET",
+        data: dataToSend,
+        cache: false,
+        success: function (html) {
+            $("#divMaterialSubGroupModelPopupbody").html(html);
+            OpenTelerikWindow('AddMaterialSubGroupModelPopupWindow');
+            HideProcess();
+        }
+    });
+}
+
+function SubmitMaterialSubGroupDetails() {
+    var form = $('#frmMaterialSubGroup');
+    $.validator.unobtrusive.parse(form);
+    var isFormValid = form.valid();
+    if (isFormValid) {
+        ShowProcess();
+        var formData = form.serialize();
+        var callUrl = $("#webUrl").val() + "/MaterialSubGroup/_PartialSave";
+        $.ajax({
+            url: callUrl,
+            type: "POST",
+            data: formData,
+            cache: false,
+            success: function (result) {
+                if (result.Success) {
+                    $("#Mat_id").append("<option value=" + result.Mat_id + ">" + result.Mat_Name + "</option>");
+                    CloseTelerikWindow('AddMaterialSubGroupModelPopupWindow');
+                }
+                else {
+                    alert(result.Message);
+                }
+                HideProcess();
+            }
+        });
+    }
+    else {
+        return false;
+    }
+}

@@ -1,4 +1,6 @@
 ﻿@using Telerik.Web.Mvc.UI;
+@using ProjectManagement.Web;
+@using ProjectManagement.Domain;
 @model ProjectManagement.Domain.MaterialDTO
 @{
     ViewBag.Title = "Save Material Sub Group";
@@ -25,7 +27,7 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">Sub Group Name<span class="spanError">*</span></label>
                         <div class="col-md-5">
-                            @Html.TextBoxFor(model => model.Mat_Name, new { @placeholder = "Supplier name", @class = "form-control" , autofocus="autofocus"})
+                            @Html.TextBoxFor(model => model.Mat_Name, new { @placeholder = "Supplier name", @class = "form-control", autofocus = "autofocus" })
                         </div>
                     </div>
                     <div class="form-group">
@@ -45,6 +47,12 @@
                                 }
                             </select>
                         </div>
+                        @if (CommonFunctions.IsMemberHavePermission("MaterialGroup", ApplicationEnum.PageType.Insert))
+                        {
+                            <div class="col-md-3">
+                                <button id="BtnaddGroup" class="mb-xs mt-xs mr-xs btn btn-warning" type="button" onclick="AddGroup()">...</button>
+                            </div>
+                        }
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Unit<span class="spanError">*</span></label>
@@ -86,3 +94,75 @@
 <script type="text/javascript">
     ActivateSelectedMenu('menuMaterialSubGroup');
 </script>
+
+
+<div id="divWindow">
+    @{  
+        Html.Telerik().Window()
+                    .Name("AddGroupModelPopupWindow")
+                    .Title("Material Group Add")
+                    .Content(@<text>
+        <div id="divAddGroupModelPopupbody">
+        </div>
+        </text>)
+                    .Width(500)
+                    .Draggable(true)
+                    .Effects(fx => fx.Zoom().Opacity().OpenDuration(200).CloseDuration(300))
+                    .Modal(true)
+                    .Visible(false)
+                    .Render();
+    }
+</div>
+<script>
+
+    function AddGroup() {
+        ShowProcess();
+        var callUrl = $("#webUrl").val() + "/MaterialGroup/_PartialSave";
+        var dataToSend = {};
+        $.ajax({
+            url: callUrl,
+            type: "GET",
+            data: dataToSend,
+            cache: false,
+            success: function (html) {
+                $("#divAddGroupModelPopupbody").html(html);
+                OpenTelerikWindow('AddGroupModelPopupWindow');
+                HideProcess();
+            }
+        });
+    }
+
+    function SubmitGroupDetails() {
+        var form = $('#frmMaterialGroup');
+        $.validator.unobtrusive.parse(form);
+        var isFormValid = form.valid();
+        if (isFormValid) {
+            ShowProcess();
+            var formData = form.serialize();
+            var callUrl = $("#webUrl").val() + "/MaterialGroup/_PartialSave";
+            $.ajax({
+                url: callUrl,
+                type: "POST",
+                data: formData,
+                cache: false,
+                success: function (result) {
+                    if (result.Success) {
+                        $("#GroupId").append("<option value=" + result.GroupId + ">" + result.GroupItemName + "</option>");
+                        CloseTelerikWindow('AddGroupModelPopupWindow');
+                    }
+                    else {
+                        alert(result.Message);
+                    }
+                    HideProcess();
+
+                }
+            });
+        }
+        else {
+            return false;
+        }
+    }
+
+</script>
+
+

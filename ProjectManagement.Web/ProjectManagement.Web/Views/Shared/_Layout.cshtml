@@ -6,7 +6,7 @@
 <!--[if !IE]><!-->
 <html lang="en">
 <!--<![endif]-->
-<!-- Mirrored from seantheme.com/color-admin-v1.5/admin/html/index.html by HTTrack Website Copier/3.x [XR&CO'2010], Tue, 03 Feb 2015 10:02:29 GMT -->
+
 <head>
     <meta charset="utf-8" />
     <title>Project Management | Dashboard</title>
@@ -51,6 +51,7 @@
 </head>
 <body>
     @Html.Hidden("webUrl", CommonFunctions.WebUrlPrefix)
+    <div id="page-loader" class="fade in"><span class="spinner"></span></div>
     <div id="page-container" class="page-sidebar-fixed page-header-fixed">
         <div id="header" class="header navbar navbar-default navbar-fixed-top" style="border-bottom: 2px solid rgb(0, 172, 172) !important;">
             <div class="container-fluid">
@@ -88,14 +89,10 @@
             <div data-scrollbar="true" data-height="100%">
                 <ul class="nav">
                     <li class="nav-profile">
-                        <div class="image">
-                            <a href="javascript:;">
-                                <img src="~/Content/img/member.png" alt="" />
-                            </a>
-                        </div>
+                       
                         <div class="info">
-                            @ApplicationMember.LoggedUserName
-                            <small>@ApplicationMember.LoggedMemberType</small>
+                           ProjectName :  @CommonFunctions.SelectedProjectDetails.Title
+                            <small>Sitename : @CommonFunctions.SelectedProjectDetails.SiteName</small>
                         </div>
                     </li>
                 </ul>
@@ -317,4 +314,13 @@
             $("#" + menuId).addClass('show');
         }
     }
+
+    function ShowProcess() {
+        $('#page-loader').removeClass('fade in hide');
+
+    }
+    function HideProcess() {
+        $('#page-loader').addClass('fade in hide');
+    }
+    HideProcess();
 </script>

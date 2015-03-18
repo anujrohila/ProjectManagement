@@ -1,0 +1,129 @@
+﻿@using Telerik.Web.Mvc.UI;
+@model ProjectManagement.Domain.SupplierDTO
+<div class="row">
+    <!-- begin col-6 -->
+    <div class="col-md-12 ">
+        <!-- begin panel -->
+
+        <div class="panel-body">
+            @using (Html.BeginForm("Save", "Supplier", FormMethod.Post, new { id = "frmSupplier", @class = "form-horizontal" }))
+            {
+                @Html.HiddenFor(model => model.Sup_id)
+                @Html.HiddenFor(model => model.childof)
+                <div class="form-group">
+                    <label class="col-md-4 control-label"></label>
+                    <div class="col-md-7">
+                        @Html.ValidationSummary(false)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Name<span class="spanError">*</span></label>
+                    <div class="col-md-7">
+                        @Html.TextBoxFor(model => model.NameiS, new { @placeholder = "Supplier name", @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Address<span class="spanError">*</span></label>
+                    <div class="col-md-7">
+                        @Html.TextBoxFor(model => model.AddiS, new { @placeholder = "Supplier Address", @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label">City<span class="spanError">*</span></label>
+                    <div class="col-md-7">
+                        @Html.TextBoxFor(model => model.City, new { @placeholder = "Supplier City", @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Opening Balance</label>
+                    <div class="col-md-7">
+                        @Html.TextBoxFor(model => model.OpBalance, new { @placeholder = "Opening Balance", @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Credit Days</label>
+                    <div class="col-md-7">
+                        @Html.TextBoxFor(model => model.creditday, new { @placeholder = "Credit Days", @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Credit Limit Amount</label>
+                    <div class="col-md-7">
+                        @Html.TextBoxFor(model => model.creditammount, new { @placeholder = "Credit Limit Amount", @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Email Address</label>
+                    <div class="col-md-7">
+                        @Html.TextBoxFor(model => model.Adding, new { @placeholder = "Email Address", @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Account Group</label>
+                    <div class="col-md-7">
+                        <select id="GroupId" name="GroupId" class="form-control" onchange="ChangeGroupID();">
+                            @foreach (var groupType in Model.SupplierGroupList)
+                            {
+                                if (groupType.GrpIdSupplier == Model.GroupId)
+                                {
+                                <option selected value="@groupType.GrpIdSupplier">@groupType.GroupSupplierName</option>
+                                }
+                                else
+                                {
+                                <option value="@groupType.GrpIdSupplier">@groupType.GroupSupplierName</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group" id="divshare">
+                    <label class="col-md-4 control-label">Share</label>
+                    <div class="col-md-7">
+                        @Html.TextBoxFor(model => model.share, new { @placeholder = "Share", @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group" id="divinterest">
+                    <label class="col-md-4 control-label">Interest</label>
+                    <div class="col-md-7">
+                        @Html.TextBoxFor(model => model.IntRates, new { @placeholder = "Interest", @class = "form-control" })
+                        <label style="color: red">* Interest In Per Year</label>
+                    </div>
+                    <div class="col-md-2">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label"></label>
+                    <div class="col-md-7">
+                        <button class="btn btn-sm btn-success" type="button" onclick="SubmitSuplierDetails()">Submit</button>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <!-- end panel -->
+    </div>
+</div>
+  <script src="~/Scripts/jquery.validate.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    function ChangeGroupID() {
+        var id = $('#GroupId').val();
+        if (id == 29 || id == 24 || id == 17) {
+            $('#divinterest').show();
+            $('#divshare').val('');
+            $('#divshare').hide();
+        }
+        else if (id == 40) {
+            $('#divinterest').hide();
+            $('#divshare').show();
+            $('#divinterest').val('');
+        }
+        else {
+            $('#divinterest').val('');
+            $('#divshare').val('');
+            $('#divinterest').hide();
+            $('#divshare').hide();
+        }
+    }
+    ChangeGroupID();
+</script>
