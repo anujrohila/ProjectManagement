@@ -89,9 +89,9 @@
             <div data-scrollbar="true" data-height="100%">
                 <ul class="nav">
                     <li class="nav-profile">
-                       
+
                         <div class="info">
-                          @ApplicationMember.SelectedProjectDetails.Title
+                            @ApplicationMember.SelectedProjectDetails.Title
                             <small>Sitename : @ApplicationMember.SelectedProjectDetails.SiteName</small>
                         </div>
                     </li>
@@ -252,14 +252,32 @@
                             <span>Trancation</span>
                         </a>
                         <ul class="sub-menu">
-                            <li>
-                                <a href="">Cash Book</a>
-                                <a href="">Bank Book</a>
-                                <a href="">Contra Book</a>
-                                <a href="">Journal</a>
-                            </li>
+                            @if (CommonFunctions.IsMemberHavePermission("TransactionEntry", ApplicationEnum.PageType.ListAll) || ApplicationMember.LoggedMemberType == "1")
+                            {
+                                <li>
+                                    <a href="@Url.Action("ListAll", "TransactionEntry", new { type = "Cash" })">Cask Book</a>
+                                </li>
+                            }
+                            @if (CommonFunctions.IsMemberHavePermission("TransactionEntry", ApplicationEnum.PageType.ListAll) || ApplicationMember.LoggedMemberType == "1")
+                            {
+                                <li>
+                                    <a href="@Url.Action("ListAll", "TransactionEntry", new { type = "Bank" })">Bank Book</a>
+                                </li>
+                            }
+                            @if (CommonFunctions.IsMemberHavePermission("TransactionEntry", ApplicationEnum.PageType.ListAll) || ApplicationMember.LoggedMemberType == "1")
+                            {
+                                <li>
+                                    <a href="@Url.Action("ListAll", "TransactionEntry", new { type = "Contra" })">Contra Book</a>
+                                </li>
+                            }
+                            @if (CommonFunctions.IsMemberHavePermission("TransactionEntry", ApplicationEnum.PageType.ListAll) || ApplicationMember.LoggedMemberType == "1")
+                            {
+                                <li>
+                                    <a href="@Url.Action("ListAll", "TransactionEntry", new { type = "Journal" })">Journal Book</a>
+                                </li>
+                            }
                         </ul>
-                    </li>
+                        </li>
                     <li id="menuReport" class="has-sub">
                         <a href="javascript:;">
                             <b class="caret pull-right"></b>
@@ -275,7 +293,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li><a href="javascript:;" class="sidebar-minify-btn" data-click="sidebar-minify"><i class="fa fa-angle-double-left"></i></a></li>
+                <li><a href="javascript:;" class="sidebar-minify-btn" data-click="sidebar-minify"><i class="fa fa-angle-double-left"></i></a></li>
                 </ul>
             </div>
         </div>

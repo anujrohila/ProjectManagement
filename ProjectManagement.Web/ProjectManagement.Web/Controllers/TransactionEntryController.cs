@@ -57,6 +57,7 @@ namespace ProjectManagement.Web.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    matAccountTwoDTO.Mode_Pay_Rec = matAccountTwoDTO.Mode_Pay_Rec.ToUpper();
                     matAccountTwoDTO.Userss = ApplicationMember.LoggedUserName;
                     if (string.IsNullOrWhiteSpace(matAccountTwoDTO.Ent_No))
                     {
@@ -83,7 +84,7 @@ namespace ProjectManagement.Web.Controllers
         private Mat_AccountTwoDTO FillSupplierDTO(Mat_AccountTwoDTO matAccountTwoDTO)
         {
 
-            switch (matAccountTwoDTO.Mode_Pay_Rec)
+            switch (matAccountTwoDTO.Mode_Pay_Rec.ToUpper())
             {
                 case "CASH":
                     matAccountTwoDTO.FromSupplierList = SupplierRepository.GetAllSupplier().Where(s => s.GroupId == 6 || s.GroupId == 45).ToList();
