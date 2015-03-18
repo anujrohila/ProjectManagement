@@ -99,7 +99,7 @@ namespace ProjectManagement.Web.Controllers
                     int memberId = ApplicationMember.LoggedUserId;
                     var selectedProject = MasterRepository.GetProject(tblProjectSelection.ProjectId);
 
-                    string connectionString = string.Format(@"metadata=res://*/ORM.ProjectSQLDatabase.csdl|res://*/ORM.ProjectSQLDatabase.ssdl|res://*/ORM.ProjectSQLDatabase.msl;provider=System.Data.SqlClient;provider connection string=""data source={0};initial catalog={1};persist security info=True;user id=sa;password=123;MultipleActiveResultSets=True;App=EntityFramework""", CommonFunctions.DatabaseServerPath, selectedProject.Catalog);
+                    string connectionString = string.Format(@"metadata=res://*/ORM.ProjectSQLDatabase.csdl|res://*/ORM.ProjectSQLDatabase.ssdl|res://*/ORM.ProjectSQLDatabase.msl;provider=System.Data.SqlClient;provider connection string=""data source={0};initial catalog={1};persist security info=True;user id={2};password={3};MultipleActiveResultSets=True;App=EntityFramework""", CommonFunctions.DatabaseServerPath, selectedProject.Catalog,CommonFunctions.DatabaseUserName,CommonFunctions.DatabasePassword);
                     var configuration = WebConfigurationManager.OpenWebConfiguration("~");
                     var section = (ConnectionStringsSection)configuration.GetSection("connectionStrings");
                     section.ConnectionStrings["ProjectManagementEntities"].ConnectionString = connectionString;

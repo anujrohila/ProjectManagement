@@ -15,7 +15,7 @@
                 <h4 class="panel-title">Save Material Entry</h4>
             </div>
             <div class="panel-body">
-                @using (Html.BeginForm("Save", "MaterialEntry", FormMethod.Post, new { id = "frmMaterialEntry", @class = "form-horizontal" }))
+                @using (Html.BeginForm("Save", "MaterialEntry", FormMethod.Post, new { id = "frmMaterialEntry", @class = "form-horizontal", autofocus = "autofocus" }))
                 {
                     @Html.HiddenFor(model => model.Reg_id)
                     <div class="form-group">

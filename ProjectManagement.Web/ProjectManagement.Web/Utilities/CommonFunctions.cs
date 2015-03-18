@@ -37,6 +37,29 @@ namespace ProjectManagement.Web
             }
         }
 
+
+        /// <summary>
+        /// Get Database UserName
+        /// </summary>
+        public static string DatabaseUserName
+        {
+            get
+            {
+                return Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["DatabaseUserName"]);
+            }
+        }
+
+        /// <summary>
+        ///Get  Database Password
+        /// </summary>
+        public static string DatabasePassword
+        {
+            get
+            {
+                return Convert.ToString(System.Configuration.ConfigurationManager.AppSettings["DatabasePassword"]);
+            }
+        }
+
         #endregion
 
         #region [Methods]
