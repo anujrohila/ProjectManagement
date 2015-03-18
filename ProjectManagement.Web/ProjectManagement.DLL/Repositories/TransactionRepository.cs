@@ -29,7 +29,7 @@ namespace ProjectManagement.DLL
         /// Get All Transaction Entry
         /// </summary>
         /// <returns></returns>
-        public static List<Mat_AccountTwoDTO> GetAllTransactionEntry(ApplicationEnum.TransactionType transactionType)
+        public static List<Mat_AccountTwoDTO> GetAllTransactionEntry(string transactionType)
         {
             using (var projectManagementEntities = new ProjectManagementEntities())
             {
