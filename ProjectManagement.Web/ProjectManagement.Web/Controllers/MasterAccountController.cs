@@ -55,6 +55,7 @@ namespace ProjectManagement.Web.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    matAccountTwoDTO.Userss = ApplicationMember.LoggedUserName;
                     if (string.IsNullOrWhiteSpace(matAccountTwoDTO.Ent_No))
                     {
                         matAccountTwoDTO.Ent_No = CommonFunctions.GetNewGUID();

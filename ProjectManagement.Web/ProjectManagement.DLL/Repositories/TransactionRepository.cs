@@ -38,7 +38,7 @@ namespace ProjectManagement.DLL
                                 on matAccountTwo.From_Account equals suppliersFromAccount.Sup_id
                         join suppliersToAccount in projectManagementEntities.Suppliers
                                 on matAccountTwo.To_Account equals suppliersToAccount.Sup_id
-                        where string.Compare(matAccountTwo.Mode_Pay_Rec, transactionType.ToString(), StringComparison.CurrentCultureIgnoreCase) == 0
+                        where string.Compare(matAccountTwo.Mode_Pay_Rec, transactionType, StringComparison.CurrentCultureIgnoreCase) == 0
                         select new Mat_AccountTwoDTO
                         {
                             Ent_No = matAccountTwo.Ent_No,
@@ -112,6 +112,20 @@ namespace ProjectManagement.DLL
                             FromSupplierName = suppliersFromAccount.NameiS,
                             ToSupplierName = suppliersToAccount.NameiS
                         }).FirstOrDefault();
+            }
+        }
+
+
+        /// <summary>
+        /// Get Transaction Entry
+        /// </summary>
+        /// <returns></returns>
+        public static int GetVRNO()
+        {
+            using (var projectManagementEntities = new ProjectManagementEntities())
+            {
+                int? vrNo = projectManagementEntities.Mat_AccountTwo.Max(e => (int?)e.VrNo) + 1;
+                return vrNo ?? 0;
             }
         }
 

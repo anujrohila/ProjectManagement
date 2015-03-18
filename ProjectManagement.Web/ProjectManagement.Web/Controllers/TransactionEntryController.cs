@@ -23,9 +23,9 @@ namespace ProjectManagement.Web.Controllers
         /// </summary>
         /// <returns></returns>
         [GridAction]
-        public ActionResult ListTransactionTypeAjax(string transactionType)
+        public ActionResult ListTransactionEntryAjax(string type)
         {
-            var supplierListGrid = TransactionRepository.GetAllTransactionEntry(transactionType);
+            var supplierListGrid = TransactionRepository.GetAllTransactionEntry(type);
             return View(new GridModel(supplierListGrid));
         }
 
@@ -34,9 +34,10 @@ namespace ProjectManagement.Web.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public ActionResult Save(string id)
+        public ActionResult Save(string id, string type)
         {
             var matAccountTwoDTO = new Mat_AccountTwoDTO();
+            matAccountTwoDTO.Mode_Pay_Rec = type.ToUpper();
             if (!string.IsNullOrWhiteSpace(id))
             {
                 matAccountTwoDTO = TransactionRepository.GetTransactionEntry(id);
@@ -54,20 +55,20 @@ namespace ProjectManagement.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                int total = 0;
-
                 if (ModelState.IsValid)
                 {
+                    matAccountTwoDTO.Userss = ApplicationMember.LoggedUserName;
                     if (string.IsNullOrWhiteSpace(matAccountTwoDTO.Ent_No))
                     {
                         matAccountTwoDTO.Ent_No = CommonFunctions.GetNewGUID();
+                        matAccountTwoDTO.VrNo = TransactionRepository.GetVRNO();
                         TransactionRepository.InsertTransactionEntry(matAccountTwoDTO);
                     }
                     else
                     {
                         TransactionRepository.UpdateTransactionEntry(matAccountTwoDTO);
                     }
-                    return RedirectToAction("ListAll");
+                    return RedirectToAction("ListAll", new { type = matAccountTwoDTO.Mode_Pay_Rec });
                 }
             }
             matAccountTwoDTO = FillSupplierDTO(matAccountTwoDTO);
@@ -75,30 +76,65 @@ namespace ProjectManagement.Web.Controllers
         }
 
         /// <summary>
-        /// Fill Supplier DTO
+        /// Fill Transaction Type
         /// </summary>
         /// <param name="matAccountTwoDTO"></param>
         /// <returns></returns>
         private Mat_AccountTwoDTO FillSupplierDTO(Mat_AccountTwoDTO matAccountTwoDTO)
         {
-            matAccountTwoDTO.FromSupplierList = SupplierRepository.GetAllSupplier();
-            matAccountTwoDTO.FromSupplierList.Insert(0, new SupplierDTO { Sup_id = "0", NameiS = "Select" });
-            matAccountTwoDTO.ToSupplierList = SupplierRepository.GetAllSupplier();
-            matAccountTwoDTO.ToSupplierList.Insert(0, new SupplierDTO { Sup_id = "0", NameiS = "Select" });
+
+            switch (matAccountTwoDTO.Mode_Pay_Rec)
+            {
+                case "CASH":
+                    matAccountTwoDTO.FromSupplierList = SupplierRepository.GetAllSupplier().Where(s => s.GroupId == 6 || s.GroupId == 45).ToList();
+                    matAccountTwoDTO.ToSupplierList = SupplierRepository.GetAllSupplier().Where(s => s.GroupId != 2 &&
+                                                                                                       s.GroupId != 6 &&
+                                                                                                       s.GroupId != 21 &&
+                                                                                                       s.GroupId != 45 &&
+                                                                                                       s.GroupId != 23).OrderBy(o => o.NameiS).ToList();
+                    break;
+                case "BANK":
+                    matAccountTwoDTO.FromSupplierList = SupplierRepository.GetAllSupplier().Where(s => s.GroupId == 2).ToList();
+                    matAccountTwoDTO.ToSupplierList = SupplierRepository.GetAllSupplier().Where(s => s.GroupId != 2 &&
+                                                                                                       s.GroupId != 6 &&
+                                                                                                       s.GroupId != 21 &&
+                                                                                                       s.GroupId != 45 &&
+                                                                                                       s.GroupId != 23).OrderBy(o => o.NameiS).ToList();
+                    break;
+                case "CONTRA":
+                    matAccountTwoDTO.FromSupplierList = SupplierRepository.GetAllSupplier().Where(s => s.GroupId == 2 || s.GroupId == 6 || s.GroupId == 45).ToList();
+                    matAccountTwoDTO.ToSupplierList = SupplierRepository.GetAllSupplier().Where(s => s.GroupId == 2 || s.GroupId == 6 || s.GroupId == 45).ToList();
+                    break;
+                case "JOURNAL":
+                    matAccountTwoDTO.FromSupplierList = SupplierRepository.GetAllSupplier().Where(s => s.GroupId != 2 &&
+                                                                                                       s.GroupId != 6 &&
+                                                                                                       s.GroupId != 21 &&
+                                                                                                       s.GroupId != 45 &&
+                                                                                                       s.GroupId != 23).OrderBy(o => o.NameiS).ToList();
+                    matAccountTwoDTO.ToSupplierList = SupplierRepository.GetAllSupplier().Where(s => s.GroupId != 2 &&
+                                                                                                       s.GroupId != 6 &&
+                                                                                                       s.GroupId != 21 &&
+                                                                                                       s.GroupId != 45 &&
+                                                                                                       s.GroupId != 23).OrderBy(o => o.NameiS).ToList();
+                    break;
+            }
+
+            matAccountTwoDTO.FromSupplierList.Insert(0, new SupplierDTO { Sup_id = "", NameiS = "Select" });
+            matAccountTwoDTO.ToSupplierList.Insert(0, new SupplierDTO { Sup_id = "", NameiS = "Select" });
             return matAccountTwoDTO;
         }
 
         /// <summary>
-        /// Delete Supplier
+        /// Delete Transaction Type
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        public JsonResult Delete(string supplierId)
+        public JsonResult Delete(string entryId)
         {
-            var result = SupplierRepository.DeleteSupplier(supplierId);
+            var result = TransactionRepository.DeleteTransactionEntry(entryId);
             if (result)
             {
-                return Json(new { Success = true, Message = "Supplier deleted successfully." });
+                return Json(new { Success = true, Message = "Transaction type deleted successfully." });
             }
             return Json(new { Success = false, Message = "Error in transaction please try again later." });
         }

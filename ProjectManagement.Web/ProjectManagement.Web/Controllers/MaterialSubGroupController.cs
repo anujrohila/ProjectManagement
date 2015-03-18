@@ -72,6 +72,7 @@ namespace ProjectManagement.Web.Controllers
                 {
                     materialDTO.userss = ApplicationMember.LoggedUserName;
                     materialDTO.GuIdMaterial = string.Empty;
+                    materialDTO.userss = ApplicationMember.LoggedUserName;
                     if (string.IsNullOrWhiteSpace(materialDTO.Mat_id))
                     {
                         materialDTO.Mat_id = CommonFunctions.GetNewGUID();

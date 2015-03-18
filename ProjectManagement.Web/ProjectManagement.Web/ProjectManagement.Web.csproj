@@ -837,6 +837,7 @@
     <Content Include="Content\plugins\switchery\switchery.min.css" />
     <Content Include="Content\plugins\switchery\switchery.min.js" />
     <Content Include="Content\Script\CommonFunction.js" />
+    <Content Include="Content\Script\TransactionEntry.js" />
     <Content Include="Content\Script\Project.js" />
     <Content Include="Content\Script\Member.js" />
     <Content Include="Content\Script\MasterAccount.js" />
@@ -1038,6 +1039,8 @@
     <Content Include="Views\Supplier\_PartialSave.cshtml" />
     <Content Include="Views\MaterialSubGroup\_PartialSave.cshtml" />
     <Content Include="Views\Project\_PartialSave.cshtml" />
+    <Content Include="Views\TransactionEntry\ListAll.cshtml" />
+    <Content Include="Views\TransactionEntry\Save.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Documents\" />

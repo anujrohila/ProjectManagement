@@ -8,6 +8,7 @@
 //-------------------------------------------------------------------------------------------------------
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 using System.Text;
 
@@ -23,24 +24,29 @@ namespace ProjectManagement.Domain
         public Int32 VrNo { get; set; }
 
         [DataMember()]
+        [Required(ErrorMessage = "Please select payment mode")]
         public String Mode_Pay_Rec { get; set; }
 
         [DataMember()]
         public String Rec_Pay { get; set; }
 
         [DataMember()]
+        [Required(ErrorMessage = "Please enter amount")]
         public Nullable<Double> Ammount { get; set; }
 
         [DataMember()]
+        [Required(ErrorMessage = "Please select date")]
         public Nullable<DateTime> Ddate { get; set; }
 
         [DataMember()]
         public String Disp { get; set; }
 
         [DataMember()]
+        [Required(ErrorMessage = "Please select debited account")]
         public String From_Account { get; set; }
 
         [DataMember()]
+        [Required(ErrorMessage = "Please select credited account")]
         public String To_Account { get; set; }
 
         [DataMember()]

@@ -75,6 +75,8 @@ namespace ProjectManagement.Web.Controllers
                     qtyMaterialDTO.Bill_Ent_No = string.Empty;
                     qtyMaterialDTO.Disp = string.Empty;
                     qtyMaterialDTO.GuidQty = string.Empty;
+                    qtyMaterialDTO.userss = ApplicationMember.LoggedUserName;
+
                     if (string.IsNullOrWhiteSpace(qtyMaterialDTO.Reg_id))
                     {
                         qtyMaterialDTO.Reg_id = CommonFunctions.GetNewGUID();

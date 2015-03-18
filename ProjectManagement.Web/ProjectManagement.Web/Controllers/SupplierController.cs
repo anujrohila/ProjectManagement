@@ -73,6 +73,7 @@ namespace ProjectManagement.Web.Controllers
                 }
                 if (ModelState.IsValid)
                 {
+                    supplierDTO.userss = ApplicationMember.LoggedUserName;
                     if (string.IsNullOrWhiteSpace(supplierDTO.Sup_id))
                     {
                         supplierDTO.Sup_id = CommonFunctions.GetNewGUID();
@@ -130,6 +131,7 @@ namespace ProjectManagement.Web.Controllers
                 }
                 if (ModelState.IsValid)
                 {
+                    supplierDTO.userss = ApplicationMember.LoggedUserName;
                     if (string.IsNullOrWhiteSpace(supplierDTO.Sup_id))
                     {
                         supplierDTO.Sup_id = CommonFunctions.GetNewGUID();
