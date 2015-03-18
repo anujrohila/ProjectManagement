@@ -24,6 +24,14 @@ namespace ProjectManagement.Domain
             Edit,
             Delete
         }
+
+        public enum TransactionType
+        {
+            CASH,
+            BANK,
+            CONTRA,
+            JOURNAL
+        }
     }
 
 }
