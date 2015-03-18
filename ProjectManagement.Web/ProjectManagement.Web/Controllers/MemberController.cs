@@ -72,23 +72,25 @@ namespace ProjectManagement.Web.Controllers
             if (ModelState.IsValid)
             {
                 var isDuplicateMember = MemberRepository.IsDuplicateMember(tblMemberDTO.EmailAddress, tblMemberDTO.MemberId);
+                tblMemberDTO.MemberPermissionList = GetMemberPermissionList(tblMemberDTO.ProjectSelectionString, tblMemberDTO.EntityPermissionSelectionString);
+                tblMemberDTO.SelectedProject = tblMemberDTO.MemberPermissionList.Select(pro => pro.ProjectId).Distinct().ToList();
+
                 if (isDuplicateMember)
                 {
                     ModelState.AddModelError("EmailAddress", "Email address already exists.");
                 }
                 if (ModelState.IsValid)
                 {
-                    if (tblMemberDTO.MemberId == 0)
-                    {
-                        tblMemberDTO.IsActive = true;
-                    }
-                    tblMemberDTO.MemberTypeId = 1;
+
+                    tblMemberDTO.IsActive = true;
+
+                    tblMemberDTO.MemberTypeId = 2;
                     tblMemberDTO.Password = CommonFunctions.HashPassword(tblMemberDTO.Password);
-                    tblMemberDTO.MemberPermissionList = GetMemberPermissionList(tblMemberDTO.ProjectSelectionString, tblMemberDTO.EntityPermissionSelectionString);
-                    var memberId = MemberRepository.SaveMember(tblMemberDTO);
+                     var memberId = MemberRepository.SaveMember(tblMemberDTO);
                     return RedirectToAction("ListAll");
                 }
             }
+            tblMemberDTO = FillMemberComboBox(tblMemberDTO);
             return View(tblMemberDTO);
         }
 

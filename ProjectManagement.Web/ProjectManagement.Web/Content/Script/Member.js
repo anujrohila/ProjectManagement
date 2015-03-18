@@ -45,6 +45,7 @@ function OnMemberFormSubmit() {
     $("#ProjectSelectionString").val(strSelectedProject);
     if (strSelectedProject == '') {
         alert("Please select at least one project.");
+        HideProcess();
         return false;
     }
 

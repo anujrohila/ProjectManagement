@@ -25,6 +25,8 @@ namespace ProjectManagement.Domain
         [Required(ErrorMessage = "Please enter site name.")]
         public string SiteName { get; set; }
 
+        public bool IsChecked { get; set; }
+
         [Required(ErrorMessage = "Please enter catlog.")]
         public string Catalog { get; set; }
 
