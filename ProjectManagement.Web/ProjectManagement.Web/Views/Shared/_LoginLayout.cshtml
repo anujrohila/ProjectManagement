@@ -1,4 +1,7 @@
-﻿@{
+﻿@using Telerik.Web.Mvc.UI;
+@using ProjectManagement.Web;
+@using ProjectManagement.Domain;    
+@{
     ViewBag.Title = "Login";
     Layout = null;
 }
@@ -19,10 +22,24 @@
     <link href="~/Content/css/style-responsive.min.css" rel="stylesheet" />
     <link href="~/Content/css/theme/default.css" rel="stylesheet" id="theme" />
     <link href="~/Content/Style/CommonStyle.css" rel="stylesheet" />
-    <script src="~/Content/plugins/jquery/jquery-1.9.1.min.js"></script>
+    @(Html.Telerik().StyleSheetRegistrar()
+                              .DefaultGroup(group => group
+                                  .Add("telerik.common.css")
+                                  .Add("telerik.office2010silver.min.css")
+                                  .Add("telerik.rtl.css")
+                                  .Compress(true).CacheDurationInDays(10000))
+    )
+    @*<script src="~/Content/plugins/jquery/jquery-1.9.1.min.js"></script>*@
+    <script src="~/Scripts/jquery-1.8.2.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js" type="text/javascript"></script>
+    @Html.Telerik().ScriptRegistrar().jQuery(false)
+    <script src="~/Content/Script/CommonFunction.js"></script>
+    <link href="~/Content/Style/CommonStyle.css" rel="stylesheet" />
 </head>
 <body>
     <div id="page-loader" class="fade in"><span class="spinner"></span></div>
+    @Html.Hidden("webUrl", CommonFunctions.WebUrlPrefix)
     <div class="login-cover">
         <div class="login-cover-image">
             <img src="~/Content/img/login-bg/bg-1.jpg" data-id="login-cover-image" alt="" />
@@ -47,6 +64,14 @@
             App.init();
             LoginV2.init();
         });
+        function ShowProcess() {
+            $('#page-loader').removeClass('fade in hide');
+
+        }
+        function HideProcess() {
+            $('#page-loader').addClass('fade in hide');
+        }
+        HideProcess();
     </script>
 </body>
 </html>

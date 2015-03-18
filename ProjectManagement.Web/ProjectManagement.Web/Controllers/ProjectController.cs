@@ -37,6 +37,43 @@ namespace ProjectManagement.Web.Controllers
             return View(new GridModel(getAllProject));
         }
 
+
+        /// <summary>
+        /// Save Partial Project
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public PartialViewResult _PartialSave()
+        {
+            return PartialView(new tblProjectDTO());
+        }
+
+        /// <summary>
+        /// Save Partial Project
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public JsonResult _PartialSave(tblProjectDTO tblProjectDTO)
+        {
+            if (ModelState.IsValid)
+            {
+                var isDuplicateMember = ProjectRepository.IsDuplicateProject(tblProjectDTO.Title, tblProjectDTO.ProjectId);
+                if (isDuplicateMember)
+                {
+                   // ModelState.AddModelError("Title", "Project already exists in system.");
+                    return Json(new { Success = false, Message = "Project already exists in system." });
+                }
+                if (ModelState.IsValid)
+                {
+                     tblProjectDTO.StratDateTime = DateTime.Now;
+                     tblProjectDTO.IsActive = true;
+                    var projectId = ProjectRepository.SaveProject(tblProjectDTO);
+                    return Json(new { Success = true, ProjectId = projectId, Title = tblProjectDTO.Title });
+                }
+            }
+            return Json(new { Success = false, Message = "Fill Up Required Field" });
+        }
+
         /// <summary>
         /// Save Project
         /// </summary>

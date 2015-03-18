@@ -1,4 +1,7 @@
-﻿@model ProjectManagement.Domain.tblProjectSelectionDTO
+﻿@using Telerik.Web.Mvc.UI;
+@model ProjectManagement.Domain.tblProjectSelectionDTO
+@using ProjectManagement.Domain;
+@using ProjectManagement.DLL;
 @{
     ViewBag.Title = "Project Selection";
     Layout = "~/Views/Shared/_LoginLayout.cshtml";
@@ -7,8 +10,16 @@
     @using (Html.BeginForm("ProjectSelection", "Account", FormMethod.Post))
     {
         <div class="form-group m-b-20">
-            Project Selection
+            <div class="col-md-6"> Project Selection </div>
+            <div class="col-md-6">
+                @if (ApplicationMember.LoggedMemberType == "1")
+                {
+                    <a onclick="CreateProject();">Add New Project</a>
+                }
+            </div>
         </div>
+        <br />
+        <br />
         <div class="form-group m-b-20">
             <select id="ProjectId" name="ProjectId" class="form-control" multiple="" style="height: 120px;">
                 @foreach (var project in Model.ProjectList)
@@ -22,3 +33,73 @@
         </div>
     }
 </div>
+<div id="divWindow">
+    @{
+        Html.Telerik().Window()
+                    .Name("AddProjectModelPopupWindow")
+                    .Title("Project Add")
+                    .Content(@<text>
+                        <div id="divAddProjectModelPopupbody">
+                        </div>
+                    </text>)
+                    .Width(500)
+                    .Draggable(true)
+                    .Effects(fx => fx.Zoom().Opacity().OpenDuration(200).CloseDuration(300))
+                    .Modal(true)
+                    .Visible(false)
+                    .Render();
+    }
+</div>
+
+<script>
+
+    function CreateProject() {
+        ShowProcess();
+
+        var callUrl = $("#webUrl").val() + "/Project/_PartialSave";
+
+        var dataToSend = {};
+        $.ajax({
+            url: callUrl,
+            type: "GET",
+            data: dataToSend,
+            cache: false,
+            success: function (html) {
+                $("#divAddProjectModelPopupbody").html(html);
+                OpenTelerikWindow('AddProjectModelPopupWindow');
+                HideProcess();
+            }
+        });
+    }
+
+    function SubmitProjectDetails() {
+        var form = $('#frmProject');
+        $.validator.unobtrusive.parse(form);
+        var isFormValid = form.valid();
+        if (isFormValid) {
+            ShowProcess();
+            var formData = form.serialize();
+            var callUrl = $("#webUrl").val() + "/Project/_PartialSave";
+            $.ajax({
+                url: callUrl,
+                type: "POST",
+                data: formData,
+                cache: false,
+                success: function (result) {
+                    if (result.Success) {
+                        $("#ProjectId").append("<option value=" + result.ProjectId + ">" + result.Title + "</option>");
+                        CloseTelerikWindow('AddProjectModelPopupWindow');
+                    }
+                    else {
+                        alert(result.Message);
+                    }
+                    HideProcess();
+                }
+            });
+        }
+        else {
+            return false;
+        }
+    }
+
+</script>

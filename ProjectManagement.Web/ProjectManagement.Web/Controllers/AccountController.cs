@@ -56,6 +56,7 @@ namespace ProjectManagement.Web.Controllers
                 {
                     System.Web.HttpContext.Current.Session["LoggedUserId"] = user.MemberId.ToString();
                     System.Web.HttpContext.Current.Session["UserPermission"] = user.MemberPermissionList;
+                    System.Web.HttpContext.Current.Session["LoggedMemberType"] = user.MemberTypeId;
                     return RedirectToAction("ProjectSelection", "Account");
                 }
             }
@@ -88,9 +89,18 @@ namespace ProjectManagement.Web.Controllers
             var tblProjectSelection = new tblProjectSelectionDTO();
             if (ApplicationMember.LoggedUserId != 0)
             {
-                var projectIds = ApplicationMember.LoggedUserPermission.Select(p => p.ProjectId).Distinct();
-                tblProjectSelection.ProjectList = MasterRepository.GetAllProject().Where(p => projectIds.Contains(p.ProjectId)).ToList();
-                return View(tblProjectSelection);
+                  if (ApplicationMember.LoggedMemberType == "1")
+                  {
+                      tblProjectSelection.ProjectList = MasterRepository.GetAllProject();
+                      return View(tblProjectSelection);
+                  }
+                  else
+                  {
+                      var projectIds = ApplicationMember.LoggedUserPermission.Select(p => p.ProjectId).Distinct();
+                      tblProjectSelection.ProjectList = MasterRepository.GetAllProject().Where(p => projectIds.Contains(p.ProjectId)).ToList();
+                      return View(tblProjectSelection);
+                  }
+               
             }
             else
             {
@@ -134,7 +144,7 @@ namespace ProjectManagement.Web.Controllers
             System.Web.HttpContext.Current.Session["LoggedUserId"] = memberDetails.MemberId.ToString();
             System.Web.HttpContext.Current.Session["UserPermission"] = memberDetails.MemberPermissionList;
             System.Web.HttpContext.Current.Session["LoggedUserName"] = string.Concat(memberDetails.FirstName, " ", memberDetails.LastName);
-            System.Web.HttpContext.Current.Session["LoggedMemberType"] = memberDetails.MemberTypeString;
+            System.Web.HttpContext.Current.Session["LoggedMemberType"] = memberDetails.MemberTypeId;
             return RedirectToAction("Dashboard", "Profile");
         }
     }

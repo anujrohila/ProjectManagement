@@ -1036,6 +1036,7 @@
     <Content Include="Views\MaterialGroup\_PartialSave.cshtml" />
     <Content Include="Views\Supplier\_PartialSave.cshtml" />
     <Content Include="Views\MaterialSubGroup\_PartialSave.cshtml" />
+    <Content Include="Views\Project\_PartialSave.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Documents\" />
