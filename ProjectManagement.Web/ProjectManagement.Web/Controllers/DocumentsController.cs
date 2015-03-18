@@ -16,6 +16,7 @@ using System.Drawing.Drawing2D;
 
 namespace ProjectManagement.Web.Controllers
 {
+    [CustomActionAutentication]
     public class DocumentsController : Controller
     {
         //
