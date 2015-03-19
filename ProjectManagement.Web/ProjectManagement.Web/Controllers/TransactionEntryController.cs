@@ -16,6 +16,8 @@ namespace ProjectManagement.Web.Controllers
         public ActionResult ListAll(string type)
         {
             ViewBag.TransactionType = type;
+            ViewBag.StartDate = DateTime.Now.AddDays(-10).ToString("dd-MM-yyyy");
+            ViewBag.EndDate = DateTime.Now.ToString("dd-MM-yyyy");
             return View();
         }
 
@@ -24,9 +26,11 @@ namespace ProjectManagement.Web.Controllers
         /// </summary>
         /// <returns></returns>
         [GridAction]
-        public ActionResult ListTransactionEntryAjax(string type)
+        public ActionResult ListTransactionEntryAjax(string type, string startDate, string endDate)
         {
-            var supplierListGrid = TransactionRepository.GetAllTransactionEntry(type);
+            var sDate = DateTime.ParseExact(startDate, "dd-MM-yyyy", CultureInfo.InvariantCulture);
+            var eDate = DateTime.ParseExact(endDate, "dd-MM-yyyy", CultureInfo.InvariantCulture);
+            var supplierListGrid = TransactionRepository.GetAllTransactionEntry(type, sDate, eDate);
             return View(new GridModel(supplierListGrid));
         }
 

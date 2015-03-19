@@ -29,7 +29,7 @@ namespace ProjectManagement.DLL
         /// Get All Transaction Entry
         /// </summary>
         /// <returns></returns>
-        public static List<Mat_AccountTwoDTO> GetAllTransactionEntry(string transactionType)
+        public static List<Mat_AccountTwoDTO> GetAllTransactionEntry(string transactionType, DateTime startDate, DateTime endDate)
         {
             using (var projectManagementEntities = new ProjectManagementEntities())
             {
@@ -39,6 +39,7 @@ namespace ProjectManagement.DLL
                         join suppliersToAccount in projectManagementEntities.Suppliers
                                 on matAccountTwo.To_Account equals suppliersToAccount.Sup_id
                         where string.Compare(matAccountTwo.Mode_Pay_Rec, transactionType, StringComparison.CurrentCultureIgnoreCase) == 0
+                         && matAccountTwo.Ddate >= startDate && matAccountTwo.Ddate <= endDate
                         select new Mat_AccountTwoDTO
                         {
                             Ent_No = matAccountTwo.Ent_No,
