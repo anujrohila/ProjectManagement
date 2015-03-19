@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Telerik.Web.Mvc;
 using ProjectManagement.DLL;
 using ProjectManagement.Domain;
+using System.Globalization;
 
 namespace ProjectManagement.Web.Controllers
 {
@@ -41,6 +42,7 @@ namespace ProjectManagement.Web.Controllers
             if (!string.IsNullOrWhiteSpace(id))
             {
                 matAccountTwoDTO = TransactionRepository.GetTransactionEntry(id);
+                matAccountTwoDTO.DdateString = matAccountTwoDTO.Ddate.Value.ToString("dd-MM-yyyy");
             }
             matAccountTwoDTO = FillSupplierDTO(matAccountTwoDTO);
             return View(matAccountTwoDTO);
@@ -57,10 +59,11 @@ namespace ProjectManagement.Web.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    matAccountTwoDTO.Mode_Pay_Rec = matAccountTwoDTO.Mode_Pay_Rec.ToUpper();
-                    matAccountTwoDTO.Userss = ApplicationMember.LoggedUserName;
+                    matAccountTwoDTO.Ddate = DateTime.ParseExact(matAccountTwoDTO.DdateString, "dd-MM-yyyy", CultureInfo.InvariantCulture);
+                    matAccountTwoDTO = SetAllTransactionEntry(matAccountTwoDTO);
                     if (string.IsNullOrWhiteSpace(matAccountTwoDTO.Ent_No))
                     {
+                        matAccountTwoDTO.fy = CommonFunctions.GetFiscalYear();
                         matAccountTwoDTO.Ent_No = CommonFunctions.GetNewGUID();
                         matAccountTwoDTO.VrNo = TransactionRepository.GetVRNO();
                         TransactionRepository.InsertTransactionEntry(matAccountTwoDTO);
@@ -74,6 +77,36 @@ namespace ProjectManagement.Web.Controllers
             }
             matAccountTwoDTO = FillSupplierDTO(matAccountTwoDTO);
             return View(matAccountTwoDTO);
+        }
+
+        /// <summary>
+        /// Set All Transaction Entry
+        /// </summary>
+        /// <param name="matAccountTwoDTO"></param>
+        /// <returns></returns>
+        private Mat_AccountTwoDTO SetAllTransactionEntry(Mat_AccountTwoDTO matAccountTwoDTO)
+        {
+            matAccountTwoDTO.Userss = ApplicationMember.LoggedUserName;
+            matAccountTwoDTO.Mode_Pay_Rec = matAccountTwoDTO.Mode_Pay_Rec.ToUpper();
+            if (ApplicationMember.LoggedMemberType == 1)
+            {
+                matAccountTwoDTO.Hand_Group = "R";
+            }
+            else
+            {
+                matAccountTwoDTO.Hand_Group = "NR";
+            }
+            matAccountTwoDTO.Kwat = 0;
+            matAccountTwoDTO.Discount = 0;
+            matAccountTwoDTO.Hand = 0;
+            matAccountTwoDTO.SetViewOne = "B";
+            matAccountTwoDTO.Freezed = false;
+            matAccountTwoDTO.IsEntryOnly = false;
+            matAccountTwoDTO.GuidAC = string.Empty;
+            matAccountTwoDTO.CurDate = DateTime.Now;
+            matAccountTwoDTO.Hide = false;
+
+            return matAccountTwoDTO;
         }
 
         /// <summary>

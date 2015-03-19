@@ -20,7 +20,7 @@ namespace ProjectManagement.Web
             if (ApplicationMember.LoggedUserId > 0)
             {
                 bool isPermitted = true;
-                if (ApplicationMember.LoggedMemberType == "1")
+                if (ApplicationMember.LoggedMemberType == 1)
                     return;
                 
                 var permission = ApplicationMember.LoggedUserPermission.Where(p => string.Compare(p.ControllerName, controllerName, StringComparison.CurrentCultureIgnoreCase) == 0).FirstOrDefault();

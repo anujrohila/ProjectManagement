@@ -35,8 +35,11 @@ namespace ProjectManagement.Domain
         public Nullable<Double> Ammount { get; set; }
 
         [DataMember()]
-        [Required(ErrorMessage = "Please select date")]
         public Nullable<DateTime> Ddate { get; set; }
+
+        [DataMember()]
+        [Required(ErrorMessage = "Please select date")]
+        public string DdateString { get; set; }
 
         [DataMember()]
         public String Disp { get; set; }

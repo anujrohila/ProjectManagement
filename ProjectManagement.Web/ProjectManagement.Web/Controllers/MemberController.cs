@@ -81,12 +81,10 @@ namespace ProjectManagement.Web.Controllers
                 }
                 if (ModelState.IsValid)
                 {
-
                     tblMemberDTO.IsActive = true;
-
                     tblMemberDTO.MemberTypeId = 2;
                     tblMemberDTO.Password = CommonFunctions.HashPassword(tblMemberDTO.Password);
-                     var memberId = MemberRepository.SaveMember(tblMemberDTO);
+                    var memberId = MemberRepository.SaveMember(tblMemberDTO);
                     return RedirectToAction("ListAll");
                 }
             }

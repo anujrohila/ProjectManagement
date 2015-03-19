@@ -89,7 +89,7 @@ namespace ProjectManagement.Web.Controllers
             var tblProjectSelection = new tblProjectSelectionDTO();
             if (ApplicationMember.LoggedUserId != 0)
             {
-                  if (ApplicationMember.LoggedMemberType == "1")
+                  if (ApplicationMember.LoggedMemberType == 1)
                   {
                       tblProjectSelection.ProjectList = MasterRepository.GetAllProject();
                       return View(tblProjectSelection);

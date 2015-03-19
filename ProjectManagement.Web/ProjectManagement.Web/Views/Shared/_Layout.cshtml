@@ -105,13 +105,13 @@
                             <span>Project</span>
                         </a>
                         <ul class="sub-menu">
-                            @if (CommonFunctions.IsMemberHavePermission("Project", ApplicationEnum.PageType.Insert) || ApplicationMember.LoggedMemberType == "1")
+                            @if (CommonFunctions.IsMemberHavePermission("Project", ApplicationEnum.PageType.Insert) || ApplicationMember.LoggedMemberType == 1)
                             {
                                 <li>
                                     <a href="@Url.Action("Save", "Project", new { id = 0 })">Add New</a>
                                 </li>
                             }
-                            @if (CommonFunctions.IsMemberHavePermission("Project", ApplicationEnum.PageType.ListAll) || ApplicationMember.LoggedMemberType == "1")
+                            @if (CommonFunctions.IsMemberHavePermission("Project", ApplicationEnum.PageType.ListAll) || ApplicationMember.LoggedMemberType == 1)
                             {
                                 <li>
                                     <a href="@Url.Action("ListAll", "Project")">List All</a>
@@ -126,13 +126,13 @@
                             <span>User</span>
                         </a>
                         <ul class="sub-menu">
-                            @if (CommonFunctions.IsMemberHavePermission("Member", ApplicationEnum.PageType.Insert) || ApplicationMember.LoggedMemberType == "1")
+                            @if (CommonFunctions.IsMemberHavePermission("Member", ApplicationEnum.PageType.Insert) || ApplicationMember.LoggedMemberType == 1)
                             {
                                 <li>
                                     <a href="@Url.Action("Save", "Member", new { id = 0 })">Add New</a>
                                 </li>
                             }
-                            @if (CommonFunctions.IsMemberHavePermission("Member", ApplicationEnum.PageType.ListAll) || ApplicationMember.LoggedMemberType == "1")
+                            @if (CommonFunctions.IsMemberHavePermission("Member", ApplicationEnum.PageType.ListAll) || ApplicationMember.LoggedMemberType == 1)
                             {
                                 <li>
                                     <a href="@Url.Action("ListAll", "Member")">List All</a>
@@ -147,13 +147,13 @@
                             <span>Party / Master</span>
                         </a>
                         <ul class="sub-menu">
-                            @if (CommonFunctions.IsMemberHavePermission("Supplier", ApplicationEnum.PageType.Insert) || ApplicationMember.LoggedMemberType == "1")
+                            @if (CommonFunctions.IsMemberHavePermission("Supplier", ApplicationEnum.PageType.Insert) || ApplicationMember.LoggedMemberType == 1)
                             {
                                 <li>
                                     <a href="@Url.Action("Save", "Supplier", new { id = "" })">Add New</a>
                                 </li>
                             }
-                            @if (CommonFunctions.IsMemberHavePermission("Supplier", ApplicationEnum.PageType.ListAll) || ApplicationMember.LoggedMemberType == "1")
+                            @if (CommonFunctions.IsMemberHavePermission("Supplier", ApplicationEnum.PageType.ListAll) || ApplicationMember.LoggedMemberType == 1)
                             {
                                 <li>
                                     <a href="@Url.Action("ListAll", "Supplier")">List All</a>
@@ -168,13 +168,13 @@
                             <span>Material Group</span>
                         </a>
                         <ul class="sub-menu">
-                            @if (CommonFunctions.IsMemberHavePermission("MaterialGroup", ApplicationEnum.PageType.Insert) || ApplicationMember.LoggedMemberType == "1")
+                            @if (CommonFunctions.IsMemberHavePermission("MaterialGroup", ApplicationEnum.PageType.Insert) || ApplicationMember.LoggedMemberType == 1)
                             {
                                 <li>
                                     <a href="@Url.Action("Save", "MaterialGroup", new { id = "" })">Add New</a>
                                 </li>
                             }
-                            @if (CommonFunctions.IsMemberHavePermission("MaterialGroup", ApplicationEnum.PageType.ListAll) || ApplicationMember.LoggedMemberType == "1")
+                            @if (CommonFunctions.IsMemberHavePermission("MaterialGroup", ApplicationEnum.PageType.ListAll) || ApplicationMember.LoggedMemberType == 1)
                             {
                                 <li>
                                     <a href="@Url.Action("ListAll", "MaterialGroup")">List All</a>
@@ -189,13 +189,13 @@
                             <span>Item Master</span>
                         </a>
                         <ul class="sub-menu">
-                            @if (CommonFunctions.IsMemberHavePermission("MaterialSubGroup", ApplicationEnum.PageType.Insert) || ApplicationMember.LoggedMemberType == "1")
+                            @if (CommonFunctions.IsMemberHavePermission("MaterialSubGroup", ApplicationEnum.PageType.Insert) || ApplicationMember.LoggedMemberType == 1)
                             {
                                 <li>
                                     <a href="@Url.Action("Save", "MaterialSubGroup", new { id = "" })">Add New</a>
                                 </li>
                             }
-                            @if (CommonFunctions.IsMemberHavePermission("MaterialSubGroup", ApplicationEnum.PageType.ListAll) || ApplicationMember.LoggedMemberType == "1")
+                            @if (CommonFunctions.IsMemberHavePermission("MaterialSubGroup", ApplicationEnum.PageType.ListAll) || ApplicationMember.LoggedMemberType == 1)
                             {
                                 <li>
                                     <a href="@Url.Action("ListAll", "MaterialSubGroup")">List All</a>
@@ -210,13 +210,13 @@
                             <span>Material Entry</span>
                         </a>
                         <ul class="sub-menu">
-                            @if (CommonFunctions.IsMemberHavePermission("MaterialEntry", ApplicationEnum.PageType.Insert) || ApplicationMember.LoggedMemberType == "1")
+                            @if (CommonFunctions.IsMemberHavePermission("MaterialEntry", ApplicationEnum.PageType.Insert) || ApplicationMember.LoggedMemberType == 1)
                             {
                                 <li>
                                     <a href="@Url.Action("Save", "MaterialEntry", new { id = "" })">Add New</a>
                                 </li>
                             }
-                            @if (CommonFunctions.IsMemberHavePermission("MaterialEntry", ApplicationEnum.PageType.ListAll) || ApplicationMember.LoggedMemberType == "1")
+                            @if (CommonFunctions.IsMemberHavePermission("MaterialEntry", ApplicationEnum.PageType.ListAll) || ApplicationMember.LoggedMemberType == 1)
                             {
                                 <li>
                                     <a href="@Url.Action("ListAll", "MaterialEntry")">List All</a>
@@ -231,13 +231,13 @@
                             <span>Document</span>
                         </a>
                         <ul class="sub-menu">
-                            @if (CommonFunctions.IsMemberHavePermission("Documents", ApplicationEnum.PageType.Insert) || ApplicationMember.LoggedMemberType == "1")
+                            @if (CommonFunctions.IsMemberHavePermission("Documents", ApplicationEnum.PageType.Insert) || ApplicationMember.LoggedMemberType == 1)
                             {
                                 <li>
                                     <a href="@Url.Action("Save", "Documents")">Add New </a>
                                 </li>
                             }
-                            @if (CommonFunctions.IsMemberHavePermission("Documents", ApplicationEnum.PageType.ListAll) || ApplicationMember.LoggedMemberType == "1")
+                            @if (CommonFunctions.IsMemberHavePermission("Documents", ApplicationEnum.PageType.ListAll) || ApplicationMember.LoggedMemberType == 1)
                             {
                                 <li>
                                     <a href="@Url.Action("ListAll", "Documents")">List All</a>
@@ -252,32 +252,32 @@
                             <span>Trancation</span>
                         </a>
                         <ul class="sub-menu">
-                            @if (CommonFunctions.IsMemberHavePermission("TransactionEntry", ApplicationEnum.PageType.ListAll) || ApplicationMember.LoggedMemberType == "1")
+                            @if (CommonFunctions.IsMemberHavePermission("TransactionEntry", ApplicationEnum.PageType.ListAll) || ApplicationMember.LoggedMemberType == 1)
                             {
                                 <li>
                                     <a href="@Url.Action("ListAll", "TransactionEntry", new { type = "Cash" })">Cask Book</a>
                                 </li>
                             }
-                            @if (CommonFunctions.IsMemberHavePermission("TransactionEntry", ApplicationEnum.PageType.ListAll) || ApplicationMember.LoggedMemberType == "1")
+                            @if (CommonFunctions.IsMemberHavePermission("TransactionEntry", ApplicationEnum.PageType.ListAll) || ApplicationMember.LoggedMemberType == 1)
                             {
                                 <li>
                                     <a href="@Url.Action("ListAll", "TransactionEntry", new { type = "Bank" })">Bank Book</a>
                                 </li>
                             }
-                            @if (CommonFunctions.IsMemberHavePermission("TransactionEntry", ApplicationEnum.PageType.ListAll) || ApplicationMember.LoggedMemberType == "1")
+                            @if (CommonFunctions.IsMemberHavePermission("TransactionEntry", ApplicationEnum.PageType.ListAll) || ApplicationMember.LoggedMemberType == 1)
                             {
                                 <li>
                                     <a href="@Url.Action("ListAll", "TransactionEntry", new { type = "Contra" })">Contra Book</a>
                                 </li>
                             }
-                            @if (CommonFunctions.IsMemberHavePermission("TransactionEntry", ApplicationEnum.PageType.ListAll) || ApplicationMember.LoggedMemberType == "1")
+                            @if (CommonFunctions.IsMemberHavePermission("TransactionEntry", ApplicationEnum.PageType.ListAll) || ApplicationMember.LoggedMemberType == 1)
                             {
                                 <li>
                                     <a href="@Url.Action("ListAll", "TransactionEntry", new { type = "Journal" })">Journal Book</a>
                                 </li>
                             }
                         </ul>
-                        </li>
+                    </li>
                     <li id="menuReport" class="has-sub">
                         <a href="javascript:;">
                             <b class="caret pull-right"></b>
@@ -293,7 +293,7 @@
                             </li>
                         </ul>
                     </li>
-                <li><a href="javascript:;" class="sidebar-minify-btn" data-click="sidebar-minify"><i class="fa fa-angle-double-left"></i></a></li>
+                    <li><a href="javascript:;" class="sidebar-minify-btn" data-click="sidebar-minify"><i class="fa fa-angle-double-left"></i></a></li>
                 </ul>
             </div>
         </div>

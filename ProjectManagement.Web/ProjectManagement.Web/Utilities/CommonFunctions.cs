@@ -14,7 +14,7 @@ namespace ProjectManagement.Web
     {
 
         #region [Variable]
-       
+
 
         /// <summary>
         /// Get ContentUrlPrefix
@@ -83,6 +83,20 @@ namespace ProjectManagement.Web
             kkString = kkString.Substring(0, 8);
             newId = string.Concat(kkString.Substring(0, 4), "-", kkString.Substring(4, 4));
             return newId.ToUpper();
+        }
+
+        public static string GetFiscalYear()
+        {
+            string fy = string.Empty;
+            if (DateTime.Now.Month >= 4)
+            {
+                fy = string.Format("{0}-{1}", DateTime.Now.Year.ToString().Substring(2, 2), DateTime.Now.AddYears(1).Year.ToString().Substring(2, 2));
+            }
+            else
+            {
+                fy = string.Format("{0}-{1}", DateTime.Now.AddYears(-1).Year.ToString().Substring(0, 2), DateTime.Now.Year.ToString().Substring(0, 2));
+            }
+            return fy;
         }
 
         public static List<string> GetAllUnitList()

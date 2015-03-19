@@ -35,11 +35,11 @@ namespace ProjectManagement.Domain
             }
         }
 
-        public static string LoggedMemberType
+        public static int LoggedMemberType
         {
             get
             {
-                return Convert.ToString(System.Web.HttpContext.Current.Session["LoggedMemberType"]);
+                return Convert.ToInt32(System.Web.HttpContext.Current.Session["LoggedMemberType"]);
             }
         }
 
