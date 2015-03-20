@@ -42,8 +42,8 @@
                             columns.Bound(column => column.Rec_Pay).Title("Mode");
                             columns.Bound(column => column.FromSupplierName).Title("From Account");
                             columns.Bound(column => column.ToSupplierName).Title("To Account");
-                            columns.Bound(column => column.Ddate).Title("Date");
-                            columns.Bound(column => column.Ammount).Title("Amount");
+                            columns.Bound(column => column.Ddate).Title("Date").Format("{0:dd-MM-yyyy}");
+                            columns.Bound(column => column.Ammount).Title("Amount").Format("{0:0.00}").HtmlAttributes(new { style = "text-align:right" }).HeaderHtmlAttributes(new { style = "text-align:right" });
                             columns.Bound(column => column.Ent_No)
                                                             .Filterable(false)
                                                             .Sortable(false)

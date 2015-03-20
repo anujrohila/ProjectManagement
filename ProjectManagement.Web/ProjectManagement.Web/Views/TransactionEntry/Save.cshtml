@@ -55,11 +55,11 @@
                                 {
                                     if (supplier.Sup_id == Model.From_Account)
                                     {
-                                    <option selected value="@supplier.Sup_id">@supplier.NameiS</option>
+                                    <option selected value="@supplier.Sup_id" groupId="@supplier.GroupId">@supplier.NameiS</option>
                                     }
                                     else
                                     {
-                                    <option value="@supplier.Sup_id">@supplier.NameiS</option>
+                                    <option value="@supplier.Sup_id" groupId="@supplier.GroupId">@supplier.NameiS</option>
                                     }
                                 }
                             </select>
@@ -68,7 +68,7 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">Credit / Debit<span class="spanError">*</span></label>
                         <div class="col-md-5">
-                            <select id="Rec_Pay" name="Rec_Pay" class="form-control">
+                            <select id="Rec_Pay" name="Rec_Pay" class="form-control" >
                                 <option value="PAYMENT">PAYMENT</option>
                                 <option value="RECEIPT">RECEIPT</option>
                             </select>
@@ -82,11 +82,11 @@
                                 {
                                     if (supplier.Sup_id == Model.To_Account)
                                     {
-                                    <option selected value="@supplier.Sup_id">@supplier.NameiS</option>
+                                    <option selected value="@supplier.Sup_id" groupId="@supplier.GroupId">@supplier.NameiS</option>
                                     }
                                     else
                                     {
-                                    <option value="@supplier.Sup_id">@supplier.NameiS</option>
+                                    <option value="@supplier.Sup_id" groupId="@supplier.GroupId">@supplier.NameiS</option>
                                     }
                                 }
                             </select>
@@ -95,38 +95,47 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">Amount<span class="spanError">*</span></label>
                         <div class="col-md-5">
-                            @Html.TextBoxFor(model => model.Ammount, new { @placeholder = "Amount", @class = "form-control" })
+                            @Html.TextBoxFor(model => model.Ammount, new { @placeholder = "Amount", @class = "form-control", @onblur = "return OnAmountBlur(event,this)" })
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-3 control-label">Description</label>
+                        <label class="col-md-3 control-label">Description<span class="spanError">*</span></label>
                         <div class="col-md-5">
                             @Html.TextBoxFor(model => model.Disp, new { @placeholder = "Description", @class = "form-control" })
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="col-md-3 control-label">Cheque No</label>
-                        <div class="col-md-5">
-                            @Html.TextBoxFor(model => model.ChqNo, new { @placeholder = "Cheque No", @class = "form-control" })
+                    if (string.Compare(Model.Mode_Pay_Rec, "Journal", StringComparison.CurrentCultureIgnoreCase) != 0
+                        && string.Compare(Model.Mode_Pay_Rec, "Cash", StringComparison.CurrentCultureIgnoreCase) != 0)
+                    {
+                        <div id="divChequeNo" class="form-group">
+                            <label class="col-md-3 control-label">Cheque No</label>
+                            <div class="col-md-5">
+                                @Html.TextBoxFor(model => model.ChqNo, new { @placeholder = "Cheque No", @class = "form-control" })
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-3 control-label">Bank</label>
-                        <div class="col-md-5">
-                            <select id="ChqDrawn" name="ChqDrawn" class="form-control">
-                                <option value="RANDER CO OP BANK">RANDER CO OP BANK</option>
-                                <option value="PANJAB NATIONAL BANK">PANJAB NATIONAL BANK</option>
-                                <option value="STATE BANK OF INDIA">STATE BANK OF INDIA</option>
-                                <option value="BANK OF BARODA">BANK OF BARODA</option>
-                                <option value="KARUR VESHYA BANK">KARUR VESHYA BANK</option>
-                                <option value="SURAT NAGRIK CO OP BANK">SURAT NAGRIK CO OP BANK</option>
-                                <option value="HDFC BANK">HDFC BANK</option>
-                                <option value="ICICI BANK">ICICI BANK</option>
-                                <option value="UNION BANK">UNION BANK</option>
-                                <option value="ALLAHBAD BANK">ALLAHBAD BANK</option>
-                            </select>
+                    }
+                    if (string.Compare(Model.Mode_Pay_Rec, "Journal", StringComparison.CurrentCultureIgnoreCase) != 0
+                        && string.Compare(Model.Mode_Pay_Rec, "Cash", StringComparison.CurrentCultureIgnoreCase) != 0)
+                    {
+                        <div id="divBankName" class="form-group">
+                            <label class="col-md-3 control-label">Bank</label>
+                            <div class="col-md-5">
+                                <select id="ChqDrawn" name="ChqDrawn" class="form-control">
+                                    <option value="">Select</option>
+                                    <option value="RANDER CO OP BANK">RANDER CO OP BANK</option>
+                                    <option value="PANJAB NATIONAL BANK">PANJAB NATIONAL BANK</option>
+                                    <option value="STATE BANK OF INDIA">STATE BANK OF INDIA</option>
+                                    <option value="BANK OF BARODA">BANK OF BARODA</option>
+                                    <option value="KARUR VESHYA BANK">KARUR VESHYA BANK</option>
+                                    <option value="SURAT NAGRIK CO OP BANK">SURAT NAGRIK CO OP BANK</option>
+                                    <option value="HDFC BANK">HDFC BANK</option>
+                                    <option value="ICICI BANK">ICICI BANK</option>
+                                    <option value="UNION BANK">UNION BANK</option>
+                                    <option value="ALLAHBAD BANK">ALLAHBAD BANK</option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
+                    }
                     <div class="form-group">
                         <label class="col-md-3 control-label"></label>
                         <div class="col-md-5">

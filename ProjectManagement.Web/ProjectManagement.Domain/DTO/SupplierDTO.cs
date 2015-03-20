@@ -25,11 +25,9 @@ namespace ProjectManagement.Domain
         public String NameiS { get; set; }
 
         [DataMember()]
-        [Required(ErrorMessage = "Please enter supplier addres.")]
         public String AddiS { get; set; }
 
         [DataMember()]
-        [Required(ErrorMessage = "Please enter supplier city.")]
         public String City { get; set; }
 
         [DataMember()]

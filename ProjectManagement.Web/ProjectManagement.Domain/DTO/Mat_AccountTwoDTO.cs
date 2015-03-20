@@ -42,6 +42,7 @@ namespace ProjectManagement.Domain
         public string DdateString { get; set; }
 
         [DataMember()]
+        [Required(ErrorMessage = "Please enter description")]
         public String Disp { get; set; }
 
         [DataMember()]

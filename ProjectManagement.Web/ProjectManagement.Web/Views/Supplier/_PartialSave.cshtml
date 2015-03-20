@@ -23,42 +23,6 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-md-4 control-label">Address<span class="spanError">*</span></label>
-                    <div class="col-md-7">
-                        @Html.TextBoxFor(model => model.AddiS, new { @placeholder = "Supplier Address", @class = "form-control" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-md-4 control-label">City<span class="spanError">*</span></label>
-                    <div class="col-md-7">
-                        @Html.TextBoxFor(model => model.City, new { @placeholder = "Supplier City", @class = "form-control" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-md-4 control-label">Opening Balance</label>
-                    <div class="col-md-7">
-                        @Html.TextBoxFor(model => model.OpBalance, new { @placeholder = "Opening Balance", @class = "form-control" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-md-4 control-label">Credit Days</label>
-                    <div class="col-md-7">
-                        @Html.TextBoxFor(model => model.creditday, new { @placeholder = "Credit Days", @class = "form-control" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-md-4 control-label">Credit Limit Amount</label>
-                    <div class="col-md-7">
-                        @Html.TextBoxFor(model => model.creditammount, new { @placeholder = "Credit Limit Amount", @class = "form-control" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-md-4 control-label">Email Address</label>
-                    <div class="col-md-7">
-                        @Html.TextBoxFor(model => model.Adding, new { @placeholder = "Email Address", @class = "form-control" })
-                    </div>
-                </div>
-                <div class="form-group">
                     <label class="col-md-4 control-label">Account Group</label>
                     <div class="col-md-7">
                         <select id="GroupId" name="GroupId" class="form-control" onchange="ChangeGroupID();">
@@ -89,6 +53,42 @@
                         <label style="color: red">* Interest In Per Year</label>
                     </div>
                     <div class="col-md-2">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Address</label>
+                    <div class="col-md-7">
+                        @Html.TextBoxFor(model => model.AddiS, new { @placeholder = "Supplier Address", @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label">City</label>
+                    <div class="col-md-7">
+                        @Html.TextBoxFor(model => model.City, new { @placeholder = "Supplier City", @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Opening Balance</label>
+                    <div class="col-md-7">
+                        @Html.TextBoxFor(model => model.OpBalance, new { @placeholder = "Opening Balance", @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Credit Days</label>
+                    <div class="col-md-7">
+                        @Html.TextBoxFor(model => model.creditday, new { @placeholder = "Credit Days", @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Credit Limit Amount</label>
+                    <div class="col-md-7">
+                        @Html.TextBoxFor(model => model.creditammount, new { @placeholder = "Credit Limit Amount", @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Email Address</label>
+                    <div class="col-md-7">
+                        @Html.TextBoxFor(model => model.Adding, new { @placeholder = "Email Address", @class = "form-control" })
                     </div>
                 </div>
                 <div class="form-group">
