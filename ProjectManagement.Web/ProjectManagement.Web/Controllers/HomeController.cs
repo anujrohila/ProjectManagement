@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace ProjectManagement.Web.Controllers
 {
+     [CustomActionAutentication]
     public class HomeController : Controller
     {
         public ActionResult Index()

@@ -37,6 +37,19 @@ namespace ProjectManagement.DLL.Repositories
             }
         }
 
+
+        /// <summary>
+        /// Get Document Entry
+        /// </summary>
+        /// <returns></returns>
+        public static tblImageMasterDTO GetDocumentsDetails(int doc)
+        {
+            using (var projectManagementSQLDatabaseEntities = new ProjectManagementSQLDatabaseEntities())
+            {
+                return projectManagementSQLDatabaseEntities.tblImageMasters.Where(d => d.ImageID == doc).FirstOrDefault().ToDTO();
+            }
+        }
+
         /// <summary>
         /// Save Docuement Entry
         /// </summary>

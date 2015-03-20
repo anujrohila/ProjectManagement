@@ -67,7 +67,7 @@ namespace ProjectManagement.DLL
                             fy = matAccountTwo.fy,
                             FromSupplierName = suppliersFromAccount.NameiS,
                             ToSupplierName = suppliersToAccount.NameiS
-                        }).ToList();
+                        }).OrderByDescending(o => o.CurDate).ToList();
             }
         }
 

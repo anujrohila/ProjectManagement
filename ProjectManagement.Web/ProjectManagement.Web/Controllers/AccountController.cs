@@ -84,6 +84,7 @@ namespace ProjectManagement.Web.Controllers
         }
 
         [HttpGet]
+        [CustomActionAutentication]
         public ActionResult ProjectSelection()
         {
             var tblProjectSelection = new tblProjectSelectionDTO();
@@ -109,6 +110,7 @@ namespace ProjectManagement.Web.Controllers
         }
 
         [HttpPost]
+        [CustomActionAutentication]
         public ActionResult ProjectSelection(tblProjectSelectionDTO tblProjectSelection)
         {
             if (ModelState.IsValid)

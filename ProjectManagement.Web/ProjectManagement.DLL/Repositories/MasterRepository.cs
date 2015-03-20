@@ -34,6 +34,7 @@ namespace ProjectManagement.DLL
             using (var projectManagementEntities = new ProjectManagementEntities())
             {
                 return (from groupBySupplier in projectManagementEntities.GroupBySuppliers
+                        where groupBySupplier.Display.Value
                         select new GroupBySupplierDTO
                         {
                             GrpIdSupplier = groupBySupplier.GrpIdSupplier,

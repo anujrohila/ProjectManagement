@@ -10,6 +10,7 @@ using System.Globalization;
 
 namespace ProjectManagement.Web.Controllers
 {
+     [CustomActionAutentication]
     public class TransactionEntryController : Controller
     {
 

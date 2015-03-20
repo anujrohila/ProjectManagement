@@ -111,12 +111,19 @@ namespace ProjectManagement.Web.Controllers
         [HttpPost]
         public ActionResult Save(SupplierDTO supplierDTO)
         {
+            if (supplierDTO.GroupId == 40)
+            {
+                if (supplierDTO.share == 0 || supplierDTO.share == null)
+                {
+                    ModelState.AddModelError("share", "Enter Share");
+                }
+            }
             if (ModelState.IsValid)
             {
                 int total = 0;
                 if (supplierDTO.GroupId == 40)
                 {
-                    total = SupplierRepository.GetShareTotal(supplierDTO.Sup_id);
+                    total = SupplierRepository.GetShareTotal(supplierDTO.Sup_id == null ? "0" : supplierDTO.Sup_id);
                     if ((supplierDTO.share + total) > 100)
                     {
                         ModelState.AddModelError("share", "Total share must br greater than or equal to 100");
