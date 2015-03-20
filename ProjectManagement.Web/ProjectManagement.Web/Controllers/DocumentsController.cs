@@ -53,7 +53,7 @@ namespace ProjectManagement.Web.Controllers
                 //string path = System.IO.Path.Combine(Server.MapPath("~/Documents"), System.IO.Path.GetFileName(FileName.FileName));
                 //FileName.SaveAs(path);
 
-                ImageUpload imageUpload = new ImageUpload { Width = 600 };
+                ImageUpload imageUpload = new ImageUpload { Height = 800 };
 
                 ImageResult imageResult = imageUpload.RenameUploadFile(FileName);
                 if (imageResult.Success)

@@ -38,7 +38,7 @@
                         <div class="col-md-5">
                             @Html.DropDownListFor(m => m.Sup_id, new MultiSelectList(Model.SupplierList, "Sup_id", "NameiS"), new { @class = "form-control" })
                         </div>
-                        @if (CommonFunctions.IsMemberHavePermission("Supplier", ApplicationEnum.PageType.Insert))
+                        @if (CommonFunctions.IsMemberHavePermission("Supplier", ApplicationEnum.PageType.Insert) || ApplicationMember.LoggedMemberType == 1)
                         {
                             <div class="col-md-3">
                                 <button id="BtnAddSupplier" class="mb-xs mt-xs mr-xs btn btn-warning" type="button" onclick="AddSupplier()">...</button>
@@ -56,10 +56,10 @@
                         <div class="col-md-5">
                             @Html.DropDownListFor(m => m.Mat_id, new MultiSelectList(Model.MaterialList, "Mat_id", "Mat_Name"), new { @class = "form-control" })
                         </div>
-                        @if (CommonFunctions.IsMemberHavePermission("MaterialSubGroup", ApplicationEnum.PageType.Insert))
+                        @if (CommonFunctions.IsMemberHavePermission("MaterialSubGroup", ApplicationEnum.PageType.Insert) || ApplicationMember.LoggedMemberType == 1)
                         {
                             <div class="col-md-3">
-                                <button class="mb-xs mt-xs mr-xs btn btn-warning" type="button" onclick="AddMaterialSubGroup()">...</button>
+                                <button class="mb-xs mt-xs mr-xs btn btn-warning" type="button" onclick="AddMaterialSubGroup();">...</button>
                             </div>
                         }
                     </div>
