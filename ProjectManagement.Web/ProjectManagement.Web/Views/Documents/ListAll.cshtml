@@ -28,7 +28,14 @@
                                                            .Title(String.Empty)
                                                           .ClientTemplate("<center><img src='" + CommonFunctions.WebUrlPrefix + "/Documents/<#= ImagesPath #>' height='100' width='200' /></center>");
                             columns.Bound(column => column.Comment).Title("Comment");
-                           
+
+                            columns.Bound(column => column.ImageID)
+                                                        .Filterable(false)
+                                                        .Sortable(false)
+                                                        .Groupable(false)
+                                                        .Width(50)
+                                                        .ClientTemplate("<center><a title='View'  onclick='ViewDocument(\"<#= ImageID #>\");'><i class='fa fa-openid'></i></a></center>")
+                                                        .Title(string.Empty);
                             columns.Bound(column => column.ImageID)
                                                            .Filterable(false)
                                                            .Sortable(false)
@@ -58,3 +65,21 @@
 <script type="text/javascript">
     ActivateSelectedMenu('menuDocuments');
 </script>
+<div id="divWindow">
+    @{
+        Html.Telerik().Window()
+                    .Name("AddDocumentModelPopupWindow")
+                    .Title("Docuement Show")
+                    .Content(@<text>
+                        <div id="divDocumentModelPopupbody">
+                        </div>
+                    </text>)
+                    .Width(800)
+                    .Draggable(true)
+                    .Effects(fx => fx.Zoom().Opacity().OpenDuration(200).CloseDuration(300))
+                    .Modal(true)
+                    .Visible(false)
+                    .Render();
+    }
+
+</div>

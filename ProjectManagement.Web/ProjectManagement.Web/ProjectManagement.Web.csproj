@@ -1089,6 +1089,7 @@
     <Content Include="Views\Project\_PartialSave.cshtml" />
     <Content Include="Views\TransactionEntry\ListAll.cshtml" />
     <Content Include="Views\TransactionEntry\Save.cshtml" />
+    <Content Include="Views\Documents\_PartialShowImage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Documents\" />

@@ -30,6 +30,17 @@ namespace ProjectManagement.Web.Controllers
         }
 
         /// <summary>
+        ///Get Partial Doc
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public PartialViewResult _PartialShowImage(int DocID)
+        {
+            var doc = DocumentsRepository.GetDocumentsDetails(DocID);
+            return PartialView(doc);
+        }
+
+        /// <summary>
         /// List Document Ajax
         /// </summary>
         /// <returns></returns>

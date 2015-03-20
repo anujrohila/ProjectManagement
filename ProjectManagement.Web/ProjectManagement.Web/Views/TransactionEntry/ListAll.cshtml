@@ -14,25 +14,32 @@
                 <h4 class="panel-title">@ViewBag.TransactionType Book Listing</h4>
             </div>
             <input type="hidden" value="@ViewBag.TransactionType" name="TransactionType" id="TransactionType" />
-            <div class="panel-body form-horizontal">
-                <div class="form-group">
-                    <label class="col-md-3 control-label">Start Date<span class="spanError">*</span></label>
+            <div class="panel-body form-horizontal ">
+                <div class="col-md-12 well">
                     <div class="col-md-3">
-                        @Html.TextBox("StartDate", DateTime.Now.AddDays(-10).ToString("dd-MM-yyyy"), new { @placeholder = "Start Date", @class = "form-control datepicker", @autofocus = "autofocus" })
+                        <label class="control-inline ">Start Date<span class="spanError">*</span></label>
+                        <div class="input-group  col-md-3 date datepicker" id="datepicker" data-date-format="dd-mm-yyyy">
+                            @Html.TextBox("StartDate", DateTime.Now.AddDays(-10).ToString("dd-MM-yyyy"), new { @placeholder = "Start Date", @class = "form-control" })
+                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-md-3 control-label">End Date<span class="spanError">*</span></label>
+                   
                     <div class="col-md-3">
-                        @Html.TextBox("EndDate", DateTime.Now.ToString("dd-MM-yyyy"), new { @placeholder = "End Date", @class = "form-control datepicker", @autofocus = "autofocus" })
+                        <label class="control-inline">End Date<span class="spanError">*</span></label>
+                        <div class="input-group date datepicker" id="datepicker" data-date-format="dd-mm-yyyy">
+                            @Html.TextBox("EndDate", DateTime.Now.ToString("dd-MM-yyyy"), new { @placeholder = "End Date", @class = "form-control" })
+                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <label class="control-inline">&nbsp;</label>
+                        <br />
+
+                        <button style="margin-top:6px;" type="button" class="btn btn-sm btn-success" onclick="OnTransactionEntrySearchClick();">Search</button>
+
                     </div>
                 </div>
-                <div class="form-group">
-                    <label class="col-md-3 control-label"></label>
-                    <div class="col-md-5">
-                        <button type="button" class="btn btn-sm btn-success" onclick="OnTransactionEntrySearchClick()">Search</button>
-                    </div>
-                </div>
+
                 <div class="form-group" style="padding: 20px">
                     @(Html.Telerik().Grid<ProjectManagement.Domain.Mat_AccountTwoDTO>().Name("ListTransactionEntryGrid")
                                         .DataKeys(datakKey => datakKey.Add(key => key.Ent_No))
@@ -70,7 +77,7 @@
                         .HtmlAttributes(new { style = "width:100%;" })
                         .Resizable(resizing => resizing.Columns(true))
                         .Pageable(paging => paging.PageSize(50).Enabled(true).Style(GridPagerStyles.NextPreviousAndNumeric).Position(GridPagerPosition.Bottom))
-                )
+                    )
                 </div>
             </div>
         </div>

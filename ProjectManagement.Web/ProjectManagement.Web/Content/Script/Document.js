@@ -27,3 +27,21 @@ function DeleteDocument(id) {
         });
     }
 }
+
+
+function ViewDocument(id) {
+    ShowProcess();
+    var callUrl = $("#webUrl").val() + "/Documents/_PartialShowImage";
+    var dataToSend = {DocID : id};
+    $.ajax({
+        url: callUrl,
+        type: "GET",
+        data: dataToSend,
+        cache: false,
+        success: function (html) {
+            $("#divDocumentModelPopupbody").html(html);
+            OpenTelerikWindow('AddDocumentModelPopupWindow');
+            HideProcess();
+        }
+    });
+}
