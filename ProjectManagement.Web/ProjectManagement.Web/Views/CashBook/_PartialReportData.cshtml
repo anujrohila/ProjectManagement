@@ -1,0 +1,27 @@
+﻿@model List<ProjectManagement.Domain.tblReportDTO>
+@{
+    Layout = null;
+}
+@if (Model != null)
+{
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Username</th>
+                <th>Email Address</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var reportData in Model)
+            {
+                <tr>
+                    <td>1</td>
+                    <td>Nicky Almera</td>
+                    <td>nicky@hotmail.com</td>
+                </tr>
+                       
+            }
+        </tbody>
+    </table>
+}

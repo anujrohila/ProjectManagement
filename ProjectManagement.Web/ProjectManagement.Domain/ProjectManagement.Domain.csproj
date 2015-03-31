@@ -42,6 +42,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Additional DTO\tblReportDTO.cs" />
+    <Compile Include="Additional DTO\tblReportModelDTO.cs" />
     <Compile Include="Additional DTO\tblProjectSelectionDTO.cs" />
     <Compile Include="Additional DTO\tblChangePassword.cs" />
     <Compile Include="Additional DTO\tblLoginDTO.cs" />

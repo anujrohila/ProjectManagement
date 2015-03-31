@@ -417,6 +417,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CashBookController.cs" />
     <Compile Include="Controllers\TransactionEntryController.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
     <Compile Include="Controllers\DocumentsController.cs" />
@@ -884,6 +885,7 @@
     <Content Include="Content\plugins\switchery\switchery.min.css" />
     <Content Include="Content\plugins\switchery\switchery.min.js" />
     <Content Include="Content\Script\CommonFunction.js" />
+    <Content Include="Content\Script\Copy of TransactionEntry.js" />
     <Content Include="Content\Script\TransactionEntry.js" />
     <Content Include="Content\Script\Project.js" />
     <Content Include="Content\Script\Member.js" />
@@ -1090,6 +1092,8 @@
     <Content Include="Views\TransactionEntry\ListAll.cshtml" />
     <Content Include="Views\TransactionEntry\Save.cshtml" />
     <Content Include="Views\Documents\_PartialShowImage.cshtml" />
+    <Content Include="Views\CashBook\ListAll.cshtml" />
+    <Content Include="Views\CashBook\_PartialReportData.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Documents\" />

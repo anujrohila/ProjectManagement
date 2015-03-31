@@ -26,161 +26,54 @@ namespace ProjectManagement.DLL
         #region [Methods]
 
         /// <summary>
-        /// Get Supplier
+        /// Get Cash Book Report
         /// </summary>
         /// <returns></returns>
-        public static List<SupplierDTO> GetAllSupplier()
+        public static List<tblReportDTO> CashBookReport(string accountId, DateTime tDate)
         {
             using (var projectManagementEntities = new ProjectManagementEntities())
             {
-                return (from supplierObject in projectManagementEntities.Suppliers
-                        join supplierGroup in projectManagementEntities.GroupBySuppliers
-                              on supplierObject.GroupId equals supplierGroup.GrpIdSupplier
-                        select new SupplierDTO
+                return (from matAccountTwo in projectManagementEntities.Mat_AccountTwo
+                        join supplierFrom in projectManagementEntities.Suppliers
+                              on matAccountTwo.From_Account equals supplierFrom.Sup_id
+                        join supplierTo in projectManagementEntities.Suppliers
+                              on matAccountTwo.To_Account equals supplierTo.Sup_id
+                        where (string.Compare(matAccountTwo.From_Account, accountId, StringComparison.CurrentCultureIgnoreCase) == 0
+                                || string.Compare(matAccountTwo.To_Account, accountId, StringComparison.CurrentCultureIgnoreCase) == 0
+                              )
+                              &&
+                              (string.Compare(matAccountTwo.Mode_Pay_Rec, "CASH", StringComparison.CurrentCultureIgnoreCase) == 0
+                                || string.Compare(matAccountTwo.Mode_Pay_Rec, "CONTRA", StringComparison.CurrentCultureIgnoreCase) == 0
+                              )
+
+                        select new tblReportDTO
                         {
-                            Sup_id = supplierObject.Sup_id,
-                            NameiS = supplierObject.NameiS,
-                            AddiS = supplierObject.AddiS,
-                            City = supplierObject.City,
-                            OpBalance = supplierObject.OpBalance,
-                            Sup_Ph = supplierObject.Sup_Ph,
-                            creditday = supplierObject.creditday,
-                            creditammount = supplierObject.creditammount,
-                            GroupId = supplierObject.GroupId,
-                            GuIdSup = supplierObject.GuIdSup,
-                            share = supplierObject.share,
-                            CutDate = supplierObject.CutDate,
-                            Adding = supplierObject.Adding,
-                            IntRates = supplierObject.IntRates,
-                            AutoUpdate = supplierObject.AutoUpdate,
-                            alias = supplierObject.alias,
-                            userss = supplierObject.userss,
-                            childof = supplierObject.childof,
-                            Balance = supplierObject.Balance,
-                            CashBankBalance = supplierObject.CashBankBalance,
-                            SupplierGroupName = supplierGroup.GroupSupplierName
-                        }).ToList();
-            }
-        }
-
-        /// <summary>
-        /// Get Supplier
-        /// </summary>
-        /// <returns></returns>
-        public static SupplierDTO GetSupplier(string supplierId)
-        {
-            using (var projectManagementEntities = new ProjectManagementEntities())
-            {
-                return (from supplierObject in projectManagementEntities.Suppliers
-                        join supplierGroup in projectManagementEntities.GroupBySuppliers
-                              on supplierObject.GroupId equals supplierGroup.GrpIdSupplier
-                        where string.Compare(supplierObject.Sup_id, supplierId, StringComparison.CurrentCultureIgnoreCase) == 0
-                        select new SupplierDTO
-                        {
-                            Sup_id = supplierObject.Sup_id,
-                            NameiS = supplierObject.NameiS,
-                            AddiS = supplierObject.AddiS,
-                            City = supplierObject.City,
-                            OpBalance = supplierObject.OpBalance,
-                            Sup_Ph = supplierObject.Sup_Ph,
-                            creditday = supplierObject.creditday,
-                            creditammount = supplierObject.creditammount,
-                            GroupId = supplierObject.GroupId,
-                            GuIdSup = supplierObject.GuIdSup,
-                            share = supplierObject.share,
-                            CutDate = supplierObject.CutDate,
-                            Adding = supplierObject.Adding,
-                            IntRates = supplierObject.IntRates,
-                            AutoUpdate = supplierObject.AutoUpdate,
-                            alias = supplierObject.alias,
-                            userss = supplierObject.userss,
-                            childof = supplierObject.childof,
-                            Balance = supplierObject.Balance,
-                            CashBankBalance = supplierObject.CashBankBalance,
-                            SupplierGroupName = supplierGroup.GroupSupplierName
-                        }).FirstOrDefault();
-            }
-        }
-
-        /// <summary>
-        /// Insert Supplier
-        /// </summary>
-        /// <returns></returns>
-        public static string InsertSupplier(SupplierDTO supplierDTO)
-        {
-            using (var projectManagementEntities = new ProjectManagementEntities())
-            {
-                var supplier = new Supplier();
-                supplier = supplierDTO.ToEntity();
-                projectManagementEntities.Suppliers.Add(supplier);
-                projectManagementEntities.SaveChanges();
-                return supplier.Sup_id;
-            }
-        }
-
-        /// <summary>
-        /// Update Supplier
-        /// </summary>
-        /// <returns></returns>
-        public static string UpdateSupplier(SupplierDTO supplierDTO)
-        {
-            using (var projectManagementEntities = new ProjectManagementEntities())
-            {
-                var supplier = new Supplier();
-                supplier = projectManagementEntities.Suppliers.Where(sup => string.Compare(sup.Sup_id, supplierDTO.Sup_id, StringComparison.CurrentCultureIgnoreCase) == 0).FirstOrDefault();
-                supplier.Sup_id = supplierDTO.Sup_id;
-                supplier.NameiS = supplierDTO.NameiS;
-                supplier.AddiS = supplierDTO.AddiS;
-                supplier.City = supplierDTO.City;
-                supplier.OpBalance = supplierDTO.OpBalance;
-                supplier.Sup_Ph = supplierDTO.Sup_Ph;
-                supplier.creditday = supplierDTO.creditday;
-                supplier.creditammount = supplierDTO.creditammount;
-                supplier.GroupId = supplierDTO.GroupId;
-                supplier.GuIdSup = supplierDTO.GuIdSup;
-                supplier.share = supplierDTO.share;
-                supplier.CutDate = supplierDTO.CutDate;
-                supplier.Adding = supplierDTO.Adding;
-                supplier.IntRates = supplierDTO.IntRates;
-                supplier.AutoUpdate = supplierDTO.AutoUpdate;
-                supplier.alias = supplierDTO.alias;
-                supplier.userss = supplierDTO.userss;
-                supplier.childof = supplierDTO.childof;
-                supplier.Balance = supplierDTO.Balance;
-                supplier.CashBankBalance = supplierDTO.CashBankBalance;
-                projectManagementEntities.SaveChanges();
-                return supplier.Sup_id;
-            }
-        }
-
-        /// <summary>
-        /// Is Duplicate Supplier
-        /// </summary>
-        /// <returns></returns>
-        public static bool IsDuplicateSupplier(string supplieName, string supplierId)
-        {
-            if (supplierId == null)
-                supplierId = string.Empty;
-            using (var projectManagementEntities = new ProjectManagementEntities())
-            {
-                var supplierCount = projectManagementEntities.Suppliers.Where(sup => string.Compare(sup.NameiS, supplieName, StringComparison.CurrentCultureIgnoreCase) == 0
-                                                                            && string.Compare(sup.Sup_id, supplierId, StringComparison.CurrentCultureIgnoreCase) != 0).Count();
-
-                return supplierCount == 0 ? false : true;
-            }
-        }
-
-        /// <summary>
-        /// Delete Supplier
-        /// </summary>
-        /// <returns></returns>
-        public static bool DeleteSupplier(string supplierId)
-        {
-            using (var projectManagementEntities = new ProjectManagementEntities())
-            {
-                var supplier = projectManagementEntities.Suppliers.Where(sup => string.Compare(sup.Sup_id, supplierId, StringComparison.CurrentCultureIgnoreCase) == 0).FirstOrDefault();
-                projectManagementEntities.Suppliers.Remove(supplier);
-                return projectManagementEntities.SaveChanges() > 0;
+                            TransactionType = supplierFrom.NameiS,
+                            Supplier1Id = supplierFrom.Sup_id,
+                            Supplier1TypeName = supplierTo.NameiS,
+                            Supplier2Id = supplierTo.Sup_id,
+                            EntryId = matAccountTwo.Ent_No,
+                            VrNo = matAccountTwo.VrNo,
+                            ModePaymentReceipt = matAccountTwo.Mode_Pay_Rec,
+                            RecPay = matAccountTwo.Rec_Pay,
+                            Amount = matAccountTwo.Ammount,
+                            DDate = matAccountTwo.Ddate,
+                            Description = matAccountTwo.Disp,
+                            FromAccount = matAccountTwo.From_Account,
+                            ToAccount = matAccountTwo.To_Account,
+                            HandGroup = matAccountTwo.Hand_Group,
+                            Kwat = matAccountTwo.Kwat,
+                            Discount = matAccountTwo.Discount,
+                            Hand = matAccountTwo.Hand,
+                            SetViewOne = matAccountTwo.SetViewOne,
+                            IsEntryOnly = matAccountTwo.IsEntryOnly,
+                            GuidAC = matAccountTwo.GuidAC,
+                            CurDate = matAccountTwo.CurDate,
+                            Hide = matAccountTwo.Hide,
+                            ChequeNo = matAccountTwo.ChqNo,
+                            Users = matAccountTwo.Userss,
+                            FiscalYear = matAccountTwo.fy,
+                        }).OrderBy(r => r.DDate).ToList();
             }
         }
 
