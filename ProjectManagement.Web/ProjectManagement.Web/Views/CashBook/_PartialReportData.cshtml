@@ -1,26 +1,54 @@
 ﻿@model List<ProjectManagement.Domain.tblReportDTO>
 @{
     Layout = null;
+    string crAmount = string.Empty;
+    string drAmount = string.Empty;
 }
 @if (Model != null)
 {
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th>#</th>
-                <th>Username</th>
-                <th>Email Address</th>
+                <th>Vr No</th>
+                <th>Mode Pvt</th>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Credit</th>
+                <th>Debit</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var reportData in Model)
             {
                 <tr>
-                    <td>1</td>
-                    <td>Nicky Almera</td>
-                    <td>nicky@hotmail.com</td>
+                    <td>@reportData.VrNo</td>
+                    <td>@string.Format("{0}-{1}", reportData.ModePaymentReceipt.Substring(0, 4), reportData.RecPay.Substring(0, 3))</td>
+                    <td>@reportData.DDate.Value.ToString("dd-MM-yyyy")</td>
+                    <td>@reportData.Description</td>
+                    <td>
+                        @if (string.Compare(reportData.FromAccount, reportData.Supplier1Id, StringComparison.CurrentCultureIgnoreCase) != 0)
+                        {
+                            crAmount = reportData.Amount.ToString();
+                        }
+                        else
+                        {
+                            crAmount = "0";
+                        }
+                        @crAmount
+                    </td>
+                    <td>
+                        @if (string.Compare(reportData.ToAccount, reportData.Supplier1Id, StringComparison.CurrentCultureIgnoreCase) != 0)
+                        {
+                            drAmount = reportData.Amount.ToString();
+                        }
+                        else
+                        {
+                            drAmount = "0";
+                        }
+
+                        @drAmount
+                    </td>
                 </tr>
-                       
             }
         </tbody>
     </table>

@@ -24,7 +24,7 @@ namespace ProjectManagement.Web.Controllers
         public PartialViewResult _PartialReportData(string accountId, string selectedDate)
         {
             var result = ReportRepository.CashBookReport(accountId, DateTime.Now);
-            return PartialView();
+            return PartialView(result);
         }
 
     }

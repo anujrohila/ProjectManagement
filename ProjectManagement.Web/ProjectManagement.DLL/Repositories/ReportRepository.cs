@@ -76,6 +76,25 @@ namespace ProjectManagement.DLL
                         }).OrderBy(r => r.DDate).ToList();
             }
         }
+        /// <summary>
+        /// Get Cash Book Report
+        /// </summary>
+        /// <returns></returns>
+        public static float GetLedgerOpeningBalance(string accountId, DateTime tDate)
+        {
+            using (var projectManagementEntities = new ProjectManagementEntities())
+            {
+                var openingBalance = (from sup in projectManagementEntities.Suppliers
+                                      where (string.Compare(sup.childof, accountId, StringComparison.CurrentCultureIgnoreCase) == 0
+                                              || string.Compare(sup.Sup_id, accountId, StringComparison.CurrentCultureIgnoreCase) == 0
+                                            )
+                                      select sup.OpBalance
+                                      ).Sum().Value;
+
+                return 0;
+
+            }
+        }
 
         #endregion
     }
