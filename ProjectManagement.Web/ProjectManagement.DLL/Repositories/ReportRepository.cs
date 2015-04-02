@@ -45,7 +45,7 @@ namespace ProjectManagement.DLL
                               (string.Compare(matAccountTwo.Mode_Pay_Rec, "CASH", StringComparison.CurrentCultureIgnoreCase) == 0
                                 || string.Compare(matAccountTwo.Mode_Pay_Rec, "CONTRA", StringComparison.CurrentCultureIgnoreCase) == 0
                               )
-
+                              && matAccountTwo.Ddate >= tDate
                         select new tblReportDTO
                         {
                             TransactionType = supplierFrom.NameiS,
@@ -80,18 +80,65 @@ namespace ProjectManagement.DLL
         /// Get Cash Book Report
         /// </summary>
         /// <returns></returns>
-        public static float GetLedgerOpeningBalance(string accountId, DateTime tDate)
+        public static double GetLedgerOpeningBalance(string accountId, DateTime tDate)
         {
             using (var projectManagementEntities = new ProjectManagementEntities())
             {
-                var openingBalance = (from sup in projectManagementEntities.Suppliers
-                                      where (string.Compare(sup.childof, accountId, StringComparison.CurrentCultureIgnoreCase) == 0
-                                              || string.Compare(sup.Sup_id, accountId, StringComparison.CurrentCultureIgnoreCase) == 0
-                                            )
-                                      select sup.OpBalance
-                                      ).Sum().Value;
+                double finalAmount = 0;
 
-                return 0;
+
+
+                if (tDate != DateTime.Now)
+                {
+
+                    var openingBalance = (from sup in projectManagementEntities.Suppliers
+                                          where (string.Compare(sup.childof, accountId, StringComparison.CurrentCultureIgnoreCase) == 0
+                                                  || string.Compare(sup.Sup_id, accountId, StringComparison.CurrentCultureIgnoreCase) == 0
+                                                )
+                                          select sup.OpBalance
+                                     ).Sum();
+
+                    if (openingBalance == null)
+                        openingBalance = 0;
+
+                    var fromBalance = (from matAccountTwo in projectManagementEntities.Mat_AccountTwo
+                                       join supplierFrom in projectManagementEntities.Suppliers
+                                             on matAccountTwo.From_Account equals supplierFrom.Sup_id
+                                       where (string.Compare(supplierFrom.childof, accountId, StringComparison.CurrentCultureIgnoreCase) == 0
+                                                  || string.Compare(supplierFrom.Sup_id, accountId, StringComparison.CurrentCultureIgnoreCase) == 0
+                                                )
+                                                && matAccountTwo.Ddate < tDate
+                                       select matAccountTwo.Ammount).Sum();
+
+                    if (fromBalance == null)
+                        fromBalance = 0;
+
+                    var toBalance = (from matAccountTwo in projectManagementEntities.Mat_AccountTwo
+                                     join supplierTo in projectManagementEntities.Suppliers
+                                            on matAccountTwo.To_Account equals supplierTo.Sup_id
+                                     where (string.Compare(supplierTo.childof, accountId, StringComparison.CurrentCultureIgnoreCase) == 0
+                                                  || string.Compare(supplierTo.Sup_id, accountId, StringComparison.CurrentCultureIgnoreCase) == 0
+                                                )
+                                            && matAccountTwo.Ddate < tDate
+                                     select matAccountTwo.Ammount).Sum();
+
+                    if (toBalance == null)
+                        toBalance = 0;
+
+                    finalAmount = Convert.ToDouble(openingBalance + fromBalance + toBalance);
+                }
+                else
+                {
+
+                    var openingBalance = (from sup in projectManagementEntities.Suppliers
+                                          where string.Compare(sup.childof, accountId, StringComparison.CurrentCultureIgnoreCase) == 0
+                                          select sup.OpBalance
+                                    ).Sum();
+
+                    finalAmount = Convert.ToDouble(openingBalance);
+                }
+
+                return finalAmount;
 
             }
         }
