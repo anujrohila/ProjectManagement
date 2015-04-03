@@ -2,7 +2,7 @@
 @using Telerik.Web.Mvc.UI;
 @using ProjectManagement.Domain;
 @{
-    ViewBag.Title = "Cash Book";
+    ViewBag.Title = "Bank Book";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <link href="~/Content/plugins/bootstrap-datepicker/css/datepicker.css" rel="stylesheet" />
@@ -13,7 +13,7 @@
         <!-- begin panel -->
         <div data-sortable-id="form-stuff-1" class="panel panel-inverse">
             <div class="panel-heading">
-                <h4 class="panel-title">Cash Book</h4>
+                <h4 class="panel-title">Bank Book</h4>
             </div>
             <div class="panel-body form-horizontal ">
                 <div class="col-md-12 well">
@@ -36,7 +36,7 @@
                     <div class="col-md-2">
                         <label class="control-inline">&nbsp;</label>
                         <br />
-                        <button style="margin-top: 6px;" type="button" class="btn btn-sm btn-success" onclick="OnCashBookReportButtonClick();">Generate Search</button>
+                        <button style="margin-top: 6px;" type="button" class="btn btn-sm btn-success" onclick="OnBankBookReportButtonClick();">Generate Search</button>
                     </div>
                 </div>
                 <div id="divReportData" class="form-group" style="padding: 20px">
