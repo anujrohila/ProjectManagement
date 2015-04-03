@@ -29,6 +29,7 @@
           <Property Name="EntityName" Type="varchar" MaxLength="50" />
           <Property Name="Description" Type="varchar" MaxLength="500" />
           <Property Name="ControllerName" Type="varchar" MaxLength="50" />
+          <Property Name="IsReport" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="tblImageMaster">
           <Key>
@@ -129,9 +130,9 @@
             <End Role="tblMember" EntitySet="tblMembers" />
             <End Role="tblMemberPermission" EntitySet="tblMemberPermissions" />
           </AssociationSet>
-          <EntitySet Name="tblEntityMasters" EntityType="ProjectManagementSQLDatabaseModel.tblEntityMaster" />
           <EntitySet Name="tblImageMasters" EntityType="ProjectManagementSQLDatabaseModel.tblImageMaster" />
           <EntitySet Name="tblProjects" EntityType="ProjectManagementSQLDatabaseModel.tblProject" />
+          <EntitySet Name="tblEntityMasters" EntityType="ProjectManagementSQLDatabaseModel.tblEntityMaster" />
         </EntityContainer>
         <EntityType Name="tblMember">
           <Key>
@@ -195,15 +196,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="tblEntityMaster">
-          <Key>
-            <PropertyRef Name="EntityId" />
-          </Key>
-          <Property Type="Int32" Name="EntityId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="EntityName" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Description" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="ControllerName" MaxLength="50" FixedLength="false" Unicode="false" />
-        </EntityType>
         <EntityType Name="tblImageMaster">
           <Key>
             <PropertyRef Name="ImageID" />
@@ -228,6 +220,16 @@
           <Property Type="DateTime" Name="StratDateTime" Nullable="false" Precision="0" />
           <Property Type="String" Name="Catalog" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Type="Boolean" Name="IsActive" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblEntityMaster">
+          <Key>
+            <PropertyRef Name="EntityId" />
+          </Key>
+          <Property Type="Int32" Name="EntityId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="EntityName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Description" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ControllerName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="IsReport" Nullable="false" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -272,16 +274,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tblEntityMasters">
-            <EntityTypeMapping TypeName="ProjectManagementSQLDatabaseModel.tblEntityMaster">
-              <MappingFragment StoreEntitySet="tblEntityMaster">
-                <ScalarProperty Name="ControllerName" ColumnName="ControllerName" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="EntityName" ColumnName="EntityName" />
-                <ScalarProperty Name="EntityId" ColumnName="EntityId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="tblImageMasters">
             <EntityTypeMapping TypeName="ProjectManagementSQLDatabaseModel.tblImageMaster">
               <MappingFragment StoreEntitySet="tblImageMaster">
@@ -306,6 +298,17 @@
                 <ScalarProperty Name="SiteName" ColumnName="SiteName" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblEntityMasters">
+            <EntityTypeMapping TypeName="ProjectManagementSQLDatabaseModel.tblEntityMaster">
+              <MappingFragment StoreEntitySet="tblEntityMaster">
+                <ScalarProperty Name="IsReport" ColumnName="IsReport" />
+                <ScalarProperty Name="ControllerName" ColumnName="ControllerName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="EntityName" ColumnName="EntityName" />
+                <ScalarProperty Name="EntityId" ColumnName="EntityId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

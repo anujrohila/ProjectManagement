@@ -106,7 +106,8 @@ namespace ProjectManagement.DLL
                         {
                             EntityId = entityMaster.EntityId,
                             EntityName = entityMaster.EntityName,
-                            Description = entityMaster.Description
+                            Description = entityMaster.Description,
+                            IsReport = entityMaster.IsReport
                         }).ToList();
             }
         }

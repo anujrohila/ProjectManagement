@@ -26,7 +26,7 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">First Name<span class="spanError">*</span></label>
                         <div class="col-md-5">
-                            @Html.TextBoxFor(model => model.FirstName, new { @placeholder = "First name", @class = "form-control"  , autofocus="autofocus"})
+                            @Html.TextBoxFor(model => model.FirstName, new { @placeholder = "First name", @class = "form-control", autofocus = "autofocus" })
                         </div>
                     </div>
                     <div class="form-group">
@@ -111,8 +111,9 @@
                         <div id="divEntityListPermission" class="col-md-9" style="overflow: auto; height: 400px">
                             @foreach (var entityItem in Model.EntityList)
                             {
-                                <h5 class="m--20" style="font-weight: bold">@entityItem.EntityName</h5>
+                                var tempString = string.Empty;
                                 var entityPermissionDetails = Model.MemberPermissionList.Where(p => p.EnitytId == entityItem.EntityId).FirstOrDefault();
+                                <h5 class="m--20" style="font-weight: bold">@entityItem.EntityName</h5>
                                 <div id="EntityObject" style="padding-left: 20px">
                                     <div class="checkbox">
                                         <label>
@@ -124,48 +125,59 @@
                                             {
                                                 <input id="Listing" type="checkbox" value="@entityItem.EntityId">
                                             }
-                                            Listing
-                                        </label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label>
-                                            @if (entityPermissionDetails != null && entityPermissionDetails.CanInsert)
+                                            @if (!entityItem.IsReport)
                                             {
-                                                <input id="Insert" checked="checked" type="checkbox" value="@entityItem.EntityId">
+                                                tempString = "Listing";
                                             }
                                             else
                                             {
-                                                <input id="Insert" type="checkbox" value="@entityItem.EntityId">
+                                                tempString = "View";
                                             }
-                                            Insert
+                                            @tempString
                                         </label>
                                     </div>
-                                    <div class="checkbox">
-                                        <label>
-                                            @if (entityPermissionDetails != null && entityPermissionDetails.CanEdit)
-                                            {
-                                                <input id="Edit" checked="checked" type="checkbox"  value="@entityItem.EntityId">
-                                            }
-                                            else
-                                            {
-                                                <input id="Edit" type="checkbox"  value="@entityItem.EntityId">
-                                            }
-                                            Edit
-                                        </label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label>
-                                            @if (entityPermissionDetails != null && entityPermissionDetails.CanDelete)
-                                            {
-                                                <input id="Delete" checked="checked" type="checkbox"  value="@entityItem.EntityId">
-                                            }
-                                            else
-                                            {
-                                                <input id="Delete" type="checkbox"  value="@entityItem.EntityId">
-                                            }
-                                            Delete
-                                        </label>
-                                    </div>
+                                    @if (!entityItem.IsReport)
+                                    {
+                                        <div class="checkbox">
+                                            <label>
+                                                @if (entityPermissionDetails != null && entityPermissionDetails.CanInsert)
+                                                {
+                                                    <input id="Insert" checked="checked" type="checkbox" value="@entityItem.EntityId">
+                                                }
+                                                else
+                                                {
+                                                    <input id="Insert" type="checkbox" value="@entityItem.EntityId">
+                                                }
+                                                Insert
+                                            </label>
+                                        </div>
+                                        <div class="checkbox">
+                                            <label>
+                                                @if (entityPermissionDetails != null && entityPermissionDetails.CanEdit)
+                                                {
+                                                    <input id="Edit" checked="checked" type="checkbox"  value="@entityItem.EntityId">
+                                                }
+                                                else
+                                                {
+                                                    <input id="Edit" type="checkbox"  value="@entityItem.EntityId">
+                                                }
+                                                Edit
+                                            </label>
+                                        </div>
+                                        <div class="checkbox">
+                                            <label>
+                                                @if (entityPermissionDetails != null && entityPermissionDetails.CanDelete)
+                                                {
+                                                    <input id="Delete" checked="checked" type="checkbox"  value="@entityItem.EntityId">
+                                                }
+                                                else
+                                                {
+                                                    <input id="Delete" type="checkbox"  value="@entityItem.EntityId">
+                                                }
+                                                Delete
+                                            </label>
+                                        </div>
+                                    }
                                 </div>
                             }
                         </div>

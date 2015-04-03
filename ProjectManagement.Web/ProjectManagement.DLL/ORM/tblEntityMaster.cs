@@ -18,5 +18,6 @@ namespace ProjectManagement.DLL.ORM
         public string EntityName { get; set; }
         public string Description { get; set; }
         public string ControllerName { get; set; }
+        public bool IsReport { get; set; }
     }
 }

@@ -47,6 +47,7 @@ namespace ProjectManagement.DLL.ORM
             entity.EntityName = dto.EntityName;
             entity.Description = dto.Description;
             entity.ControllerName = dto.ControllerName;
+            entity.IsReport = dto.IsReport;
             dto.OnEntity(entity);
 
             return entity;
@@ -66,6 +67,7 @@ namespace ProjectManagement.DLL.ORM
             dto.EntityName = entity.EntityName;
             dto.Description = entity.Description;
             dto.ControllerName = entity.ControllerName;
+            dto.IsReport = entity.IsReport;
             entity.OnDTO(dto);
 
             return dto;
