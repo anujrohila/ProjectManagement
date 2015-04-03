@@ -419,6 +419,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CashBookController.cs" />
     <Compile Include="Controllers\BankBookController.cs" />
+    <Compile Include="Controllers\LedgerBookController.cs" />
     <Compile Include="Controllers\TransactionEntryController.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
     <Compile Include="Controllers\DocumentsController.cs" />
@@ -1096,6 +1097,7 @@
     <Content Include="Views\CashBook\ListAll.cshtml" />
     <Content Include="Views\Shared\_PartialReportData.cshtml" />
     <Content Include="Views\BankBook\ListAll.cshtml" />
+    <Content Include="Views\LedgerBook\ListAll.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Documents\" />
