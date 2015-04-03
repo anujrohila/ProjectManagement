@@ -256,25 +256,25 @@
                             @if (CommonFunctions.IsMemberHavePermission("TransactionEntry", ApplicationEnum.PageType.ListAll) || ApplicationMember.LoggedMemberType == 1)
                             {
                                 <li>
-                                    <a href="@Url.Action("ListAll", "TransactionEntry", new { type = "Cash" })">Cask Book</a>
+                                    <a href="@Url.Action("ListAll", "TransactionEntry", new { type = "Cash" })">Cask Entry</a>
                                 </li>
                             }
                             @if (CommonFunctions.IsMemberHavePermission("TransactionEntry", ApplicationEnum.PageType.ListAll) || ApplicationMember.LoggedMemberType == 1)
                             {
                                 <li>
-                                    <a href="@Url.Action("ListAll", "TransactionEntry", new { type = "Bank" })">Bank Book</a>
+                                    <a href="@Url.Action("ListAll", "TransactionEntry", new { type = "Bank" })">Bank Entry</a>
                                 </li>
                             }
                             @if (CommonFunctions.IsMemberHavePermission("TransactionEntry", ApplicationEnum.PageType.ListAll) || ApplicationMember.LoggedMemberType == 1)
                             {
                                 <li>
-                                    <a href="@Url.Action("ListAll", "TransactionEntry", new { type = "Contra" })">Contra Book</a>
+                                    <a href="@Url.Action("ListAll", "TransactionEntry", new { type = "Contra" })">Contra Entry</a>
                                 </li>
                             }
                             @if (CommonFunctions.IsMemberHavePermission("TransactionEntry", ApplicationEnum.PageType.ListAll) || ApplicationMember.LoggedMemberType == 1)
                             {
                                 <li>
-                                    <a href="@Url.Action("ListAll", "TransactionEntry", new { type = "Journal" })">Journal Book</a>
+                                    <a href="@Url.Action("ListAll", "TransactionEntry", new { type = "Journal" })">Journal Entry</a>
                                 </li>
                             }
                         </ul>
@@ -287,10 +287,30 @@
                         </a>
                         <ul class="sub-menu">
                             <li>
-                                <a href="">Cash Book</a>
-                                <a href="">Bank Book</a>
-                                <a href="">Contra</a>
-                                <a href="">Journal</a>
+                                @if (CommonFunctions.IsMemberHavePermission("CashBook", ApplicationEnum.PageType.ListAll) || ApplicationMember.LoggedMemberType == 1)
+                                {
+                                    <li>
+                                        <a href="@Url.Action("ListAll", "CashBook")">Cask Book</a>
+                                    </li>
+                                }
+                                @if (CommonFunctions.IsMemberHavePermission("BankBook", ApplicationEnum.PageType.ListAll) || ApplicationMember.LoggedMemberType == 1)
+                                {
+                                    <li>
+                                        <a href="@Url.Action("ListAll", "BankBook")">Bank Book</a>
+                                    </li>
+                                }
+                                @if (CommonFunctions.IsMemberHavePermission("LedgerBook", ApplicationEnum.PageType.ListAll) || ApplicationMember.LoggedMemberType == 1)
+                                {
+                                    <li>
+                                        <a href="@Url.Action("ListAll", "LedgerBook")">Ledger Book</a>
+                                    </li>
+                                }
+                                @if (CommonFunctions.IsMemberHavePermission("TrialBook", ApplicationEnum.PageType.ListAll) || ApplicationMember.LoggedMemberType == 1)
+                                {
+                                    <li>
+                                        <a href="@Url.Action("ListAll", "TrialBook")">Trial Book</a>
+                                    </li>
+                                }
                             </li>
                         </ul>
                     </li>
@@ -342,5 +362,5 @@
         $('#page-loader').addClass('fade in hide');
     }
     HideProcess();
-   
+
 </script>

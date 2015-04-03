@@ -7,6 +7,7 @@ using Telerik.Web.Mvc;
 
 namespace ProjectManagement.Web.Controllers
 {
+    [CustomActionAutentication]
     public class BankBookController : Controller
     {
         [HttpGet]
