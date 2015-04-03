@@ -24,10 +24,30 @@ namespace ProjectManagement.Web.Controllers
         /// <returns></returns>
         public PartialViewResult _PartialReportData(string accountId, string selectedDate)
         {
-            var result = ReportRepository.CashBookReport(accountId, DateTime.ParseExact(selectedDate, "dd-MM-yyyy", CultureInfo.InvariantCulture));
+            var cashBookResult = ReportRepository.CashBankBookReport(accountId, DateTime.ParseExact(selectedDate, "dd-MM-yyyy", CultureInfo.InvariantCulture), "CASH");
+            double CrTotalAmount = 0;
+            double DrTotalAmount = 0;
+            if (cashBookResult != null && cashBookResult.Count > 0)
+            {
+                foreach (var data in cashBookResult)
+                {
+                    if (string.Compare(data.FromAccount, data.Supplier1Id, StringComparison.CurrentCultureIgnoreCase) != 0)
+                    {
+                        data.CrAmount = data.Amount;
+                        CrTotalAmount = CrTotalAmount + data.Amount ?? 0;
+                    }
+                    if (string.Compare(data.ToAccount, data.Supplier1Id, StringComparison.CurrentCultureIgnoreCase) != 0)
+                    {
+                        data.DrAmount = data.Amount;
+                        DrTotalAmount = DrTotalAmount + data.Amount ?? 0;
+                    }
+                }
+                cashBookResult[0].CrTotalAmount = CrTotalAmount;
+                cashBookResult[0].DrTotalAmount = DrTotalAmount;
+            }
             var openingBalance = ReportRepository.GetLedgerOpeningBalance(accountId, DateTime.ParseExact(selectedDate, "dd-MM-yyyy", CultureInfo.InvariantCulture));
             ViewBag.OpeningBalance = openingBalance;
-            return PartialView(result);
+            return PartialView(cashBookResult);
         }
 
     }

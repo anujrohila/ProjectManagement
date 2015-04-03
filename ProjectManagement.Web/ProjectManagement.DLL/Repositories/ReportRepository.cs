@@ -29,7 +29,7 @@ namespace ProjectManagement.DLL
         /// Get Cash Book Report
         /// </summary>
         /// <returns></returns>
-        public static List<tblReportDTO> CashBookReport(string accountId, DateTime tDate)
+        public static List<tblReportDTO> CashBankBookReport(string accountId, DateTime tDate, string type)
         {
             using (var projectManagementEntities = new ProjectManagementEntities())
             {
@@ -42,7 +42,7 @@ namespace ProjectManagement.DLL
                                 || string.Compare(matAccountTwo.To_Account, accountId, StringComparison.CurrentCultureIgnoreCase) == 0
                               )
                               &&
-                              (string.Compare(matAccountTwo.Mode_Pay_Rec, "CASH", StringComparison.CurrentCultureIgnoreCase) == 0
+                              (string.Compare(matAccountTwo.Mode_Pay_Rec, type, StringComparison.CurrentCultureIgnoreCase) == 0
                                 || string.Compare(matAccountTwo.Mode_Pay_Rec, "CONTRA", StringComparison.CurrentCultureIgnoreCase) == 0
                               )
                               && matAccountTwo.Ddate >= tDate

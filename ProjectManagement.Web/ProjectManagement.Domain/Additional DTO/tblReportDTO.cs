@@ -17,6 +17,14 @@ namespace ProjectManagement.Domain
     [DataContract()]
     public partial class tblReportDTO
     {
+        public tblReportDTO()
+        {
+            CrAmount = 0;
+            DrAmount = 0;
+            CrTotalAmount = 0;
+            DrTotalAmount = 0;
+        }
+
         public string TransactionType { get; set; }
         public string Supplier1Id { get; set; }
         public string Supplier1TypeName { get; set; }
@@ -42,5 +50,11 @@ namespace ProjectManagement.Domain
         public string ChequeNo { get; set; }
         public string Users { get; set; }
         public string FiscalYear { get; set; }
+
+
+        public double? CrAmount { get; set; }
+        public double? DrAmount { get; set; }
+        public double CrTotalAmount { get; set; }
+        public double DrTotalAmount { get; set; }
     }
 }
