@@ -42,11 +42,30 @@ namespace ProjectManagement.Web.Controllers
                         DrTotalAmount = DrTotalAmount + data.Amount ?? 0;
                     }
                 }
+                var openingBalance = ReportRepository.GetLedgerOpeningBalance(accountId, DateTime.ParseExact(selectedDate, "dd-MM-yyyy", CultureInfo.InvariantCulture));
+
+                if (openingBalance < 0)
+                {
+                    CrTotalAmount = CrTotalAmount + openingBalance;
+                    cashBookResult[0].CrOpeningBalance = openingBalance;
+                }
                 cashBookResult[0].CrTotalAmount = CrTotalAmount;
+                if (openingBalance > 0)
+                {
+                    DrTotalAmount = DrTotalAmount + openingBalance;
+                    cashBookResult[0].DrOpeningBalance = openingBalance;
+                }
                 cashBookResult[0].DrTotalAmount = DrTotalAmount;
+
+                if ((DrTotalAmount - CrTotalAmount) > 0)
+                {
+                    cashBookResult[0].CrClosingBalance = DrTotalAmount - CrTotalAmount;
+                }
+                if ((DrTotalAmount - CrTotalAmount) < 0)
+                {
+                    cashBookResult[0].DrClosingBalance = DrTotalAmount - CrTotalAmount;
+                }
             }
-            var openingBalance = ReportRepository.GetLedgerOpeningBalance(accountId, DateTime.ParseExact(selectedDate, "dd-MM-yyyy", CultureInfo.InvariantCulture));
-            ViewBag.OpeningBalance = openingBalance;
             return PartialView(cashBookResult);
         }
 

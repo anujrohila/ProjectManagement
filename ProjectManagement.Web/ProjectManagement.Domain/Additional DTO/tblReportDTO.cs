@@ -23,6 +23,10 @@ namespace ProjectManagement.Domain
             DrAmount = 0;
             CrTotalAmount = 0;
             DrTotalAmount = 0;
+            CrOpeningBalance = 0;
+            DrOpeningBalance = 0;
+            CrClosingBalance = 0;
+            DrClosingBalance = 0;
         }
 
         public string TransactionType { get; set; }
@@ -56,5 +60,9 @@ namespace ProjectManagement.Domain
         public double? DrAmount { get; set; }
         public double CrTotalAmount { get; set; }
         public double DrTotalAmount { get; set; }
+        public double CrOpeningBalance { get; set; }
+        public double DrOpeningBalance { get; set; }
+        public double CrClosingBalance { get; set; }
+        public double DrClosingBalance { get; set; }
     }
 }
