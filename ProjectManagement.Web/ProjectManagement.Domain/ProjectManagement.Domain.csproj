@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Additional DTO\TrialReportDTO.cs" />
     <Compile Include="Additional DTO\tblReportDTO.cs" />
     <Compile Include="Additional DTO\tblReportModelDTO.cs" />
     <Compile Include="Additional DTO\tblProjectSelectionDTO.cs" />

@@ -192,6 +192,56 @@ namespace ProjectManagement.DLL
             }
         }
 
+        /// <summary>
+        /// Get Trial Report Debit Data
+        /// </summary>
+        /// <returns></returns>
+        public static List<TrialReportDTO> TrailDebitReport()
+        {
+            using (var projectManagementEntities = new ProjectManagementEntities())
+            {
+                return (from groupBySupplier in projectManagementEntities.GroupBySuppliers
+                        join supplierObject in projectManagementEntities.Suppliers
+                              on groupBySupplier.GrpIdSupplier equals supplierObject.GroupId
+                        join supplierChidOf in projectManagementEntities.Suppliers
+                              on supplierObject.childof equals supplierChidOf.Sup_id
+                        where supplierObject.Balance != 0 && supplierChidOf.Balance < 0
+                        select new TrialReportDTO
+                        {
+                            SupId = supplierObject.Sup_id,
+                            ChildOf = supplierObject.childof,
+                            Balance = supplierObject.Balance,
+                            NameiS = supplierObject.NameiS,
+                            GroupSupplierName = groupBySupplier.GroupSupplierName
+                        }).ToList();
+            }
+        }
+
+        /// <summary>
+        /// Get Trial Report Credit Data
+        /// </summary>
+        /// <returns></returns>
+        public static List<TrialReportDTO> TrailCreditReport()
+        {
+            using (var projectManagementEntities = new ProjectManagementEntities())
+            {
+                return (from groupBySupplier in projectManagementEntities.GroupBySuppliers
+                        join supplierObject in projectManagementEntities.Suppliers
+                              on groupBySupplier.GrpIdSupplier equals supplierObject.GroupId
+                        join supplierChidOf in projectManagementEntities.Suppliers
+                              on supplierObject.childof equals supplierChidOf.Sup_id
+                        where supplierObject.Balance != 0 && supplierChidOf.Balance > 0
+                        select new TrialReportDTO
+                        {
+                            SupId = supplierObject.Sup_id,
+                            ChildOf = supplierObject.childof,
+                            Balance = supplierObject.Balance,
+                            NameiS = supplierObject.NameiS,
+                            GroupSupplierName = groupBySupplier.GroupSupplierName
+                        }).ToList();
+            }
+        }
+
         #endregion
     }
 }

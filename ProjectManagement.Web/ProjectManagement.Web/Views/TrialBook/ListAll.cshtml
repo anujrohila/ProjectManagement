@@ -1,0 +1,78 @@
+﻿@model ProjectManagement.Web.TrialReportModel
+@using Telerik.Web.Mvc.UI;
+@using ProjectManagement.Domain;
+@{
+    ViewBag.Title = "Trial Book";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <!-- begin col-6 -->
+    <div class="col-md-12 ui-sortable">
+        <!-- begin panel -->
+        <div data-sortable-id="form-stuff-1" class="panel panel-inverse">
+            <div class="panel-heading">
+                <h4 class="panel-title">Trial Book</h4>
+            </div>
+            <div class="panel-body form-horizontal ">
+                <div class="form-group" style="padding: 20px">
+                    <div class="col-md-6" style="padding-right: 0px">
+                        @if (Model.CreditList != null)
+                        {
+                            <table class="table table-bordered">
+                                <tr style="font-weight: bold">
+                                    <td colspan="2">Credit</td>
+                                </tr>
+                                <tr style="font-weight: bold">
+                                    <td>Account Names</td>
+                                    <td>Amount</td>
+                                </tr>
+                                @foreach (var credit in Model.CreditList)
+                                {
+                                    <tr>
+                                        <td>@credit.NameiS</td>
+                                        <td>@credit.Balance</td>
+                                    </tr>
+                                }
+                                <tr style="font-weight: bold">
+                                    <td>Total :</td>
+                                    <td>@Model.CreditList.Sum(c => c.Balance).ToString()</td>
+                                </tr>
+                            </table>
+                        }
+                    </div>
+                    <div class="col-md-6" style="padding-left: 0px">
+                        @if (Model.CreditList != null)
+                        {
+                            <table class="table table-bordered">
+                                <tr style="font-weight: bold">
+                                    <td colspan="2">Debit</td>
+                                </tr>
+                                <tr style="font-weight: bold">
+                                    <td>Account Names</td>
+                                    <td>Amount</td>
+                                </tr>
+                                @foreach (var debit in Model.DebitList)
+                                {
+                                    <tr>
+                                        <td>@debit.NameiS</td>
+                                        <td>@debit.Balance</td>
+                                    </tr>
+                                }
+                                <tr style="font-weight: bold">
+                                    <td>Total :</td>
+                                    <td>@Model.DebitList.Sum(d => d.Balance).ToString()</td>
+                                </tr>
+                            </table>
+                        }
+                    </div>
+                    <div class="col-md-6">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end panel -->
+</div>
+<script type="text/javascript">
+    ActivateSelectedMenu('menuReport');
+</script>
