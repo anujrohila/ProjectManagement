@@ -59,16 +59,21 @@ function OnMemberFormSubmit() {
         if (entityPermissions[0].checked) {
             oneEntityPermisison = oneEntityPermisison + ",L";
         }
-        if (entityPermissions[1].checked) {
-            oneEntityPermisison = oneEntityPermisison + ",I";
+        if (entityPermissions.length > 1) {
+            if (entityPermissions[1].checked) {
+                oneEntityPermisison = oneEntityPermisison + ",I";
+            }
         }
-        if (entityPermissions[2].checked) {
-            oneEntityPermisison = oneEntityPermisison + ",E";
+        if (entityPermissions.length > 2) {
+            if (entityPermissions[2].checked) {
+                oneEntityPermisison = oneEntityPermisison + ",E";
+            }
         }
-        if (entityPermissions[3].checked) {
-            oneEntityPermisison = oneEntityPermisison + ",D";
+        if (entityPermissions.length > 3) {
+            if (entityPermissions[3].checked) {
+                oneEntityPermisison = oneEntityPermisison + ",D";
+            }
         }
-
         if (selectedEntityString == '') {
             selectedEntityString = oneEntityPermisison;
         }

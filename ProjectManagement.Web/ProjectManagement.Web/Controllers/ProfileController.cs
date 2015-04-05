@@ -17,7 +17,7 @@ using ProjectManagement.DLL;
 
 namespace ProjectManagement.Web.Controllers
 {
-     [CustomActionAutentication]
+     [CustomActionAutenticationMember]
     public class ProfileController : Controller
     {
         /// <summary>

@@ -83,7 +83,7 @@ namespace ProjectManagement.Web.Controllers
                 {
                     tblMemberDTO.IsActive = true;
                     tblMemberDTO.MemberTypeId = 2;
-                    tblMemberDTO.Password = CommonFunctions.HashPassword(tblMemberDTO.Password);
+                    tblMemberDTO.Password = tblMemberDTO.Password;
                     var memberId = MemberRepository.SaveMember(tblMemberDTO);
                     return RedirectToAction("ListAll");
                 }
