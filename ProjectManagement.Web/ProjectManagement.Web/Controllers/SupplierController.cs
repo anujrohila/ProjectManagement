@@ -166,7 +166,6 @@ namespace ProjectManagement.Web.Controllers
         private SupplierDTO FillSupplierDTO(SupplierDTO supplierDTO)
         {
             supplierDTO.SupplierGroupList = MasterRepository.GetAllSupplierType();
-            supplierDTO.SupplierGroupList.Insert(0, new GroupBySupplierDTO { GrpIdSupplier = 0, GroupSupplierName = "Select" });
             return supplierDTO;
         }
 

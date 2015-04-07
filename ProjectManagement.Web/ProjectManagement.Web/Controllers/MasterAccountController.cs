@@ -82,8 +82,6 @@ namespace ProjectManagement.Web.Controllers
         {
             matAccountTwoDTO.FromSupplierList = SupplierRepository.GetAllSupplier();
             matAccountTwoDTO.ToSupplierList = SupplierRepository.GetAllSupplier();
-            matAccountTwoDTO.FromSupplierList.Insert(0, new SupplierDTO { Sup_id = "0", NameiS = "Select" });
-            matAccountTwoDTO.ToSupplierList.Insert(0, new SupplierDTO { Sup_id = "0", NameiS = "Select" });
             return matAccountTwoDTO;
         }
 

@@ -101,11 +101,8 @@ namespace ProjectManagement.Web.Controllers
         private QtyMaterialDTO FillSupplierDTO(QtyMaterialDTO qtyMaterialDTO)
         {
             qtyMaterialDTO.SupplierList = SupplierRepository.GetAllSupplier();
-            qtyMaterialDTO.SupplierList.Insert(0, new SupplierDTO { Sup_id = "0", NameiS = "Select" });
             qtyMaterialDTO.MaterialList = MaterialSubGroupRepository.GetAllMaterialSubGroup();
-            qtyMaterialDTO.MaterialList.Insert(0, new MaterialDTO { Mat_id = "0", Mat_Name = "Select" });
             qtyMaterialDTO.UnitTypeList = CommonFunctions.GetAllUnitList();
-            qtyMaterialDTO.UnitTypeList.Insert(0, "Select");
             return qtyMaterialDTO;
         }
 

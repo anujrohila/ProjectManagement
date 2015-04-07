@@ -15,7 +15,6 @@ namespace ProjectManagement.Web.Controllers
         {
             var reportModel = new tblReportModelDTO();
             reportModel.SupplierList = SupplierRepository.GetAllSupplier();
-            reportModel.SupplierList.Insert(0, new SupplierDTO { Sup_id = "0", NameiS = "Select" });
             return View(reportModel);
         }
 
