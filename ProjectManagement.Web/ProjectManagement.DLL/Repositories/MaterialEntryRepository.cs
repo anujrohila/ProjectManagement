@@ -78,6 +78,7 @@ namespace ProjectManagement.DLL
                                 on qtyMaterials.Mat_id equals materials.Mat_id
                         join suppliers in projectManagementEntities.Suppliers
                                 on qtyMaterials.Sup_id equals suppliers.Sup_id
+                        where string.Compare(qtyMaterials.Reg_id, entryId, StringComparison.CurrentCultureIgnoreCase) == 0
                         select new QtyMaterialDTO
                         {
                             Reg_id = qtyMaterials.Reg_id,
