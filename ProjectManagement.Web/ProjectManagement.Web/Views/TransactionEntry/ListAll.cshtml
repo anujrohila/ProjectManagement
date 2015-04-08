@@ -18,17 +18,15 @@
                 <div class="col-md-12 well">
                     <div class="col-md-3">
                         <label class="control-inline ">Start Date<span class="spanError">*</span></label>
-                        <div class="input-group  col-md-3 date datepicker" id="datepicker" data-date-format="dd-mm-yyyy">
-                            @Html.TextBox("StartDate", DateTime.Now.AddDays(-10).ToString("dd-MM-yyyy"), new { @placeholder = "Start Date", @class = "form-control" })
-                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                        <div class="input-group  col-md-3">
+                            @(Html.Telerik().DatePicker().Name("StartDate").Value(DateTime.Now.AddDays(-10)).InputHtmlAttributes(new { @class = "disabled form-control" }).Format("dd-MM-yyyy"))
                         </div>
                     </div>
                    
                     <div class="col-md-3">
                         <label class="control-inline">End Date<span class="spanError">*</span></label>
-                        <div class="input-group date datepicker" id="datepicker" data-date-format="dd-mm-yyyy">
-                            @Html.TextBox("EndDate", DateTime.Now.ToString("dd-MM-yyyy"), new { @placeholder = "End Date", @class = "form-control" })
-                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                        <div class="input-group">
+                            @(Html.Telerik().DatePicker().Name("EndDate").Value(DateTime.Now).InputHtmlAttributes(new { @class = "disabled form-control" }).Format("dd-MM-yyyy"))
                         </div>
                     </div>
                     <div class="col-md-2">
@@ -84,9 +82,7 @@
         <!-- end panel -->
     </div>
 </div>
-<script src="~/Content/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
 <script src="~/Content/Script/TransactionEntry.js"></script>
 <script type="text/javascript">
-    $('.datepicker').datepicker({ format: 'dd-mm-yyyy', });
     ActivateSelectedMenu('menuTrancation');
 </script>
