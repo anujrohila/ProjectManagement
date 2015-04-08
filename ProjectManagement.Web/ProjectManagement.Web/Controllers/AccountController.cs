@@ -72,13 +72,19 @@ namespace ProjectManagement.Web.Controllers
             System.Web.HttpContext.Current.Session.Abandon();
             Response.Cookies.Remove(FormsAuthentication.FormsCookieName);
             Session.Clear();
-           
+
+         
             var cookiesList = System.Web.HttpContext.Current.Request.Cookies.AllKeys;
             foreach (var item in cookiesList)
             {
                 var cookie = System.Web.HttpContext.Current.Request.Cookies[item];
                 cookie.Expires = DateTime.Now.AddHours(-1);
             }
+
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.Cache.SetExpires(DateTime.Now.AddSeconds(-1));
+            Response.Cache.SetNoStore();
+
 
             return RedirectToAction("Login", "Account");
         }

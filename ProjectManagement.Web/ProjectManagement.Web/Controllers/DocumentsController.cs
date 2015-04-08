@@ -130,7 +130,7 @@ namespace ProjectManagement.Web.Controllers
         public int Height { get; set; }
 
         // folder for the upload, you can put this in the web.config
-        private readonly string UploadPath = HttpContext.Current.Server.MapPath("~/Documents/");
+        private readonly string UploadPath = HttpContext.Current.Server.MapPath("~/Documents1111/");
 
         public ImageResult RenameUploadFile(HttpPostedFileBase file, Int32 counter = 0)
         {
