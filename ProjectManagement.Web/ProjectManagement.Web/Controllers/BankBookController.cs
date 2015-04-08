@@ -14,7 +14,7 @@ namespace ProjectManagement.Web.Controllers
         public ActionResult ListAll()
         {
             var reportModel = new tblReportModelDTO();
-            reportModel.SupplierList = SupplierRepository.GetAllSupplier();
+            reportModel.SupplierList = SupplierRepository.GetAllSupplier().Where(s => s.GroupId == 2).ToList();
             return View(reportModel);
         }
 
