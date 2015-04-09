@@ -15,7 +15,7 @@ namespace ProjectManagement.Web.Controllers
         {
             var reportModel = new tblReportModelDTO();
             reportModel.SupplierList = SupplierRepository.GetAllSupplier().Where(s => s.GroupId == 6 || s.GroupId == 45).ToList();
-
+            reportModel.YearList = CommonFunctions.GetYearList();
             return View(reportModel);
         }
 
@@ -25,7 +25,9 @@ namespace ProjectManagement.Web.Controllers
         /// <returns></returns>
         public PartialViewResult _PartialReportData(string accountId, string selectedDate)
         {
-            var cashBookResult = ReportRepository.CashBankBookReport(accountId, DateTime.ParseExact(selectedDate, "dd-MM-yyyy", CultureInfo.InvariantCulture), "CASH");
+            DateTime startDate = DateTime.ParseExact(selectedDate, "dd-MM-yyyy", CultureInfo.InvariantCulture);
+            DateTime endDate = DateTime.ParseExact("31-03-" + startDate.AddYears(1).Year, "dd-MM-yyyy", CultureInfo.InvariantCulture);
+            var cashBookResult = ReportRepository.CashBankBookReport(accountId, startDate, endDate, "CASH");
             double CrTotalAmount = 0;
             double DrTotalAmount = 0;
             if (cashBookResult != null && cashBookResult.Count > 0)

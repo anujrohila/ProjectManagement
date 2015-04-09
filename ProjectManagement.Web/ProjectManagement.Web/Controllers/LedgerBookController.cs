@@ -15,6 +15,7 @@ namespace ProjectManagement.Web.Controllers
         {
             var reportModel = new tblReportModelDTO();
             reportModel.SupplierList = SupplierRepository.GetAllSupplier();
+            reportModel.YearList = CommonFunctions.GetYearList();
             return View(reportModel);
         }
 

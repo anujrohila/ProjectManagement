@@ -7,6 +7,7 @@ using System.Net.Mail;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web;
+using System.Web.Mvc;
 
 namespace ProjectManagement.Web
 {
@@ -152,6 +153,17 @@ namespace ProjectManagement.Web
             }
 
             return true;
+        }
+
+        public static List<SelectListItem> GetYearList()
+        {
+            var yearList = new List<SelectListItem>();
+            for (int i = 2000; i < DateTime.Now.Year; i++)
+            {
+                yearList.Add(new SelectListItem { Text = i.ToString(), Value = i.ToString() });
+            }
+
+            return yearList;
         }
 
         #endregion

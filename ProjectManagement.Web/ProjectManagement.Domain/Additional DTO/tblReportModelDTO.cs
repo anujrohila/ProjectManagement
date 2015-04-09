@@ -11,13 +11,15 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 using System.Text;
+using System.Web.Mvc;
 
 namespace ProjectManagement.Domain
 {
-    [DataContract()]
     public partial class tblReportModelDTO
     {
         public List<SupplierDTO> SupplierList { get; set; }
         public List<tblReportDTO> ReportData { get; set; }
+        public List<SelectListItem> YearList { get; set; }
+
     }
 }

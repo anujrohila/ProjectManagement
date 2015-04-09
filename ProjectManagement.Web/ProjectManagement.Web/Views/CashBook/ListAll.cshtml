@@ -13,7 +13,7 @@
         <!-- begin panel -->
         <div data-sortable-id="form-stuff-1" class="panel panel-inverse">
             <div class="panel-heading">
-                <h4 class="panel-title">Cash Book</h4>
+                <h4 class="panel-title"><span id="headerText">Cash Book</span></h4>
             </div>
             <div class="panel-body form-horizontal ">
                 <div class="col-md-12 well">
@@ -28,9 +28,13 @@
                     </div>
                     <div class="col-md-3">
                         <label class="control-inline">Transaction Date<span class="spanError">*</span></label>
-                        <div class="input-group date datepicker" id="datepicker" data-date-format="dd-mm-yyyy">
-                            @Html.TextBox("TransactionDate", DateTime.Now.ToString("dd-MM-yyyy"), new { @placeholder = "End Date", @class = "form-control" })
-                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                        <div class="input-group">
+                            <select id="TransactionDate" name="TransactionDate" class="form-control" style="width:120px">
+                                @foreach (var year in Model.YearList)
+                                {
+                                    <option value="@year.Value" selected="selected">@year.Text</option>
+                                }
+                            </select>
                         </div>
                     </div>
                     <div class="col-md-2">

@@ -29,7 +29,7 @@ namespace ProjectManagement.DLL
         /// Get Cash Book Report
         /// </summary>
         /// <returns></returns>
-        public static List<tblReportDTO> CashBankBookReport(string accountId, DateTime tDate, string type)
+        public static List<tblReportDTO> CashBankBookReport(string accountId, DateTime startDate , DateTime endDate, string type)
         {
             using (var projectManagementEntities = new ProjectManagementEntities())
             {
@@ -45,7 +45,7 @@ namespace ProjectManagement.DLL
                               (string.Compare(matAccountTwo.Mode_Pay_Rec, type, StringComparison.CurrentCultureIgnoreCase) == 0
                                 || string.Compare(matAccountTwo.Mode_Pay_Rec, "CONTRA", StringComparison.CurrentCultureIgnoreCase) == 0
                               )
-                              && matAccountTwo.Ddate >= tDate
+                              && matAccountTwo.Ddate >= startDate && matAccountTwo.Ddate <= endDate
                         select new tblReportDTO
                         {
                             TransactionType = supplierFrom.NameiS,
@@ -73,7 +73,7 @@ namespace ProjectManagement.DLL
                             ChequeNo = matAccountTwo.ChqNo,
                             Users = matAccountTwo.Userss,
                             FiscalYear = matAccountTwo.fy,
-                        }).OrderBy(r => r.DDate).ToList();
+                        }).OrderBy(r => r.VrNo).ToList();
             }
         }
 

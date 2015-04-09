@@ -1,6 +1,7 @@
 function OnCashBookReportButtonClick() {
     var accountId = $("#AccountId").val();
     var objDate = $("#TransactionDate").val();
+    objDate = "01-04-" + objDate;
     if (accountId == "0") {
         alert("Please select account.");
         return false;
@@ -27,6 +28,7 @@ function OnCashBookReportButtonClick() {
 function OnBankBookReportButtonClick() {
     var accountId = $("#AccountId").val();
     var objDate = $("#TransactionDate").val();
+    objDate = "01-04-" + objDate;
     if (accountId == "0") {
         alert("Please select account.");
         return false;
@@ -53,6 +55,7 @@ function OnBankBookReportButtonClick() {
 function OnLedgerBookReportButtonClick() {
     var accountId = $("#AccountId").val();
     var objDate = $("#TransactionDate").val();
+    objDate = "01-04-" + objDate;
     if (accountId == "0") {
         alert("Please select account.");
         return false;
