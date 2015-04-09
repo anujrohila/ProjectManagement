@@ -22,10 +22,15 @@ namespace ProjectManagement.Domain
             
         }
 
-        public string SupId { get; set; }
-        public string ChildOf { get; set; }
-        public double Balance { get; set; }
+        public string Sup_id { get; set; }
         public string NameiS { get; set; }
+        public string AddiS { get; set; }
+        public double CreditAmmount { get; set; }
+        public int GroupId { get; set; }
+        public int GrpIdSupplier { get; set; }
         public string GroupSupplierName { get; set; }
+        public int ChildOf { get; set; }
+        public bool Display { get; set; }
+        public double ClosingBalance { get; set; }
     }
 }

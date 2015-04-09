@@ -29,7 +29,7 @@ namespace ProjectManagement.DLL
         /// Get Cash Book Report
         /// </summary>
         /// <returns></returns>
-        public static List<tblReportDTO> CashBankBookReport(string accountId, DateTime startDate , DateTime endDate, string type)
+        public static List<tblReportDTO> CashBankBookReport(string accountId, DateTime startDate, DateTime endDate, string type)
         {
             using (var projectManagementEntities = new ProjectManagementEntities())
             {
@@ -196,48 +196,25 @@ namespace ProjectManagement.DLL
         /// Get Trial Report Debit Data
         /// </summary>
         /// <returns></returns>
-        public static List<TrialReportDTO> TrailDebitReport()
+        public static List<TrialReportDTO> TrailBalanceSheetReport()
         {
             using (var projectManagementEntities = new ProjectManagementEntities())
             {
-                return (from groupBySupplier in projectManagementEntities.GroupBySuppliers
-                        join supplierObject in projectManagementEntities.Suppliers
-                              on groupBySupplier.GrpIdSupplier equals supplierObject.GroupId
-                        join supplierChidOf in projectManagementEntities.Suppliers
-                              on supplierObject.childof equals supplierChidOf.Sup_id
-                        where supplierObject.Balance != 0 && supplierChidOf.Balance < 0
+                return (from supplierObject in projectManagementEntities.Suppliers
+                        join groupBySupplier in projectManagementEntities.GroupBySuppliers
+                              on supplierObject.GroupId equals groupBySupplier.GrpIdSupplier
                         select new TrialReportDTO
                         {
-                            SupId = supplierObject.Sup_id,
-                            ChildOf = supplierObject.childof,
-                            Balance = supplierObject.Balance,
+                            Sup_id = supplierObject.Sup_id,
                             NameiS = supplierObject.NameiS,
-                            GroupSupplierName = groupBySupplier.GroupSupplierName
-                        }).ToList();
-            }
-        }
-
-        /// <summary>
-        /// Get Trial Report Credit Data
-        /// </summary>
-        /// <returns></returns>
-        public static List<TrialReportDTO> TrailCreditReport()
-        {
-            using (var projectManagementEntities = new ProjectManagementEntities())
-            {
-                return (from groupBySupplier in projectManagementEntities.GroupBySuppliers
-                        join supplierObject in projectManagementEntities.Suppliers
-                              on groupBySupplier.GrpIdSupplier equals supplierObject.GroupId
-                        join supplierChidOf in projectManagementEntities.Suppliers
-                              on supplierObject.childof equals supplierChidOf.Sup_id
-                        where supplierObject.Balance != 0 && supplierChidOf.Balance > 0
-                        select new TrialReportDTO
-                        {
-                            SupId = supplierObject.Sup_id,
-                            ChildOf = supplierObject.childof,
-                            Balance = supplierObject.Balance,
-                            NameiS = supplierObject.NameiS,
-                            GroupSupplierName = groupBySupplier.GroupSupplierName
+                            AddiS = supplierObject.AddiS,
+                            CreditAmmount = supplierObject.creditammount ?? 0,
+                            GroupId = supplierObject.GroupId ?? 0,
+                            GrpIdSupplier = groupBySupplier.GrpIdSupplier,
+                            GroupSupplierName = groupBySupplier.GroupSupplierName,
+                            ChildOf = groupBySupplier.childOf ?? 0,
+                            Display = groupBySupplier.Display ?? false,
+                            ClosingBalance = groupBySupplier.ClosingBalance ?? 0
                         }).ToList();
             }
         }
