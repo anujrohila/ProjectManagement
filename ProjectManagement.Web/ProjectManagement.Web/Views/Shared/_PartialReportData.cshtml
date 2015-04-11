@@ -6,7 +6,11 @@
 {
     if (Model != null && Model.Count > 0)
     {
-        <table class="table table-bordered">
+    <input value="Print" type="button" class="btn btn-sm btn-success" onclick="PrintObject();" />
+    
+    
+    <div class="printable" style="padding-top: 10px">
+        <table id="tableReportContet" class="table table-bordered">
             <thead>
                 <tr>
                     <th>Vr No </th>
@@ -57,14 +61,15 @@
                         @Model[0].CrClosingBalance
                     </td>
                     <td>
-                         @Model[0].DrClosingBalance
+                        @Model[0].DrClosingBalance
                     </td>
                 </tr>
             </tbody>
         </table>
+    </div>
     }
     else
     {
-        <span>No data found.</span>
+    <span>No data found.</span>
     }
 }

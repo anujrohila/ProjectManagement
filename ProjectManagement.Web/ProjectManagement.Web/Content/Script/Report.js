@@ -79,5 +79,9 @@ function OnLedgerBookReportButtonClick() {
     HideProcess();
 }
 
+function PrintObject() {
+    $(".printable").print();
+}
+
 
 

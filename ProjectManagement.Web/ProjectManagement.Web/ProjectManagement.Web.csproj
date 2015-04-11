@@ -709,6 +709,7 @@
     <Content Include="Content\js\gallery-v2.demo.min.js" />
     <Content Include="Content\js\gallery.demo.min.js" />
     <Content Include="Content\js\inbox.demo.min.js" />
+    <Content Include="Content\js\jquery.print.js" />
     <Content Include="Content\js\login-v2.demo.min.js" />
     <Content Include="Content\js\map-google.demo.min.js" />
     <Content Include="Content\js\map-vector.demo.min.js" />
