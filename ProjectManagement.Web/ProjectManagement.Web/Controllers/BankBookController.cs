@@ -35,6 +35,7 @@ namespace ProjectManagement.Web.Controllers
             {
                 foreach (var data in cashBookResult)
                 {
+                    data.TransactionDateString = data.DDate.Value.ToString("MMMM-yyyy");
                     if (string.Compare(data.FromAccount, data.Supplier1Id, StringComparison.CurrentCultureIgnoreCase) != 0)
                     {
                         data.CrAmount = data.Amount;

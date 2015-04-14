@@ -25,13 +25,16 @@ namespace ProjectManagement.Web.Controllers
         /// <returns></returns>
         public PartialViewResult _PartialReportData(string accountId, string selectedDate)
         {
-            var ledgerBookResult = ReportRepository.LedgerBookReport(accountId, DateTime.ParseExact(selectedDate, "dd-MM-yyyy", CultureInfo.InvariantCulture));
+            DateTime startDate = DateTime.ParseExact(selectedDate, "dd-MM-yyyy", CultureInfo.InvariantCulture);
+            DateTime endDate = DateTime.ParseExact("31-03-" + startDate.AddYears(1).Year, "dd-MM-yyyy", CultureInfo.InvariantCulture);
+            var ledgerBookResult = ReportRepository.LedgerBookReport(accountId, startDate, endDate);
             double CrTotalAmount = 0;
             double DrTotalAmount = 0;
             if (ledgerBookResult != null && ledgerBookResult.Count > 0)
             {
                 foreach (var data in ledgerBookResult)
                 {
+                    data.TransactionDateString = data.DDate.Value.ToString("MMMM-yyyy");
                     if (string.Compare(data.FromAccount, data.Supplier1Id, StringComparison.CurrentCultureIgnoreCase) != 0)
                     {
                         data.CrAmount = data.Amount;

@@ -54,6 +54,7 @@ namespace ProjectManagement.Domain
         public string ChequeNo { get; set; }
         public string Users { get; set; }
         public string FiscalYear { get; set; }
+        public string TransactionDateString { get; set; }
 
 
         public double? CrAmount { get; set; }

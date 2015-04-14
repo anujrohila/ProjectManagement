@@ -160,7 +160,8 @@ namespace ProjectManagement.Web
             var yearList = new List<SelectListItem>();
             for (int i = 2000; i < DateTime.Now.Year; i++)
             {
-                yearList.Add(new SelectListItem { Text = i.ToString(), Value = i.ToString() });
+                string val = string.Format("{0} - {1}", i.ToString(), (i + 1).ToString());
+                yearList.Add(new SelectListItem { Text = val, Value = i.ToString() });
             }
 
             return yearList;

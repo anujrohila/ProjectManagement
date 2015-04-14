@@ -73,7 +73,7 @@ namespace ProjectManagement.DLL
                             ChequeNo = matAccountTwo.ChqNo,
                             Users = matAccountTwo.Userss,
                             FiscalYear = matAccountTwo.fy,
-                        }).OrderBy(r => r.VrNo).ToList();
+                        }).OrderBy(r => r.DDate).ToList();
             }
         }
 
@@ -148,7 +148,7 @@ namespace ProjectManagement.DLL
         /// Get Cash Book Report
         /// </summary>
         /// <returns></returns>
-        public static List<tblReportDTO> LedgerBookReport(string accountId, DateTime tDate)
+        public static List<tblReportDTO> LedgerBookReport(string accountId, DateTime startDate, DateTime endDate)
         {
             using (var projectManagementEntities = new ProjectManagementEntities())
             {
@@ -160,7 +160,7 @@ namespace ProjectManagement.DLL
                         where (string.Compare(matAccountTwo.From_Account, accountId, StringComparison.CurrentCultureIgnoreCase) == 0
                                 || string.Compare(matAccountTwo.To_Account, accountId, StringComparison.CurrentCultureIgnoreCase) == 0
                               )
-                              && matAccountTwo.Ddate >= tDate
+                              && matAccountTwo.Ddate >= startDate && matAccountTwo.Ddate <= endDate
                         select new tblReportDTO
                         {
                             TransactionType = supplierFrom.NameiS,

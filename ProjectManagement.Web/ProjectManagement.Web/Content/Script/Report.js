@@ -74,6 +74,8 @@ function OnLedgerBookReportButtonClick() {
         cache: false,
         success: function (html) {
             $("#divReportData").html(html);
+            $("#trLedgerName").show();
+            $("#spanLedgerText").html($("#AccountId option:selected").text() + " (A\\C Start From " + objDate + ")");
         }
     });
     HideProcess();
