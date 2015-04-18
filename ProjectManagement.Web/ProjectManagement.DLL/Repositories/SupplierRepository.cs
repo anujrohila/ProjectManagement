@@ -31,7 +31,7 @@ namespace ProjectManagement.DLL
             {
                 int total = projectManagementEntities.Suppliers.Where(sup => sup.GroupId == 40 && string.Compare(sup.Sup_id, supplierId, StringComparison.CurrentCultureIgnoreCase) != 0).Sum(s => s.share.Value);
                 return total;
-            } 
+            }
         }
 
         /// <summary>
@@ -45,6 +45,7 @@ namespace ProjectManagement.DLL
                 return (from supplierObject in projectManagementEntities.Suppliers
                         join supplierGroup in projectManagementEntities.GroupBySuppliers
                               on supplierObject.GroupId equals supplierGroup.GrpIdSupplier
+                        where supplierGroup.Display == true
                         select new SupplierDTO
                         {
                             Sup_id = supplierObject.Sup_id,

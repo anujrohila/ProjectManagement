@@ -4,6 +4,7 @@ using System;
 using System.Globalization;
 using System.Web.Mvc;
 using Telerik.Web.Mvc;
+using System.Linq;
 
 namespace ProjectManagement.Web.Controllers
 {
@@ -14,7 +15,7 @@ namespace ProjectManagement.Web.Controllers
         public ActionResult ListAll()
         {
             var reportModel = new tblReportModelDTO();
-            reportModel.SupplierList = SupplierRepository.GetAllSupplier();
+            reportModel.SupplierList = SupplierRepository.GetAllSupplier().Where(s => s.GroupId != 6 && s.GroupId != 45 && s.GroupId != 2).ToList();
             reportModel.YearList = CommonFunctions.GetYearList();
             return View(reportModel);
         }

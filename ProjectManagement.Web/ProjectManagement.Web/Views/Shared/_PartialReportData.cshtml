@@ -3,8 +3,8 @@
     Layout = null;
 }
 <style>
-    .tableReportContet .th {
-        padding: 5px;
+    td, th {
+        padding: 3px !important;
     }
 </style>
 @if (Model != null)
@@ -13,7 +13,7 @@
     {
     <input value="Print" type="button" class="btn btn-sm btn-success" onclick="PrintObject();" />
     <div class="printable" style="padding-top: 10px">
-        <table id="tableReportContet" border="1" style="width: 100%; padding: 5px" cellspacing="0" cellpadding="0">
+        <table id="tableReportContet" border="1" style="width: 100%; font-size: 12px" cellpading="0" cellspacing="0">
             <thead>
                 <tr>
                     <td colspan="6" style="font-weight: bold; text-align: center; vertical-align: middle; padding: 5px; font-size: 20px">
@@ -36,10 +36,10 @@
                 <tr style="text-align: right; font-weight: bold">
                     <td colspan="4">Opening Balance</td>
                     <td>
-                        @Model[0].CrOpeningBalance
+                        @Model[0].CrOpeningBalance.ToString("0.00")
                     </td>
                     <td>
-                        @Model[0].DrOpeningBalance
+                        @Model[0].DrOpeningBalance.ToString("0.00")
                     </td>
                 </tr>
             </thead>
@@ -57,10 +57,10 @@
                         <td>@reportData.DDate.Value.ToString("dd-MM-yyyy")</td>
                         <td>@reportData.Description</td>
                         <td style="text-align: right">
-                            @reportData.CrAmount
+                            @reportData.CrAmount.Value.ToString("0.00")
                         </td>
                         <td style="text-align: right">
-                            @reportData.DrAmount
+                            @reportData.DrAmount.Value.ToString("0.00")
                         </td>
                     </tr>
                     }
@@ -69,19 +69,19 @@
                 <tr style="text-align: right; font-weight: bold">
                     <td colspan="4"></td>
                     <td style="text-align: right">
-                        @Model[0].CrTotalAmount
+                        @Model[0].CrTotalAmount.ToString("0.00")
                     </td>
                     <td>
-                        @Model[0].DrTotalAmount
+                        @Model[0].DrTotalAmount.ToString("0.00")
                     </td>
                 </tr>
                 <tr style="text-align: right; font-weight: bold">
                     <td colspan="4">Closing Balance</td>
                     <td>
-                        @Model[0].CrClosingBalance
+                        @Model[0].CrClosingBalance.ToString("0.00")
                     </td>
                     <td>
-                        @Model[0].DrClosingBalance
+                        @Model[0].DrClosingBalance.ToString("0.00")
                     </td>
                 </tr>
             </tbody>
