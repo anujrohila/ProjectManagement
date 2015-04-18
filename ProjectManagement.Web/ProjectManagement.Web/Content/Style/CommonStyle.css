@@ -126,7 +126,7 @@
 }
 
 .t-widget {
-    width: auto;
+    width: 200px;
 }
 
 div.t-window-content {
@@ -138,6 +138,6 @@ div.t-window-content {
 }
 
 .t-header, .t-grid-header, .t-toolbar, .t-grouping-header, .t-tooltip, .t-grid-pager {
-    background-color: #000;
-    color: white;
+    /*background-color: #000;
+    color: white;*/
 }
