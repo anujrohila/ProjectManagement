@@ -126,5 +126,18 @@
 }
 
 .t-widget {
-    width: 200px;
+    width: auto;
+}
+
+div.t-window-content {
+    padding: initial !important;
+}
+
+.t-window-content t-content {
+    overflow: hidden !important;
+}
+
+.t-header, .t-grid-header, .t-toolbar, .t-grouping-header, .t-tooltip, .t-grid-pager {
+    background-color: #000;
+    color: white;
 }
