@@ -1103,9 +1103,7 @@
     <Content Include="Views\LedgerBook\ListAll.cshtml" />
     <Content Include="Views\TrialBook\ListAll.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Documents\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
