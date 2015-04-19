@@ -15,7 +15,13 @@ namespace ProjectManagement.Web.Controllers
         public ActionResult ListAll()
         {
             var reportModel = new tblReportModelDTO();
-            reportModel.SupplierList = SupplierRepository.GetAllSupplier().Where(s => s.GroupId != 6 && s.GroupId != 45 && s.GroupId != 2).ToList();
+            reportModel.SupplierList = SupplierRepository.GetAllSupplier().Where(s => s.GroupId != 6
+                                                                                        && s.GroupId != 45
+                                                                                        && s.GroupId != 2
+                                                                                        && s.GroupId != 21
+                                                                                        && s.GroupId != 23
+                                                                                        && s.GroupId != 44
+                                                                                        && s.GroupId != 43).ToList();
             reportModel.YearList = CommonFunctions.GetYearList();
             return View(reportModel);
         }
