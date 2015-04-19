@@ -316,6 +316,18 @@
                                         <a href="@Url.Action("ListAll", "TrialBook")">Trial Book</a>
                                     </li>
                                 }
+                                @if (CommonFunctions.IsMemberHavePermission("PurchaseBook", ApplicationEnum.PageType.ListAll) || ApplicationMember.LoggedMemberType == 1)
+                                {
+                                    <li>
+                                        <a href="@Url.Action("ListAll", "PurchaseBook")">Purchase Book</a>
+                                    </li>
+                                }
+                                @if (CommonFunctions.IsMemberHavePermission("SalesBook", ApplicationEnum.PageType.ListAll) || ApplicationMember.LoggedMemberType == 1)
+                                {
+                                    <li>
+                                        <a href="@Url.Action("ListAll", "SalesBook")">Sales Book</a>
+                                    </li>
+                                }
                             </li>
                         </ul>
                     </li>

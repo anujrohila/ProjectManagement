@@ -419,6 +419,8 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CashBookController.cs" />
     <Compile Include="Controllers\BankBookController.cs" />
+    <Compile Include="Controllers\SalesBookController.cs" />
+    <Compile Include="Controllers\PurchaseBookController.cs" />
     <Compile Include="Controllers\TrialBookController.cs" />
     <Compile Include="Controllers\LedgerBookController.cs" />
     <Compile Include="Controllers\TransactionEntryController.cs" />
@@ -1102,6 +1104,8 @@
     <Content Include="Views\BankBook\ListAll.cshtml" />
     <Content Include="Views\LedgerBook\ListAll.cshtml" />
     <Content Include="Views\TrialBook\ListAll.cshtml" />
+    <Content Include="Views\PurchaseBook\ListAll.cshtml" />
+    <Content Include="Views\SalesBook\ListAll.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

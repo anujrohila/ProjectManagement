@@ -1,0 +1,54 @@
+﻿@model tblReportModelDTO
+@using Telerik.Web.Mvc.UI;
+@using ProjectManagement.Domain;
+@{
+    ViewBag.Title = "Sales Book";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <!-- begin col-6 -->
+    <div class="col-md-12 ui-sortable">
+        <!-- begin panel -->
+        <div data-sortable-id="form-stuff-1" class="panel panel-inverse">
+            <div class="panel-heading">
+                <h4 class="panel-title">Sales Book</h4>
+            </div>
+            <div class="panel-body form-horizontal ">
+                <div class="col-md-12 well">
+                    <div class="col-md-3">
+                        <label class="control-inline ">Account<span class="spanError">*</span></label>
+                        <select id="AccountId" name="AccountId" class="form-control">
+                            @foreach (var supplier in Model.SupplierList)
+                            {
+                                <option value="@supplier.Sup_id">@supplier.NameiS</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="control-inline">Transaction Date<span class="spanError">*</span></label>
+                        <div class="input-group">
+                            <select id="TransactionDate" name="TransactionDate" class="form-control" style="width: 120px">
+                                @foreach (var year in Model.YearList)
+                                {
+                                    <option value="@year.Value" selected="selected">@year.Text</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <label class="control-inline">&nbsp;</label>
+                        <br />
+                        <button style="margin-top: 6px;" type="button" class="btn btn-sm btn-success" onclick="OnLedgerBookReportButtonClick();">Generate Search</button>
+                    </div>
+                </div>
+                <div id="divReportData" class="form-group" style="padding: 20px">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end panel -->
+</div>
+<script src="~/Content/Script/Report.js"></script>
+<script type="text/javascript">
+    ActivateSelectedMenu('menuReport');
+</script>
