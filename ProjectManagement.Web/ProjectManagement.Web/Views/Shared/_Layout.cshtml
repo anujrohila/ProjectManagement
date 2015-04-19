@@ -291,44 +291,42 @@
                             <span>Report</span>
                         </a>
                         <ul class="sub-menu">
-                            <li>
-                                @if (CommonFunctions.IsMemberHavePermission("CashBook", ApplicationEnum.PageType.ListAll) || ApplicationMember.LoggedMemberType == 1)
-                                {
-                                    <li>
-                                        <a href="@Url.Action("ListAll", "CashBook")">Cask Book</a>
-                                    </li>
-                                }
-                                @if (CommonFunctions.IsMemberHavePermission("BankBook", ApplicationEnum.PageType.ListAll) || ApplicationMember.LoggedMemberType == 1)
-                                {
-                                    <li>
-                                        <a href="@Url.Action("ListAll", "BankBook")">Bank Book</a>
-                                    </li>
-                                }
-                                @if (CommonFunctions.IsMemberHavePermission("LedgerBook", ApplicationEnum.PageType.ListAll) || ApplicationMember.LoggedMemberType == 1)
-                                {
-                                    <li>
-                                        <a href="@Url.Action("ListAll", "LedgerBook")">Ledger Book</a>
-                                    </li>
-                                }
-                                @if (CommonFunctions.IsMemberHavePermission("TrialBook", ApplicationEnum.PageType.ListAll) || ApplicationMember.LoggedMemberType == 1)
-                                {
-                                    <li>
-                                        <a href="@Url.Action("ListAll", "TrialBook")">Trial Book</a>
-                                    </li>
-                                }
-                                @if (CommonFunctions.IsMemberHavePermission("PurchaseBook", ApplicationEnum.PageType.ListAll) || ApplicationMember.LoggedMemberType == 1)
-                                {
-                                    <li>
-                                        <a href="@Url.Action("ListAll", "PurchaseBook")">Purchase Book</a>
-                                    </li>
-                                }
-                                @if (CommonFunctions.IsMemberHavePermission("SalesBook", ApplicationEnum.PageType.ListAll) || ApplicationMember.LoggedMemberType == 1)
-                                {
-                                    <li>
-                                        <a href="@Url.Action("ListAll", "SalesBook")">Sales Book</a>
-                                    </li>
-                                }
-                            </li>
+                            @if (CommonFunctions.IsMemberHavePermission("CashBook", ApplicationEnum.PageType.ListAll) || ApplicationMember.LoggedMemberType == 1)
+                            {
+                                <li>
+                                    <a href="@Url.Action("ListAll", "CashBook")">Cask Book</a>
+                                </li>
+                            }
+                            @if (CommonFunctions.IsMemberHavePermission("BankBook", ApplicationEnum.PageType.ListAll) || ApplicationMember.LoggedMemberType == 1)
+                            {
+                                <li>
+                                    <a href="@Url.Action("ListAll", "BankBook")">Bank Book</a>
+                                </li>
+                            }
+                            @if (CommonFunctions.IsMemberHavePermission("LedgerBook", ApplicationEnum.PageType.ListAll) || ApplicationMember.LoggedMemberType == 1)
+                            {
+                                <li>
+                                    <a href="@Url.Action("ListAll", "LedgerBook")">Ledger Book</a>
+                                </li>
+                            }
+                            @if (CommonFunctions.IsMemberHavePermission("TrialBook", ApplicationEnum.PageType.ListAll) || ApplicationMember.LoggedMemberType == 1)
+                            {
+                                <li>
+                                    <a href="@Url.Action("ListAll", "TrialBook")">Trial Book</a>
+                                </li>
+                            }
+                            @if (CommonFunctions.IsMemberHavePermission("PurchaseBook", ApplicationEnum.PageType.ListAll) || ApplicationMember.LoggedMemberType == 1)
+                            {
+                                <li>
+                                    <a href="@Url.Action("ListAll", "PurchaseBook")">Purchase Book</a>
+                                </li>
+                            }
+                            @if (CommonFunctions.IsMemberHavePermission("SalesBook", ApplicationEnum.PageType.ListAll) || ApplicationMember.LoggedMemberType == 1)
+                            {
+                                <li>
+                                    <a href="@Url.Action("ListAll", "SalesBook")">Sales Book</a>
+                                </li>
+                            }
                         </ul>
                     </li>
                     <li><a href="javascript:;" class="sidebar-minify-btn" data-click="sidebar-minify"><i class="fa fa-angle-double-left"></i></a></li>

@@ -13,7 +13,8 @@ namespace ProjectManagement.Web.Controllers
         public ActionResult ListAll()
         {
             var trialReportModel = new TrialReportModel();
-            trialReportModel.TrailReportData = ReportRepository.TrailBalanceSheetReport();
+            trialReportModel.CreditList = ReportRepository.TrailCreditReport();
+            trialReportModel.DebitList = ReportRepository.TrailDebitReport();
             return View(trialReportModel);
         }
     }

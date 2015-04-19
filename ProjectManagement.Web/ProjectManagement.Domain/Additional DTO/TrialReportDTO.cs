@@ -19,15 +19,15 @@ namespace ProjectManagement.Domain
     {
         public TrialReportDTO()
         {
-            
+
         }
 
-        public string Sup_id { get; set; }
+        public string SupId { get; set; }
         public string NameiS { get; set; }
         public string AddiS { get; set; }
-        public double CreditAmmount { get; set; }
+        public double CrediAmount { get; set; }
         public int GroupId { get; set; }
-        public int GrpIdSupplier { get; set; }
+        public int SupplierGroupId { get; set; }
         public string GroupSupplierName { get; set; }
         public int ChildOf { get; set; }
         public bool Display { get; set; }

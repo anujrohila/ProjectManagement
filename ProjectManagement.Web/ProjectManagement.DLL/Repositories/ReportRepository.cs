@@ -196,26 +196,55 @@ namespace ProjectManagement.DLL
         /// Get Trial Report Debit Data
         /// </summary>
         /// <returns></returns>
-        public static List<TrialReportDTO> TrailBalanceSheetReport()
+        public static List<TrialReportDTO> TrailDebitReport()
         {
             using (var projectManagementEntities = new ProjectManagementEntities())
             {
                 return (from supplierObject in projectManagementEntities.Suppliers
                         join groupBySupplier in projectManagementEntities.GroupBySuppliers
                               on supplierObject.GroupId equals groupBySupplier.GrpIdSupplier
+                        where supplierObject.creditammount > 0
                         select new TrialReportDTO
                         {
-                            Sup_id = supplierObject.Sup_id,
+                            SupId = supplierObject.Sup_id,
                             NameiS = supplierObject.NameiS,
                             AddiS = supplierObject.AddiS,
-                            CreditAmmount = supplierObject.creditammount ?? 0,
+                            CrediAmount = supplierObject.creditammount ?? 0,
                             GroupId = supplierObject.GroupId ?? 0,
-                            GrpIdSupplier = groupBySupplier.GrpIdSupplier,
+                            SupplierGroupId = groupBySupplier.GrpIdSupplier,
                             GroupSupplierName = groupBySupplier.GroupSupplierName,
                             ChildOf = groupBySupplier.childOf ?? 0,
                             Display = groupBySupplier.Display ?? false,
-                            ClosingBalance = groupBySupplier.ClosingBalance ?? 0
+                            ClosingBalance = groupBySupplier.ClosingBalance ?? 0,
                         }).ToList();
+            }
+        }
+
+        /// <summary>
+        /// Get Trial Report Credit Data
+        /// </summary>
+        /// <returns></returns>
+        public static List<TrialReportDTO> TrailCreditReport()
+        {
+            using (var projectManagementEntities = new ProjectManagementEntities())
+            {
+                return (from supplierObject in projectManagementEntities.Suppliers
+                        join groupBySupplier in projectManagementEntities.GroupBySuppliers
+                              on supplierObject.GroupId equals groupBySupplier.GrpIdSupplier
+                        where supplierObject.creditammount < 0
+                        select new TrialReportDTO
+                        {
+                            SupId = supplierObject.Sup_id,
+                            NameiS = supplierObject.NameiS,
+                            AddiS = supplierObject.AddiS,
+                            CrediAmount = System.Math.Abs(supplierObject.creditammount ?? 0),
+                            GroupId = supplierObject.GroupId ?? 0,
+                            SupplierGroupId = groupBySupplier.GrpIdSupplier,
+                            GroupSupplierName = groupBySupplier.GroupSupplierName,
+                            ChildOf = groupBySupplier.childOf ?? 0,
+                            Display = groupBySupplier.Display ?? false,
+                            ClosingBalance = groupBySupplier.ClosingBalance ?? 0,
+                        }).OrderBy(o => o.GroupId).ToList();
             }
         }
 
