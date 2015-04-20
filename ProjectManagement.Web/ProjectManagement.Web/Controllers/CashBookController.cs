@@ -25,9 +25,9 @@ namespace ProjectManagement.Web.Controllers
         /// <returns></returns>
         public PartialViewResult _PartialReportData(string accountId, string selectedDate)
         {
+            ViewBag.ReportType = "Cash";
             DateTime startDate = DateTime.ParseExact(selectedDate, "dd-MM-yyyy", CultureInfo.InvariantCulture);
-            DateTime endDate = DateTime.ParseExact("31-03-" + startDate.AddYears(1).Year, "dd-MM-yyyy", CultureInfo.InvariantCulture);
-            var cashBookResult = ReportRepository.CashBankBookReport(accountId, startDate, endDate, "CASH");
+            var cashBookResult = ReportRepository.CashBankBookReport(accountId, startDate, "CASH");
             double CrTotalAmount = 0;
             double DrTotalAmount = 0;
             if (cashBookResult != null && cashBookResult.Count > 0)
@@ -35,39 +35,41 @@ namespace ProjectManagement.Web.Controllers
                 foreach (var data in cashBookResult)
                 {
                     data.TransactionDateString = data.DDate.Value.ToString("MMMM-yyyy");
-                    if (string.Compare(data.FromAccount, data.Supplier1Id, StringComparison.CurrentCultureIgnoreCase) != 0)
-                    {
-                        data.CrAmount = data.Amount;
-                        CrTotalAmount = CrTotalAmount + data.Amount ?? 0;
-                    }
-                    if (string.Compare(data.ToAccount, data.Supplier1Id, StringComparison.CurrentCultureIgnoreCase) != 0)
+                    if (string.Compare(data.ToAccount, accountId, StringComparison.CurrentCultureIgnoreCase) != 0)
                     {
                         data.DrAmount = data.Amount;
                         DrTotalAmount = DrTotalAmount + data.Amount ?? 0;
+                        data.Description = data.Supplier1TypeName;
+                    }
+                    else
+                    {
+                        data.CrAmount = data.Amount;
+                        CrTotalAmount = CrTotalAmount + data.Amount ?? 0;
+                        data.Description = data.TransactionType;
                     }
                 }
                 var openingBalance = ReportRepository.GetLedgerOpeningBalance(accountId, DateTime.ParseExact(selectedDate, "dd-MM-yyyy", CultureInfo.InvariantCulture));
 
                 if (openingBalance < 0)
                 {
-                    CrTotalAmount = CrTotalAmount + openingBalance;
-                    cashBookResult[0].CrOpeningBalance = openingBalance;
+                    CrTotalAmount = CrTotalAmount + Math.Abs(openingBalance);
+                    cashBookResult[0].CrOpeningBalance = Math.Abs(openingBalance);
                 }
                 cashBookResult[0].CrTotalAmount = CrTotalAmount;
                 if (openingBalance > 0)
                 {
-                    DrTotalAmount = DrTotalAmount + openingBalance;
-                    cashBookResult[0].DrOpeningBalance = openingBalance;
+                    DrTotalAmount = DrTotalAmount + Math.Abs(openingBalance);
+                    cashBookResult[0].DrOpeningBalance = Math.Abs(openingBalance);
                 }
                 cashBookResult[0].DrTotalAmount = DrTotalAmount;
 
                 if ((DrTotalAmount - CrTotalAmount) > 0)
                 {
-                    cashBookResult[0].CrClosingBalance = DrTotalAmount - CrTotalAmount;
+                    cashBookResult[0].CrClosingBalance = Math.Abs(DrTotalAmount - CrTotalAmount);
                 }
                 if ((DrTotalAmount - CrTotalAmount) < 0)
                 {
-                    cashBookResult[0].DrClosingBalance = DrTotalAmount - CrTotalAmount;
+                    cashBookResult[0].DrClosingBalance = Math.Abs(DrTotalAmount - CrTotalAmount);
                 }
             }
 

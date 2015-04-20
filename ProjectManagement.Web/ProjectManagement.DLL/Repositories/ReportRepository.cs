@@ -29,7 +29,7 @@ namespace ProjectManagement.DLL
         /// Get Cash Book Report
         /// </summary>
         /// <returns></returns>
-        public static List<tblReportDTO> CashBankBookReport(string accountId, DateTime startDate, DateTime endDate, string type)
+        public static List<tblReportDTO> CashBankBookReport(string accountId, DateTime startDate, string type)
         {
             using (var projectManagementEntities = new ProjectManagementEntities())
             {
@@ -45,7 +45,7 @@ namespace ProjectManagement.DLL
                               (string.Compare(matAccountTwo.Mode_Pay_Rec, type, StringComparison.CurrentCultureIgnoreCase) == 0
                                 || string.Compare(matAccountTwo.Mode_Pay_Rec, "CONTRA", StringComparison.CurrentCultureIgnoreCase) == 0
                               )
-                              && matAccountTwo.Ddate >= startDate && matAccountTwo.Ddate <= endDate
+                              && matAccountTwo.Ddate >= startDate
                         select new tblReportDTO
                         {
                             TransactionType = supplierFrom.NameiS,
@@ -58,7 +58,7 @@ namespace ProjectManagement.DLL
                             RecPay = matAccountTwo.Rec_Pay,
                             Amount = matAccountTwo.Ammount,
                             DDate = matAccountTwo.Ddate,
-                            Description = matAccountTwo.Disp,
+                            Description = supplierTo.NameiS,
                             FromAccount = matAccountTwo.From_Account,
                             ToAccount = matAccountTwo.To_Account,
                             HandGroup = matAccountTwo.Hand_Group,
@@ -103,11 +103,7 @@ namespace ProjectManagement.DLL
                         openingBalance = 0;
 
                     var fromBalance = (from matAccountTwo in projectManagementEntities.Mat_AccountTwo
-                                       join supplierFrom in projectManagementEntities.Suppliers
-                                             on matAccountTwo.From_Account equals supplierFrom.Sup_id
-                                       where (string.Compare(supplierFrom.childof, accountId, StringComparison.CurrentCultureIgnoreCase) == 0
-                                                  || string.Compare(supplierFrom.Sup_id, accountId, StringComparison.CurrentCultureIgnoreCase) == 0
-                                                )
+                                       where string.Compare(matAccountTwo.From_Account, accountId, StringComparison.CurrentCultureIgnoreCase) == 0
                                                 && matAccountTwo.Ddate < tDate
                                        select matAccountTwo.Ammount).Sum();
 
@@ -115,18 +111,14 @@ namespace ProjectManagement.DLL
                         fromBalance = 0;
 
                     var toBalance = (from matAccountTwo in projectManagementEntities.Mat_AccountTwo
-                                     join supplierTo in projectManagementEntities.Suppliers
-                                            on matAccountTwo.To_Account equals supplierTo.Sup_id
-                                     where (string.Compare(supplierTo.childof, accountId, StringComparison.CurrentCultureIgnoreCase) == 0
-                                                  || string.Compare(supplierTo.Sup_id, accountId, StringComparison.CurrentCultureIgnoreCase) == 0
-                                                )
+                                     where string.Compare(matAccountTwo.To_Account, accountId, StringComparison.CurrentCultureIgnoreCase) == 0
                                             && matAccountTwo.Ddate < tDate
                                      select matAccountTwo.Ammount).Sum();
 
                     if (toBalance == null)
                         toBalance = 0;
 
-                    finalAmount = Convert.ToDouble(openingBalance + fromBalance + toBalance);
+                    finalAmount = Convert.ToDouble(fromBalance - (openingBalance + toBalance));
                 }
                 else
                 {
