@@ -10,7 +10,7 @@ using System.Globalization;
 
 namespace ProjectManagement.Web.Controllers
 {
-     [CustomActionAutentication]
+    [CustomActionAutentication]
     public class TransactionEntryController : Controller
     {
 
@@ -71,11 +71,11 @@ namespace ProjectManagement.Web.Controllers
                         matAccountTwoDTO.fy = CommonFunctions.GetFiscalYear();
                         matAccountTwoDTO.Ent_No = CommonFunctions.GetNewGUID();
                         matAccountTwoDTO.VrNo = TransactionRepository.GetVRNO();
-                        TransactionRepository.InsertTransactionEntry(matAccountTwoDTO);
+                        TransactionRepository.InsertTransactionEntry(matAccountTwoDTO, ApplicationMember.LoggedMemberType);
                     }
                     else
                     {
-                        TransactionRepository.UpdateTransactionEntry(matAccountTwoDTO);
+                        TransactionRepository.UpdateTransactionEntry(matAccountTwoDTO, ApplicationMember.LoggedMemberType);
                     }
                     return RedirectToAction("ListAll", new { type = matAccountTwoDTO.Mode_Pay_Rec });
                 }
@@ -170,7 +170,7 @@ namespace ProjectManagement.Web.Controllers
         [HttpPost]
         public JsonResult Delete(string entryId)
         {
-            var result = TransactionRepository.DeleteTransactionEntry(entryId);
+            var result = TransactionRepository.DeleteTransactionEntry(entryId, ApplicationMember.LoggedMemberType);
             if (result)
             {
                 return Json(new { Success = true, Message = "Transaction type deleted successfully." });

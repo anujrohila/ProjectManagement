@@ -1,0 +1,114 @@
+﻿@using Telerik.Web.Mvc.UI;
+@model ProjectManagement.Domain.del_Mat_AccountTwoDTO
+@{
+    ViewBag.Title = string.Format("Approve6 {0} Entry", Model.Mode_Pay_Rec);
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <!-- begin col-6 -->
+    <div class="col-md-12 ui-sortable">
+        <!-- begin panel -->
+        <div data-sortable-id="form-stuff-1" class="panel panel-inverse">
+            <div class="panel-heading">
+                <h4 class="panel-title">@string.Format("Approve {0} Entry", Model.Mode_Pay_Rec)</h4>
+            </div>
+            <div class="panel-body">
+                @using (Html.BeginForm("Save", "TransactionEntry", FormMethod.Post, new { id = "frmApproveTransactionEntry", @class = "form-horizontal" }))
+                {
+                    @Html.HiddenFor(model => model.Ent_No)
+                    @Html.HiddenFor(model => model.EntryType)
+                     <div class="form-group">
+                        <label class="col-md-3 control-label">Tranaction</label>
+                        <div class="col-md-5">
+                            <label class="control-label">@Model.EntryTypeString</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Entry No</label>
+                        <div class="col-md-5">
+                            <label class="control-label">@Model.VrNo</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Transaction Mode</label>
+                        <div class="col-md-5">
+                            <label class="control-label">@Model.Mode_Pay_Rec</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Transaction Date</label>
+                        <div class="col-md-3">
+                            <label class="control-label">@Model.DdateString</label>
+                        </div>
+                        <div class="col-md-3" style="vertical-align: middle; margin-left: -40px; margin-top: 5px;">
+                            <span>@DateTime.Now.DayOfWeek</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Credit From<span class="spanError">*</span></label>
+                        <div class="col-md-5">
+                            <label class="control-label">@Model.FromSupplierName</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Credit / Debit<span class="spanError">*</span></label>
+                        <div class="col-md-5">
+                            <label class="control-label">@Model.Rec_Pay</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Credit To</label>
+                        <div class="col-md-5">
+                            <label class="control-label">@Model.ToSupplierName</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Amount<span class="spanError">*</span></label>
+                        <div class="col-md-5">
+                            <label class="control-label">@Model.Ammount</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Description<span class="spanError">*</span></label>
+                        <div class="col-md-5">
+                            <label class="control-label">@Model.Disp</label>
+                        </div>
+                    </div>
+                    if (string.Compare(Model.Mode_Pay_Rec, "Journal", StringComparison.CurrentCultureIgnoreCase) != 0
+                        && string.Compare(Model.Mode_Pay_Rec, "Cash", StringComparison.CurrentCultureIgnoreCase) != 0)
+                    {
+                    <div id="divChequeNo" class="form-group">
+                        <label class="col-md-3 control-label">Cheque No</label>
+                        <div class="col-md-5">
+                            <label class="control-label">@Model.ChqNo</label>
+                        </div>
+                    </div>
+                    }
+                    if (string.Compare(Model.Mode_Pay_Rec, "Journal", StringComparison.CurrentCultureIgnoreCase) != 0
+                        && string.Compare(Model.Mode_Pay_Rec, "Cash", StringComparison.CurrentCultureIgnoreCase) != 0)
+                    {
+                    <div id="divBankName" class="form-group">
+                        <label class="col-md-3 control-label">Bank</label>
+                        <div class="col-md-5">
+                            <label class="control-label">@Model.ChqDrawn</label>
+                        </div>
+                    </div>
+                    }
+                    <div class="form-group">
+                        <label class="col-md-3 control-label"></label>
+                        <div class="col-md-5">
+                            <button class="btn btn-sm btn-success" type="button" onclick="ApproveTransactionEntry()">Approve</button>
+                            <button class="btn btn-sm btn-success" type="button" onclick="DisApproveTransactionEntry()">Disapprove</button>
+                            <button class="btn btn-sm btn-success" type="submit" onclick="document.location.href = '@Url.Action("ListAll", "TransactionApproval")'">Cancel</button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        <!-- end panel -->
+    </div>
+</div>
+<script src="~/Content/Script/TransactionEntry.js"></script>
+<script>
+    ActivateSelectedMenu('menuTransactionApprove');
+</script>

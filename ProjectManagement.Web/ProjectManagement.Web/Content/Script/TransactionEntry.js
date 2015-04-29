@@ -28,6 +28,28 @@ function DeleteTransactionEntry(id) {
     }
 }
 
+function OnApprovalTransactionEntrySearchClick() {
+    var sDate = $("#StartDate").val();
+    var eDate = $("#EndDate").val();
+    var isValidate = true;
+    if (sDate == "") {
+        alert("Please select start date.");
+        isValidate = false;
+    }
+    if (eDate == "") {
+        alert("Please select end date.");
+        isValidate = false;
+    }
+    var sDateObject = new Date(sDate.split("-")[2], sDate.split("-")[1], sDate.split("-")[0]);
+    var eDateObject = new Date(eDate.split("-")[2], eDate.split("-")[1], eDate.split("-")[0]);
+    if (sDateObject > eDateObject) {
+        alert("Please select valid date start date must be less than end date.");
+        isValidate = false;
+    }
+    if (isValidate)
+        RefreshGrid("ListApprovalTransactionEntryGrid");
+}
+
 function OnTransactionEntrySearchClick() {
     var sDate = $("#StartDate").val();
     var eDate = $("#EndDate").val();
@@ -51,6 +73,13 @@ function OnTransactionEntrySearchClick() {
 }
 
 function OnTransactionEntryDataBinding(args) {
+    var sDate = $("#StartDate").val();
+    var eDate = $("#EndDate").val();
+    var transactionType = $("#TransactionType").val();
+    args.data = $.extend(args.data, { type: transactionType, startDate: sDate, endDate: eDate });
+}
+
+function OnApprovalTransactionEntryDataBinding(args) {
     var sDate = $("#StartDate").val();
     var eDate = $("#EndDate").val();
     var transactionType = $("#TransactionType").val();
@@ -162,4 +191,69 @@ $("#Rec_Pay").change(function () {
     }
 
 });
+
+function ApproveTransactionEntry() {
+    var id = $("#Ent_No").val();
+    var callUrl = $("#webUrl").val() + "/TransactionApproval/ApproveTransactionAjax";
+    var dataToSend = { entryId: id };
+    ShowProcess();
+    $.ajax({
+        url: callUrl,
+        type: "POST",
+        data: dataToSend,
+        cache: false,
+        success: function (result) {
+            if (result.Success == true) {
+                alert(result.Message);
+                window.location = $("#webUrl").val() + "/TransactionApproval/ListAll";
+            }
+            else {
+                if (result.Message == undefined) {
+                    window.location = $("#webUrl").val() + "/Profile/Unauthorized"
+                }
+                else {
+                    alert(result.Message);
+                }
+            }
+            HideProcess();
+        },
+        error: function () {
+            HideProcess();
+        }
+    });
+}
+
+function DisApproveTransactionEntry() {
+    var confirmResult = confirm("Are you sure you want to disapprove this record?");
+    var id = $("#Ent_No").val();
+    var callUrl = $("#webUrl").val() + "/TransactionApproval/DisapproveTransactionAjax";
+    var dataToSend = { entryId: id };
+    if (confirmResult) {
+        ShowProcess();
+        $.ajax({
+            url: callUrl,
+            type: "POST",
+            data: dataToSend,
+            cache: false,
+            success: function (result) {
+                if (result.Success == true) {
+                    alert(result.Message);
+                    window.location = $("#webUrl").val() + "/TransactionApproval/ListAll";
+                }
+                else {
+                    if (result.Message == undefined) {
+                        window.location = $("#webUrl").val() + "/Profile/Unauthorized"
+                    }
+                    else {
+                        alert(result.Message);
+                    }
+                }
+                HideProcess();
+            },
+            error: function () {
+                HideProcess();
+            }
+        });
+    }
+}
 

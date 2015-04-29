@@ -329,6 +329,21 @@
                             }
                         </ul>
                     </li>
+                    <li id="menuTransactionApprove" class="has-sub">
+                        <a href="javascript:;">
+                            <b class="caret pull-right"></b>
+                            <i class="fa fa-file-text-o"></i>
+                            <span>Approval</span>
+                        </a>
+                        <ul class="sub-menu">
+                            @if (CommonFunctions.IsMemberHavePermission("TransactionApproval", ApplicationEnum.PageType.ListAll) || ApplicationMember.LoggedMemberType == 1)
+                            {
+                                <li>
+                                    <a href="@Url.Action("ListAll", "TransactionApproval")">Transaction Approval</a>
+                                </li>
+                            }
+                        </ul>
+                    </li>
                     <li><a href="javascript:;" class="sidebar-minify-btn" data-click="sidebar-minify"><i class="fa fa-angle-double-left"></i></a></li>
                 </ul>
             </div>
@@ -359,6 +374,7 @@
     HandleMenuHeader('menuReport');
     HandleMenuHeader('menuProject');
     HandleMenuHeader('menuDocuments');
+    HandleMenuHeader('menuTransactionApprove');
     function HandleMenuHeader(menuId) {
         var subMenuCount = $($("#" + menuId).find("ul").find('li')).length;
         if (subMenuCount == 0) {
