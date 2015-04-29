@@ -66,8 +66,8 @@ namespace ProjectManagement.DLL
                             alias = supplierObject.alias,
                             userss = supplierObject.userss,
                             childof = supplierObject.childof,
-                            Balance = supplierObject.Balance,
-                            CashBankBalance = supplierObject.CashBankBalance,
+                            Balance = supplierObject.Balance ?? 0,
+                            CashBankBalance = supplierObject.CashBankBalance ?? 0,
                             SupplierGroupName = supplierGroup.GroupSupplierName
                         }).ToList();
             }
@@ -105,8 +105,8 @@ namespace ProjectManagement.DLL
                             alias = supplierObject.alias,
                             userss = supplierObject.userss,
                             childof = supplierObject.childof,
-                            Balance = supplierObject.Balance,
-                            CashBankBalance = supplierObject.CashBankBalance,
+                            Balance = supplierObject.Balance ?? 0,
+                            CashBankBalance = supplierObject.CashBankBalance ?? 0,
                             SupplierGroupName = supplierGroup.GroupSupplierName
                         }).FirstOrDefault();
             }

@@ -32,7 +32,7 @@ namespace ProjectManagement.DLL.ORM
         public string alias { get; set; }
         public string userss { get; set; }
         public string childof { get; set; }
-        public double Balance { get; set; }
-        public double CashBankBalance { get; set; }
+        public Nullable<double> Balance { get; set; }
+        public Nullable<double> CashBankBalance { get; set; }
     }
 }

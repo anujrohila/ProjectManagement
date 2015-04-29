@@ -22,7 +22,7 @@ namespace ProjectManagement.DLL.ORM
             : base("name=ProjectManagementEntities")
         {
         }
-
+    
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
@@ -30,11 +30,12 @@ namespace ProjectManagement.DLL.ORM
     
         public DbSet<AccountGroup> AccountGroups { get; set; }
         public DbSet<CreditLimit> CreditLimits { get; set; }
-        public DbSet<del_Mat_AccountTwo> del_Mat_AccountTwo { get; set; }
+        public DbSet<DailyReport> DailyReports { get; set; }
+        public DbSet<Del_Mat_AccountTwo> Del_Mat_AccountTwo { get; set; }
         public DbSet<GroupByItem> GroupByItems { get; set; }
         public DbSet<GroupBySupplier> GroupBySuppliers { get; set; }
-        public DbSet<history_store> history_store { get; set; }
         public DbSet<Mat_AccountTwo> Mat_AccountTwo { get; set; }
+        public DbSet<Mat_AccountTwoTemp> Mat_AccountTwoTemp { get; set; }
         public DbSet<Material> Materials { get; set; }
         public DbSet<QtyMaterial> QtyMaterials { get; set; }
         public DbSet<Supplier> Suppliers { get; set; }

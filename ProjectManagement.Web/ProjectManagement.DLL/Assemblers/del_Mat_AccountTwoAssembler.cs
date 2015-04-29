@@ -18,31 +18,31 @@ namespace ProjectManagement.DLL.ORM
 {
 
     /// <summary>
-    /// Assembler for <see cref="del_Mat_AccountTwo"/> and <see cref="del_Mat_AccountTwoDTO"/>.
+    /// Assembler for <see cref="Del_Mat_AccountTwo"/> and <see cref="del_Mat_AccountTwoDTO"/>.
     /// </summary>
     public static partial class del_Mat_AccountTwoAssembler
     {
         /// <summary>
         /// Invoked when <see cref="ToDTO"/> operation is about to return.
         /// </summary>
-        /// <param name="dto"><see cref="del_Mat_AccountTwoDTO"/> converted from <see cref="del_Mat_AccountTwo"/>.</param>
-        static partial void OnDTO(this del_Mat_AccountTwo entity, del_Mat_AccountTwoDTO dto);
+        /// <param name="dto"><see cref="del_Mat_AccountTwoDTO"/> converted from <see cref="Del_Mat_AccountTwo"/>.</param>
+        static partial void OnDTO(this Del_Mat_AccountTwo entity, del_Mat_AccountTwoDTO dto);
 
         /// <summary>
         /// Invoked when <see cref="ToEntity"/> operation is about to return.
         /// </summary>
-        /// <param name="entity"><see cref="del_Mat_AccountTwo"/> converted from <see cref="del_Mat_AccountTwoDTO"/>.</param>
-        static partial void OnEntity(this del_Mat_AccountTwoDTO dto, del_Mat_AccountTwo entity);
+        /// <param name="entity"><see cref="Del_Mat_AccountTwo"/> converted from <see cref="del_Mat_AccountTwoDTO"/>.</param>
+        static partial void OnEntity(this del_Mat_AccountTwoDTO dto, Del_Mat_AccountTwo entity);
 
         /// <summary>
-        /// Converts this instance of <see cref="del_Mat_AccountTwoDTO"/> to an instance of <see cref="del_Mat_AccountTwo"/>.
+        /// Converts this instance of <see cref="del_Mat_AccountTwoDTO"/> to an instance of <see cref="Del_Mat_AccountTwo"/>.
         /// </summary>
         /// <param name="dto"><see cref="del_Mat_AccountTwoDTO"/> to convert.</param>
-        public static del_Mat_AccountTwo ToEntity(this del_Mat_AccountTwoDTO dto)
+        public static Del_Mat_AccountTwo ToEntity(this del_Mat_AccountTwoDTO dto)
         {
             if (dto == null) return null;
 
-            var entity = new del_Mat_AccountTwo();
+            var entity = new Del_Mat_AccountTwo();
 
             entity.Ent_No = dto.Ent_No;
             entity.VrNo = dto.VrNo;
@@ -74,10 +74,10 @@ namespace ProjectManagement.DLL.ORM
         }
 
         /// <summary>
-        /// Converts this instance of <see cref="del_Mat_AccountTwo"/> to an instance of <see cref="del_Mat_AccountTwoDTO"/>.
+        /// Converts this instance of <see cref="Del_Mat_AccountTwo"/> to an instance of <see cref="del_Mat_AccountTwoDTO"/>.
         /// </summary>
-        /// <param name="entity"><see cref="del_Mat_AccountTwo"/> to convert.</param>
-        public static del_Mat_AccountTwoDTO ToDTO(this del_Mat_AccountTwo entity)
+        /// <param name="entity"><see cref="Del_Mat_AccountTwo"/> to convert.</param>
+        public static del_Mat_AccountTwoDTO ToDTO(this Del_Mat_AccountTwo entity)
         {
             if (entity == null) return null;
 
@@ -113,11 +113,11 @@ namespace ProjectManagement.DLL.ORM
         }
 
         /// <summary>
-        /// Converts each instance of <see cref="del_Mat_AccountTwoDTO"/> to an instance of <see cref="del_Mat_AccountTwo"/>.
+        /// Converts each instance of <see cref="del_Mat_AccountTwoDTO"/> to an instance of <see cref="Del_Mat_AccountTwo"/>.
         /// </summary>
         /// <param name="dtos"></param>
         /// <returns></returns>
-        public static List<del_Mat_AccountTwo> ToEntities(this IEnumerable<del_Mat_AccountTwoDTO> dtos)
+        public static List<Del_Mat_AccountTwo> ToEntities(this IEnumerable<del_Mat_AccountTwoDTO> dtos)
         {
             if (dtos == null) return null;
 
@@ -125,11 +125,11 @@ namespace ProjectManagement.DLL.ORM
         }
 
         /// <summary>
-        /// Converts each instance of <see cref="del_Mat_AccountTwo"/> to an instance of <see cref="del_Mat_AccountTwoDTO"/>.
+        /// Converts each instance of <see cref="Del_Mat_AccountTwo"/> to an instance of <see cref="del_Mat_AccountTwoDTO"/>.
         /// </summary>
         /// <param name="entities"></param>
         /// <returns></returns>
-        public static List<del_Mat_AccountTwoDTO> ToDTOs(this IEnumerable<del_Mat_AccountTwo> entities)
+        public static List<del_Mat_AccountTwoDTO> ToDTOs(this IEnumerable<Del_Mat_AccountTwo> entities)
         {
             if (entities == null) return null;
 

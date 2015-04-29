@@ -12,7 +12,7 @@ namespace ProjectManagement.DLL.ORM
     using System;
     using System.Collections.Generic;
     
-    public partial class del_Mat_AccountTwo
+    public partial class Del_Mat_AccountTwo
     {
         public string Ent_No { get; set; }
         public int VrNo { get; set; }
@@ -37,5 +37,10 @@ namespace ProjectManagement.DLL.ORM
         public string ChqDrawn { get; set; }
         public string Userss { get; set; }
         public string fy { get; set; }
+        public Nullable<int> EntryType { get; set; }
+
+        public string FromSupplierName { get; set; }
+
+        public string ToSupplierName { get; set; }
     }
 }

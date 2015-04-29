@@ -5,17 +5,18 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="6b22bb4f31a548c6ac3019b63169c14b" Name="Diagram1" ZoomLevel="72">
-        <EntityTypeShape EntityType="ProjectManagementModel.AccountGroup" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProjectManagementModel.CreditLimit" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProjectManagementModel.del_Mat_AccountTwo" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProjectManagementModel.GroupByItem" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProjectManagementModel.GroupBySupplier" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProjectManagementModel.history_store" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProjectManagementModel.Mat_AccountTwo" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProjectManagementModel.Material" Width="1.5" PointX="2.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProjectManagementModel.QtyMaterial" Width="1.5" PointX="4.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProjectManagementModel.Supplier" Width="1.5" PointX="6.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ProjectManagementModel.user" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectManagementModel.AccountGroup" Width="1.5" PointX="4.1398496498073687" PointY="31.622372329059232" />
+        <EntityTypeShape EntityType="ProjectManagementModel.CreditLimit" Width="1.5" PointX="8.92849830208742" PointY="16.46255681685291" />
+        <EntityTypeShape EntityType="ProjectManagementModel.DailyReport" Width="1.5" PointX="7.056819155373061" PointY="12.340409478331175" />
+        <EntityTypeShape EntityType="ProjectManagementModel.Del_Mat_AccountTwo" Width="1.5" PointX="3.5461660751822248" PointY="4.3075462450774138" />
+        <EntityTypeShape EntityType="ProjectManagementModel.GroupByItem" Width="1.5" PointX="2.8222967082738397" PointY="13.707014790599708" />
+        <EntityTypeShape EntityType="ProjectManagementModel.GroupBySupplier" Width="1.5" PointX="7.9089278634213507" PointY="22.281948904638156" />
+        <EntityTypeShape EntityType="ProjectManagementModel.Mat_AccountTwo" Width="1.5" PointX="4.8118959222044309" PointY="0.99566359864345921" />
+        <EntityTypeShape EntityType="ProjectManagementModel.Mat_AccountTwoTemp" Width="1.5" PointX="3.971574086682673" PointY="21.76503742754694" />
+        <EntityTypeShape EntityType="ProjectManagementModel.Material" Width="1.5" PointX="0.79731944799298393" PointY="20.128425309494336" />
+        <EntityTypeShape EntityType="ProjectManagementModel.QtyMaterial" Width="1.5" PointX="10.381760134539455" PointY="18.881528401226518" />
+        <EntityTypeShape EntityType="ProjectManagementModel.Supplier" Width="1.5" PointX="5.23586220165522" PointY="28.710209874766978" />
+        <EntityTypeShape EntityType="ProjectManagementModel.user" Width="1.5" PointX="4.4532322624946161" PointY="11.058725019478576" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

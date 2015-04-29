@@ -19,5 +19,6 @@ namespace ProjectManagement.DLL.ORM
         public Nullable<int> childOf { get; set; }
         public Nullable<bool> Display { get; set; }
         public Nullable<double> ClosingBalance { get; set; }
+        public string ExIn { get; set; }
     }
 }

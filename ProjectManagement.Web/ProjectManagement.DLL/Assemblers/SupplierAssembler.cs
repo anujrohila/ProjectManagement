@@ -98,8 +98,8 @@ namespace ProjectManagement.DLL.ORM
             dto.alias = entity.alias;
             dto.userss = entity.userss;
             dto.childof = entity.childof;
-            dto.Balance = entity.Balance;
-            dto.CashBankBalance = entity.CashBankBalance;
+            dto.Balance = entity.Balance ?? 0;
+            dto.CashBankBalance = entity.CashBankBalance ?? 0;
 
             entity.OnDTO(dto);
 

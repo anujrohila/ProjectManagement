@@ -115,5 +115,15 @@ namespace ProjectManagement.Domain
 			this.Userss = userss;
 			this.fy = fy;
         }
+
+        public string FromSupplierName { get; set; }
+
+        public string ToSupplierName { get; set; }
+
+        public int? EntryType { get; set; }
+
+        public string EntryTypeString { get; set; }
+
+        public string DdateString { get; set; }
     }
 }

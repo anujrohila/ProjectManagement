@@ -51,7 +51,6 @@
     <Compile Include="Assemblers\del_Mat_AccountTwoAssembler.cs" />
     <Compile Include="Assemblers\GroupByItemAssembler.cs" />
     <Compile Include="Assemblers\GroupBySupplierAssembler.cs" />
-    <Compile Include="Assemblers\history_storeAssembler.cs" />
     <Compile Include="Assemblers\MaterialAssembler.cs" />
     <Compile Include="Assemblers\Mat_AccountTwoAssembler.cs" />
     <Compile Include="Assemblers\QtyMaterialAssembler.cs" />
@@ -69,7 +68,10 @@
     <Compile Include="ORM\CreditLimit.cs">
       <DependentUpon>ProjectSQLDatabase.tt</DependentUpon>
     </Compile>
-    <Compile Include="ORM\del_Mat_AccountTwo.cs">
+    <Compile Include="ORM\DailyReport.cs">
+      <DependentUpon>ProjectSQLDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\Del_Mat_AccountTwo.cs">
       <DependentUpon>ProjectSQLDatabase.tt</DependentUpon>
     </Compile>
     <Compile Include="ORM\GroupByItem.cs">
@@ -78,13 +80,13 @@
     <Compile Include="ORM\GroupBySupplier.cs">
       <DependentUpon>ProjectSQLDatabase.tt</DependentUpon>
     </Compile>
-    <Compile Include="ORM\history_store.cs">
-      <DependentUpon>ProjectSQLDatabase.tt</DependentUpon>
-    </Compile>
     <Compile Include="ORM\Material.cs">
       <DependentUpon>ProjectSQLDatabase.tt</DependentUpon>
     </Compile>
     <Compile Include="ORM\Mat_AccountTwo.cs">
+      <DependentUpon>ProjectSQLDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\Mat_AccountTwoTemp.cs">
       <DependentUpon>ProjectSQLDatabase.tt</DependentUpon>
     </Compile>
     <Compile Include="ORM\ProjectManagementSQLDatabase.Context.cs">
