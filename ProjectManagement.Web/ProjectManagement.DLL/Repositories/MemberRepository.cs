@@ -257,9 +257,30 @@ namespace ProjectManagement.DLL
         {
             using (var projectManagementSQLDatabaseEntities = new ProjectManagementSQLDatabaseEntities())
             {
-                var memberDetail = projectManagementSQLDatabaseEntities.tblMembers.Where(member => member.MemberId == memberId).FirstOrDefault();
-                projectManagementSQLDatabaseEntities.tblMembers.Remove(memberDetail);
-                return projectManagementSQLDatabaseEntities.SaveChanges() > 0;
+                try
+                {
+                    var memberDetail = projectManagementSQLDatabaseEntities.tblMembers.Where(member => member.MemberId == memberId).FirstOrDefault();
+                    if (memberDetail.MemberTypeId == 0)
+                    {
+                        var permisionlist = projectManagementSQLDatabaseEntities.tblMemberPermissions.Where(route => route.MemberId == memberId);
+                        foreach (var member in permisionlist)
+                        {
+                            projectManagementSQLDatabaseEntities.tblMemberPermissions.Remove(member);
+                        }
+                        projectManagementSQLDatabaseEntities.tblMembers.Remove(memberDetail);
+                        return projectManagementSQLDatabaseEntities.SaveChanges() > 0;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                catch (Exception)
+                {
+
+                    return false;
+                }
+
             }
         }
 
