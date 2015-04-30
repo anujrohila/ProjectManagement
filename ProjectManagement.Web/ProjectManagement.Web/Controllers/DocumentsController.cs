@@ -1,16 +1,14 @@
-﻿using System;
+﻿using ProjectManagement.DLL.Repositories;
+using ProjectManagement.Domain;
+using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Web;
 using System.Web.Mvc;
-using ProjectManagement.DLL;
-using ProjectManagement.Domain;
-using ProjectManagement.DLL.Repositories;
 using Telerik.Web.Mvc;
-using System.Drawing;
-using System.IO;
-using System.Drawing.Imaging;
-using System.Drawing.Drawing2D;
 
 
 
@@ -103,7 +101,7 @@ namespace ProjectManagement.Web.Controllers
             string result = DocumentsRepository.DeleteDocuement(Docuementid);
             if (result != "")
             {
-                string fullPath = Request.MapPath("~/Documents/" + result);
+                string fullPath = Server.MapPath("~/Documents/" + result);
                 if (System.IO.File.Exists(fullPath))
                 {
                     System.IO.File.Delete(fullPath);
@@ -129,20 +127,20 @@ namespace ProjectManagement.Web.Controllers
 
         public int Height { get; set; }
 
-        // folder for the upload, you can put this in the web.config
-        private readonly string UploadPath = HttpContext.Current.Server.MapPath("~/Documents1111/");
+        // folder for the upload, you can put this in the web.config 
+        //System.Web.HttpContext.Current.Server.MapPath("~/Documents/");
+        private readonly string UploadPath = System.IO.Path.Combine(System.Web.HttpContext.Current.Server.MapPath(@"~/Documents"));
 
         public ImageResult RenameUploadFile(HttpPostedFileBase file, Int32 counter = 0)
         {
             var fileName = Path.GetFileName(file.FileName);
-
             // string prepend = "item_";
-            string finalFileName = DateTime.Now.ToString("ddmmyyyyhhmmss") +  Path.GetExtension(file.FileName);
-            if (System.IO.File.Exists(HttpContext.Current.Request.MapPath(UploadPath + finalFileName)))
-            {
-                //file exists => add country try again
-                return RenameUploadFile(file, ++counter);
-            }
+            string finalFileName = DateTime.Now.ToString("ddmmyyyyhhmmss") + Path.GetExtension(file.FileName);
+            //if (System.IO.File.Exists(System.Web.HttpContext.Current.Server.MapPath(UploadPath + finalFileName)))
+            //{
+            //    //file exists => add country try again
+            //    return RenameUploadFile(file, ++counter);
+            //}
             //file doesn't exist, upload item but validate first
             return UploadFile(file, finalFileName);
         }
@@ -151,8 +149,7 @@ namespace ProjectManagement.Web.Controllers
         {
             ImageResult imageResult = new ImageResult { Success = true, ErrorMessage = null };
 
-            var path =
-          Path.Combine(HttpContext.Current.Request.MapPath(UploadPath), fileName);
+            var path = Path.Combine(System.Web.HttpContext.Current.Server.MapPath(UploadPath), fileName);
             string extension = Path.GetExtension(file.FileName);
 
             //make sure the file is valid

@@ -10,6 +10,7 @@ function DeleteMember(id) {
             data: dataToSend,
             cache: false,
             success: function (result) {
+                alert(result.Success);
                 if (result.Success == true) {
                     RefreshGrid("ListMemberGrid");
                 }

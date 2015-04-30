@@ -121,13 +121,8 @@
     width: 100%;
 }
 
-.t-datetimepicker {
-    width: 15em !important;
-}
 
-.t-widget {
-    width: 200px;
-}
+
 
 div.t-window-content {
     padding: initial !important;
