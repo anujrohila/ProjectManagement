@@ -14,10 +14,12 @@ using System.Text;
 using ProjectManagement.Domain;
 using Telerik.Web.Mvc;
 using ProjectManagement.DLL;
+using System.Web.Configuration;
+using System.Configuration;
 
 namespace ProjectManagement.Web.Controllers
 {
-     [CustomActionAutenticationMember]
+    [CustomActionAutenticationMember]
     public class ProfileController : Controller
     {
         /// <summary>
@@ -27,7 +29,25 @@ namespace ProjectManagement.Web.Controllers
         [HttpGet]
         public ActionResult Dashboard()
         {
-            return View();
+            var tblProjectSelection = new tblProjectSelectionDTO();
+            if (ApplicationMember.LoggedUserId != 0)
+            {
+                if (ApplicationMember.LoggedMemberType == 1)
+                {
+                    tblProjectSelection.ProjectList = MasterRepository.GetAllProject();
+                    return View(tblProjectSelection);
+                }
+                else
+                {
+                    var projectIds = ApplicationMember.LoggedUserPermission.Select(p => p.ProjectId).Distinct();
+                    tblProjectSelection.ProjectList = MasterRepository.GetAllProject().Where(p => projectIds.Contains(p.ProjectId)).ToList();
+                    return View(tblProjectSelection);
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
         }
 
         /// <summary>

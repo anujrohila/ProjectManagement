@@ -1,6 +1,10 @@
 ﻿@using Telerik.Web.Mvc.UI;
 @using ProjectManagement.Web;
 @using ProjectManagement.Domain;
+@using ProjectManagement.DLL
+@{
+    var pendingApprovalCount = MaterialEntryRepository.GetPendingApprovalCount();
+}
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 <!--[if !IE]><!-->
@@ -75,6 +79,12 @@
 
                 </div>
                 <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle f-s-14"  href="@Url.Action("ListAll", "TransactionApproval")" title="Approval Pending">
+                            <i class="fa fa-bell-o"></i>
+                            <span class="label">@pendingApprovalCount</span>
+                        </a>
+                    </li>
                     <li class="dropdown navbar-user">
                         <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
                             <img src="~/Content/img/member.png" />

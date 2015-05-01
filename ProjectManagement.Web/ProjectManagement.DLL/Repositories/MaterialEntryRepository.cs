@@ -170,6 +170,19 @@ namespace ProjectManagement.DLL
             }
         }
 
+        /// <summary>
+        /// Delete Material Entry
+        /// </summary>
+        /// <returns></returns>
+        public static int GetPendingApprovalCount()
+        {
+            using (var projectManagementEntities = new ProjectManagementEntities())
+            {
+                var pApprovalCount = projectManagementEntities.Del_Mat_AccountTwo.Count();
+                return pApprovalCount;
+            }
+        }
+
         #endregion
     }
 }
