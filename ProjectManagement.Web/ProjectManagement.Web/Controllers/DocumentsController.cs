@@ -149,7 +149,7 @@ namespace ProjectManagement.Web.Controllers
         {
             ImageResult imageResult = new ImageResult { Success = true, ErrorMessage = null };
 
-            var path = Path.Combine(System.Web.HttpContext.Current.Server.MapPath(UploadPath), fileName);
+            var path = Path.Combine(UploadPath, fileName);
             string extension = Path.GetExtension(file.FileName);
 
             //make sure the file is valid
