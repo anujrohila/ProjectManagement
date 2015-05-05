@@ -158,12 +158,11 @@ namespace ProjectManagement.Web
         public static List<SelectListItem> GetYearList()
         {
             var yearList = new List<SelectListItem>();
-            for (int i = 2000; i < DateTime.Now.Year; i++)
+            for (int i = 2005; i < DateTime.Now.Year; i++)
             {
                 string val = string.Format("{0} - {1}", i.ToString(), (i + 1).ToString());
                 yearList.Add(new SelectListItem { Text = val, Value = i.ToString() });
             }
-
             return yearList;
         }
 
