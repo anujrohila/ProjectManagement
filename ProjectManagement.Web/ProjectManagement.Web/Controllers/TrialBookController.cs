@@ -7,7 +7,7 @@ using Telerik.Web.Mvc;
 
 namespace ProjectManagement.Web.Controllers
 {
-    public class TrialBookController : Controller
+    public class TrialBookController : BaseController
     {
         [HttpGet]
         public ActionResult ListAll()

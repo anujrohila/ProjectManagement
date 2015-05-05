@@ -9,7 +9,7 @@ using System.Linq;
 namespace ProjectManagement.Web.Controllers
 {
     [CustomActionAutentication]
-    public class SalesBookController : Controller
+    public class SalesBookController : BaseController
     {
         [HttpGet]
         public ActionResult ListAll()

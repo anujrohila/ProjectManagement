@@ -20,7 +20,7 @@ using System.Configuration;
 namespace ProjectManagement.Web.Controllers
 {
     [CustomActionAutenticationMember]
-    public class ProfileController : Controller
+    public class ProfileController : BaseController
     {
         /// <summary>
         /// Dashboard

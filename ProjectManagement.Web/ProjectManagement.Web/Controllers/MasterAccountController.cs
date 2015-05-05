@@ -10,7 +10,7 @@ using ProjectManagement.Domain;
 namespace ProjectManagement.Web.Controllers
 {
      [CustomActionAutentication]
-    public class MasterAccountController : Controller
+    public class MasterAccountController : BaseController
     {
 
         public ActionResult ListAll()

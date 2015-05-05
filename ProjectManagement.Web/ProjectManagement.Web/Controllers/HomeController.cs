@@ -9,10 +9,11 @@ using System.Web.Mvc;
 namespace ProjectManagement.Web.Controllers
 {
      [CustomActionAutentication]
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         public ActionResult Index()
         {
+           
             var strConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ProjectManagementEntities1"].ConnectionString;
             strConnectionString = strConnectionString.Insert(strConnectionString.IndexOf("catalog=") + 8, "123456");
             strConnectionString = strConnectionString.Insert(strConnectionString.IndexOf("user id=") + 8, "98745612");

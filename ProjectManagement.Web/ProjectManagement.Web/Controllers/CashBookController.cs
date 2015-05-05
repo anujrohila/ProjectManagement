@@ -8,7 +8,7 @@ using System.Linq;
 namespace ProjectManagement.Web.Controllers
 {
     [CustomActionAutentication]
-    public class CashBookController : Controller
+    public class CashBookController : BaseController
     {
         [HttpGet]
         public ActionResult ListAll()

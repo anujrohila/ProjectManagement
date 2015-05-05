@@ -11,7 +11,7 @@ using System.Globalization;
 namespace ProjectManagement.Web.Controllers
 {
     [CustomActionAutentication]
-    public class TransactionEntryController : Controller
+    public class TransactionEntryController : BaseController
     {
 
         public ActionResult ListAll(string type)

@@ -19,7 +19,7 @@ using System.Configuration;
 
 namespace ProjectManagement.Web.Controllers
 {
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
         [HttpGet]
         public ActionResult Login()

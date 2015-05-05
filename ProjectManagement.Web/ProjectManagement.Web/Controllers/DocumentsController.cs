@@ -15,7 +15,7 @@ using Telerik.Web.Mvc;
 namespace ProjectManagement.Web.Controllers
 {
     [CustomActionAutentication]
-    public class DocumentsController : Controller
+    public class DocumentsController : BaseController
     {
         //
         // GET: /Documents/

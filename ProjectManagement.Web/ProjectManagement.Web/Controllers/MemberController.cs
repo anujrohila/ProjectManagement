@@ -18,7 +18,7 @@ using ProjectManagement.DLL;
 namespace ProjectManagement.Web.Controllers
 {
     [CustomActionAutentication]
-    public class MemberController : Controller
+    public class MemberController : BaseController
     {
         [HttpGet]
         public ActionResult ListAll()

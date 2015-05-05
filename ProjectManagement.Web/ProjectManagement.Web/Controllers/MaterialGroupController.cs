@@ -10,7 +10,7 @@ using ProjectManagement.Domain;
 namespace ProjectManagement.Web.Controllers
 {
     [CustomActionAutentication]
-    public class MaterialGroupController : Controller
+    public class MaterialGroupController : BaseController
     {
 
         public MaterialGroupController()

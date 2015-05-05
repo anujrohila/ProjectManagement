@@ -11,7 +11,7 @@ using System.Globalization;
 namespace ProjectManagement.Web.Controllers
 {
     [CustomActionAutentication]
-    public class TransactionApprovalController : Controller
+    public class TransactionApprovalController : BaseController
     {
 
         public ActionResult ListAll()

@@ -10,7 +10,7 @@ using ProjectManagement.Domain;
 namespace ProjectManagement.Web.Controllers
 {
     [CustomActionAutentication]
-    public class SupplierController : Controller
+    public class SupplierController : BaseController
     {
         //
         // GET: /Supplier/
