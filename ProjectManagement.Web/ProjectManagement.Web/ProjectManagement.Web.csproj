@@ -417,6 +417,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaseController\BaseController.cs" />
     <Compile Include="Controllers\CashBookController.cs" />
     <Compile Include="Controllers\BankBookController.cs" />
     <Compile Include="Controllers\TransactionApprovalController.cs" />
@@ -958,10 +959,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
-    <Content Include="Documents\19362015103646.png" />
-    <Content Include="Documents\19382015103830.jpg" />
-    <Content Include="Documents\19442015104442.jpg" />
-    <Content Include="favicon.ico" />
+    <Content Include="Views\favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\plugins\font-awesome\fonts\fontawesome-webfont.eot" />
     <Content Include="Content\plugins\font-awesome\fonts\fontawesome-webfont.ttf" />
@@ -1113,7 +1111,9 @@
     <Content Include="Views\TransactionApproval\ListAll.cshtml" />
     <Content Include="Views\TransactionApproval\Approve.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Documents\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
