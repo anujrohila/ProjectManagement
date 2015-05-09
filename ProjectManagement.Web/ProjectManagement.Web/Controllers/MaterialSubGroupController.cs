@@ -148,9 +148,7 @@ namespace ProjectManagement.Web.Controllers
         private MaterialDTO FillMaterialCombox(MaterialDTO materialDTO)
         {
             materialDTO.MaterialGroupList = MaterialTypeRepository.GetAllMaterialType();
-            materialDTO.MaterialGroupList.Insert(0, new GroupByItemDTO { GroupItemName = "Select", GrpIdItem = "0" });
             materialDTO.UnitTypeList = CommonFunctions.GetAllUnitList();
-            materialDTO.UnitTypeList.Insert(0, "Select");
 
             return materialDTO;
         }

@@ -158,8 +158,6 @@ namespace ProjectManagement.Web.Controllers
                     break;
             }
 
-            matAccountTwoDTO.FromSupplierList.Insert(0, new SupplierDTO { Sup_id = "", NameiS = "Select", GroupId = 0 });
-            matAccountTwoDTO.ToSupplierList.Insert(0, new SupplierDTO { Sup_id = "", NameiS = "Select", GroupId = 0 });
             return matAccountTwoDTO;
         }
 

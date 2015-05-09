@@ -20,6 +20,8 @@ function OnCashBookReportButtonClick() {
         cache: false,
         success: function (html) {
             $("#divReportData").html(html);
+            $("#spanAccountName").html($("#AccountId option:selected").text());
+            $("#spanReportPeriodText").html($("#TransactionDate option:selected").text());
         }
     });
     HideProcess();
@@ -47,6 +49,8 @@ function OnBankBookReportButtonClick() {
         cache: false,
         success: function (html) {
             $("#divReportData").html(html);
+            $("#spanAccountName").html($("#AccountId option:selected").text());
+            $("#spanReportPeriodText").html($("#TransactionDate option:selected").text());
         }
     });
     HideProcess();
@@ -74,8 +78,9 @@ function OnLedgerBookReportButtonClick() {
         cache: false,
         success: function (html) {
             $("#divReportData").html(html);
-            $("#trLedgerName").show();
-            $("#spanLedgerText").html($("#AccountId option:selected").text() + " (A\\C Start From " + objDate + ")");
+            $("#spanAccountName").html($("#AccountId option:selected").text());
+            $("#spanReportPeriodText").html($("#TransactionDate option:selected").text());
+            
         }
     });
     HideProcess();

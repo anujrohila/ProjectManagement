@@ -20,8 +20,8 @@
                         .Columns(columns =>
                         {
                             columns.Bound(column => column.Mat_Name).Title("Group Name");
-                            columns.Bound(column => column.Mat_Unit).Title("Unit");
-                            columns.Bound(column => column.Basic_Rate).Title("Basic Rate");
+                            columns.Bound(column => column.Mat_Unit).Title("Unit").Width(120);
+                            columns.Bound(column => column.Basic_Rate).Title("Basic Rate").Width(120);
                             columns.Bound(column => column.GroupId).Title("Material Group");
                             columns.Bound(column => column.Mat_id)
                                                             .Filterable(false)
@@ -44,6 +44,7 @@
                         .Sortable()
                         .Selectable()
                         .Filterable()
+                        .Groupable()
                         .Scrollable(t => t.Height("auto"))
                         .HtmlAttributes(new { style = "width:100%;" })
                         .Resizable(resizing => resizing.Columns(true))
