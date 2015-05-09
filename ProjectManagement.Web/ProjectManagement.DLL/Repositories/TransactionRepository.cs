@@ -78,7 +78,7 @@ namespace ProjectManagement.DLL
         /// Get All Transaction Entry
         /// </summary>
         /// <returns></returns>
-        public static List<del_Mat_AccountTwoDTO> GetAllTransactionPendingApprovalEntry(string transactionType, DateTime startDate, DateTime endDate)
+        public static List<del_Mat_AccountTwoDTO> GetAllTransactionPendingApprovalEntry()
         {
             using (var projectManagementEntities = new ProjectManagementEntities())
             {
@@ -87,8 +87,6 @@ namespace ProjectManagement.DLL
                                 on matAccountTwo.From_Account equals suppliersFromAccount.Sup_id
                         join suppliersToAccount in projectManagementEntities.Suppliers
                                 on matAccountTwo.To_Account equals suppliersToAccount.Sup_id
-                        where string.Compare(matAccountTwo.Mode_Pay_Rec, transactionType, StringComparison.CurrentCultureIgnoreCase) == 0
-                         && matAccountTwo.Ddate >= startDate && matAccountTwo.Ddate <= endDate
                         select new del_Mat_AccountTwoDTO
                         {
                             Ent_No = matAccountTwo.Ent_No,

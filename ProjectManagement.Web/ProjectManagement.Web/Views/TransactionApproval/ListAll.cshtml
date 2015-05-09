@@ -20,38 +20,10 @@
                 <h4 class="panel-title">Approval Pending Entry</h4>
             </div>
             <div class="panel-body form-horizontal ">
-                <div class="col-md-12 well">
-                    <div class="col-md-2">
-                        <label class="control-inline ">Start Date<span class="spanError">*</span></label>
-                        <select id="TransactionType" name="TransactionType" class="form-control">
-                            <option value="CASH">Cash</option>
-                            <option value="BANK">Bank</option>
-                            <option value="CONTRA">Contra</option>
-                            <option value="JOURNAL">Journal</option>
-                        </select>
-                    </div>
-                    <div class="col-md-3">
-                        <label class="control-inline ">Start Date<span class="spanError">*</span></label>
-                        <div class="input-group  col-md-3">
-                            @(Html.Telerik().DatePicker().Name("StartDate").Value(DateTime.Now.AddDays(-10)).InputHtmlAttributes(new { @class = "disabled form-control" }).Format("dd-MM-yyyy"))
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <label class="control-inline">End Date<span class="spanError">*</span></label>
-                        <div class="input-group">
-                            @(Html.Telerik().DatePicker().Name("EndDate").Value(DateTime.Now).InputHtmlAttributes(new { @class = "disabled form-control" }).Format("dd-MM-yyyy"))
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <label class="control-inline">&nbsp;</label>
-                        <br />
-                        <button style="margin-top: 6px;" type="button" class="btn btn-sm btn-success" onclick="OnApprovalTransactionEntrySearchClick();">Search</button>
-                    </div>
-                </div>
                 <div class="form-group" style="padding: 20px">
                     @(Html.Telerik().Grid<ProjectManagement.Domain.del_Mat_AccountTwoDTO>().Name("ListApprovalTransactionEntryGrid")
                                         .DataKeys(datakKey => datakKey.Add(key => key.Ent_No))
-                                        .DataBinding(dataBinding => dataBinding.Ajax().Select("ListTransactionEntryAjax", "TransactionApproval", new { @type = ViewBag.TransactionType, @startDate = DateTime.Now.AddDays(-10).ToString("dd-MM-yyyy"), @endDate = DateTime.Now.ToString("dd-MM-yyyy") }))
+                                        .DataBinding(dataBinding => dataBinding.Ajax().Select("ListTransactionEntryAjax", "TransactionApproval"))
                         .Columns(columns =>
                         {
                             columns.Bound(column => column.Rec_Pay).Title("Mode");
@@ -71,7 +43,6 @@
                         .Sortable()
                         .Selectable()
                         .Filterable()
-                        .ClientEvents(events => events.OnDataBinding("OnApprovalTransactionEntryDataBinding"))
                         .Scrollable(t => t.Height("auto"))
                         .HtmlAttributes(new { style = "width:100%;" })
                         .Resizable(resizing => resizing.Columns(true))

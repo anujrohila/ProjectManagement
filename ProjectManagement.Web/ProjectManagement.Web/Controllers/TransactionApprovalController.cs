@@ -27,11 +27,9 @@ namespace ProjectManagement.Web.Controllers
         /// </summary>
         /// <returns></returns>
         [GridAction]
-        public ActionResult ListTransactionEntryAjax(string type, string startDate, string endDate)
+        public ActionResult ListTransactionEntryAjax()
         {
-            var sDate = DateTime.ParseExact(startDate, "dd-MM-yyyy", CultureInfo.InvariantCulture);
-            var eDate = DateTime.ParseExact(endDate, "dd-MM-yyyy", CultureInfo.InvariantCulture);
-            var getAllTransactionPendingApprovalEntry = TransactionRepository.GetAllTransactionPendingApprovalEntry(type, sDate, eDate);
+            var getAllTransactionPendingApprovalEntry = TransactionRepository.GetAllTransactionPendingApprovalEntry();
             foreach (var item in getAllTransactionPendingApprovalEntry)
             {
                 if (item.EntryType == 1)

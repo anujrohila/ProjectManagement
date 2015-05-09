@@ -21,7 +21,7 @@ namespace ProjectManagement.Web.Controllers
                                                                                         && s.GroupId != 21
                                                                                         && s.GroupId != 23
                                                                                         && s.GroupId != 44
-                                                                                        && s.GroupId != 43).ToList();
+                                                                                        && s.GroupId != 43).OrderBy(s => s.NameiS).ToList();
             reportModel.YearList = CommonFunctions.GetYearList();
             return View(reportModel);
         }
