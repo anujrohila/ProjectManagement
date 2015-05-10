@@ -39,6 +39,12 @@ namespace ProjectManagement.Domain
         [DataMember()]
         public Nullable<DateTime> UpdationDateTime { get; set; }
 
+        public Nullable<int> DocumentGroupId { get; set; }
+
+        public string DocumentGroupName { get; set; }
+
+        public List<tblDocumentGroupDTO> DocumentGroupList { get; set; }
+
         public tblImageMasterDTO()
         {
         }

@@ -10,8 +10,6 @@ using System.Web;
 using System.Web.Mvc;
 using Telerik.Web.Mvc;
 
-
-
 namespace ProjectManagement.Web.Controllers
 {
     [CustomActionAutentication]
@@ -22,9 +20,10 @@ namespace ProjectManagement.Web.Controllers
         [HttpGet]
         public ActionResult Save()
         {
-            var supplierDTO = new tblImageMasterDTO();
+            var tblImageMasterDTO = new tblImageMasterDTO();
             ViewBag.Error = "";
-            return View(supplierDTO);
+            tblImageMasterDTO.DocumentGroupList = DocumentsRepository.GetAllDocumentsGroupList();
+            return View(tblImageMasterDTO);
         }
 
         /// <summary>
@@ -43,14 +42,10 @@ namespace ProjectManagement.Web.Controllers
         /// </summary>
         /// <returns></returns>
         [GridAction]
-        public ActionResult ListDocuementAjax()
+        public ActionResult ListDocuementAjax(int documentGroupId)
         {
-            var Docuementdata = DocumentsRepository.GetAllDocumentsDetails();
+            var Docuementdata = DocumentsRepository.GetAllDocumentsDetails(documentGroupId);
             var DocData = new List<tblImageMasterDTO>();
-            foreach (var item in Docuementdata)
-            {
-                //  item.ImagesPath = CommonFunctions.WebUrlPrefix
-            }
             return View(new GridModel(Docuementdata));
         }
 
@@ -83,12 +78,15 @@ namespace ProjectManagement.Web.Controllers
             {
                 ViewBag.Error = "Please Select File";
             }
+            tblImageMasterDTO.DocumentGroupList = DocumentsRepository.GetAllDocumentsGroupList();
             return View(tblImageMasterDTO);
         }
 
         public ActionResult ListAll()
         {
+            ViewBag.DocumentGroupList = DocumentsRepository.GetAllDocumentsGroupList();
             return View();
+
         }
 
         /// <summary>
@@ -109,6 +107,46 @@ namespace ProjectManagement.Web.Controllers
                 return Json(new { Success = true, Message = "Document deleted successfully." });
             }
             return Json(new { Success = false, Message = "Error in transaction please try again later." });
+        }
+
+        /// <summary>
+        /// _Partial Save Document Group
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public PartialViewResult _PartialSaveDocumentGroup()
+        {
+            return PartialView(new tblDocumentGroupDTO());
+        }
+
+        /// <summary>
+        /// _Partial Save Document Group
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public JsonResult _PartialSaveDocumentGroup(tblDocumentGroupDTO tblDocumentGroupDTO)
+        {
+            if (ModelState.IsValid)
+            {
+                var isDuplicateDocumentGroup = DocumentsRepository.IsDuplicateDocumentGroup(tblDocumentGroupDTO.GroupName);
+                if (isDuplicateDocumentGroup)
+                {
+                    return Json(new { Success = false, Message = "Group name already exists." });
+                }
+                if (ModelState.IsValid)
+                {
+                    var groupId = DocumentsRepository.SaveDocumentGroup(tblDocumentGroupDTO);
+                    if (groupId > 0)
+                    {
+                        return Json(new { Success = true, DocumentGroupId = groupId, GroupName = tblDocumentGroupDTO.GroupName });
+                    }
+                    else
+                    {
+                        return Json(new { Success = false, Message = "Please fill data in required field." });
+                    }
+                }
+            }
+            return Json(new { Success = false, Message = "Please fill data in required field." });
         }
 
     }

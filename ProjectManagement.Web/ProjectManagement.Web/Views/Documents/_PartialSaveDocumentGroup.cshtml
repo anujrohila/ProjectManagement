@@ -1,0 +1,32 @@
+﻿@using Telerik.Web.Mvc.UI;
+@model ProjectManagement.Domain.tblDocumentGroupDTO
+
+<div class="row">
+    @using (Html.BeginForm("_PartialSaveDocumentGroup", "Document", FormMethod.Post, new { id = "frmSaveDocumentGroup", @class = "form-horizontal" }))
+    {
+        <div class="col-md-12 ui-sortable">
+            <!-- begin panel -->
+            <div class="panel-body">
+                @Html.HiddenFor(model => model.DocumentGroupId)
+                <div class="form-group">
+                    <label class="col-md-4 control-label"></label>
+                    <div class="col-md-8">
+                        @Html.ValidationSummary(false)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Group Name<span class="spanError">*</span></label>
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(model => model.GroupName, new { @placeholder = "Title", @class = "form-control", autofocus = "autofocus" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label"></label>
+                    <div class="col-md-8">
+                        <button class="btn btn-sm btn-success" type="button" onclick="OnSaveDocumentGroupClick();">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

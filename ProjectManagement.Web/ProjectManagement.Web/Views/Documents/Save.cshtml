@@ -17,12 +17,12 @@
                 {
                     if (ViewBag.Error != "")
                     {
-                        <div class="form-group">
-                            <label class="col-md-3 control-label"></label>
-                            <div class="col-md-5 alert alert-danger">
-                                @ViewBag.Error
-                            </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label"></label>
+                        <div class="col-md-5 alert alert-danger">
+                            @ViewBag.Error
                         </div>
+                    </div>
                     }
                     <div class="form-group">
                         <label class="col-md-3 control-label"></label>
@@ -31,9 +31,31 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label class="col-md-3 control-label">Document Group<span class="spanError">*</span></label>
+                        <div class="col-md-5">
+                            <select id="DocumentGroupId" name="DocumentGroupId" class="form-control">
+                                @foreach (var documentGroup in Model.DocumentGroupList)
+                                {
+                                    if (documentGroup.DocumentGroupId == Model.DocumentGroupId)
+                                    {
+                                    <option selected value="@documentGroup.DocumentGroupId" >@documentGroup.GroupName</option>
+                                    }
+                                    else
+                                    {
+                                    <option value="@documentGroup.DocumentGroupId" >@documentGroup.GroupName</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                        <div class="col-md-1">
+                            <button onclick="AddDocumentGroup();" title="Add Document Group" class="btn btn-sm btn-success" type="button">...</button>
+                        </div>
+                    </div>
+                   
+                    <div class="form-group">
                         <label class="col-md-3 control-label">Document<span class="spanError">*</span></label>
                         <div class="col-md-5">
-                            <input type="file" name="FileName" id="FileName"  class="form-control"  autofocus="autofocus"/>
+                            <input type="file" name="FileName" id="FileName" class="form-control" autofocus="autofocus" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -55,6 +77,24 @@
         <!-- end panel -->
     </div>
 </div>
+<div id="divWindow">
+    @{
+        Html.Telerik().Window()
+                    .Name("AddDocumentGroupModelPopupWindow")
+                    .Title("Document Group")
+                    .Content(@<text>
+        <div id="divAddDocumentGroupModelPopupbody">
+        </div>
+        </text>)
+                    .Width(500)
+                    .Draggable(true)
+                    .Effects(fx => fx.Zoom().Opacity().OpenDuration(200).CloseDuration(300))
+                    .Modal(true)
+                    .Visible(false)
+                    .Render();
+    }
+</div>
+<script src="~/Content/Script/Document.js"></script>
 <script type="text/javascript">
     ActivateSelectedMenu('menuDocuments');
 </script>

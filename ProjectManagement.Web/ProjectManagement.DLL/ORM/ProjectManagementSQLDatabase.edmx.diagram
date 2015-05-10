@@ -10,9 +10,10 @@
         <EntityTypeShape EntityType="ProjectManagementSQLDatabaseModel.tblMemberType" Width="1.5" PointX="7.625" PointY="3.75" />
         <AssociationConnector Association="ProjectManagementSQLDatabaseModel.FK_tblMember_tblMemberType" />
         <AssociationConnector Association="ProjectManagementSQLDatabaseModel.FK_tblMemberPermission_tblMember" />
-        <EntityTypeShape EntityType="ProjectManagementSQLDatabaseModel.tblImageMaster" Width="1.5" PointX="0.75" PointY="4.75" />
         <EntityTypeShape EntityType="ProjectManagementSQLDatabaseModel.tblProject" Width="1.5" PointX="7.125" PointY="5.875" />
         <EntityTypeShape EntityType="ProjectManagementSQLDatabaseModel.tblEntityMaster" Width="1.5" PointX="9.3741351316562564" PointY="17.55825278980576" />
+        <EntityTypeShape EntityType="ProjectManagementSQLDatabaseModel.tblDocumentGroup" Width="1.5" PointX="10.574029560468173" PointY="23.859618272566991" />
+        <EntityTypeShape EntityType="ProjectManagementSQLDatabaseModel.tblImageMaster" Width="1.5" PointX="4.1908477918202278" PointY="14.343696973446615" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

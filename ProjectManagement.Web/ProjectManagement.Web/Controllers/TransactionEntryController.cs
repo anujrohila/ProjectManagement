@@ -121,7 +121,8 @@ namespace ProjectManagement.Web.Controllers
         /// <returns></returns>
         private Mat_AccountTwoDTO FillSupplierDTO(Mat_AccountTwoDTO matAccountTwoDTO)
         {
-
+            matAccountTwoDTO.MinEntryDateTime = CommonFunctions.GetStartOfFinancialYear(DateTime.Now);
+            matAccountTwoDTO.MaxEntryDateTime = matAccountTwoDTO.MinEntryDateTime.AddYears(1).AddDays(-1);
             switch (matAccountTwoDTO.Mode_Pay_Rec.ToUpper())
             {
                 case "CASH":

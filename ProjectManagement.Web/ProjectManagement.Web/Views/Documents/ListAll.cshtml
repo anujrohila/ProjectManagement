@@ -13,11 +13,25 @@
             <div class="panel-heading">
                 <h4 class="panel-title">Document Listing</h4>
             </div>
-            <div class="panel-body">
+            <div class="panel-body form-horizontal">
                 <div class="form-group">
+                    <label class="col-md-2 control-label">Document Group</label>
+                    <div class="col-md-4">
+                        <select id="DocumentGroupId" name="DocumentGroupId" class="form-control">
+                            @foreach (var documentGroup in ViewBag.DocumentGroupList)
+                            {
+                                <option value="@documentGroup.DocumentGroupId" >@documentGroup.GroupName</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="button" class="btn btn-sm btn-success" onclick="OnGroupWiseDocumentViewButtonClick();">Search</button>
+                    </div>
+                </div>
+                <div class="form-group" style="padding: 10px">
                     @(Html.Telerik().Grid<ProjectManagement.Domain.tblImageMasterDTO>().Name("ListDocumentGrid")
                                                 .DataKeys(datakKey => datakKey.Add(key => key.ImageID))
-                                                        .DataBinding(dataBinding => dataBinding.Ajax().Select("ListDocuementAjax", "Documents"))
+                                                        .DataBinding(dataBinding => dataBinding.Ajax().Select("ListDocuementAjax", "Documents", new { documentGroupId = 1 }))
                         .Columns(columns =>
                         {
                             columns.Bound(column => column.ImagesPath)
@@ -49,6 +63,7 @@
                         .Sortable()
                         .Selectable()
                         .Filterable()
+                        .ClientEvents(events => events.OnDataBinding("OnListDocumentDataBinding"))
                         .Scrollable(t => t.Height("auto"))
                         .HtmlAttributes(new { style = "width:100%;" })
                         .Resizable(resizing => resizing.Columns(true))
@@ -70,9 +85,9 @@
                     .Name("AddDocumentModelPopupWindow")
                     .Title("Docuement Show")
                     .Content(@<text>
-                        <div id="divDocumentModelPopupbody">
-                        </div>
-                    </text>)
+        <div id="divDocumentModelPopupbody">
+        </div>
+        </text>)
                     .Width(800)
                     .Draggable(true)
                     .Effects(fx => fx.Zoom().Opacity().OpenDuration(200).CloseDuration(300))

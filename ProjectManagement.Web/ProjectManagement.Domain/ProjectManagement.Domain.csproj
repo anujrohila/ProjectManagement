@@ -66,6 +66,7 @@
     <Compile Include="DTO\Mat_AccountTwoDTO.cs" />
     <Compile Include="DTO\QtyMaterialDTO.cs" />
     <Compile Include="DTO\SupplierDTO.cs" />
+    <Compile Include="DTO\tblDocumentGroupDTO.cs" />
     <Compile Include="DTO\tblEntityMasterDTO.cs" />
     <Compile Include="DTO\tblImageMasterDTO.cs" />
     <Compile Include="DTO\tblMemberDTO.cs" />

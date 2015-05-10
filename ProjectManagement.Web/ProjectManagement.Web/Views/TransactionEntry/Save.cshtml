@@ -47,7 +47,12 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">Transaction Date<span class="spanError">*</span></label>
                         <div class="col-md-3">
-                            @(Html.Telerik().DatePickerFor(m => m.Ddate).Name("DdateString").InputHtmlAttributes(new { @class = "disabled form-control" }).Format("dd-MM-yyyy"))
+                            @(Html.Telerik().DatePickerFor(m => m.Ddate)
+                                    .Name("DdateString")
+                                    .InputHtmlAttributes(new { @class = "disabled form-control" })
+                                    .Min(Model.MinEntryDateTime)
+                                    .Max(Model.MaxEntryDateTime)
+                                    .Format("dd-MM-yyyy"))
                         </div>
                         <div class="col-md-3" style="vertical-align: middle; margin-left: -40px; margin-top: 5px;">
                             <span>@DateTime.Now.DayOfWeek</span>

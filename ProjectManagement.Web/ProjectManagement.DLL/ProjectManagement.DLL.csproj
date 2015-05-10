@@ -55,6 +55,7 @@
     <Compile Include="Assemblers\Mat_AccountTwoAssembler.cs" />
     <Compile Include="Assemblers\QtyMaterialAssembler.cs" />
     <Compile Include="Assemblers\SupplierAssembler.cs" />
+    <Compile Include="Assemblers\tblDocumentGroupAssembler.cs" />
     <Compile Include="Assemblers\tblEntityMasterAssembler.cs" />
     <Compile Include="Assemblers\tblImageMasterAssembler.cs" />
     <Compile Include="Assemblers\tblMemberAssembler.cs" />
@@ -124,6 +125,9 @@
     </Compile>
     <Compile Include="ORM\Supplier.cs">
       <DependentUpon>ProjectSQLDatabase.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\tblDocumentGroup.cs">
+      <DependentUpon>ProjectManagementSQLDatabase.tt</DependentUpon>
     </Compile>
     <Compile Include="ORM\tblEntityMaster.cs">
       <DependentUpon>ProjectManagementSQLDatabase.tt</DependentUpon>

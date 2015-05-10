@@ -100,6 +100,22 @@ namespace ProjectManagement.Web
             return fy;
         }
 
+        public static DateTime GetStartOfFinancialYear(DateTime currentdate)
+        {
+            int startMonthOfFinancialYear = 4;
+            if (startMonthOfFinancialYear < 1 || startMonthOfFinancialYear > 12)
+                throw new ArgumentException("Must be between 1 and 12", "startMonthOfFinancialYear");
+
+            DateTime rtn = new DateTime(currentdate.Year, startMonthOfFinancialYear, 1);
+            if (currentdate.Month < startMonthOfFinancialYear)
+            {
+                // Current FY starts last year - e.g. given April to March FY then 1st Feb 2013 FY starts 1st April 20*12*
+                rtn = rtn.AddYears(-1);
+            }
+
+            return rtn;
+        }
+
         public static List<string> GetAllUnitList()
         {
             var unitList = new List<string>();

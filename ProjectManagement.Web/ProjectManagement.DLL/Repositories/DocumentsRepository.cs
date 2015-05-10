@@ -25,15 +25,30 @@ namespace ProjectManagement.DLL.Repositories
 
         #region [Methods]
 
-           /// <summary>
+        /// <summary>
         /// Get All Document Entry
         /// </summary>
         /// <returns></returns>
-        public static List<tblImageMasterDTO> GetAllDocumentsDetails()
+        public static List<tblImageMasterDTO> GetAllDocumentsDetails(int documentGroupId)
         {
             using (var projectManagementSQLDatabaseEntities = new ProjectManagementSQLDatabaseEntities())
             {
-                return projectManagementSQLDatabaseEntities.tblImageMasters.ToList().ToDTOs();
+                return (from imageDocument in projectManagementSQLDatabaseEntities.tblImageMasters
+                        join documentGroup in projectManagementSQLDatabaseEntities.tblDocumentGroups
+                               on imageDocument.DocumentGroupId equals documentGroup.DocumentGroupId
+                        where imageDocument.DocumentGroupId == documentGroupId
+                        select new tblImageMasterDTO
+                        {
+                            DocumentGroupId = imageDocument.DocumentGroupId,
+                            Comment = imageDocument.Comment,
+                            CreateBy = imageDocument.CreateBy,
+                            CreationDateTime = imageDocument.CreationDateTime,
+                            ImageID = imageDocument.ImageID,
+                            ImagesPath = imageDocument.ImagesPath,
+                            UpdateBy = imageDocument.UpdateBy,
+                            UpdationDateTime = imageDocument.UpdationDateTime,
+                            DocumentGroupName = documentGroup.GroupName
+                        }).ToList();
             }
         }
 
@@ -42,11 +57,26 @@ namespace ProjectManagement.DLL.Repositories
         /// Get Document Entry
         /// </summary>
         /// <returns></returns>
-        public static tblImageMasterDTO GetDocumentsDetails(int doc)
+        public static tblImageMasterDTO GetDocumentsDetails(int imageId)
         {
             using (var projectManagementSQLDatabaseEntities = new ProjectManagementSQLDatabaseEntities())
             {
-                return projectManagementSQLDatabaseEntities.tblImageMasters.Where(d => d.ImageID == doc).FirstOrDefault().ToDTO();
+                return (from imageDocument in projectManagementSQLDatabaseEntities.tblImageMasters
+                        join documentGroup in projectManagementSQLDatabaseEntities.tblDocumentGroups
+                               on imageDocument.DocumentGroupId equals documentGroup.DocumentGroupId
+                        where imageDocument.ImageID == imageId
+                        select new tblImageMasterDTO
+                        {
+                            DocumentGroupId = imageDocument.DocumentGroupId,
+                            Comment = imageDocument.Comment,
+                            CreateBy = imageDocument.CreateBy,
+                            CreationDateTime = imageDocument.CreationDateTime,
+                            ImageID = imageDocument.ImageID,
+                            ImagesPath = imageDocument.ImagesPath,
+                            UpdateBy = imageDocument.UpdateBy,
+                            UpdationDateTime = imageDocument.UpdationDateTime,
+                            DocumentGroupName = documentGroup.GroupName
+                        }).FirstOrDefault();
             }
         }
 
@@ -60,7 +90,7 @@ namespace ProjectManagement.DLL.Repositories
             {
                 tblImageMaster tbldocuemnt = tblImageMasterDTO.ToEntity();
                 projectManagementSQLDatabaseEntities.tblImageMasters.Add(tbldocuemnt);
-                if(projectManagementSQLDatabaseEntities.SaveChanges() > 0)
+                if (projectManagementSQLDatabaseEntities.SaveChanges() > 0)
                 {
                     return true;
                 }
@@ -81,7 +111,7 @@ namespace ProjectManagement.DLL.Repositories
             {
                 var tbldocuemnt = projectManagementSQLDatabaseEntities.tblImageMasters.Where(d => d.ImageID == id).FirstOrDefault();
                 string returnname = tbldocuemnt.ImagesPath;
-                if(tbldocuemnt != null)
+                if (tbldocuemnt != null)
                 {
                     projectManagementSQLDatabaseEntities.tblImageMasters.Remove(tbldocuemnt);
                     if (projectManagementSQLDatabaseEntities.SaveChanges() > 0)
@@ -91,6 +121,48 @@ namespace ProjectManagement.DLL.Repositories
                 }
             }
             return "";
+        }
+
+        /// <summary>
+        /// Get All Document Group Entry
+        /// </summary>
+        /// <returns></returns>
+        public static List<tblDocumentGroupDTO> GetAllDocumentsGroupList()
+        {
+            using (var projectManagementSQLDatabaseEntities = new ProjectManagementSQLDatabaseEntities())
+            {
+                return projectManagementSQLDatabaseEntities.tblDocumentGroups.ToList().ToDTOs();
+            }
+        }
+
+        /// <summary>
+        /// Save Document Group
+        /// </summary>
+        /// <returns></returns>
+        public static int SaveDocumentGroup(tblDocumentGroupDTO tblDocumentGroupDTO)
+        {
+            using (var projectManagementSQLDatabaseEntities = new ProjectManagementSQLDatabaseEntities())
+            {
+                tblDocumentGroup tbldocuemntGroup = tblDocumentGroupDTO.ToEntity();
+                projectManagementSQLDatabaseEntities.tblDocumentGroups.Add(tbldocuemntGroup);
+                projectManagementSQLDatabaseEntities.SaveChanges();
+                return tbldocuemntGroup.DocumentGroupId;
+            }
+        }
+
+
+        /// <summary>
+        /// Is Duplicate Document Group
+        /// </summary>
+        /// <returns></returns>
+        public static bool IsDuplicateDocumentGroup(string groupName)
+        {
+            using (var projectManagementSQLDatabaseEntities = new ProjectManagementSQLDatabaseEntities())
+            {
+                var projectCount = projectManagementSQLDatabaseEntities.tblDocumentGroups.Where(documentGroup => string.Compare(documentGroup.GroupName, groupName, StringComparison.CurrentCultureIgnoreCase) == 0).Count();
+
+                return projectCount == 0 ? false : true;
+            }
         }
 
         #endregion

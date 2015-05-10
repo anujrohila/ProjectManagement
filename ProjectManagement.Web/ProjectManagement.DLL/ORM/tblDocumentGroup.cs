@@ -12,15 +12,9 @@ namespace ProjectManagement.DLL.ORM
     using System;
     using System.Collections.Generic;
     
-    public partial class tblImageMaster
+    public partial class tblDocumentGroup
     {
-        public long ImageID { get; set; }
-        public string ImagesPath { get; set; }
-        public string Comment { get; set; }
-        public Nullable<int> CreateBy { get; set; }
-        public Nullable<System.DateTime> CreationDateTime { get; set; }
-        public Nullable<int> UpdateBy { get; set; }
-        public Nullable<System.DateTime> UpdationDateTime { get; set; }
-        public Nullable<int> DocumentGroupId { get; set; }
+        public int DocumentGroupId { get; set; }
+        public string GroupName { get; set; }
     }
 }

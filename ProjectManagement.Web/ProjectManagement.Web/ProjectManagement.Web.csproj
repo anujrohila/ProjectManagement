@@ -1110,6 +1110,7 @@
     <Content Include="Views\SalesBook\ListAll.cshtml" />
     <Content Include="Views\TransactionApproval\ListAll.cshtml" />
     <Content Include="Views\TransactionApproval\Approve.cshtml" />
+    <Content Include="Views\Documents\_PartialSaveDocumentGroup.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Documents\" />

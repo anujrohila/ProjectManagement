@@ -102,5 +102,9 @@ namespace ProjectManagement.Domain
         public List<SupplierDTO> FromSupplierList { get; set; }
 
         public List<SupplierDTO> ToSupplierList { get; set; }
+
+        //Addional Field
+        public DateTime MinEntryDateTime { get; set; }
+        public DateTime MaxEntryDateTime { get; set; }
     }
 }

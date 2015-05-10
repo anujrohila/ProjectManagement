@@ -49,7 +49,7 @@ namespace ProjectManagement.DLL.ORM
             entity.CreationDateTime = dto.CreationDateTime;
             entity.UpdateBy = dto.UpdateBy;
             entity.UpdationDateTime = dto.UpdationDateTime;
-
+            entity.DocumentGroupId = dto.DocumentGroupId;
             dto.OnEntity(entity);
 
             return entity;
@@ -72,7 +72,7 @@ namespace ProjectManagement.DLL.ORM
             dto.CreationDateTime = entity.CreationDateTime;
             dto.UpdateBy = entity.UpdateBy;
             dto.UpdationDateTime = entity.UpdationDateTime;
-
+            dto.DocumentGroupId = entity.DocumentGroupId;
             entity.OnDTO(dto);
 
             return dto;
